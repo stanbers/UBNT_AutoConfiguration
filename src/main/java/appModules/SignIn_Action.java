@@ -1,38 +1,38 @@
+package appModules;
+
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.firefox.internal.ProfilesIni;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utility.Constant;
+import utility.ExcelUtils;
+import draft.Login;
 
-public class Login {
-    public WebDriver getWebDriver(){
-        ProfilesIni profile = new ProfilesIni();
+public class SignIn_Action {
 
-        FirefoxProfile myProfile = profile.getProfile("testProfile");
+    public static void main(String[] args) throws Exception{
 
-        FirefoxOptions options = new FirefoxOptions().setProfile(myProfile);
-        WebDriver driver = new FirefoxDriver(options);
-        return driver;
-    }
-    public String getLogoText(){
-        WebDriver driver = getWebDriver();
         System.setProperty("webdriver.gecko.driver","C:\\SeleniumGecko\\geckodriver.exe");
+        Login login = new Login();
+        WebDriver driver = login.getWebDriver();
 
         driver.get("http://train.ltrailways.com/");
 
-        // Perform actions on HTML elements, entering text and submitting the form
         WebElement username = driver.findElement(By.name("name"));
         WebElement password = driver.findElement(By.name("password"));
         WebElement loginButton = driver.findElement(By.tagName("button"));
         WebElement isAdmin = driver.findElement(By.name("is_admin"));
 
-        username.sendKeys("13659191907");
-        password.sendKeys("654321");
+        ExcelUtils.setExcelFile(Constant.Path_TestData,Constant.File_TestData);
 
+        //This is to get the values from Excel sheet, passing parameters (Row num &amp; Col num)to getCellData method
+        String sUserName = ExcelUtils.getCellData(1, 1);
+        String sPassword = ExcelUtils.getCellData(1, 2);
+
+        username.sendKeys(sUserName);
+        password.sendKeys(sPassword);
 
         isAdmin.click();
         loginButton.submit();
@@ -42,6 +42,15 @@ public class Login {
 
         //run a test
         String logo = logoElement.getText();
-        return logo;
+
+        String successLogo = "铁路施工管理";
+
+        System.out.println("Inside testPrintMessage()");
+        Assert.assertEquals (logo, successLogo);
+
+        ExcelUtils.setCellData("Pass", 1, 3);
+
+        driver.quit();
     }
+
 }
