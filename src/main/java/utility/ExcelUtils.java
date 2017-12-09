@@ -8,6 +8,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ExcelUtils {
@@ -32,14 +34,36 @@ public class ExcelUtils {
         }
     }
 
-    //This method is to read the test data from the Excel cell, in this we are passing parameters as Row num and Col num
-    public static String getCellData(int RowNum, int ColNum) throws Exception{
+    //This method is to read the test data from the Excel cell, in this firstly we find the specify test case name
+    //then we are collect parameters as Row num and Col num based on the cell Row num adn Col num of the test case name
+    public static List<String> getCellData(String caseName,int rowNum) throws Exception{
+        List<String> list = new ArrayList<String>();
         try{
-            Cell = ExcelWSheet.getRow(RowNum).getCell(ColNum);
-            String CellData = Cell.getRawValue();
-            return CellData;
+            int lastRowIndex = ExcelWSheet.getLastRowNum();
+            labelA:
+            for (int i = 0; i <= lastRowIndex; i++) {
+                XSSFRow row  = ExcelWSheet.getRow(i+2);
+                if (row == null) { break; }
+
+                short lastCellNum = row.getLastCellNum();
+                for (int j = 0; j < lastCellNum; j++) {
+                    String cellValue = row.getCell(j).getStringCellValue();
+                    if(caseName != null && caseName.equals(cellValue)){
+                        for (int k = 0; k < lastCellNum ; k++) {
+                            if(row.getCell(k+3).getRawValue() != null){
+                                list.add(row.getCell(k+3).getRawValue());
+                            }else {
+                                break labelA;
+                            }
+                        }
+                    }else {
+                        return null;
+                    }
+                }
+            }
+            return list;
         }catch (Exception e){
-            return"get nothing";
+            return null;
         }
     }
 

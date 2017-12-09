@@ -1,4 +1,4 @@
-package appModules;
+package draft;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -8,14 +8,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utility.Constant;
 import utility.ExcelUtils;
-import draft.Login;
 
-public class SignIn_Action {
+public class SiginIn_Action {
 
     public static void main(String[] args) throws Exception{
 
         System.setProperty("webdriver.gecko.driver","C:\\SeleniumGecko\\geckodriver.exe");
-        Login login = new Login();
+        Login_draft login = new Login_draft();
         WebDriver driver = login.getWebDriver();
 
         driver.get("http://train.ltrailways.com/");
@@ -28,8 +27,8 @@ public class SignIn_Action {
         ExcelUtils.setExcelFile(Constant.Path_TestData,Constant.File_TestData);
 
         //This is to get the values from Excel sheet, passing parameters (Row num &amp; Col num)to getCellData method
-        String sUserName = ExcelUtils.getCellData(1, 1);
-        String sPassword = ExcelUtils.getCellData(1, 2);
+        String sUserName = ExcelUtils.getCellData("TrainScheduling_ltrailways_login_master").get(0);
+        String sPassword = ExcelUtils.getCellData("TrainScheduling_ltrailways_login_master").get(1);
 
         username.sendKeys(sUserName);
         password.sendKeys(sPassword);
@@ -45,10 +44,7 @@ public class SignIn_Action {
 
         String successLogo = "铁路施工管理";
 
-        System.out.println("Inside testPrintMessage()");
         Assert.assertEquals (logo, successLogo);
-
-        ExcelUtils.setCellData("Pass", 1, 3);
 
         driver.quit();
     }
