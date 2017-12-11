@@ -36,7 +36,7 @@ public class ExcelUtils {
 
     //This method is to read the test data from the Excel cell, in this firstly we find the specify test case name
     //then we are collect parameters as Row num and Col num based on the cell Row num adn Col num of the test case name
-    public static List<String> getCellData(String caseName,int rowNum) throws Exception{
+    public static List<String> getCellData(String caseName) throws Exception{
         List<String> list = new ArrayList<String>();
         try{
             int lastRowIndex = ExcelWSheet.getLastRowNum();
