@@ -1,6 +1,7 @@
-package pageObject;
+package draft;
 
-import draft.Login_draft;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,8 +11,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import utility.Constant;
 import utility.ExcelUtils;
 
-public class Login_Page {
+public class Login_Page_01 {
 
+    private final static Log log = LogFactory.getLog(Login_Page_01.class);
     public static void main(String[] args) throws Exception{
 
         System.setProperty("webdriver.gecko.driver","C:\\SeleniumGecko\\geckodriver.exe");
@@ -28,8 +30,8 @@ public class Login_Page {
         ExcelUtils.setExcelFile(Constant.Path_TestData,Constant.File_TestData);
 
         //This is to get the values from Excel sheet, passing parameters (Row num &amp; Col num)to getCellData method
-        String sUserName = ExcelUtils.getCellData("TrainScheduling_ltrailways_login_master").get(0);
-        String sPassword = ExcelUtils.getCellData("TrainScheduling_ltrailways_login_master").get(1);
+        String sUserName = ExcelUtils.getParametersViaCaseName("TrainScheduling_ltrailways_login_master").get(0);
+        String sPassword = ExcelUtils.getParametersViaCaseName("TrainScheduling_ltrailways_login_master").get(1);
 
         username.sendKeys(sUserName);
         password.sendKeys(sPassword);
@@ -42,12 +44,11 @@ public class Login_Page {
 
         //run a test
         String logo = logoElement.getText();
-
+        log.info(logo.toString());
+        log.debug(logo.toString());
         String successLogo = "铁路施工管理";
 
         Assert.assertEquals (logo, successLogo);
-
-        ExcelUtils.setCellData("Pass", 1, 3);
 
         driver.quit();
     }

@@ -27,8 +27,8 @@ public class SiginIn_Action {
         ExcelUtils.setExcelFile(Constant.Path_TestData,Constant.File_TestData);
 
         //This is to get the values from Excel sheet, passing parameters (Row num &amp; Col num)to getCellData method
-        String sUserName = ExcelUtils.getCellData("TrainScheduling_ltrailways_login_master").get(0);
-        String sPassword = ExcelUtils.getCellData("TrainScheduling_ltrailways_login_master").get(1);
+        String sUserName = ExcelUtils.getParametersViaCaseName("TrainScheduling_ltrailways_login_master").get(0);
+        String sPassword = ExcelUtils.getParametersViaCaseName("TrainScheduling_ltrailways_login_master").get(1);
 
         username.sendKeys(sUserName);
         password.sendKeys(sPassword);
