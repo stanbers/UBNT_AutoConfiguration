@@ -40,12 +40,12 @@ public class ExcelUtils {
 
     //This method is to read the test data from the Excel cell, firstly we find the specify test case name
     //then we are collect parameters as Row num and Col num based on the cell Row num adn Col num of the test case name
-    public static List<String> getParametersViaCaseName(String caseName) throws Exception{
+    public static List<String> getParametersViaCaseName(String caseName, int rowIndex, boolean isNumber) throws Exception{
         List<String> list = new ArrayList<String>();
         try{
             int lastRowIndex = ExcelWSheet.getLastRowNum();
             labelA:
-            for (int i = 0; i <= lastRowIndex; i++) {
+            for (int i = rowIndex; i <= lastRowIndex; i++) {
                 XSSFRow row  = ExcelWSheet.getRow(i+2);
                 if (row == null) { break; }
 
@@ -54,8 +54,12 @@ public class ExcelUtils {
                     String cellValue = row.getCell(j).getStringCellValue();
                     if(caseName != null && caseName.equals(cellValue)){
                         for (int k = 0; k < lastCellNum ; k++) {
-                            if(row.getCell(k+3).getRawValue() != null){
+                            //this is for int cell
+                            if(isNumber && row.getCell(k+3).getRawValue() != null){
                                 list.add(row.getCell(k+3).getRawValue());
+                            //this is for String cell
+                            }else if(!isNumber && row.getCell(k+3) != null){
+                                list.add(row.getCell(k+3).getStringCellValue());
                             }else {
                                 break labelA;
                             }

@@ -1,4 +1,4 @@
-package draft;
+package UITesting;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import utility.Constant;
 import utility.ExcelUtils;
 
-public class SiginIn_Action_draft {
+public class SiginIn_Action {
 
     public static void main(String[] args) throws Exception{
 
@@ -27,8 +27,8 @@ public class SiginIn_Action_draft {
         ExcelUtils.setExcelFile(Constant.Path_TestData,Constant.File_TestData);
 
         //This is to get the values from Excel sheet, passing parameters (Row num &amp; Col num)to getCellData method
-        String sUserName = ExcelUtils.getParametersViaCaseName("TrainScheduling_ltrailways_login_master").get(0);
-        String sPassword = ExcelUtils.getParametersViaCaseName("TrainScheduling_ltrailways_login_master").get(1);
+        String sUserName = ExcelUtils.getParametersViaCaseName("TrainScheduling_ltrailways_login_master", 0, true).get(0);
+        String sPassword = ExcelUtils.getParametersViaCaseName("TrainScheduling_ltrailways_login_master", 0, true).get(1);
 
         username.sendKeys(sUserName);
         password.sendKeys(sPassword);
@@ -44,10 +44,7 @@ public class SiginIn_Action_draft {
 
         String successLogo = "铁路施工管理";
 
-        System.out.println("Inside testPrintMessage()");
         Assert.assertEquals (logo, successLogo);
-
-        ExcelUtils.setCellData("Pass", 1, 3);
 
         driver.quit();
     }
