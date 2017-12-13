@@ -2,19 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6297135e-99b4-48ed-8d1f-4be9376233e2" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/test/java/UITesting/companyManagement/independently/AddDepartmentTest.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/UITesting/Login_Page.java" afterPath="$PROJECT_DIR$/src/main/java/UITesting/Login_Page.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/UITesting/Login_Page_01.java" afterPath="$PROJECT_DIR$/src/main/java/UITesting/Login_Page_01.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/UITesting/SiginIn_Action.java" afterPath="$PROJECT_DIR$/src/main/java/UITesting/SiginIn_Action.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/UITesting/SiginIn_Action_draft.java" afterPath="$PROJECT_DIR$/src/main/java/UITesting/SiginIn_Action_draft.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pageObject/Homepage.java" afterPath="$PROJECT_DIR$/src/main/java/pageObject/Homepage.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pageObject/Login.java" afterPath="$PROJECT_DIR$/src/main/java/pageObject/Login.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/testData/testData.xlsx" afterPath="$PROJECT_DIR$/src/main/java/testData/testData.xlsx" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utility/ExcelUtils.java" afterPath="$PROJECT_DIR$/src/main/java/utility/ExcelUtils.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/UITesting/AddCompanyTest.java" afterPath="$PROJECT_DIR$/src/test/java/UITesting/AddCompanyTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/UITesting/LogoutTest.java" afterPath="$PROJECT_DIR$/src/test/java/UITesting/LogoutTest.java" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pageObject/Login.class" afterPath="$PROJECT_DIR$/target/classes/pageObject/Login.class" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/UITesting/AddCompanyTest.class" afterPath="$PROJECT_DIR$/target/test-classes/UITesting/AddCompanyTest.class" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/UITesting/AddCompanyTest.java" afterPath="$PROJECT_DIR$/src/test/java/UITesting/companyManagement/independently/AddCompanyTest.java" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/UITesting/AddEventTest.java" afterPath="$PROJECT_DIR$/src/test/java/UITesting/securityManagement/independently/AddEventTest.java" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/UITesting/LoginTest.java" afterPath="$PROJECT_DIR$/src/test/java/UITesting/loginPage/independently/LoginTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -30,83 +23,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="SiginIn_Action.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/UITesting/SiginIn_Action.java">
+      <file leaf-file-name="AddDepartmentTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/UITesting/companyManagement/independently/AddDepartmentTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="30" column="107" lean-forward="false" selection-start-line="30" selection-start-column="107" selection-end-line="30" selection-end-column="107" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Login_Page_01.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/UITesting/Login_Page_01.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-43">
-              <caret line="33" column="107" lean-forward="false" selection-start-line="33" selection-start-column="107" selection-end-line="33" selection-end-column="107" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Login_Page.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/UITesting/Login_Page.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="30" column="107" lean-forward="false" selection-start-line="30" selection-start-column="107" selection-end-line="30" selection-end-column="107" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AddCompanyTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/UITesting/AddCompanyTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="560">
-              <caret line="113" column="0" lean-forward="true" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
+            <state relative-caret-position="-1840">
+              <caret line="40" column="42" lean-forward="true" selection-start-line="40" selection-start-column="42" selection-end-line="40" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SiginIn_Action_draft.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/UITesting/SiginIn_Action_draft.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="30" column="107" lean-forward="false" selection-start-line="30" selection-start-column="107" selection-end-line="30" selection-end-column="107" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Login.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pageObject/Login.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="467">
-              <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2471#2472#0" expanded="true" />
-                <element signature="e#2529#2530#0" expanded="true" />
-                <element signature="e#2574#2575#0" expanded="true" />
-                <element signature="e#2636#2637#0" expanded="true" />
-                <element signature="e#2685#2686#0" expanded="true" />
-                <element signature="e#2748#2749#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ExcelUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/utility/ExcelUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="54" column="71" lean-forward="true" selection-start-line="54" selection-start-column="71" selection-end-line="54" selection-end-column="71" />
-              <folding>
-                <element signature="e#1718#1726#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -115,18 +38,18 @@
       <file leaf-file-name="Homepage.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/pageObject/Homepage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="103" column="7" lean-forward="true" selection-start-line="103" selection-start-column="7" selection-end-line="103" selection-end-column="7" />
+            <state relative-caret-position="291">
+              <caret line="151" column="7" lean-forward="true" selection-start-line="148" selection-start-column="4" selection-end-line="151" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WebDriverGiver.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/utility/WebDriverGiver.java">
+      <file leaf-file-name="AddCompanyTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/UITesting/companyManagement/independently/AddCompanyTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+            <state relative-caret-position="342">
+              <caret line="137" column="29" lean-forward="true" selection-start-line="137" selection-start-column="29" selection-end-line="137" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -163,11 +86,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/Login.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pageObjects/Home_Page.java" />
-        <option value="$PROJECT_DIR$/src/test/java/LoginTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/draft/Login.java" />
-        <option value="$PROJECT_DIR$/src/main/java/utility/Constant.java" />
         <option value="$PROJECT_DIR$/src/main/java/appModules/SignIn_Action.java" />
         <option value="$PROJECT_DIR$/src/main/java/appModules/Login.java" />
         <option value="$PROJECT_DIR$/src/main/java/appModules/Login_Pages.java" />
@@ -212,6 +130,13 @@
         <option value="$PROJECT_DIR$/src/main/java/pageObject/Login.java" />
         <option value="$PROJECT_DIR$/src/main/java/pageObject/Homepage.java" />
         <option value="$PROJECT_DIR$/src/main/java/utility/WebDriverGiver.java" />
+        <option value="$PROJECT_DIR$/src/test/java/UITesting/companyManagement/AddCompanyTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/UITesting/loginPage/LoginTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/UITesting/securityManagement/AddEventTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/UITesting/companyManagement/DepartmentManagement.java" />
+        <option value="$PROJECT_DIR$/src/test/java/UITesting/companyManagement/independently/DepartmentManagement.java" />
+        <option value="$PROJECT_DIR$/src/test/java/UITesting/companyManagement/independently/AddDepartmentTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/UITesting/companyManagement/independently/AddCompanyTest.java" />
       </list>
     </option>
   </component>
@@ -227,6 +152,25 @@
     <option name="y" value="46" />
     <option name="width" value="1713" />
     <option name="height" value="988" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Spelling</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>SpellCheckingInspection</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -317,6 +261,24 @@
               <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="UITesting" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TrainScheduling" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TrainScheduling" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="UITesting" type="462c0819:PsiDirectoryNode" />
+              <item name="independently" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TrainScheduling" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TrainScheduling" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="UITesting" type="462c0819:PsiDirectoryNode" />
+              <item name="independently" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -422,15 +384,15 @@
     <configuration name="AddCompanyTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
-          <option name="PATTERN" value="UITesting.*" />
+          <option name="PATTERN" value="UITesting.companyManagement.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <module name="TrainScheduling" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="UITesting" />
-      <option name="MAIN_CLASS_NAME" value="UITesting.AddCompanyTest" />
+      <option name="PACKAGE_NAME" value="UITesting.companyManagement" />
+      <option name="MAIN_CLASS_NAME" value="UITesting.companyManagement.AddCompanyTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -447,15 +409,15 @@
     <configuration name="AddCompanyTest.addCompany" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
-          <option name="PATTERN" value="UITesting.*" />
+          <option name="PATTERN" value="UITesting.companyManagement.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <module name="TrainScheduling" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="UITesting" />
-      <option name="MAIN_CLASS_NAME" value="UITesting.AddCompanyTest" />
+      <option name="PACKAGE_NAME" value="UITesting.companyManagement" />
+      <option name="MAIN_CLASS_NAME" value="UITesting.companyManagement.AddCompanyTest" />
       <option name="METHOD_NAME" value="addCompany" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -472,7 +434,7 @@
     <configuration name="LogoutTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
-          <option name="PATTERN" value="UITesting.*" />
+          <option name="PATTERN" value="UITesting.companyManagement.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -640,12 +602,12 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36694387" sideWeight="0.36614582" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29657388" sideWeight="0.49793753" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28794178" sideWeight="0.49793753" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976446" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35331905" sideWeight="0.63385415" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35239086" sideWeight="0.63385415" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2207304" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29739583" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329718" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -696,16 +658,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/UITesting/SiginIn_Action.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="12" column="28" lean-forward="true" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/utility/ExcelUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1035">
@@ -724,12 +676,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/UITesting/LoginTest.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/UITesting/loginPage/independently/LoginTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
           <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -760,12 +712,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/UITesting/LoginTest.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/UITesting/loginPage/independently/LoginTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
           <caret line="15" column="48" lean-forward="true" selection-start-line="15" selection-start-column="48" selection-end-line="15" selection-end-column="48" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1368,16 +1320,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/UITesting/AddEventTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" column="52" lean-forward="true" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://D:/系统/poi-3.17/lib/junit-4.12.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
@@ -1399,17 +1341,7 @@
         <state relative-caret-position="736">
           <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/UITesting/LoginTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="18" column="32" lean-forward="true" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1496,10 +1428,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/UITesting/AddCompanyTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/utility/WebDriverGiver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="113" column="0" lean-forward="true" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
+        <state relative-caret-position="368">
+          <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/UITesting/loginPage/independently/LoginTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/UITesting/securityManagement/independently/AddEventTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/UITesting/companyManagement/independently/AddDepartmentTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1840">
+          <caret line="40" column="42" lean-forward="true" selection-start-line="40" selection-start-column="42" selection-end-line="40" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1508,16 +1466,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pageObject/Homepage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="103" column="7" lean-forward="true" selection-start-line="103" selection-start-column="7" selection-end-line="103" selection-end-column="7" />
+        <state relative-caret-position="291">
+          <caret line="151" column="7" lean-forward="true" selection-start-line="148" selection-start-column="4" selection-end-line="151" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/utility/WebDriverGiver.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/UITesting/companyManagement/independently/AddCompanyTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        <state relative-caret-position="342">
+          <caret line="137" column="29" lean-forward="true" selection-start-line="137" selection-start-column="29" selection-end-line="137" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

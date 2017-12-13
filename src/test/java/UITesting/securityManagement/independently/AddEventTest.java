@@ -1,4 +1,4 @@
-package UITesting;
+package UITesting.securityManagement.independently;
 
 import org.junit.Test;
 import pageObject.Login;

@@ -1,4 +1,4 @@
-package UITesting;
+package UITesting.loginPage.independently;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

@@ -1,4 +1,4 @@
-package UITesting;
+package UITesting.companyManagement.independently;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -70,43 +70,74 @@ public class AddCompanyTest {
     }
 
 
-
-    public WebElement getCompanyManagementElement(){
+    /**
+     * Get company management element on the left navigation list
+     * @return the WebElement
+     */
+    private WebElement getCompanyManagementElement(){
         WebElement companyManagement = wait.until( ExpectedConditions.presenceOfElementLocated(By.cssSelector("#accordion > li:nth-child(2) > a")));
         return companyManagement;
     }
 
-    public WebElement getCompanyListElement(){
+    /**
+     * Get company list sub element under company management tab
+     * @return the WebElement
+     */
+    private WebElement getCompanyListElement(){
         WebElement companyList = Login.driver.findElement(By.cssSelector("#collapseOne > ul > li:nth-child(1) > a"));
         return companyList;
     }
 
-    public WebElement getAddCompanyButton(){
+    /**
+     * Get add company button in company list page
+     * @return the WebElement
+     */
+    private WebElement getAddCompanyButton(){
         WebElement addCompany = Login.driver.findElement(By.cssSelector(".dment-fn > button"));
         return addCompany;
     }
 
-    public WebElement getCompanyNameElement(){
+    /**
+     * Get company name input element on the add_company details overlay
+     * @return the WebElement
+     */
+    private WebElement getCompanyNameElement(){
         WebElement companyName = Login.driver.findElement(By.cssSelector("#company_name"));
         return companyName;
     }
 
-    public WebElement getDetailsOfCompanyElement(){
+    /**
+     * Get details_of_company input element on the add_company details overlay
+     * @return the WebElement
+     */
+    private WebElement getDetailsOfCompanyElement(){
         WebElement detailsOfCompany = Login.driver.findElement(By.cssSelector("#company_desc"));
         return detailsOfCompany;
     }
 
-    public WebElement getConfirmAddButton(){
+    /**
+     * Get confirm_add_company submit button on the add_company details overlay
+     * @return the WebElement
+     */
+    private WebElement getConfirmAddButton(){
         WebElement confirmAdd = Login.driver.findElement(By.cssSelector("#myModal-add > div > div > div:nth-child(3) > button:nth-child(2)"));
         return confirmAdd;
     }
 
+    /**
+     * not for firefox.
+     * @return
+     */
 //    public WebElement getCloseOverlayButton(){
 //        WebElement closeButton = Login.driver.findElement(By.cssSelector("#myModal-add > div > div > div:nth-child(3) > button:nth-child(1)"));
 //        return closeButton;
 //    }
 
-    public WebElement getAddedCompanyName(){
+    /**
+     * Get the company name which just added before in company table, normally pick up the first record of company list table
+     * @return the WebElement
+     */
+    private WebElement getAddedCompanyName(){
         WebElement addedCompanyName = wait.until( ExpectedConditions.presenceOfElementLocated(By.cssSelector("#com-listPage > tr:nth-child(1) > td:nth-child(2)")));
         return addedCompanyName;
     }
