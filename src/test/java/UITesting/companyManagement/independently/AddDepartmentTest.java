@@ -63,13 +63,16 @@ public class AddDepartmentTest {
         detailsOfDepartment = detailsOfDepartment + "_" + currentTime;
 
         if(this.getCompanyManagementElement() != null){
+            this.getCompanyManagementElement().click();
             this.getDepartmentListElement().click();
             this.getAddDepartmentButton().click();
             this.selectCompany(companyName);
             this.getDepartmentNameInputElement().sendKeys(departmentName);
             this.getDetailsOfDepartmentInputElement().sendKeys(detailsOfDepartment);
             this.getConfirmAddButton().click();
-            Login.driver.switchTo().alert().accept();
+            //the following line may need to remove , cause the overlay may closed after "add_confirm" button clicked.
+            this.getCloseButton().click();
+//            Login.driver.switchTo().alert().accept();
         }
 
         if(this.getAddedDepartmentName() != null && this.getAddedDepartmentName().getText().equals(companyName)){
@@ -150,6 +153,15 @@ public class AddDepartmentTest {
     }
 
     /**
+     * get close button on add_details_of_Department overlay
+     * @return
+     */
+    private WebElement getCloseButton(){
+        WebElement closeButton = Login.driver.findElement(By.cssSelector("#myModal-add > div > div > div:nth-child(3) > button:nth-child(1)"));
+        return closeButton;
+    }
+
+    /**
      * Get the department name which just added before in department list table, normally pick up the first record of department list table
      * @return
      */
@@ -157,4 +169,5 @@ public class AddDepartmentTest {
         WebElement addedDepartmentName = Login.driver.findElement(By.cssSelector("#departmentTbody > tr:nth-child(1) > td:nth-child(2)"));
         return addedDepartmentName;
     }
+
 }
