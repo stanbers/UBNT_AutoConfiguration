@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utility.Constant;
 import utility.ExcelUtils;
+import utility.ScreenCapture;
 import utility.WebDriverGiver;
 
 import java.util.List;
@@ -23,17 +24,20 @@ public class Login {
 
     private final static Log log = LogFactory.getLog(Login.class);
 
+    private final static String CASE_NAME = "TrainScheduling_ltrailways_login_master";
+
     public static void login(String url){
+
         driver.get(url);
         try {
             ExcelUtils.setExcelFile(Constant.Path_TestData,Constant.File_TestData);
             //This is to get the values from Excel sheet
-            List<String> parameterList = ExcelUtils.getParametersViaCaseName("TrainScheduling_ltrailways_login_master", 0);
+            List<String> parameterList = ExcelUtils.getParametersViaCaseName(CASE_NAME, 0);
             String sUserName = parameterList.get(0);
             String sPassword = parameterList.get(1);
 
-            String methodName = ExcelUtils.getMethodFromExcel("TrainScheduling_ltrailways_login_master");
-            log.info(methodName);
+//            String methodName = ExcelUtils.getMethodFromExcel(CASE_NAME);
+//            log.info(methodName);
 
             WebElement username = getUsername();
             WebElement password = getPassword();
@@ -43,7 +47,9 @@ public class Login {
             username.sendKeys(sUserName);
             password.sendKeys(sPassword);
 
-            isAdmin.click();
+            new ScreenCapture().stepCapture(CASE_NAME);
+
+            //isAdmin.click();
             loginButton.submit();
 //            driver.quit();
         } catch (Exception e) {
@@ -55,9 +61,10 @@ public class Login {
 //        driver.get(url);
         try {
             login(url);
-            WebDriverWait wait = new WebDriverWait(driver, 1);
+            WebDriverWait wait = new WebDriverWait(driver, 10);
             WebElement logoElement = wait.until( ExpectedConditions.presenceOfElementLocated(By.cssSelector("#logo > h1")));
 
+            new ScreenCapture().stepCapture(CASE_NAME);
             return logoElement.getText();
 
         } catch (Exception e) {

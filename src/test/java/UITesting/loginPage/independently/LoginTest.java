@@ -5,6 +5,7 @@ import org.apache.commons.logging.LogFactory;
 import org.junit.Assert;
 import org.junit.Test;
 import pageObject.Login;
+import utility.ScreenCapture;
 
 public class LoginTest {
 
@@ -19,7 +20,9 @@ public class LoginTest {
         String logo  = Login.getLogoText("http://train.ltrailways.com/");
         String successLogo = "铁路施工管理";
 
+        new ScreenCapture().stepCapture("TrainScheduling_ltrailways_login_master");
         log.info(logo.toString());
+
         Assert.assertEquals (logo, successLogo);
 //        WebDriverGiver.getWebDriver().quit();
     }
