@@ -27,8 +27,8 @@ public class Login_Page {
         ExcelUtils.setExcelFile(Constant.Path_TestData,Constant.File_TestData);
 
         //This is to get the values from Excel sheet, passing parameters (Row num &amp; Col num)to getCellData method
-        String sUserName = ExcelUtils.getParametersViaCaseName("TrainScheduling_ltrailways_login_master", 0, true).get(0);
-        String sPassword = ExcelUtils.getParametersViaCaseName("TrainScheduling_ltrailways_login_master", 0, true).get(1);
+        String sUserName = ExcelUtils.getParametersViaCaseName("TrainScheduling_ltrailways_login_master", 0).get(0);
+        String sPassword = ExcelUtils.getParametersViaCaseName("TrainScheduling_ltrailways_login_master", 0).get(1);
 
         username.sendKeys(sUserName);
         password.sendKeys(sPassword);

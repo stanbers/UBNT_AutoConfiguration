@@ -14,6 +14,7 @@ import utility.ExcelUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class AddCompanyTest {
 
@@ -23,9 +24,11 @@ public class AddCompanyTest {
 
     private final static Log log = LogFactory.getLog(AddCompanyTest.class);
 
+    WebDriverWait wait = new WebDriverWait(Login.driver, 10);
+
     @Test
     public void addCompany(){
-        Login.login("http://train.ltrailways.com/");
+        Login.login("http://10.102.0.222:8070/web/user/login");
 
         String companyName = null;
         String detailOfCompany = null;
@@ -36,23 +39,25 @@ public class AddCompanyTest {
         try {
             ExcelUtils.setExcelFile(Constant.Path_TestData,Constant.File_TestData);
             //This is to get the values from Excel sheet
-            companyName = ExcelUtils.getParametersViaCaseName("TrainScheduling_ltrailways_addCompany", 3, false).get(0);
-            detailOfCompany = ExcelUtils.getParametersViaCaseName("TrainScheduling_ltrailways_addCompany", 3, false).get(1);
+            List<String> parameterList = ExcelUtils.getParametersViaCaseName("TrainScheduling_ltrailways_addCompany", 3);
+            companyName = parameterList.get(0);
+            detailOfCompany = parameterList.get(1);
         } catch (Exception e) {
             e.printStackTrace();
         }
         String companyNameWithTime = companyName + "_" + currentTime;
+        String detailsOfCompanyWithTime = detailOfCompany + "_" + currentTime;
 
         if(this.getCompanyManagementElement() != null){
+
             this.getCompanyManagementElement().click();
-        }else {
             this.getCompanyListElement().click();
             this.getAddCompanyButton().click();
             this.getCompanyNameElement().sendKeys(companyNameWithTime);
-            this.getDetailsOfCompanyElement().sendKeys(detailOfCompany);
-            this.getConfirmAddButton().submit();
+            this.getDetailsOfCompanyElement().sendKeys(detailsOfCompanyWithTime);
+            this.getConfirmAddButton().click();
             Login.driver.switchTo().alert().accept();
-            this.getCloseOverlayButton().click();
+//            this.getCloseOverlayButton().click();
         }
 
         if(this.getAddedCompanyName() != null && this.getAddedCompanyName().getText().equals(companyName)){
@@ -67,7 +72,6 @@ public class AddCompanyTest {
 
 
     public WebElement getCompanyManagementElement(){
-        WebDriverWait wait = new WebDriverWait(Login.driver, 10);
         WebElement companyManagement = wait.until( ExpectedConditions.presenceOfElementLocated(By.cssSelector("#accordion > li:nth-child(2) > a")));
         return companyManagement;
     }
@@ -97,13 +101,13 @@ public class AddCompanyTest {
         return confirmAdd;
     }
 
-    public WebElement getCloseOverlayButton(){
-        WebElement closeButton = Login.driver.findElement(By.cssSelector("#myModal-add > div > div > div:nth-child(3) > button:nth-child(1)"));
-        return closeButton;
-    }
+//    public WebElement getCloseOverlayButton(){
+//        WebElement closeButton = Login.driver.findElement(By.cssSelector("#myModal-add > div > div > div:nth-child(3) > button:nth-child(1)"));
+//        return closeButton;
+//    }
 
     public WebElement getAddedCompanyName(){
-        WebElement addedCompanyName = Login.driver.findElement(By.cssSelector("#com-listPage > tr:nth-child(1) > td:nth-child(3)"));
+        WebElement addedCompanyName = wait.until( ExpectedConditions.presenceOfElementLocated(By.cssSelector("#com-listPage > tr:nth-child(1) > td:nth-child(2)")));
         return addedCompanyName;
     }
 }

@@ -11,6 +11,8 @@ import utility.Constant;
 import utility.ExcelUtils;
 import utility.WebDriverGiver;
 
+import java.util.List;
+
 public class Login {
 
     static{
@@ -26,8 +28,9 @@ public class Login {
         try {
             ExcelUtils.setExcelFile(Constant.Path_TestData,Constant.File_TestData);
             //This is to get the values from Excel sheet
-            String sUserName = ExcelUtils.getParametersViaCaseName("TrainScheduling_ltrailways_login_master", 0, true).get(0);
-            String sPassword = ExcelUtils.getParametersViaCaseName("TrainScheduling_ltrailways_login_master", 0, true).get(1);
+            List<String> parameterList = ExcelUtils.getParametersViaCaseName("TrainScheduling_ltrailways_login_master", 0);
+            String sUserName = parameterList.get(0);
+            String sPassword = parameterList.get(1);
 
             String methodName = ExcelUtils.getMethodFromExcel("TrainScheduling_ltrailways_login_master");
             log.info(methodName);
@@ -64,7 +67,8 @@ public class Login {
     }
 
     public static void main(String[] args){
-        Login.login("http://train.ltrailways.com/");
+//        Login.login("http://train.ltrailways.com/");
+        Login.login("http://10.102.0.222:8070/web/user/login");
     }
 
     //get web element.

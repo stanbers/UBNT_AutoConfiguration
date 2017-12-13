@@ -17,10 +17,10 @@ public class LogoutTest {
 
     private final static Log log = LogFactory.getLog(LogoutTest.class);
 
+    WebDriverWait wait = new WebDriverWait(Login.driver, 3);
     @Test
     public void logout(){
-        Login.login("http://train.ltrailways.com/");
-//        Login.driver.get("http://train.ltrailways.com/web/user/logout");
+        Login.login("http://10.102.0.222:8070/web/user/login");
         if(null != getLogout()){
             getLogout().click();
         }
@@ -35,10 +35,9 @@ public class LogoutTest {
      * Get logout element.
      * @return the WebElement.
      */
-    public static WebElement getLogout(){
+    public WebElement getLogout(){
         //this driver has to be Login's driver, otherwise it will trigger another browser window.
         //do not use vpn here
-        WebDriverWait wait = new WebDriverWait(Login.driver, 3);
         WebElement logoutElement = wait.until( ExpectedConditions.presenceOfElementLocated(By.cssSelector(".notifications-wrapper > ul > li:nth-child(2) > a")));
         return logoutElement;
 
