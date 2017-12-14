@@ -23,7 +23,12 @@ public class ExcelUtils {
 
     private final static Log log = LogFactory.getLog(ExcelUtils.class);
 
-    //This method is to set the File path and to open the Excel file, Pass Excel Path and Sheetname as Arguments to this method
+    /**
+     * This method is to set the File path and to open the Excel file, Pass Excel Path and Sheetname as Arguments to this method
+     * @param Path  the data excel absolute path
+     * @param SheetName  the sheet name inside of the excel
+     * @throws Exception
+     */
     public static void setExcelFile(String Path,String SheetName) throws Exception {
         try {
             // Open the Excel file
@@ -38,8 +43,14 @@ public class ExcelUtils {
         }
     }
 
-    //This method is to read the test data from the Excel cell, firstly we find the specify test case name
-    //then we are collect parameters as Row num and Col num based on the cell Row num adn Col num of the test case name
+    /**
+     * This method is to read the test data from the Excel cell, firstly we find the specify test case name
+     * then we are collect parameters as Row num and Col num based on the cell Row num adn Col num of the test case name
+     * @param caseName  the test case name
+     * @param rowIndex  the test case location
+     * @return   the parameter list
+     * @throws Exception
+     */
     public static List<String> getParametersViaCaseName(String caseName, int rowIndex) throws Exception{
         List<String> list = new ArrayList<String>();
         try{
@@ -134,14 +145,14 @@ public class ExcelUtils {
         }
     }
 
-
-
-
-
-
-
-    //This method is to write in the Excel cell, Row num and Col num are the parameters
-    //No use for current.
+    /**
+     * This method is to write in the Excel cell, Row num and Col num are the parameters
+     * No use for current.
+     * @param Result   the target result which will be written into the excel
+     * @param RowNum   the rol number
+     * @param ColNum   the column number
+     * @throws Exception
+     */
     public static void setCellData(String Result,  int RowNum, int ColNum) throws Exception	{
         try{
             Row  = ExcelWSheet.getRow(RowNum);

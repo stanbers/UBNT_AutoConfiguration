@@ -49,7 +49,7 @@ public class Login {
 
             new ScreenCapture().stepCapture(CASE_NAME);
 
-            isAdmin.click();
+            //isAdmin.click();
             loginButton.submit();
 //            driver.quit();
         } catch (Exception e) {

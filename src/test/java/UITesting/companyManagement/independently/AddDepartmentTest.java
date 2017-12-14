@@ -89,7 +89,7 @@ public class AddDepartmentTest {
      * select a company when create a department.
      * @param company  a value of company drop down list
      */
-    public void selectCompany(String company){
+    private void selectCompany(String company){
         Select companyList = new Select(Login.driver.findElement(By.id("add-department-company-select")));
         if(companyList != null){
             companyList.selectByValue(company);
@@ -154,7 +154,7 @@ public class AddDepartmentTest {
 
     /**
      * get close button on add_details_of_Department overlay
-     * @return
+     * @return the WebElement
      */
     private WebElement getCloseButton(){
         WebElement closeButton = Login.driver.findElement(By.cssSelector("#myModal-add > div > div > div:nth-child(3) > button:nth-child(1)"));
@@ -163,7 +163,7 @@ public class AddDepartmentTest {
 
     /**
      * Get the department name which just added before in department list table, normally pick up the first record of department list table
-     * @return
+     * @return the WebElement
      */
     private WebElement getAddedDepartmentName(){
         WebElement addedDepartmentName = Login.driver.findElement(By.cssSelector("#departmentTbody > tr:nth-child(1) > td:nth-child(2)"));
