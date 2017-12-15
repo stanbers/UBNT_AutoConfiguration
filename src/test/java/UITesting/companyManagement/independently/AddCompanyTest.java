@@ -28,7 +28,7 @@ public class AddCompanyTest {
 
     @Test
     public void addCompany(){
-        Login.login("http://10.102.0.222:8070/web/user/login");
+        Login.login("http://10.103.0.4:8080/web/user/login");
 
         String companyName = null;
         String detailOfCompany = null;
@@ -45,19 +45,19 @@ public class AddCompanyTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        String companyNameWithTime = companyName + "_" + currentTime;
-        String detailsOfCompanyWithTime = detailOfCompany + "_" + currentTime;
+        companyName = companyName + "_" + currentTime;
+        detailOfCompany = detailOfCompany + "_" + currentTime;
 
         if(this.getCompanyManagementElement() != null){
 
             this.getCompanyManagementElement().click();
             this.getCompanyListElement().click();
             this.getAddCompanyButton().click();
-            this.getCompanyNameElement().sendKeys(companyNameWithTime);
-            this.getDetailsOfCompanyElement().sendKeys(detailsOfCompanyWithTime);
+            this.getCompanyNameElement().sendKeys(companyName);
+            this.getDetailsOfCompanyElement().sendKeys(detailOfCompany);
             this.getConfirmAddButton().click();
-            Login.driver.switchTo().alert().accept();
-//            this.getCloseOverlayButton().click();
+            //Login.driver.switchTo().alert().accept();
+            this.getCloseButton().click();
         }
 
         if(this.getAddedCompanyName() != null && this.getAddedCompanyName().getText().equals(companyName)){
@@ -140,5 +140,14 @@ public class AddCompanyTest {
     private WebElement getAddedCompanyName(){
         WebElement addedCompanyName = wait.until( ExpectedConditions.presenceOfElementLocated(By.cssSelector("#com-listPage > tr:nth-child(1) > td:nth-child(2)")));
         return addedCompanyName;
+    }
+
+    /**
+     * get close button on add_details_of_company overlay
+     * @return the WebElement
+     */
+    private WebElement getCloseButton(){
+        WebElement closeButton = Login.driver.findElement(By.cssSelector("#myModal-add > div > div > div:nth-child(3) > button:nth-child(1)"));
+        return closeButton;
     }
 }

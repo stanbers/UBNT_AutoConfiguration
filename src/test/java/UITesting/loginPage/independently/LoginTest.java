@@ -17,7 +17,7 @@ public class LoginTest {
 
     @Test
     public void login() {
-        String logo  = Login.getLogoText("http://train.ltrailways.com/");
+        String logo  = Login.getLogoText("http://10.103.0.4:8080/web/user/login");
         String successLogo = "铁路施工管理";
 
         new ScreenCapture().stepCapture("TrainScheduling_ltrailways_login_master");

@@ -35,7 +35,7 @@ public class AddDepartmentTest {
 
     @Test
     public void addDepartment(){
-        Login.login("http://10.102.0.222:8070/web/user/login");
+        Login.login("http://10.103.0.4:8080/web/user/login");
 
         String departmentName = null;
         String detailsOfDepartment = null;

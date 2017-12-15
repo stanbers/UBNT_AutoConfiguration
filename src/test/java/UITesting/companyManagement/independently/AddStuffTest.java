@@ -34,8 +34,13 @@ public class AddStuffTest {
 
     @Test
     public void addStuff(){
-        Login.login("http://10.102.0.222:8070/web/user/login");
+        Login.login("http://10.103.0.4:8080/web/user/login");
 
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Long ctm = System.currentTimeMillis();
+
+//        String currentTimestamp = sdf.format(new Date());
+        String currentTimestamp = String.valueOf(ctm);
         try {
             ExcelUtils.setExcelFile(Constant.Path_TestData,Constant.File_TestData);
             //This is to get the values from Excel sheet
@@ -58,8 +63,18 @@ public class AddStuffTest {
             e.printStackTrace();
         }
 
+        stuffName = stuffName + "_" + currentTimestamp;
+        realStuffName = realStuffName + "_" + currentTimestamp;
+
         if(this.getCompanyManagementElement() != null){
             this.getCompanyManagementElement().click();
+            //the reason of thread sleep 3s is to waiting for CompanyManagement accordion open up
+            //otherwise the following element would not be found!
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             this.getStuffListElement().click();
             this.getAddStuffButton().click();
 
@@ -79,16 +94,20 @@ public class AddStuffTest {
             }else {
                 assignHWAccountRadios.get(1).click();
             }
+
+            this.getConfirmAddButton().click();
+            this.getCloseButton().click();
+
         }else {
             log.info("can not open company management tab !");
         }
 
-        if(this.getAddedStuffName() != null && this.getAddedStuffName().getText().equals(companyName)){
-
-            String remindingMessage = this.getAddedStuffName().getText().equals(companyName) ? "stuff added successfully !" : "job added failed !";
-            Assert.assertEquals(remindingMessage, companyName, this.getAddedStuffName().getText());
+        if(this.getAddedStuffName() != null && this.getAddedStuffName().getText().equals(stuffName)){
 
             log.info(this.getAddedStuffName().getText().toString());
+            String remindingMessage = this.getAddedStuffName().getText().equals(stuffName) ? "stuff added successfully !" : "job added failed !";
+            Assert.assertEquals(remindingMessage, stuffName, this.getAddedStuffName().getText());
+
         }
     }
 
@@ -97,6 +116,7 @@ public class AddStuffTest {
      * @return the WebElement
      */
     private WebElement getCompanyManagementElement(){
+        WebDriverWait wait = new WebDriverWait(Login.driver, 10);
         WebElement companyManagement = wait.until( ExpectedConditions.presenceOfElementLocated(By.cssSelector("#accordion > li:nth-child(2) > a")));
         return companyManagement;
     }
@@ -107,6 +127,7 @@ public class AddStuffTest {
      */
     private WebElement getStuffListElement(){
         WebElement stuffList = Login.driver.findElement(By.cssSelector("#collapseOne > ul:nth-child(1) > li:nth-child(4) > a"));
+        log.info(stuffList.getText());
         return stuffList;
     }
 
@@ -226,11 +247,30 @@ public class AddStuffTest {
     }
 
     /**
+     * Get confirm add button on add_stuff_of_job overlay
+     * @return the WebElement
+     */
+    private WebElement getConfirmAddButton(){
+        WebElement confirmAddButton = Login.driver.findElement(By.cssSelector("#myModal-add > div > div > div:nth-child(3) > button:nth-child(2)"));
+        return confirmAddButton;
+    }
+
+    /**
+     * get close button on add_stuff_of_job overlay
+     * @return the WebElement
+     */
+    private WebElement getCloseButton(){
+        WebElement closeButton = Login.driver.findElement(By.cssSelector("#myModal-add > div > div > div:nth-child(3) > button:nth-child(1)"));
+        return closeButton;
+    }
+
+    /**
      * Get stuff name which just added before from stuff list table, normally pick up the first record of stuff list table
      * @return the WebElement
      */
     private WebElement getAddedStuffName(){
-        WebElement addedStuffName = Login.driver.findElement(By.id("userTbody > tr:nth-child(1) > td:nth-child(2) "));
+        WebElement addedStuffName = Login.driver.findElement(By.cssSelector("#userTbody > tr:nth-child(1) > td:nth-child(3) "));
+        log.info(addedStuffName.getText());
         return addedStuffName;
     }
 

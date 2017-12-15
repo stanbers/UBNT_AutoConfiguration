@@ -33,7 +33,7 @@ public class AddJobTest {
 
     @Test
     public void addJob(){
-        Login.login("http://10.102.0.222:8070/web/user/login");
+        Login.login("http://10.103.0.4:8080/web/user/login");
 
         String companyName = null;
         String departmentName = null;

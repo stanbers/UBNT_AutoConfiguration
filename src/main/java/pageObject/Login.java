@@ -75,7 +75,7 @@ public class Login {
 
     public static void main(String[] args){
 //        Login.login("http://train.ltrailways.com/");
-        Login.login("http://10.102.0.222:8070/web/user/login");
+        Login.login("http://10.103.0.4:8080/web/user/login");
     }
 
     //get web element.
