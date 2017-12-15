@@ -53,7 +53,10 @@ public class UpdateCompanyTest {
                 companyName = parameterList.get(0);
                 detailOfCompany = parameterList.get(1);
                 rowIndex = parameterList.get(2);
+            }else {
+                log.info("can not get the parameters from excel !");
             }
+
             if(this.getCompanyManagementElement() != null){
                 this.getCompanyManagementElement().click();
                 this.getCompanyListElement().click();
@@ -75,6 +78,7 @@ public class UpdateCompanyTest {
                 this.getSaveButton().click();
                 //this.getCloseButton();
                 Login.driver.switchTo().alert().accept();
+                //even though sleep() method is not recommended , but I think it based on the actual situation
                 Thread.sleep(3000);
 
             }else {
