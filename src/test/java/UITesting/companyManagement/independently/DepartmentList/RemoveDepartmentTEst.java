@@ -1,5 +1,6 @@
-package UITesting.companyManagement.independently.CompanyList;
+package UITesting.companyManagement.independently.DepartmentList;
 
+import UITesting.companyManagement.independently.CompanyList.AddCompanyTest;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Assert;
@@ -16,10 +17,10 @@ import java.util.List;
 
 /**
  * @Author by XuLiang
- * @Date 2017/12/15 17:15
+ * @Date 2017/12/18 10:44
  * @Email stanxu526@gmail.com
  */
-public class RemoveCompanyTest {
+public class RemoveDepartmentTEst {
     static {
         System.setProperty("webdriver.gecko.driver","C:\\SeleniumGecko\\geckodriver.exe");
     }
@@ -29,17 +30,17 @@ public class RemoveCompanyTest {
     private final static WebDriverWait wait = new WebDriverWait(Login.driver, 10);
 
     @Test
-    public void removeCompany(){
+    public void removeDepartment(){
         Login.login("http://10.103.0.4:8080/web/user/login");
 
         boolean isRemove = false;
         String rowIndex = null;
-        String targetCompany = null;
+        String targetDepartment = null;
 
         try {
             ExcelUtils.setExcelFile(Constant.Path_TestData, Constant.File_TestData);
             //This is to get the values from Excel sheet
-            List<String> parameterList = ExcelUtils.getParametersViaCaseName("TrainScheduling_ltrailways_removeCompany", 18);
+            List<String> parameterList = ExcelUtils.getParametersViaCaseName("TrainScheduling_ltrailways_removeDepartment", 24);
 
             if(parameterList != null && parameterList.size() >0){
                 rowIndex = parameterList.get(0);
@@ -50,12 +51,13 @@ public class RemoveCompanyTest {
 
             if (this.getCompanyManagementElement() != null){
                 this.getCompanyManagementElement().click();
-                this.getCompanyListElement().click();
+                this.getDepartmentListElement().click();
 
                 Thread.sleep(3000);
-                targetCompany = this.getCompanyInfo(rowIndex).getText();
-                this.getRemoveCompanyButton(rowIndex).click();
-                //remove company or not
+                targetDepartment = this.getDepartmentNameElement(rowIndex).getText();
+                this.getRemoveDepartmentButton(rowIndex).click();
+
+                //remove department or not
                 if(isRemove){
                     Login.driver.switchTo().alert().accept();
                     //there are 2 alert() while using firefox, here sleep 2s is good for the next js alert(), other
@@ -73,11 +75,10 @@ public class RemoveCompanyTest {
             e.printStackTrace();
         }
 
-        for (int i = 1; i <= getCompanyRows().size(); i++) {
-            log.info(getCompanyRows().size());
-            Assert.assertTrue("the company already removed !", getCompanyInfo(String.valueOf(i)).getText() != targetCompany);
+        for (int i = 1; i <= getDepartmentRecords().size(); i++) {
+            log.info(getDepartmentRecords().size());
+            Assert.assertTrue("the company already removed !", getDepartmentNameElement(String.valueOf(i)).getText() != targetDepartment);
         }
-        
     }
 
     /**
@@ -90,42 +91,40 @@ public class RemoveCompanyTest {
     }
 
     /**
-     * Get company list sub element under company management tab
+     * Get department list sub element under company management tab
      * @return the WebElement
      */
-    private WebElement getCompanyListElement(){
-        WebElement companyList = Login.driver.findElement(By.cssSelector("#collapseOne > ul > li:nth-child(1) > a"));
+    private WebElement getDepartmentListElement(){
+        WebElement companyList = Login.driver.findElement(By.cssSelector("#collapseOne > ul > li:nth-child(2) > a"));
         return companyList;
     }
 
     /**
-     * Get remove_company button
-     * @param rowIndex  the company row index
+     * Get department name from department list table
+     * @param rowIndex    the department row index
      * @return the WebElement
      */
-    private WebElement getRemoveCompanyButton(String rowIndex){
-        WebElement removeCompanyButton = Login.driver.findElement(By.cssSelector("#com-listPage > tr:nth-child("+ rowIndex +") > td:nth-child(7) > button:nth-child(2)"));
-        log.info(removeCompanyButton.getText());
-        return removeCompanyButton;
+    private WebElement getDepartmentNameElement(String rowIndex){
+        WebElement departmentName = Login.driver.findElement(By.cssSelector("#departmentTbody > tr:nth-child("+rowIndex+") > td:nth-child(5)"));
+        return departmentName;
     }
 
     /**
-     * Get company name and details on company table.
-     * @param rowIndex   the company record row index
+     * Get remove_department button from department list table
+     * @param rowIndex the department row index
      * @return the WebElement
      */
-    private WebElement getCompanyInfo(String rowIndex){
-        WebElement updatedCompanyInfo = Login.driver.findElement(By.cssSelector("#com-listPage > tr:nth-child("+ rowIndex +") > td:nth-child(3)"));
-        log.info(updatedCompanyInfo.getText());
-        return updatedCompanyInfo;
+    private WebElement getRemoveDepartmentButton(String rowIndex){
+        WebElement removeDepartmentButton = Login.driver.findElement(By.cssSelector("#departmentTbody > tr:nth-child("+rowIndex+") > td:nth-child(9) > button:nth-child(2)"));
+        return removeDepartmentButton;
     }
 
     /**
-     * Get company records on company table
-     * @return company list
+     * Get department records on company table
+     * @return department records
      */
-    private List<WebElement> getCompanyRows(){
-        List<WebElement> rows = Login.driver.findElements(By.cssSelector("#com-listPage > tr"));
-        return rows;
+    private List<WebElement> getDepartmentRecords(){
+        List<WebElement> departmentRecords = Login.driver.findElements(By.cssSelector("#departmentTbody > tr"));
+        return departmentRecords;
     }
 }

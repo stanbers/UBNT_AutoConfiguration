@@ -76,10 +76,9 @@ public class AddDepartmentTest {
 //            Login.driver.switchTo().alert().accept();
         }
 
-        if(this.getAddedDepartmentName() != null && this.getAddedDepartmentName().getText().equals(companyName)){
+        if(this.getAddedDepartmentName() != null){
 
-            String remindingMessage = this.getAddedDepartmentName().getText().equals(companyName) ? "department added successfully !" : "department added failed !";
-            Assert.assertEquals(remindingMessage, companyName, this.getAddedDepartmentName().getText());
+            Assert.assertEquals(departmentName, this.getAddedDepartmentName().getText());
 
             log.info(this.getAddedDepartmentName().getText().toString());
         }
@@ -167,7 +166,7 @@ public class AddDepartmentTest {
      * @return the WebElement
      */
     private WebElement getAddedDepartmentName(){
-        WebElement addedDepartmentName = Login.driver.findElement(By.cssSelector("#departmentTbody > tr:nth-child(1) > td:nth-child(2)"));
+        WebElement addedDepartmentName = Login.driver.findElement(By.cssSelector("#departmentTbody > tr:nth-child(1) > td:nth-child(5)"));
         return addedDepartmentName;
     }
 
