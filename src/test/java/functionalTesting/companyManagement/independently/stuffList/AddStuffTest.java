@@ -30,7 +30,7 @@ public class AddStuffTest {
 
     WebDriverWait wait = new WebDriverWait(Login.driver, 10);
 
-    String companyName,departmentName,jobTitle,stuffName,password,realStuffName,stuffMail,stuffPhoneNum,schedulingInfo = null;
+    String companyName,departmentName,jobTitle,stuffName,password,realStuffName,stuffMail,stuffPhoneNum,schedulingInfo;
     boolean assignHWAccount = false;
 
     @Test
