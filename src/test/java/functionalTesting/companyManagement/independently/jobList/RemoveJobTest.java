@@ -1,5 +1,6 @@
-package functionalTesting.companyManagement.independently.companyList;
+package functionalTesting.companyManagement.independently.jobList;
 
+import functionalTesting.companyManagement.independently.companyList.AddCompanyTest;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Assert;
@@ -16,10 +17,10 @@ import java.util.List;
 
 /**
  * @Author by XuLiang
- * @Date 2017/12/15 17:15
+ * @Date 2017/12/18 13:56
  * @Email stanxu526@gmail.com
  */
-public class RemoveCompanyTest {
+public class RemoveJobTest {
     static {
         System.setProperty("webdriver.gecko.driver","C:\\SeleniumGecko\\geckodriver.exe");
     }
@@ -29,19 +30,19 @@ public class RemoveCompanyTest {
     private final static WebDriverWait wait = new WebDriverWait(Login.driver, 10);
 
     @Test
-    public void removeCompany(){
+    public void removeJob(){
         Login.login("http://10.103.0.4:8080/web/user/login");
 
-        boolean isRemove = false;
         String rowIndex = null;
-        String targetCompany = null;
+        String targetJob = null;
+        boolean isRemove = false;
 
         try {
             ExcelUtils.setExcelFile(Constant.Path_TestData, Constant.File_TestData);
             //This is to get the values from Excel sheet
-            List<String> parameterList = ExcelUtils.getParametersViaCaseName("TrainScheduling_ltrailways_removeCompany", 18);
+            List<String> parameterList = ExcelUtils.getParametersViaCaseName("TrainScheduling_ltrailways_removeJob", 30);
 
-            if(parameterList != null && parameterList.size() >0){
+            if (parameterList != null && parameterList.size() > 0){
                 rowIndex = parameterList.get(0);
                 isRemove = new Boolean(parameterList.get(1));
             }else {
@@ -50,12 +51,14 @@ public class RemoveCompanyTest {
 
             if (this.getCompanyManagementElement() != null){
                 this.getCompanyManagementElement().click();
-                this.getCompanyListElement().click();
+                this.getJobListElement().click();
+                Thread.sleep(2000);
 
-                Thread.sleep(3000);
-                targetCompany = this.getCompanyInfo(rowIndex).getText();
-                this.getRemoveCompanyButton(rowIndex).click();
-                //remove company or not
+                targetJob = this.getJobTitleElement(rowIndex).getText();
+
+                this.getRemoveJobButton(rowIndex).click();
+
+                //remove job or not
                 if(isRemove){
                     Login.driver.switchTo().alert().accept();
                     //there are 2 alert() while using firefox, here sleep 2s is good for the next js alert(), otherwise cannot handle the next alert()
@@ -65,7 +68,7 @@ public class RemoveCompanyTest {
                     Login.driver.switchTo().alert().dismiss();
                 }
 
-                Thread.sleep(3000);
+                Thread.sleep(2000);
             }else {
                 log.info("can not open company_management accordion !");
             }
@@ -73,11 +76,10 @@ public class RemoveCompanyTest {
             e.printStackTrace();
         }
 
-        for (int i = 1; i <= getCompanyRows().size(); i++) {
-            log.info(getCompanyRows().size());
-            Assert.assertTrue("the company already removed !", getCompanyInfo(String.valueOf(i)).getText() != targetCompany);
+        for (int i = 1; i <= getJobRecords().size(); i++) {
+            log.info(getJobRecords().size() + getJobTitleElement(String.valueOf(i)).getText());
+            Assert.assertTrue("the job already removed !", getJobTitleElement(String.valueOf(i)).getText() != targetJob);
         }
-        
     }
 
     /**
@@ -90,42 +92,41 @@ public class RemoveCompanyTest {
     }
 
     /**
-     * Get company list sub element under company management tab
+     * Get job list sub element under company management tab
      * @return the WebElement
      */
-    private WebElement getCompanyListElement(){
-        WebElement companyList = Login.driver.findElement(By.cssSelector("#collapseOne > ul > li:nth-child(1) > a"));
-        return companyList;
+    private WebElement getJobListElement(){
+        WebElement jobList = Login.driver.findElement(By.cssSelector("#collapseOne > ul > li:nth-child(3) > a"));
+        return jobList;
     }
 
     /**
-     * Get remove_company button
-     * @param rowIndex  the company row index
+     * Get job title from job list table
+     * @param rowIndex    the job record index
      * @return the WebElement
      */
-    private WebElement getRemoveCompanyButton(String rowIndex){
-        WebElement removeCompanyButton = Login.driver.findElement(By.cssSelector("#com-listPage > tr:nth-child("+ rowIndex +") > td:nth-child(7) > button:nth-child(2)"));
-        log.info(removeCompanyButton.getText());
-        return removeCompanyButton;
+    private WebElement getJobTitleElement(String rowIndex){
+        WebElement jobTitle = Login.driver.findElement(By.cssSelector("#position_tbody > tr:nth-child("+rowIndex+") > td:nth-child(5)"));
+        return jobTitle;
     }
 
     /**
-     * Get company name and details on company table.
-     * @param rowIndex   the company record row index
+     * Get remove_job button from job list table
+     * @param rowIndex   the job record index
      * @return the WebElement
      */
-    private WebElement getCompanyInfo(String rowIndex){
-        WebElement updatedCompanyInfo = Login.driver.findElement(By.cssSelector("#com-listPage > tr:nth-child("+ rowIndex +") > td:nth-child(3)"));
-        log.info(updatedCompanyInfo.getText());
-        return updatedCompanyInfo;
+    private WebElement getRemoveJobButton(String rowIndex){
+        WebElement removeJobButton = Login.driver.findElement(By.cssSelector("#position_tbody > tr:nth-child("+rowIndex+") > td:nth-child(10) > button:nth-child(2)"));
+        return removeJobButton;
     }
 
     /**
-     * Get company records on company table
-     * @return company list
+     * Get job records list from job list table
+     * @return the WebElement
      */
-    private List<WebElement> getCompanyRows(){
-        List<WebElement> rows = Login.driver.findElements(By.cssSelector("#com-listPage > tr"));
-        return rows;
+    private List<WebElement> getJobRecords(){
+        List<WebElement> jobRecords = Login.driver.findElements(By.cssSelector("#position_tbody > tr"));
+        return jobRecords;
     }
+
 }

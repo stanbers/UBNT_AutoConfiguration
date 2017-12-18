@@ -20,7 +20,7 @@ import java.util.List;
  * @Date 2017/12/18 10:44
  * @Email stanxu526@gmail.com
  */
-public class RemoveDepartmentTEst {
+public class RemoveDepartmentTest {
     static {
         System.setProperty("webdriver.gecko.driver","C:\\SeleniumGecko\\geckodriver.exe");
     }
@@ -60,7 +60,7 @@ public class RemoveDepartmentTEst {
                 //remove department or not
                 if(isRemove){
                     Login.driver.switchTo().alert().accept();
-                    //there are 2 alert() while using firefox, here sleep 2s is good for the next js alert(), other
+                    //there are 2 alert() while using firefox, here sleep 2s is good for the next js alert(), otherwise cannot handle the next alert()
                     Thread.sleep(2000);
                     Login.driver.switchTo().alert().accept();
                 }else {
@@ -77,7 +77,7 @@ public class RemoveDepartmentTEst {
 
         for (int i = 1; i <= getDepartmentRecords().size(); i++) {
             log.info(getDepartmentRecords().size());
-            Assert.assertTrue("the company already removed !", getDepartmentNameElement(String.valueOf(i)).getText() != targetDepartment);
+            Assert.assertTrue("the job already removed !", getDepartmentNameElement(String.valueOf(i)).getText() != targetDepartment);
         }
     }
 

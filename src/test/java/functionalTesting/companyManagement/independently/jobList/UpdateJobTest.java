@@ -22,7 +22,7 @@ import java.util.List;
  * @Date 2017/12/18 11:15
  * @Email stanxu526@gmail.com
  */
-public class UpdateJob {
+public class UpdateJobTest {
     static {
         System.setProperty("webdriver.gecko.driver","C:\\SeleniumGecko\\geckodriver.exe");
     }
