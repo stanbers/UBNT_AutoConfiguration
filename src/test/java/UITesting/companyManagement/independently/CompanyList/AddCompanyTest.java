@@ -1,4 +1,4 @@
-package UITesting.companyManagement.independently;
+package UITesting.companyManagement.independently.CompanyList;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

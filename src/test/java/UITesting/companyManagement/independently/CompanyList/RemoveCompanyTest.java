@@ -1,4 +1,4 @@
-package UITesting.companyManagement.independently;
+package UITesting.companyManagement.independently.CompanyList;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -58,6 +58,9 @@ public class RemoveCompanyTest {
                 //remove company or not
                 if(isRemove){
                     Login.driver.switchTo().alert().accept();
+                    //there are 2 alert() while using firefox, here sleep 2s is good for the next js alert(), otherwise it will hit error.
+                    Thread.sleep(2000);
+                    Login.driver.switchTo().alert().accept();
                 }else {
                     Login.driver.switchTo().alert().dismiss();
                 }
@@ -67,10 +70,11 @@ public class RemoveCompanyTest {
                 log.info("can not open company_management accordion !");
             }
         }catch (Exception e){
-            log.info("can not open company_management accordion !");
+            e.printStackTrace();
         }
 
         for (int i = 1; i <= getCompanyRows().size(); i++) {
+            log.info(getCompanyRows().size());
             Assert.assertTrue("the company already removed !", getCompanyInfo(String.valueOf(i)).getText() != targetCompany);
         }
         
@@ -112,6 +116,7 @@ public class RemoveCompanyTest {
      */
     private WebElement getCompanyInfo(String rowIndex){
         WebElement updatedCompanyInfo = Login.driver.findElement(By.cssSelector("#com-listPage > tr:nth-child("+ rowIndex +") > td:nth-child(3)"));
+        log.info(updatedCompanyInfo.getText());
         return updatedCompanyInfo;
     }
 

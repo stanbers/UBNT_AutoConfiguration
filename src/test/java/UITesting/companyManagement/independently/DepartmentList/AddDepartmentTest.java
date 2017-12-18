@@ -1,5 +1,6 @@
-package UITesting.companyManagement.independently;
+package UITesting.companyManagement.independently.DepartmentList;
 
+import UITesting.companyManagement.independently.CompanyList.AddCompanyTest;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Assert;
