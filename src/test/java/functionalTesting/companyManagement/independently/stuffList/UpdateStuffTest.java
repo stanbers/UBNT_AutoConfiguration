@@ -7,7 +7,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -36,11 +35,7 @@ public class UpdateStuffTest {
     boolean isAssignHWAccount;
     @Test
     public void updateStuff(){
-        try {
-            Login.login("http://10.103.0.4:8080/web/user/login");
-        }catch (WebDriverException wde){
-            //wde.printStackTrace();
-        }
+        Login.login("http://10.103.0.4:8080/web/user/login");
 
         long currentTimestamp = System.currentTimeMillis();
         try {
@@ -103,6 +98,8 @@ public class UpdateStuffTest {
 
         WebElement updatedStuffName = this.getStuffRealNameElement(rowIndex);
         if (updatedStuffName != null){
+
+            //to avoid StaleElementReferenceException
             int attempts = 0;
             while (attempts < 5){
                 try {

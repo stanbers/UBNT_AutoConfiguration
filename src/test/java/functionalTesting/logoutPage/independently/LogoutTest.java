@@ -1,4 +1,4 @@
-package functionalTesting;
+package functionalTesting.logoutPage.independently;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
