@@ -2,10 +2,8 @@ package remoteConfigurationTesting;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.junit.Assert;
 import org.junit.Test;
-import pageObject.Login;
-import utility.ScreenCapture;
+import pageObject.Login_UBNT;
 
 public class LoginTest {
 
@@ -17,12 +15,15 @@ public class LoginTest {
 
     @Test
     public void login() {
-        String logo  = Login.getLogoText("http://10.103.0.4:8080/web/user/login");
 
-        new ScreenCapture().stepCapture("TrainScheduling_ltrailways_login_master");
-        log.info(logo.toString());
+        new Login_UBNT().login("https://192.168.1.20/login.cgi");
 
-        Assert.assertEquals (logo, successLogo);
+//        String logoutButton  = new Login_UBNT().getLogoText("https://192.168.1.20/login.cgi");
+//
+//        new ScreenCapture().stepCapture("UBNT_configuration");
+//        log.info(logoutButton);
+//
+//        Assert.assertEquals ("input", logoutButton);
 //        WebDriverGiver.getWebDriver().quit();
     }
 }

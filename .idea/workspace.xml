@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6297135e-99b4-48ed-8d1f-4be9376233e2" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/pageObject/Login_UBNT.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/testData/testData_UBNT.xlsx" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/test/java/functionalTesting/companyManagement/independently/departmentList/SearchCompanyTest.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/test/java/remoteConfigurationTesting/LoginTest.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/testData/testData.xlsx" afterPath="$PROJECT_DIR$/src/main/java/testData/testData.xlsx" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/functionalTesting/companyManagement/independently/companyList/SearchCompanyTest.java" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pageObject/Login.java" afterPath="$PROJECT_DIR$/src/main/java/pageObject/Login.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pageObject/Login_UBNT.java" afterPath="$PROJECT_DIR$/src/main/java/pageObject/Login_UBNT.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/testData/testData_UBNT.xlsx" afterPath="$PROJECT_DIR$/src/main/java/testData/testData_UBNT.xlsx" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utility/Constant.java" afterPath="$PROJECT_DIR$/src/main/java/utility/Constant.java" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/remoteConfigurationTesting/LoginTest.java" afterPath="$PROJECT_DIR$/src/test/java/remoteConfigurationTesting/LoginTest.java" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/remoteConfigurationTesting/UBNTConfigration.java" afterPath="$PROJECT_DIR$/src/test/java/remoteConfigurationTesting/UBNTConfigration.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -40,8 +40,8 @@
       <file leaf-file-name="UBNTConfigration.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/remoteConfigurationTesting/UBNTConfigration.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+            <state relative-caret-position="428">
+              <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -52,35 +52,77 @@
       <file leaf-file-name="Login.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/pageObject/Login.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
-              <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+            <state relative-caret-position="764">
+              <caret line="59" column="25" lean-forward="false" selection-start-line="59" selection-start-column="25" selection-end-line="59" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Login_UBNT.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Login_UBNT.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/pageObject/Login_UBNT.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="27">
-              <caret line="23" column="4" lean-forward="false" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="71" />
+            <state relative-caret-position="367">
+              <caret line="101" column="16" lean-forward="false" selection-start-line="101" selection-start-column="16" selection-end-line="101" selection-end-column="16" />
               <folding>
-                <element signature="e#2174#2175#0" expanded="true" />
-                <element signature="e#2232#2233#0" expanded="true" />
-                <element signature="e#2367#2368#0" expanded="true" />
-                <element signature="e#2429#2430#0" expanded="true" />
-                <element signature="e#3478#3479#0" expanded="true" />
-                <element signature="e#3536#3537#0" expanded="true" />
+                <element signature="e#5039#5040#0" expanded="true" />
+                <element signature="e#5099#5100#0" expanded="true" />
+                <element signature="e#5234#5235#0" expanded="true" />
+                <element signature="e#5294#5295#0" expanded="true" />
+                <element signature="e#6369#6370#0" expanded="true" />
+                <element signature="e#6427#6428#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LoginTest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="WebDriverGiver.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/utility/WebDriverGiver.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="115">
+              <caret line="9" column="28" lean-forward="false" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Constant.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/utility/Constant.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="184">
+              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ExcelUtils.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/utility/ExcelUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="435">
+              <caret line="113" column="29" lean-forward="true" selection-start-line="113" selection-start-column="29" selection-end-line="113" selection-end-column="29" />
+              <folding>
+                <element signature="e#2038#2046#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/remoteConfigurationTesting/LoginTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="26" column="5" lean-forward="true" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+            <state relative-caret-position="102">
+              <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ScreenCapture.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/utility/ScreenCapture.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="293">
+              <caret line="23" column="47" lean-forward="false" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -119,6 +161,7 @@
       <find>wait</find>
       <find>dment-fn</find>
       <find>getAddStuffButton</find>
+      <find>Login</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -132,8 +175,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/pageObject/HomepageSupports.java" />
-        <option value="$PROJECT_DIR$/src/test/java/pageDraft/HomepageTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/pageDraft/Logout.java" />
         <option value="$PROJECT_DIR$/src/test/java/pageDraft/LogoutTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/UITesting/AddEventTest.java" />
@@ -155,7 +196,6 @@
         <option value="$PROJECT_DIR$/src/test/java/UITesting/companyManagement/independently/AddDepartmentTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/UITesting/companyManagement/independently/AddJobTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/UITesting/loginPage/independently/LoginTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pageObject/Login.java" />
         <option value="$PROJECT_DIR$/src/test/java/UITesting/companyManagement/independently/AddStuffTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/UITesting/companyManagement/independently/AddCompanyTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/UITesting/companyManagement/independently/UpdateCompanyTest.java" />
@@ -181,8 +221,11 @@
         <option value="$PROJECT_DIR$/src/test/java/functionalTesting/companyManagement/independently/companyList/SearchCompanyTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/remoteConfigrationTesting/UBNTConfigration.java" />
         <option value="$PROJECT_DIR$/src/test/java/functionalTesting/companyManagement/independently/departmentList/SearchCompanyTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pageObject/Login_UBNT.java" />
+        <option value="$PROJECT_DIR$/src/main/java/utility/Constant.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pageObject/Login.java" />
         <option value="$PROJECT_DIR$/src/test/java/remoteConfigurationTesting/LoginTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/remoteConfigurationTesting/UBNTConfigration.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pageObject/Login_UBNT.java" />
       </list>
     </option>
   </component>
@@ -294,23 +337,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="functionalTesting" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TrainScheduling" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TrainScheduling" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="functionalTesting" type="462c0819:PsiDirectoryNode" />
-              <item name="independently" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TrainScheduling" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TrainScheduling" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="remoteConfigurationTesting" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -360,7 +386,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.SearchCompanyTest">
+  <component name="RunManager" selected="JUnit.LoginTest">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -381,6 +407,56 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="" />
       <envs />
+    </configuration>
+    <configuration name="LoginTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="remoteConfigurationTesting.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="TrainScheduling" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="remoteConfigurationTesting" />
+      <option name="MAIN_CLASS_NAME" value="remoteConfigurationTesting.LoginTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration name="LoginTest.login" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="remoteConfigurationTesting.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="TrainScheduling" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="remoteConfigurationTesting" />
+      <option name="MAIN_CLASS_NAME" value="remoteConfigurationTesting.LoginTest" />
+      <option name="METHOD_NAME" value="login" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
     </configuration>
     <configuration name="RemoveStuffTest.removeStuff" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
@@ -457,56 +533,6 @@
       <envs />
       <patterns />
     </configuration>
-    <configuration name="UpdateStuffTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="functionalTesting.companyManagement.independently.stuffList.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="TrainScheduling" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="functionalTesting.companyManagement.independently.stuffList" />
-      <option name="MAIN_CLASS_NAME" value="functionalTesting.companyManagement.independently.stuffList.UpdateStuffTest" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-    </configuration>
-    <configuration name="UpdateStuffTest.updateStuff" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="functionalTesting.companyManagement.independently.stuffList.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="TrainScheduling" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="functionalTesting.companyManagement.independently.stuffList" />
-      <option name="MAIN_CLASS_NAME" value="functionalTesting.companyManagement.independently.stuffList.UpdateStuffTest" />
-      <option name="METHOD_NAME" value="updateStuff" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -568,19 +594,19 @@
       <predefined_log_file id="idea.log" enabled="true" />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.UpdateStuffTest.updateStuff" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.UpdateStuffTest" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.RemoveStuffTest.removeStuff" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.SearchCompanyTest.searchCompany" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.SearchCompanyTest" />
+      <item index="0" class="java.lang.String" itemvalue="JUnit.RemoveStuffTest.removeStuff" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.SearchCompanyTest.searchCompany" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.SearchCompanyTest" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.LoginTest.login" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.LoginTest" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.SearchCompanyTest" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.SearchCompanyTest.searchCompany" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.RemoveStuffTest.removeStuff" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.UpdateStuffTest.updateStuff" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.UpdateStuffTest" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.LoginTest" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.LoginTest.login" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.SearchCompanyTest" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.SearchCompanyTest.searchCompany" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.RemoveStuffTest.removeStuff" />
       </list>
     </recent_temporary>
   </component>
@@ -601,35 +627,35 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="RemoveStuffTest_removeStuff - 2017.12.18 at 17h 21m 03s.xml">
-      <configuration name="RemoveStuffTest.removeStuff" configurationId="JUnit" />
+    <history-entry file="LoginTest - 2017.12.19 at 17h 15m 19s.xml">
+      <configuration name="LoginTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="RemoveStuffTest_removeStuff - 2017.12.18 at 17h 25m 13s.xml">
-      <configuration name="RemoveStuffTest.removeStuff" configurationId="JUnit" />
+    <history-entry file="LoginTest - 2017.12.19 at 17h 15m 53s.xml">
+      <configuration name="LoginTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="RemoveStuffTest_removeStuff - 2017.12.18 at 17h 26m 17s.xml">
-      <configuration name="RemoveStuffTest.removeStuff" configurationId="JUnit" />
+    <history-entry file="LoginTest - 2017.12.19 at 17h 16m 15s.xml">
+      <configuration name="LoginTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SearchCompanyTest - 2017.12.18 at 17h 56m 30s.xml">
-      <configuration name="SearchCompanyTest" configurationId="JUnit" />
+    <history-entry file="LoginTest - 2017.12.19 at 17h 43m 06s.xml">
+      <configuration name="LoginTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SearchCompanyTest_searchCompany - 2017.12.18 at 17h 53m 02s.xml">
-      <configuration name="SearchCompanyTest.searchCompany" configurationId="JUnit" />
+    <history-entry file="LoginTest - 2017.12.19 at 17h 44m 14s.xml">
+      <configuration name="LoginTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SearchCompanyTest_searchCompany - 2017.12.18 at 17h 55m 12s.xml">
-      <configuration name="SearchCompanyTest.searchCompany" configurationId="JUnit" />
+    <history-entry file="LoginTest - 2017.12.19 at 17h 44m 39s.xml">
+      <configuration name="LoginTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="UpdateStuffTest_updateStuff - 2017.12.18 at 16h 30m 02s.xml">
-      <configuration name="UpdateStuffTest.updateStuff" configurationId="JUnit" />
+    <history-entry file="LoginTest - 2017.12.19 at 17h 45m 00s.xml">
+      <configuration name="LoginTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="UpdateStuffTest_updateStuff - 2017.12.18 at 16h 32m 36s.xml">
-      <configuration name="UpdateStuffTest.updateStuff" configurationId="JUnit" />
+    <history-entry file="LoginTest - 2017.12.19 at 18h 19m 40s.xml">
+      <configuration name="LoginTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="UpdateStuffTest_updateStuff - 2017.12.18 at 16h 33m 33s.xml">
-      <configuration name="UpdateStuffTest.updateStuff" configurationId="JUnit" />
+    <history-entry file="LoginTest - 2017.12.19 at 18h 26m 36s.xml">
+      <configuration name="LoginTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="UpdateStuffTest_updateStuff - 2017.12.18 at 16h 42m 15s.xml">
-      <configuration name="UpdateStuffTest.updateStuff" configurationId="JUnit" />
+    <history-entry file="LoginTest - 2017.12.19 at 18h 27m 12s.xml">
+      <configuration name="LoginTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TodoView">
@@ -646,28 +672,28 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32016632" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32441112" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36694387" sideWeight="0.36614582" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28372592" sideWeight="0.49793753" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25267667" sideWeight="0.49793753" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976446" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24304068" sideWeight="0.63385415" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25910065" sideWeight="0.63385415" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26262084" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26262084" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42719486" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25910065" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32441112" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329718" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -716,13 +742,26 @@
           <properties />
           <option name="timeStamp" value="44" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/pageObject/Login_UBNT.java</url>
+          <line>92</line>
+          <properties />
+          <option name="timeStamp" value="51" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/pageObject/Login_UBNT.java</url>
+          <line>324</line>
+          <properties class="pageObject.Login_UBNT" method="getChangeButtonOnOverlay">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="50" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="45" />
+      <option name="time" value="52" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/test/java/support/WebDriverSupport.java" />
     <entry file="jar://D:/系统/poi-3.17/poi-ooxml-3.17.jar!/org/apache/poi/xssf/usermodel/XSSFRow.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="205">
@@ -768,37 +807,10 @@
     <entry file="file://$PROJECT_DIR$/src/test/java/UITesting/ABC.java" />
     <entry file="file://$PROJECT_DIR$/src/test/java/UITesting/AB.java" />
     <entry file="file://$PROJECT_DIR$/src/test/java/UITesting/A.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/utility/WebDriverGiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pageObject/Homepage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="291">
           <caret line="151" column="7" lean-forward="true" selection-start-line="148" selection-start-column="4" selection-end-line="151" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/utility/ScreenCapture.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/utility/ExcelUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="35" column="50" lean-forward="true" selection-start-line="35" selection-start-column="50" selection-end-line="35" selection-end-column="50" />
-          <folding>
-            <element signature="e#2038#2046#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1028,21 +1040,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pageObject/Login.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/seleniumhq/selenium/selenium-api/3.8.1/selenium-api-3.8.1.jar!/org/openqa/selenium/WebDriver.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+        <state relative-caret-position="161">
+          <caret line="14" column="9" lean-forward="false" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/remoteConfigurationTesting/UBNTConfigration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1057,34 +1059,78 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/seleniumhq/selenium/selenium-api/3.8.1/selenium-api-3.8.1.jar!/org/openqa/selenium/WebDriver.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/utility/Constant.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="14" column="9" lean-forward="false" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
+        <state relative-caret-position="184">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pageObject/Login_UBNT.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/utility/ExcelUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="23" column="4" lean-forward="false" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="71" />
+        <state relative-caret-position="435">
+          <caret line="113" column="29" lean-forward="true" selection-start-line="113" selection-start-column="29" selection-end-line="113" selection-end-column="29" />
           <folding>
-            <element signature="e#2174#2175#0" expanded="true" />
-            <element signature="e#2232#2233#0" expanded="true" />
-            <element signature="e#2367#2368#0" expanded="true" />
-            <element signature="e#2429#2430#0" expanded="true" />
-            <element signature="e#3478#3479#0" expanded="true" />
-            <element signature="e#3536#3537#0" expanded="true" />
+            <element signature="e#2038#2046#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/utility/ScreenCapture.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="23" column="47" lean-forward="false" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/remoteConfigurationTesting/UBNTConfigration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="428">
+          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/remoteConfigurationTesting/LoginTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="26" column="5" lean-forward="true" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+        <state relative-caret-position="102">
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pageObject/Login.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="764">
+          <caret line="59" column="25" lean-forward="false" selection-start-line="59" selection-start-column="25" selection-end-line="59" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/utility/WebDriverGiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="9" column="28" lean-forward="false" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pageObject/Login_UBNT.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="101" column="16" lean-forward="false" selection-start-line="101" selection-start-column="16" selection-end-line="101" selection-end-column="16" />
+          <folding>
+            <element signature="e#5039#5040#0" expanded="true" />
+            <element signature="e#5099#5100#0" expanded="true" />
+            <element signature="e#5234#5235#0" expanded="true" />
+            <element signature="e#5294#5295#0" expanded="true" />
+            <element signature="e#6369#6370#0" expanded="true" />
+            <element signature="e#6427#6428#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

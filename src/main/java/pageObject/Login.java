@@ -62,7 +62,7 @@ public class Login {
         try {
             login(url);
             WebDriverWait wait = new WebDriverWait(driver, 10);
-            WebElement logoElement = wait.until( ExpectedConditions.presenceOfElementLocated(By.cssSelector("#logo > h1")));
+            WebElement logoElement = wait.until( ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[]")));
 
             new ScreenCapture().stepCapture(CASE_NAME);
             return logoElement.getText();
