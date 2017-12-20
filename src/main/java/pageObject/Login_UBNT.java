@@ -27,7 +27,7 @@ public class Login_UBNT {
     private final static String CASE_NAME = "UBNT_configuration";
 
     private String username,password,country,language,tabName,wirelessMode,SSID,chanelWidth,frequency,antennaGain,
-            outputPower,newPassword,tabName2,IPAddressName,netmask,gatewayIP;
+            outputPower,newPassword,tabName2,IPAddressName,netmask,gatewayIP,tabName3;
     private boolean isFirstTimeLogin = true;
 
     public void login(String url){
@@ -56,6 +56,7 @@ public class Login_UBNT {
                 IPAddressName = parameterList.get(14);
                 netmask = parameterList.get(15);
                 gatewayIP = parameterList.get(16);
+                tabName3 = parameterList.get(17);
 
                 this.getUsername().sendKeys(username);
                 this.getPassword().sendKeys(password);
@@ -73,6 +74,8 @@ public class Login_UBNT {
                 //assert login successfully
                 log.info("get the logout tag name: " + logoElement.getTagName());
                 //Assert.assertEquals("input",logoElement.getTagName());
+
+                //navigate to WIRELESS tab
                 this.getNavigationTab(tabName.charAt(0)).click();
                 this.selectWirelessMode(wirelessMode);
                 this.getWDSElement().click();
@@ -90,27 +93,47 @@ public class Login_UBNT {
                 this.getChangeButton().click();
 
                 //change password
+                Thread.sleep(3000);
                 this.getCurrentPassword().sendKeys(password);
                 this.getNewPassword(false).sendKeys(newPassword);
                 this.getNewPassword(true).sendKeys(newPassword);
 
                 //click change button on 'Change Password' overlay
                 this.getChangeButtonOnOverlay().click();
-                this.getApplyConfigurationButton().click();
+                Thread.sleep(3000);
+
+                //navigate to UBNT logo tab
+                if(this.getNavigationTab(tabName3.charAt(0)) != null){
+                    this.getNavigationTab(tabName3.charAt(0)).click();
+                    this.getAirMAXCheckbox().click();
+                    this.getChangeButtonUnderUBNT().click();
+                    Thread.sleep(2000);
+                }
 
                 //navigate to NETWORK tab
-                this.getNavigationTab(tabName2.charAt(0)).click();
+                if (this.getNavigationTab(tabName2.charAt(0)) != null){
+                    this.getNavigationTab(tabName2.charAt(0)).click();
+                    Thread.sleep(3000);
+                }
 
                 //update the following fields
                 this.getIPAddressInputElement().clear();
                 this.getNetmaskInputElement().clear();
                 this.getGatewayIPInputElement().clear();
                 this.getIPAddressInputElement().sendKeys(IPAddressName);
+
                 this.getNetmaskInputElement().sendKeys(netmask);
                 this.getGatewayIPInputElement().sendKeys(gatewayIP);
 
-                this.getFinalChangeButton().click();
-
+                if (this.getFinalChangeButton() != null){
+                    this.getFinalChangeButton().click();
+                    Thread.sleep(2000);
+                    this.getApplyButton().click();
+                    log.info("all configuration have been completed !");
+                }else {
+                    log.info("something wrong with the configuration, pls have a check !");
+                }
+                Thread.sleep(10000);
             }
 //            driver.quit();
         } catch (Exception e) {
@@ -198,6 +221,7 @@ public class Login_UBNT {
                       log.info("navigated to "+NavigationTabName);
                             break;
         }
+//        WebElement navigationTab = driver.findElement(By.xpath("//img[@alt='"+ NavigationTabName +"']/parent::a[1]"));
         WebElement navigationTab = driver.findElement(By.xpath("//img[@alt='"+ NavigationTabName +"']"));
         return navigationTab;
     }
@@ -272,7 +296,7 @@ public class Login_UBNT {
      */
     private WebElement getAntennaGainElement(){
         WebElement antennaGain = driver.findElement(By.id("antenna_info"));
-        log.info("anntenna gain is: "+antennaGain.getText());
+        log.info("anntenna gain is: "+this.antennaGain);
         return antennaGain;
     }
 
@@ -282,7 +306,7 @@ public class Login_UBNT {
      */
     private WebElement getOutputPowerElement(){
         WebElement outputPower = driver.findElement(By.id("txpower"));
-        log.info("output power is: " + outputPower.getText());
+        log.info("output power is: " + this.outputPower);
         return outputPower;
     }
 
@@ -302,7 +326,7 @@ public class Login_UBNT {
      */
     private WebElement getCurrentPassword(){
         WebElement currentPassword = driver.findElement(By.id("dlgOldPassword"));
-        log.info("the original password is: " + currentPassword.getText());
+        log.info("the original password is: " + this.password);
         return currentPassword;
     }
 
@@ -314,7 +338,7 @@ public class Login_UBNT {
     private WebElement getNewPassword(boolean isConfirm){
         String newPasswordId = !isConfirm ? "dlgNewPassword" : "dlgNewPassword2";
         WebElement newPassword = driver.findElement(By.id(newPasswordId));
-        log.info("the new password has changed to " + newPassword.getText());
+        log.info("the new password has changed to " + this.newPassword);
         return newPassword;
     }
 
@@ -326,15 +350,6 @@ public class Login_UBNT {
         WebElement changeButton = driver.findElement(By.xpath("//div[@id='warning-dlg']/following-sibling::div[1]/div[3]/div[1]/button[2]"));
         log.info(changeButton.getAttribute("type"));
         return changeButton;
-    }
-
-    /**
-     * Get apply button on the top the page after changed password
-     * @return the WebElement
-     */
-    private WebElement getApplyConfigurationButton(){
-        WebElement applyButton = driver.findElement(By.id("apply_button"));
-        return applyButton;
     }
 
     /**
@@ -375,5 +390,35 @@ public class Login_UBNT {
         WebElement changeButton = driver.findElement(By.id("change"));
         log.info(changeButton.getAttribute("value"));
         return changeButton;
+    }
+
+    /**
+     * Get airMAX checkbox element under UBNT logo tab
+     * @return the WebElement
+     */
+    private WebElement getAirMAXCheckbox(){
+        WebElement airMAXCheckbox = driver.findElement(By.id("polling"));
+        log.info(airMAXCheckbox.getAttribute("value"));
+        return airMAXCheckbox;
+    }
+
+    /**
+     * Get change button under UBNT logo tab
+     * @return the WebElement
+     */
+    private WebElement getChangeButtonUnderUBNT(){
+        WebElement changeButton = driver.findElement(By.cssSelector("#ubnt_form > table > tbody > tr:nth-child(7) > td:nth-child(1) > input"));
+        log.info(changeButton.getAttribute("type"));
+        return changeButton;
+    }
+
+    /**
+     * Get apply button after click change button
+     * @return the WebElement
+     */
+    private WebElement getApplyButton(){
+        WebElement applyButton = driver.findElement(By.id("apply_button"));
+        log.info(applyButton.getAttribute("value"));
+        return applyButton;
     }
 }
