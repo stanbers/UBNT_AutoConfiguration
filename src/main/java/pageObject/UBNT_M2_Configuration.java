@@ -77,6 +77,8 @@ public class UBNT_M2_Configuration {
 
                 //navigate to WIRELESS tab
                 this.getNavigationTab(tabName.charAt(0)).click();
+                //to make sure has navigated to WIRELESS
+                Thread.sleep(3000);
                 this.selectWirelessMode(wirelessMode);
                 this.getWDSElement().click();
 
