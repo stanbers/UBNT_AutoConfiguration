@@ -3,7 +3,6 @@ package utility;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import pageObject.Login;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,7 +20,7 @@ public class ScreenCapture {
      * Trying to capture every single step
      */
     public void stepCapture(String caseName){
-        File srcFile = ((TakesScreenshot) Login.driver).getScreenshotAs(OutputType.FILE);
+        File srcFile = ((TakesScreenshot) WebDriverGiver.getWebDriver()).getScreenshotAs(OutputType.FILE);
         try {
             FileUtils.copyFile(srcFile,new File("D:\\output\\"+ caseName + "\\" + ctString +".png"));
         } catch (IOException e) {

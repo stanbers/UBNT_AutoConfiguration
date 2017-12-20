@@ -14,7 +14,7 @@ import utility.WebDriverGiver;
 
 import java.util.List;
 
-public class Login_UBNT {
+public class UBNT_M2_Configuration {
 
     static{
         System.setProperty("webdriver.gecko.driver","C:\\SeleniumGecko\\geckodriver.exe");
@@ -22,7 +22,7 @@ public class Login_UBNT {
 
     public static WebDriver driver = WebDriverGiver.getWebDriver();
 
-    private final static Log log = LogFactory.getLog(Login_UBNT.class);
+    private final static Log log = LogFactory.getLog(UBNT_M2_Configuration.class);
 
     private final static String CASE_NAME = "UBNT_configuration";
 

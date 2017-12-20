@@ -82,69 +82,6 @@ public class ExcelUtils {
         }
     }
 
-    public static String getMethodFromExcel(String caseName){
-
-        String methodName = null;
-        try{
-            int lastRowIndex = ExcelWSheet.getLastRowNum();
-            labelA:
-            for (int i = 0; i <= lastRowIndex; i++) {
-                XSSFRow row  = ExcelWSheet.getRow(i+2);
-                if (row == null) { break; }
-
-                short lastCellNum = row.getLastCellNum();
-                for (int j = 0; j < lastCellNum; j++) {
-                    String cellValue = row.getCell(j).getStringCellValue();
-                    if(caseName != null && caseName.equals(cellValue)){
-                        String test = row.getCell(j+1).getRawValue();
-                        String classAndMethod = row.getCell(j+2).getStringCellValue();
-                        if(classAndMethod != null){
-                            String[] methods = classAndMethod.split("\\.");
-                            methodName= methods[1];
-                        }
-                    }else {
-                        break labelA;
-                    }
-                }
-            }
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        log.info(methodName);
-        return methodName;
-    }
-
-
-    public static void findCell(String caseName,int offset){
-        try{
-            int lastRowIndex = ExcelWSheet.getLastRowNum();
-            labelA:
-            for (int i = 0; i <= lastRowIndex; i++) {
-                XSSFRow row  = ExcelWSheet.getRow(i+2);
-                if (row == null) { break; }
-
-                short lastCellNum = row.getLastCellNum();
-                for (int j = 0; j < lastCellNum; j++) {
-                    String cellValue = row.getCell(j).getStringCellValue();
-                    if(caseName != null && caseName.equals(cellValue)){
-                        for (int k = 0; k < lastCellNum ; k++) {
-                            if(row.getCell(k+offset).getRawValue() != null){
-                                //list.add(row.getCell(k+offset).getRawValue());
-                            }else {
-                                break labelA;
-                            }
-                        }
-                    }else {
-                        //return null;
-                    }
-                }
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
     /**
      * This method is to write in the Excel cell, Row num and Col num are the parameters
      * No use for current.
