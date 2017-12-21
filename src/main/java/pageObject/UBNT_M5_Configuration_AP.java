@@ -14,7 +14,7 @@ import utility.WebDriverGiver;
 
 import java.util.List;
 
-public class UBNT_M2_Configuration {
+public class UBNT_M5_Configuration_AP {
 
     static{
         System.setProperty("webdriver.gecko.driver","C:\\SeleniumGecko\\geckodriver.exe");
@@ -22,9 +22,9 @@ public class UBNT_M2_Configuration {
 
     public static WebDriver driver = WebDriverGiver.getWebDriver();
 
-    private final static Log log = LogFactory.getLog(UBNT_M2_Configuration.class);
+    private final static Log log = LogFactory.getLog(UBNT_M5_Configuration_AP.class);
 
-    private final static String CASE_NAME = "UBNT_configuration_M2";
+    private final static String CASE_NAME = "UBNT_configuration_M5_AP";
 
     private String username,password,country,language,tabName,wirelessMode,SSID,chanelWidth,frequency,antennaGain,
             outputPower,newPassword,tabName2,IPAddressName,netmask,gatewayIP,tabName3;
@@ -34,7 +34,7 @@ public class UBNT_M2_Configuration {
 
         driver.get(url);
         try {
-            ExcelUtils.setExcelFile(Constant.Path_TestData_UBNT_M2,Constant.File_TestData);
+            ExcelUtils.setExcelFile(Constant.Path_TestData_UBNT_M5_AP,Constant.File_TestData);
             //This is to get the values from Excel sheet
             List<String> parameterList = ExcelUtils.getParametersViaCaseName(CASE_NAME, 0);
 
@@ -88,29 +88,11 @@ public class UBNT_M2_Configuration {
                 this.selectChanelWidth(chanelWidth);
                 this.selectFrequency(frequency);
 
-                this.getAntennaGainElement().clear();
                 this.getOutputPowerElement().clear();
-                this.getAntennaGainElement().sendKeys(antennaGain);
                 this.getOutputPowerElement().sendKeys(outputPower);
                 this.getChangeButton().click();
 
-                //change password
                 Thread.sleep(3000);
-                this.getCurrentPassword().sendKeys(password);
-                this.getNewPassword(false).sendKeys(newPassword);
-                this.getNewPassword(true).sendKeys(newPassword);
-
-                //click change button on 'Change Password' overlay
-                this.getChangeButtonOnOverlay().click();
-                Thread.sleep(3000);
-
-                //navigate to UBNT logo tab
-                if(this.getNavigationTab(tabName3.charAt(0)) != null){
-                    this.getNavigationTab(tabName3.charAt(0)).click();
-                    this.getAirMAXCheckbox().click();
-                    this.getChangeButtonUnderUBNT().click();
-                    Thread.sleep(2000);
-                }
 
                 //navigate to NETWORK tab
                 if (this.getNavigationTab(tabName2.charAt(0)) != null){
@@ -276,8 +258,6 @@ public class UBNT_M2_Configuration {
         }
     }
 
-    //chan_freq
-
     /**
      * select frequency under WIRELESS tab
      * @param frequency  the frequency
@@ -290,16 +270,6 @@ public class UBNT_M2_Configuration {
         }else {
             log.info("there is no any frequency can be selected !");
         }
-    }
-
-    /**
-     * Get antenna gain element under WIRELESS tab
-     * @return the WebElement
-     */
-    private WebElement getAntennaGainElement(){
-        WebElement antennaGain = driver.findElement(By.id("antenna_info"));
-        log.info("anntenna gain is: "+this.antennaGain);
-        return antennaGain;
     }
 
     /**

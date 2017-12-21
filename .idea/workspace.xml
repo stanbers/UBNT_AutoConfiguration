@@ -2,11 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6297135e-99b4-48ed-8d1f-4be9376233e2" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ConfigData/ConfigData_UBNT_M5_AP.xlsx" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ConfigData/ConfigData_UBNT_M5_ST.xlsx" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/pageObject/UBNT_M5_Configuration_AP.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/pageObject/UBNT_M5_Configuration_ST.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/test/java/remoteConfigurationTesting/UBNT_Configuration_M5_AP.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/test/java/remoteConfigurationTesting/UBNT_Configuration_M5_ST.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ConfigData/ConfigData_UBNT_M2.xlsx" afterPath="$PROJECT_DIR$/src/main/java/ConfigData/ConfigData_UBNT_M2.xlsx" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pageObject/UBNT_M2_Configuration.java" afterPath="$PROJECT_DIR$/src/main/java/pageObject/UBNT_M2_Configuration.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/utility/Constant.java" afterPath="$PROJECT_DIR$/src/main/java/utility/Constant.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/utility/ExcelUtils.java" afterPath="$PROJECT_DIR$/src/main/java/utility/ExcelUtils.java" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/remoteConfigurationTesting/UBNT_Configuration.java" afterPath="$PROJECT_DIR$/src/test/java/remoteConfigurationTesting/UBNT_Configuration_M2.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -22,44 +29,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="UBNT_M2_Configuration.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pageObject/UBNT_M2_Configuration.java">
+      <file leaf-file-name="UBNT_M5_Configuration_AP.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/pageObject/UBNT_M5_Configuration_AP.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
-              <caret line="102" column="66" lean-forward="true" selection-start-line="102" selection-start-column="66" selection-end-line="102" selection-end-column="66" />
+            <state relative-caret-position="-253">
+              <caret line="103" column="56" lean-forward="true" selection-start-line="103" selection-start-column="56" selection-end-line="103" selection-end-column="56" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Constant.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/utility/Constant.java">
+      <file leaf-file-name="UBNT_M5_Configuration_ST.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/pageObject/UBNT_M5_Configuration_ST.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+            <state relative-caret-position="412">
+              <caret line="115" column="2" lean-forward="true" selection-start-line="115" selection-start-column="2" selection-end-line="115" selection-end-column="2" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UBNT_Configuration.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/remoteConfigurationTesting/UBNT_Configuration.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="18" column="38" lean-forward="false" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ScreenCapture.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/utility/ScreenCapture.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="397">
-              <caret line="27" column="9" lean-forward="true" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -67,8 +52,8 @@
       <file leaf-file-name="ExcelUtils.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/utility/ExcelUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="38" column="61" lean-forward="false" selection-start-line="38" selection-start-column="16" selection-end-line="38" selection-end-column="61" />
+            <state relative-caret-position="792">
+              <caret line="62" column="57" lean-forward="true" selection-start-line="62" selection-start-column="57" selection-end-line="62" selection-end-column="57" />
               <folding>
                 <element signature="e#2038#2046#0" expanded="true" />
               </folding>
@@ -76,11 +61,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WebDriverGiver.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/utility/WebDriverGiver.java">
+      <file leaf-file-name="Constant.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/utility/Constant.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+            <state relative-caret-position="184">
+              <caret line="8" column="1" lean-forward="true" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UBNT_Configuration_M5_AP.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/remoteConfigurationTesting/UBNT_Configuration_M5_AP.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="194">
+              <caret line="18" column="32" lean-forward="false" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UBNT_Configuration_M5_ST.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/remoteConfigurationTesting/UBNT_Configuration_M5_ST.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="138">
+              <caret line="18" column="66" lean-forward="false" selection-start-line="18" selection-start-column="66" selection-end-line="18" selection-end-column="66" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UBNT_M2_Configuration.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/pageObject/UBNT_M2_Configuration.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="275">
+              <caret line="36" column="66" lean-forward="false" selection-start-line="36" selection-start-column="66" selection-end-line="36" selection-end-column="66" />
               <folding />
             </state>
           </provider>
@@ -111,6 +126,11 @@
       <find>getAddStuffButton</find>
       <find>Login</find>
       <find>apply_button</find>
+      <find>selectChanelWidth</find>
+      <find>selectFrequency</find>
+      <find>getOutputPowerElement</find>
+      <find>SSID</find>
+      <find>mgmtIpAddr</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -124,13 +144,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/test/java/UITesting/AddEventTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/UITesting/LogoutTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/UITesting/AddCompanyTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/UITesting/SiginIn_Action.java" />
-        <option value="$PROJECT_DIR$/src/main/java/UITesting/Login_Page_01.java" />
-        <option value="$PROJECT_DIR$/src/main/java/UITesting/Login_Page.java" />
-        <option value="$PROJECT_DIR$/src/main/java/UITesting/SiginIn_Action_draft.java" />
         <option value="$PROJECT_DIR$/src/main/java/pageObject/Homepage.java" />
         <option value="$PROJECT_DIR$/src/main/java/utility/WebDriverGiver.java" />
         <option value="$PROJECT_DIR$/src/test/java/UITesting/companyManagement/AddCompanyTest.java" />
@@ -172,9 +185,16 @@
         <option value="$PROJECT_DIR$/src/main/java/pageObject/Login_UBNT.java" />
         <option value="$PROJECT_DIR$/src/test/java/remoteConfigurationTesting/UBNT_Configuration.java" />
         <option value="$PROJECT_DIR$/src/main/java/utility/ScreenCapture.java" />
+        <option value="$PROJECT_DIR$/src/test/java/remoteConfigurationTesting/UBNT_Configuration_M2.java" />
+        <option value="$PROJECT_DIR$/src/test/java/remoteConfigurationTesting/UBNT_Configuration_M5.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pageObject/UBNT_M5_Configuration.java" />
+        <option value="$PROJECT_DIR$/src/test/java/remoteConfigurationTesting/UBNT_Configuration_M5_AP.java" />
+        <option value="$PROJECT_DIR$/src/test/java/remoteConfigurationTesting/UBNT_Configuration_M5_ST.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pageObject/UBNT_M2_Configuration.java" />
         <option value="$PROJECT_DIR$/src/main/java/utility/ExcelUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/utility/Constant.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pageObject/UBNT_M2_Configuration.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pageObject/UBNT_M5_Configuration_AP.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pageObject/UBNT_M5_Configuration_ST.java" />
       </list>
     </option>
   </component>
@@ -185,9 +205,9 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-1782" />
-    <option name="y" value="36" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-1873" />
+    <option name="y" value="32" />
     <option name="width" value="1713" />
     <option name="height" value="988" />
   </component>
@@ -315,11 +335,13 @@
     <property name="SearchEverywhereHistoryKey" value="attempt++&#9;null&#9;null" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Administrator\IdeaProjects\testing\TrainScheduling\src\main\java\testData" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="draft" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\RemoteConfigCentre\remoteConfigCentre\src\main\java\ConfigData" />
+      <recent name="D:\TrainScheduling\src\main\java\testData" />
+      <recent name="D:\TrainScheduling\src\main\java\draft" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="remoteConfigurationTesting" />
@@ -327,9 +349,8 @@
       <recent name="appModules" />
       <recent name="draft" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\TrainScheduling\src\main\java\testData" />
-      <recent name="D:\TrainScheduling\src\main\java\draft" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\IdeaProjects\testing\TrainScheduling\src\main\java\testData" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -344,7 +365,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.UBNT_Configuration_M5_AP">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -365,31 +386,6 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="" />
       <envs />
-    </configuration>
-    <configuration name="RemoveStuffTest.removeStuff" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="functionalTesting.companyManagement.independently.stuffList.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="TrainScheduling" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="functionalTesting.companyManagement.independently.stuffList" />
-      <option name="MAIN_CLASS_NAME" value="functionalTesting.companyManagement.independently.stuffList.RemoveStuffTest" />
-      <option name="METHOD_NAME" value="removeStuff" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
     </configuration>
     <configuration name="SearchCompanyTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
@@ -416,32 +412,7 @@
       <envs />
       <patterns />
     </configuration>
-    <configuration name="SearchCompanyTest.searchCompany" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="functionalTesting.companyManagement.independently.departmentList.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="TrainScheduling" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="functionalTesting.companyManagement.independently.departmentList" />
-      <option name="MAIN_CLASS_NAME" value="functionalTesting.companyManagement.independently.departmentList.SearchCompanyTest" />
-      <option name="METHOD_NAME" value="searchCompany" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-    </configuration>
-    <configuration name="UBNT_Configuration" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UBNT_Configuration_M2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="remoteConfigurationTesting.*" />
@@ -452,7 +423,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="remoteConfigurationTesting" />
-      <option name="MAIN_CLASS_NAME" value="remoteConfigurationTesting.UBNT_Configuration" />
+      <option name="MAIN_CLASS_NAME" value="remoteConfigurationTesting.UBNT_Configuration_M2" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -466,7 +437,7 @@
       <envs />
       <patterns />
     </configuration>
-    <configuration name="UBNT_Configuration.login" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UBNT_Configuration_M2.login" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="remoteConfigurationTesting.*" />
@@ -477,9 +448,59 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="remoteConfigurationTesting" />
-      <option name="MAIN_CLASS_NAME" value="remoteConfigurationTesting.UBNT_Configuration" />
+      <option name="MAIN_CLASS_NAME" value="remoteConfigurationTesting.UBNT_Configuration_M2" />
       <option name="METHOD_NAME" value="login" />
       <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration name="UBNT_Configuration_M5_AP" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="remoteConfigurationTesting.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="TrainScheduling" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="remoteConfigurationTesting" />
+      <option name="MAIN_CLASS_NAME" value="remoteConfigurationTesting.UBNT_Configuration_M5_AP" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration name="UBNT_Configuration_M5_ST" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="remoteConfigurationTesting.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="TrainScheduling" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="remoteConfigurationTesting" />
+      <option name="MAIN_CLASS_NAME" value="remoteConfigurationTesting.UBNT_Configuration_M5_ST" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
@@ -552,19 +573,19 @@
       <predefined_log_file id="idea.log" enabled="true" />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.RemoveStuffTest.removeStuff" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.SearchCompanyTest.searchCompany" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.SearchCompanyTest" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.UBNT_Configuration.login" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.UBNT_Configuration" />
+      <item index="0" class="java.lang.String" itemvalue="JUnit.SearchCompanyTest" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.UBNT_Configuration_M2.login" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.UBNT_Configuration_M2" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.UBNT_Configuration_M5_ST" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.UBNT_Configuration_M5_AP" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.UBNT_Configuration" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.UBNT_Configuration.login" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.SearchCompanyTest" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.SearchCompanyTest.searchCompany" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.RemoveStuffTest.removeStuff" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.UBNT_Configuration_M5_AP" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.UBNT_Configuration_M5_ST" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.UBNT_Configuration_M2" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.UBNT_Configuration_M2.login" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.SearchCompanyTest" />
       </list>
     </recent_temporary>
   </component>
@@ -585,35 +606,35 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="LoginTest - 2017.12.20 at 17h 00m 46s.xml">
-      <configuration name="LoginTest" configurationId="JUnit" />
+    <history-entry file="UBNT_Configuration_M5_AP - 2017.12.21 at 11h 58m 16s.xml">
+      <configuration name="UBNT_Configuration_M5_AP" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="UBNT_Configuration - 2017.12.20 at 18h 00m 32s.xml">
-      <configuration name="UBNT_Configuration" configurationId="JUnit" />
+    <history-entry file="UBNT_Configuration_M5_AP - 2017.12.21 at 12h 06m 18s.xml">
+      <configuration name="UBNT_Configuration_M5_AP" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="UBNT_Configuration - 2017.12.20 at 18h 04m 07s.xml">
-      <configuration name="UBNT_Configuration" configurationId="JUnit" />
+    <history-entry file="UBNT_Configuration_M5_ST - 2017.12.21 at 11h 36m 41s.xml">
+      <configuration name="UBNT_Configuration_M5_ST" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="UBNT_Configuration - 2017.12.20 at 18h 06m 38s.xml">
-      <configuration name="UBNT_Configuration" configurationId="JUnit" />
+    <history-entry file="UBNT_Configuration_M5_ST - 2017.12.21 at 11h 39m 32s.xml">
+      <configuration name="UBNT_Configuration_M5_ST" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="UBNT_Configuration - 2017.12.20 at 18h 08m 48s.xml">
-      <configuration name="UBNT_Configuration" configurationId="JUnit" />
+    <history-entry file="UBNT_Configuration_M5_ST - 2017.12.21 at 11h 39m 57s.xml">
+      <configuration name="UBNT_Configuration_M5_ST" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="UBNT_Configuration - 2017.12.20 at 18h 09m 31s.xml">
-      <configuration name="UBNT_Configuration" configurationId="JUnit" />
+    <history-entry file="UBNT_Configuration_M5_ST - 2017.12.21 at 11h 42m 13s.xml">
+      <configuration name="UBNT_Configuration_M5_ST" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="UBNT_Configuration - 2017.12.20 at 18h 09m 55s.xml">
-      <configuration name="UBNT_Configuration" configurationId="JUnit" />
+    <history-entry file="UBNT_Configuration_M5_ST - 2017.12.21 at 11h 43m 04s.xml">
+      <configuration name="UBNT_Configuration_M5_ST" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="UBNT_Configuration - 2017.12.20 at 18h 11m 44s.xml">
-      <configuration name="UBNT_Configuration" configurationId="JUnit" />
+    <history-entry file="UBNT_Configuration_M5_ST - 2017.12.21 at 11h 43m 24s.xml">
+      <configuration name="UBNT_Configuration_M5_ST" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="UBNT_Configuration - 2017.12.20 at 18h 12m 01s.xml">
-      <configuration name="UBNT_Configuration" configurationId="JUnit" />
+    <history-entry file="UBNT_Configuration_M5_ST - 2017.12.21 at 11h 44m 13s.xml">
+      <configuration name="UBNT_Configuration_M5_ST" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="UBNT_Configuration - 2017.12.20 at 18h 14m 22s.xml">
-      <configuration name="UBNT_Configuration" configurationId="JUnit" />
+    <history-entry file="UBNT_Configuration_M5_ST - 2017.12.21 at 11h 56m 53s.xml">
+      <configuration name="UBNT_Configuration_M5_ST" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TodoView">
@@ -626,28 +647,28 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1782" y="36" width="1713" height="988" extended-state="0" />
+    <frame x="-1928" y="-8" width="1936" height="1096" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32016632" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32324454" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3222698" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36694387" sideWeight="0.36614582" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40072638" sideWeight="0.49793753" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27301928" sideWeight="0.49793753" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976446" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4261501" sideWeight="0.63385415" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23340471" sideWeight="0.63385415" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25503355" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2244898" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329718" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4527845" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38222697" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -706,34 +727,18 @@
           <properties />
           <option name="timeStamp" value="62" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/pageObject/UBNT_M5_Configuration_ST.java</url>
+          <line>97</line>
+          <properties />
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="63" />
+      <option name="time" value="66" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/UITesting/SiginIn_Action_draft.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="30" column="107" lean-forward="false" selection-start-line="30" selection-start-column="107" selection-end-line="30" selection-end-column="107" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/UITesting/SiginIn_Action.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="30" column="107" lean-forward="false" selection-start-line="30" selection-start-column="107" selection-end-line="30" selection-end-column="107" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/UITesting/Login_Page_01.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-43">
-          <caret line="33" column="107" lean-forward="false" selection-start-line="33" selection-start-column="107" selection-end-line="33" selection-end-column="107" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/UITesting/ABC.java" />
     <entry file="file://$PROJECT_DIR$/src/test/java/UITesting/AB.java" />
     <entry file="file://$PROJECT_DIR$/src/test/java/UITesting/A.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/pageObject/Homepage.java">
@@ -1015,10 +1020,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/utility/ScreenCapture.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
+        <state relative-caret-position="453">
           <caret line="27" column="9" lean-forward="true" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1027,14 +1032,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
           <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/remoteConfigurationTesting/UBNT_Configuration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="18" column="38" lean-forward="false" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
           <folding />
         </state>
       </provider>
@@ -1050,28 +1047,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/utility/ExcelUtils.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/remoteConfigurationTesting/UBNT_Configuration_M2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="38" column="61" lean-forward="false" selection-start-line="38" selection-start-column="16" selection-end-line="38" selection-end-column="61" />
-          <folding>
-            <element signature="e#2038#2046#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/utility/Constant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        <state relative-caret-position="269">
+          <caret line="18" column="38" lean-forward="false" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pageObject/UBNT_M2_Configuration.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="102" column="66" lean-forward="true" selection-start-line="102" selection-start-column="66" selection-end-line="102" selection-end-column="66" />
+        <state relative-caret-position="275">
+          <caret line="36" column="66" lean-forward="false" selection-start-line="36" selection-start-column="66" selection-end-line="36" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/utility/Constant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="1" lean-forward="true" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/remoteConfigurationTesting/UBNT_Configuration_M5_ST.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="18" column="66" lean-forward="false" selection-start-line="18" selection-start-column="66" selection-end-line="18" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/utility/ExcelUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="792">
+          <caret line="62" column="57" lean-forward="true" selection-start-line="62" selection-start-column="57" selection-end-line="62" selection-end-column="57" />
+          <folding>
+            <element signature="e#2038#2046#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/remoteConfigurationTesting/UBNT_Configuration_M5_AP.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="18" column="32" lean-forward="false" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pageObject/UBNT_M5_Configuration_AP.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-253">
+          <caret line="103" column="56" lean-forward="true" selection-start-line="103" selection-start-column="56" selection-end-line="103" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pageObject/UBNT_M5_Configuration_ST.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="412">
+          <caret line="115" column="2" lean-forward="true" selection-start-line="115" selection-start-column="2" selection-end-line="115" selection-end-column="2" />
           <folding />
         </state>
       </provider>
