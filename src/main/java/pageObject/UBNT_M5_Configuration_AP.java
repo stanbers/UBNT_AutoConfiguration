@@ -30,6 +30,8 @@ public class UBNT_M5_Configuration_AP {
             outputPower,newPassword,tabName2,IPAddressName,netmask,gatewayIP,tabName3;
     private boolean isFirstTimeLogin = true;
 
+    WebDriverWait wait = new WebDriverWait(driver, 10);
+
     public void login(String url){
 
         driver.get(url);
@@ -47,6 +49,9 @@ public class UBNT_M5_Configuration_AP {
                 tabName = parameterList.get(5);
                 wirelessMode = parameterList.get(6);
                 SSID = parameterList.get(7);
+//                ExcelUtils.setCellData(SSID,2,21);
+//                ExcelUtils.setCellData("SSID_fromAP",1,21);
+
                 chanelWidth = parameterList.get(8);
                 frequency = parameterList.get(9);
                 antennaGain = parameterList.get(10);
@@ -68,7 +73,6 @@ public class UBNT_M5_Configuration_AP {
 
                 this.getLoginButton().click();
 
-                WebDriverWait wait = new WebDriverWait(driver, 10);
                 WebElement logoElement = wait.until( ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[value='Logout'][type='button']")));
 
                 //assert login successfully
@@ -78,9 +82,14 @@ public class UBNT_M5_Configuration_AP {
                 //navigate to WIRELESS tab
                 this.getNavigationTab(tabName.charAt(0)).click();
                 //to make sure has navigated to WIRELESS
-                Thread.sleep(3000);
+                Thread.sleep(5000);
                 this.selectWirelessMode(wirelessMode);
-                this.getWDSElement().click();
+
+                //need to double check the 'enable' check is checked or not
+                //if checked , then no need to click the checkbox again,otherwise need click
+                if(driver.findElement(By.id("wds_chkbox")).getAttribute("checked") == null){
+                    this.getWDSElement().click();
+                }
 
                 this.getSSIDElement().clear();
                 this.getSSIDElement().sendKeys(SSID);
@@ -215,7 +224,7 @@ public class UBNT_M5_Configuration_AP {
      * @param wirelessMode  the wireless mode
      */
     private void selectWirelessMode(String wirelessMode){
-        Select wirelessModeList = new Select(driver.findElement(By.id("wmode")));
+        Select wirelessModeList = new Select(wait.until( ExpectedConditions.presenceOfElementLocated(By.id("wmode"))));
         if(wirelessModeList != null){
             wirelessModeList.selectByValue(wirelessMode);
             log.info(wirelessMode + " was selected !");
@@ -249,9 +258,9 @@ public class UBNT_M5_Configuration_AP {
      * @param chanelWidth  the chanel width
      */
     private void selectChanelWidth(String chanelWidth){
-        Select chanelWidthList = new Select(driver.findElement(By.id("chanbw_select")));
+        Select chanelWidthList = new Select(driver.findElement(By.id("clksel_select")));
         if(chanelWidthList != null){
-            chanelWidthList.selectByValue(chanelWidth);
+            chanelWidthList.selectByVisibleText(chanelWidth);
             log.info(chanelWidth + " was selected !");
         }else {
             log.info("there is no any chanel width can be selected !");

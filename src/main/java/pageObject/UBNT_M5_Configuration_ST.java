@@ -12,6 +12,7 @@ import utility.Constant;
 import utility.ExcelUtils;
 import utility.WebDriverGiver;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -27,6 +28,8 @@ public class UBNT_M5_Configuration_ST {
     private final static Log log = LogFactory.getLog(UBNT_M5_Configuration_ST.class);
 
     private final static String CASE_NAME = "UBNT_configuration_M5_ST";
+
+    //private final  static WebDriverWait wait = new WebDriverWait(driver,10);
 
     private String username,password,country,language,tabName,wirelessMode,SSID,chanelWidth,frequency,antennaGain,
             outputPower,newPassword,tabName2,IPAddressName,netmask,gatewayIP,tabName3;
@@ -82,6 +85,7 @@ public class UBNT_M5_Configuration_ST {
                 //to make sure has navigated to WIRELESS
                 Thread.sleep(3000);
                 this.selectWirelessMode(wirelessMode);
+
                 this.getWDSElement().click();
 
                 if(this.getSelectSSIDButton() != null){
@@ -99,58 +103,70 @@ public class UBNT_M5_Configuration_ST {
                     subWindowHandler = iterator.next();
                 }
                 driver.switchTo().window(subWindowHandler); // switch to popup window
-                Thread.sleep(10000);
+                Thread.sleep(20000); // waiting for the popup window load completed.
 
                 if (this.getLockUpButton() != null){
                     log.info("switch to popup window successfully !");
+
+                    int recordsNum = this.getSurveyRecords().size();
+
+                    //this list are full with SSID records
+                    List<String> SSIDRecords = new ArrayList<String>();
+                    for (int i = 0; i < recordsNum ; i++) {
+                            i++;
+                            WebElement SSIDCell = driver.findElement(By.cssSelector("#survey > tbody > tr:nth-child("+i+") > td:nth-child(3)"));
+                            SSIDRecords.add(SSIDCell.getText());
+                            i--;
+                    }
+                    for (int j = SSIDRecords.size()-1; j < SSIDRecords.size() ; j--) {
+                        //SSID should be get from AP side, that means must config AP site
+                        //then the SSID can be write into ST data source excel
+                        //then read SSID from ST data source excel
+                        String record = SSIDRecords.get(j);
+                        if ((record.toString().trim()).equals(SSID.toString().trim())){
+                            j++;
+                            WebElement targetRecordRadio = driver.findElement(By.cssSelector("#survey > tbody > tr:nth-child("+j+") > td:nth-child(1) > input"));
+                            targetRecordRadio.click();
+                            break;
+                        }
+                    }
+
+                    this.getLockUpButton().click();
+                   // Thread.sleep(1000);
                 }
-                // Now you are in the popup window, perform necessary actions here
                 driver.switchTo().window(currentWindow);  // switch back to parent window
 
-//                this.getSSIDElement().clear();
-//                this.getSSIDElement().sendKeys(SSID);
+                this.getWDSElement();
 
 
-//                this.selectChanelWidth(chanelWidth);
-////                this.selectFrequency(frequency);
-//
-//                this.getOutputPowerElement().clear();
-//                this.getOutputPowerElement().sendKeys(outputPower);
-//                this.getChangeButton().click();
-//
-//                //change password
-//                Thread.sleep(3000);
-//                this.getCurrentPassword().sendKeys(password);
-//                this.getNewPassword(false).sendKeys(newPassword);
-//                this.getNewPassword(true).sendKeys(newPassword);
-//
-//                //click change button on 'Change Password' overlay
-//                this.getChangeButtonOnOverlay().click();
-//                Thread.sleep(3000);
-//
-//                //navigate to NETWORK tab
-//                if (this.getNavigationTab(tabName2.charAt(0)) != null){
-//                    this.getNavigationTab(tabName2.charAt(0)).click();
-//                    Thread.sleep(3000);
-//                }
-//
-//                //update the following fields
-//                this.getIPAddressInputElement().clear();
-//                this.getNetmaskInputElement().clear();
-//                this.getGatewayIPInputElement().clear();
-//                this.getIPAddressInputElement().sendKeys(IPAddressName);
-//
-//                this.getNetmaskInputElement().sendKeys(netmask);
-//                this.getGatewayIPInputElement().sendKeys(gatewayIP);
-//
-//                if (this.getFinalChangeButton() != null){
-//                    this.getFinalChangeButton().click();
-//                    Thread.sleep(2000);
-//                    this.getApplyButton().click();
-//                    log.info("all configuration have been completed !");
-//                }else {
-//                    log.info("something wrong with the configuration, pls have a check !");
-//                }
+                this.selectChanelWidth(chanelWidth);
+
+                this.getOutputPowerElement().clear();
+                this.getOutputPowerElement().sendKeys(outputPower);
+                this.getChangeButton().click();
+
+                //navigate to NETWORK tab
+                if (this.getNavigationTab(tabName2.charAt(0)) != null){
+                    this.getNavigationTab(tabName2.charAt(0)).click();
+                    Thread.sleep(3000);
+                }
+
+                //update the following fields
+                this.getIPAddressInputElement().clear();
+                this.getNetmaskInputElement().clear();
+                this.getGatewayIPInputElement().clear();
+                this.getIPAddressInputElement().sendKeys(IPAddressName);
+                this.getNetmaskInputElement().sendKeys(netmask);
+                this.getGatewayIPInputElement().sendKeys(gatewayIP);
+
+                if (this.getFinalChangeButton() != null){
+                    this.getFinalChangeButton().click();
+                    Thread.sleep(2000);
+                    this.getApplyButton().click();
+                    log.info("all configuration have been completed !");
+                }else {
+                    log.info("something wrong with the configuration, pls have a check !");
+                }
                 Thread.sleep(10000);
             }
 //            driver.quit();
@@ -264,7 +280,7 @@ public class UBNT_M5_Configuration_ST {
      */
     private WebElement getWDSElement(){
         WebElement WDS = driver.findElement(By.id("wds_chkbox"));
-        log.info("WDS was enabled !");
+        log.info(WDS.getAttribute("name"));
         return WDS;
     }
 
@@ -302,9 +318,9 @@ public class UBNT_M5_Configuration_ST {
      * @param chanelWidth  the chanel width
      */
     private void selectChanelWidth(String chanelWidth){
-        Select chanelWidthList = new Select(driver.findElement(By.id("chanbw_select")));
+        Select chanelWidthList = new Select(driver.findElement(By.id("clksel_select")));
         if(chanelWidthList != null){
-            chanelWidthList.selectByValue(chanelWidth);
+            chanelWidthList.selectByVisibleText(chanelWidth);
             log.info(chanelWidth + " was selected !");
         }else {
             log.info("there is no any chanel width can be selected !");
@@ -418,26 +434,6 @@ public class UBNT_M5_Configuration_ST {
     }
 
     /**
-     * Get airMAX checkbox element under UBNT logo tab
-     * @return the WebElement
-     */
-    private WebElement getAirMAXCheckbox(){
-        WebElement airMAXCheckbox = driver.findElement(By.id("polling"));
-        log.info(airMAXCheckbox.getAttribute("value"));
-        return airMAXCheckbox;
-    }
-
-    /**
-     * Get change button under UBNT logo tab
-     * @return the WebElement
-     */
-    private WebElement getChangeButtonUnderUBNT(){
-        WebElement changeButton = driver.findElement(By.cssSelector("#ubnt_form > table > tbody > tr:nth-child(7) > td:nth-child(1) > input"));
-        log.info(changeButton.getAttribute("type"));
-        return changeButton;
-    }
-
-    /**
      * Get apply button after click change button
      * @return the WebElement
      */
@@ -445,5 +441,14 @@ public class UBNT_M5_Configuration_ST {
         WebElement applyButton = driver.findElement(By.id("apply_button"));
         log.info(applyButton.getAttribute("value"));
         return applyButton;
+    }
+
+    /**
+     * Get SSID records on survey popup window
+     * @return the SSID set
+     */
+    private List<WebElement> getSurveyRecords(){
+        List<WebElement> list = driver.findElements(By.cssSelector("#survey > tbody > tr"));
+        return list;
     }
 }

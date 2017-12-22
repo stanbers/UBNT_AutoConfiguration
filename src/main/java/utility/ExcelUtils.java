@@ -84,7 +84,7 @@ public class ExcelUtils {
 
     /**
      * This method is to write in the Excel cell, Row num and Col num are the parameters
-     * No use for current.
+     *
      * @param Result   the target result which will be written into the excel
      * @param RowNum   the rol number
      * @param ColNum   the column number

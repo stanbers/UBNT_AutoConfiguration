@@ -16,7 +16,7 @@ public class UBNT_Configuration_M5_ST {
     @Test
     public void login() {
 
-        new UBNT_M5_Configuration_ST().login("https://192.168.1.20/login.cgi");
+        new UBNT_M5_Configuration_ST().login("https://192.168.155.10/login.cgi");
 
 //        String logoutButton  = new UBNT_M2_Configuration().getLogoText("https://192.168.1.20/login.cgi");
 //
