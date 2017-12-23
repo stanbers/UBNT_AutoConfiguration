@@ -1,6 +1,6 @@
 package ubnt.m2;
 
-import gui.UpdateConfigFile;
+import com.google.common.io.Files;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.By;
@@ -9,6 +9,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import utility.WebDriverGiver;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @Author by XuLiang
  * @Date 2017/12/22 11:37
@@ -16,20 +23,66 @@ import utility.WebDriverGiver;
  */
 public class M2_Configuration {
     static{
-        System.setProperty("webdriver.gecko.driver","src/main/java/geckodriver/geckodriver.exe");
+        System.setProperty("webdriver.gecko.driver","D:\\SeleniumGecko\\geckodriver.exe");
+//        System.setProperty("webdriver.gecko.driver","C:\\SeleniumGecko\\geckodriver.exe");
     }
 
     public static WebDriver driver = WebDriverGiver.getWebDriver();
 
     private final static Log log = LogFactory.getLog(M2_Configuration.class);
 
-    private final static String relativePath = System.getProperty("user.dir")+"\\src\\main\\java\\configData\\M2_Config.cfg";
+//    private final static String relativePath = System.getProperty("user.dir")+"\\src\\main\\java\\configData\\M2_Config.cfg";
+    private final static String relativePath = "D:\\ConfigFile\\M2_Config.cfg";
 
-    public static void configM2(String updatedSSID,String updatedIP,String updatedNetmask1,String updatedNetmask2,String updatedNetmask3,String gatewayIP ){
+    private static String originalSSID = "wireless.1.ssid=";
+    private static String originalIP = "netconf.3.ip=";
+    private static String originalNetmask1 = "netconf.1.netmask=";
+    private static String originalNetmask2 = "netconf.2.netmask=";
+    private static String originalNetmask3 = "netconf.3.netmask=";
+    private static String originalGateway = "route.1.gateway=";
+
+    public static void configM2(String updatedSSID,String updatedIP,String updatedNetmask,String updateGatewayIP ){
         //update the 5 fields which passed from swing GUI input box in the config file
-        UpdateConfigFile.write(UpdateConfigFile.read(updatedSSID,updatedIP,updatedNetmask1,updatedNetmask2,updatedNetmask3,gatewayIP));
-        driver.get("https://192.168.1.20/login.cgi");
+        List<String> newLines = new ArrayList<String>();
+        try {
+            for (String line : Files.readLines(new File(relativePath), StandardCharsets.UTF_8)) {
+                if (line.contains(originalSSID)){
+                    newLines.add(line.replace(line,originalSSID+updatedSSID));
+                }
+                else if(line.contains(originalIP)){
+                    newLines.add(line.replace(line,originalIP+updatedIP));
+                }
+                else if (line.contains(originalNetmask1)){
+                    newLines.add(line.replace(line,originalNetmask1+updatedNetmask));
+                }
+                else if (line.contains(originalNetmask2)){
+                    newLines.add(line.replace(line,originalNetmask2+updatedNetmask));
+                }
+                else if (line.contains(originalNetmask3)){
+                    newLines.add(line.replace(line,originalNetmask3+updatedNetmask));
+                }
+                else if(line.contains(originalGateway)){
+                    newLines.add(line.replace(line,originalGateway+updateGatewayIP));
+                }
+                else{
+                    newLines.add(line);
+                }
+            }
 
+            //write into the same file
+            FileWriter writer = new FileWriter(relativePath);
+            for (String newLine: newLines) {
+                writer.write(newLine);
+                writer.append(System.getProperty("line.separator"));
+            }
+            writer.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        driver.get("https://192.168.1.20/login.cgi");
         getUsername().sendKeys("ubnt");
         getPassword().sendKeys("ubnt");
         selectCountry("840");
