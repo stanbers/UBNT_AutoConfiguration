@@ -1,5 +1,6 @@
 package ubnt.m2;
 
+import gui.UpdateConfigFile;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.By;
@@ -15,14 +16,18 @@ import utility.WebDriverGiver;
  */
 public class M2_Configuration {
     static{
-        System.setProperty("webdriver.gecko.driver","C:\\SeleniumGecko\\geckodriver.exe");
+        System.setProperty("webdriver.gecko.driver","src/main/java/geckodriver/geckodriver.exe");
     }
 
     public static WebDriver driver = WebDriverGiver.getWebDriver();
 
     private final static Log log = LogFactory.getLog(M2_Configuration.class);
 
-    public static void configM2(){
+    private final static String relativePath = System.getProperty("user.dir")+"\\src\\main\\java\\configData\\M2_Config.cfg";
+
+    public static void configM2(String updatedSSID,String updatedIP,String updatedNetmask1,String updatedNetmask2,String updatedNetmask3,String gatewayIP ){
+        //update the 5 fields which passed from swing GUI input box in the config file
+        UpdateConfigFile.write(UpdateConfigFile.read(updatedSSID,updatedIP,updatedNetmask1,updatedNetmask2,updatedNetmask3,gatewayIP));
         driver.get("https://192.168.1.20/login.cgi");
 
         getUsername().sendKeys("ubnt");
@@ -43,7 +48,7 @@ public class M2_Configuration {
         try {
             Thread.sleep(3000);
 
-            getScanFileButton().sendKeys("D:\\RemoteConfigCentre\\remoteConfigCentre\\src\\main\\java\\ConfigData\\M2_Config.cfg");
+            getScanFileButton().sendKeys(relativePath);
 
             log.info("the target configuration file was found, waiting for upload");
 

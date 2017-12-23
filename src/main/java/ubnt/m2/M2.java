@@ -7,6 +7,6 @@ package ubnt.m2;
  */
 public class M2 {
     public static void main(String[] args) {
-        M2_Configuration.configM2();
+//        M2_Configuration.configM2();
     }
 }

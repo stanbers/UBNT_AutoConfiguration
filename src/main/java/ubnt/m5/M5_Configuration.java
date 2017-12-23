@@ -43,7 +43,7 @@ public class M5_Configuration {
         try {
             Thread.sleep(3000);
 
-            getScanFileButton().sendKeys("D:\\RemoteConfigCentre\\remoteConfigCentre\\src\\main\\java\\ConfigData\\"+side+".cfg");
+            getScanFileButton().sendKeys("D:\\RemoteConfigCentre\\remoteConfigCentre\\src\\main\\java\\configData\\"+side+".cfg");
 
             log.info("the target configuration file was found, waiting for upload");
 
