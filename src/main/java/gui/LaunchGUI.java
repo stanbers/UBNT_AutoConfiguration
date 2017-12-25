@@ -1,8 +1,8 @@
-package gui;
+package gui.common;
 
 /**
  * @Author by XuLiang
- * @Date 2017/12/23 15:07
+ * @Date 2017/12/25 11:57
  * @Email stanxu526@gmail.com
  */
 public class LaunchGUI {

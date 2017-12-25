@@ -41,7 +41,9 @@ public class M2_Configuration {
     private static String originalNetmask3 = "netconf.3.netmask=";
     private static String originalGateway = "route.1.gateway=";
 
+    public static int progress = 0;
     public static void configM2(String updatedSSID,String updatedIP,String updatedNetmask,String updateGatewayIP ){
+
         //update the 5 fields which passed from swing GUI input box in the config file
         List<String> newLines = new ArrayList<String>();
         try {
@@ -108,11 +110,13 @@ public class M2_Configuration {
             getUploadFileButton().click();
 
             Thread.sleep(1000);
-            getApplyButton().click();
+            if (getApplyButton() != null){
+                getApplyButton().click();
+                progress = 1;
+            }
 
             Thread.sleep(20000);
             log.info("uploaded done !");
-
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

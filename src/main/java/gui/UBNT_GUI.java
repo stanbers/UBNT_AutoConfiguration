@@ -1,4 +1,4 @@
-package gui;
+package gui.common;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -19,9 +19,10 @@ import java.util.List;
 public class UBNT_GUI {
     private final static Log log = LogFactory.getLog(UBNT_GUI.class);
     private static String[] labelName = {"SSID name :","IP Address :","Netmask :","Gateway IP :"};
+
     public static void run() {
 
-        JFrame jf = new JFrame("Config UBNT automatically");
+        final JFrame jf = new JFrame("Config UBNT automatically");
         jf.setSize(400, 500);
         jf.setLocationRelativeTo(null);
         jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -58,9 +59,23 @@ public class UBNT_GUI {
         jButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String ssidName = jTextFields.get(0).getText();
                 M2_Configuration.configM2(jTextFields.get(0).getText(),jTextFields.get(1).getText(),jTextFields.get(2).getText(),jTextFields.get(3).getText());
-                log.info(ssidName);
+                int progress = M2_Configuration.progress;
+                if (progress == 1){
+                    JOptionPane.showMessageDialog(
+                            jf,
+                            "Configuration successful !",
+                            "Configuration result",
+                            JOptionPane.INFORMATION_MESSAGE
+                            );
+                }else {
+                    JOptionPane.showMessageDialog(
+                            jf,
+                            "Configuration failed !",
+                            "Configuration result",
+                            JOptionPane.WARNING_MESSAGE
+                    );
+                }
             }
         });
 
@@ -68,5 +83,16 @@ public class UBNT_GUI {
         jf.setContentPane(jPanel);
         jf.setVisible(true);
 
+    }
+
+    /**
+     * @Author by XuLiang
+     * @Date 2017/12/23 15:07
+     * @Email stanxu526@gmail.com
+     */
+    public static class LaunchGUI {
+        public static void main(String[] args) {
+            run();
+        }
     }
 }
