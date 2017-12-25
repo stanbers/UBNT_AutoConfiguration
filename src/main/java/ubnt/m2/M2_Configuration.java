@@ -1,20 +1,13 @@
 package ubnt.m2;
 
-import com.google.common.io.Files;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import utility.UpdateConfigFile;
 import utility.WebDriverGiver;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @Author by XuLiang
@@ -34,55 +27,11 @@ public class M2_Configuration {
 //    private final static String relativePath = System.getProperty("user.dir")+"\\src\\main\\java\\configData\\M2_Config.cfg";
     private final static String relativePath = "D:\\ConfigFile\\M2_Config.cfg";
 
-    private static String originalSSID = "wireless.1.ssid=";
-    private static String originalIP = "netconf.3.ip=";
-    private static String originalNetmask1 = "netconf.1.netmask=";
-    private static String originalNetmask2 = "netconf.2.netmask=";
-    private static String originalNetmask3 = "netconf.3.netmask=";
-    private static String originalGateway = "route.1.gateway=";
-
     public static int progress = 0;
     public static void configM2(String updatedSSID,String updatedIP,String updatedNetmask,String updateGatewayIP ){
 
-        //update the 5 fields which passed from swing GUI input box in the config file
-        List<String> newLines = new ArrayList<String>();
-        try {
-            for (String line : Files.readLines(new File(relativePath), StandardCharsets.UTF_8)) {
-                if (line.contains(originalSSID)){
-                    newLines.add(line.replace(line,originalSSID+updatedSSID));
-                }
-                else if(line.contains(originalIP)){
-                    newLines.add(line.replace(line,originalIP+updatedIP));
-                }
-                else if (line.contains(originalNetmask1)){
-                    newLines.add(line.replace(line,originalNetmask1+updatedNetmask));
-                }
-                else if (line.contains(originalNetmask2)){
-                    newLines.add(line.replace(line,originalNetmask2+updatedNetmask));
-                }
-                else if (line.contains(originalNetmask3)){
-                    newLines.add(line.replace(line,originalNetmask3+updatedNetmask));
-                }
-                else if(line.contains(originalGateway)){
-                    newLines.add(line.replace(line,originalGateway+updateGatewayIP));
-                }
-                else{
-                    newLines.add(line);
-                }
-            }
-
-            //write into the same file
-            FileWriter writer = new FileWriter(relativePath);
-            for (String newLine: newLines) {
-                writer.write(newLine);
-                writer.append(System.getProperty("line.separator"));
-            }
-            writer.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        //to update the config file based on swing input values
+        UpdateConfigFile.updateFile(updatedSSID,updatedIP,updatedNetmask,updateGatewayIP,null,null,"M2");
 
         driver.get("https://192.168.1.20/login.cgi");
         getUsername().sendKeys("ubnt");

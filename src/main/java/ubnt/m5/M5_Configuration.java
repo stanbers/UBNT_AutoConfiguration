@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import utility.UpdateConfigFile;
 import utility.WebDriverGiver;
 
 /**
@@ -22,7 +23,14 @@ public class M5_Configuration {
 
     private final static Log log = LogFactory.getLog(M5_Configuration.class);
 
-    public static void configM5(String side){
+    public static void configM5(String side,String updatedSSID,String updatedIP,String updatedNetmask,String updateGatewayIP,
+                                String updatedFruq,String updatedMACAddress){
+
+        //String relativePath = "D:\\ConfigFile\\"+side+"Config.cfg";
+
+        //update M5 config file
+        UpdateConfigFile.updateFile(updatedSSID,updatedIP,updatedNetmask,updateGatewayIP,updatedFruq,null,side);
+
         driver.get("https://192.168.1.20/login.cgi");
 
         getUsername().sendKeys("ubnt");
@@ -34,8 +42,8 @@ public class M5_Configuration {
 
         //record AP mac address
         //may need to write into excel, may handle it later if needed
-        String apMacAddress = getAPMacAddress().getText();
-        log.info("The AP mac address is: "+apMacAddress);
+//        String apMacAddress = getAPMacAddress().getText();
+//        log.info("The AP mac address is: "+apMacAddress);
 
         //navigate to System tab
         getSystemTab().click();
@@ -43,7 +51,7 @@ public class M5_Configuration {
         try {
             Thread.sleep(3000);
 
-            getScanFileButton().sendKeys("D:\\RemoteConfigCentre\\remoteConfigCentre\\src\\main\\java\\configData\\"+side+".cfg");
+            getScanFileButton().sendKeys("D:\\ConfigFile\\"+side+"Config.cfg");
 
             log.info("the target configuration file was found, waiting for upload");
 

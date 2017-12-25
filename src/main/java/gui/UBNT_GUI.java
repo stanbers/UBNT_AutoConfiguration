@@ -1,4 +1,4 @@
-package gui.common;
+package gui;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -51,7 +51,7 @@ public class UBNT_GUI {
         }
 
         //setup button
-        JButton jButton = new JButton("UBNT_M2");
+        JButton jButton = new JButton("M2");
         jButton.setFont(new Font(null,Font.BOLD,14));
         jButton.setLocation(145,300);
         jButton.setSize(105,30);
@@ -59,7 +59,25 @@ public class UBNT_GUI {
         jButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                M2_Configuration.configM2(jTextFields.get(0).getText(),jTextFields.get(1).getText(),jTextFields.get(2).getText(),jTextFields.get(3).getText());
+                JButton jb = (JButton)e.getSource();
+                String buttonText = jb.getText();
+                log.info(buttonText);
+
+                String ssid = jTextFields.get(0).getText();
+                String ip = jTextFields.get(1).getText();
+                String netmask = jTextFields.get(2).getText();
+                String gatewayIP = jTextFields.get(3).getText();
+//                String frequency = jTextFields.get(4).getText();
+//                String macAddress = jTextFields.get(5).getText();
+                if (buttonText.trim().equals("M2")){
+                    M2_Configuration.configM2(ssid,ip,netmask,gatewayIP);
+                }
+//                else if (buttonText.trim().equals("M5_AP")){
+//                    M5_Configuration.configM5("AP",ssid,ip,netmask,gatewayIP,frequency,null);
+//                }
+//                else if (buttonText.trim().equals("M5_ST")){
+//                    M5_Configuration.configM5("ST",ssid,ip,netmask,gatewayIP,frequency,macAddress);
+//                }
                 int progress = M2_Configuration.progress;
                 if (progress == 1){
                     JOptionPane.showMessageDialog(
@@ -85,14 +103,4 @@ public class UBNT_GUI {
 
     }
 
-    /**
-     * @Author by XuLiang
-     * @Date 2017/12/23 15:07
-     * @Email stanxu526@gmail.com
-     */
-    public static class LaunchGUI {
-        public static void main(String[] args) {
-            run();
-        }
-    }
 }

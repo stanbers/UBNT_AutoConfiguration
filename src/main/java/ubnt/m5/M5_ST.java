@@ -7,6 +7,6 @@ package ubnt.m5;
  */
 public class M5_ST {
     public static void main(String[] args) {
-        M5_Configuration.configM5("ST_Config");
+//        M5_Configuration.configM5("ST_Config");
     }
 }

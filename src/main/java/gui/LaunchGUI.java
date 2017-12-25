@@ -1,4 +1,4 @@
-package gui.common;
+package gui;
 
 /**
  * @Author by XuLiang
