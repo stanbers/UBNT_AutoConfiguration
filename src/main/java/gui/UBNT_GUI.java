@@ -142,6 +142,11 @@ public class UBNT_GUI {
         jf.setLocationRelativeTo(null);
         jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+        //setup the logo icon
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Image icon = kit.getImage("D:\\icon\\logo.png");
+        jf.setIconImage(icon);
+
         //setup JTabbedPane
         final JTabbedPane jTabbedPane = new JTabbedPane();
         jTabbedPane.setFont(new Font("ITALIC", 1, 16));
