@@ -33,7 +33,12 @@ public class M5_Configuration {
         //String relativePath = "D:\\ConfigFile\\"+side+"Config.cfg";
 
         //update M5 config file
-        UpdateConfigFile.updateFile(updatedSSID,updatedIP,updatedNetmask,updateGatewayIP,updatedFruq,null,side);
+        if (side.equals("AP")){
+            UpdateConfigFile.updateFile(updatedSSID,updatedIP,updatedNetmask,updateGatewayIP,updatedFruq,null,side);
+        }
+        else if (side.equals("ST")){
+            UpdateConfigFile.updateFile(updatedSSID,updatedIP,updatedNetmask,updateGatewayIP,null,updatedMACAddress,side);
+        }
 
         driver.get("https://192.168.1.20/login.cgi");
 

@@ -42,17 +42,20 @@ public class UBNT_GUI {
         if (tabName.trim().equals("M2")){
             realLength = labelName.length-2;
         }
-        else if (tabName.trim().equals("M5_AP")){
+        else if (tabName.trim().equals("M5_AP") || tabName.trim().equals("M5_ST")){
             realLength = labelName.length-1;
-        }
-        else if (tabName.trim().equals("M5_ST")){
-            realLength = labelName.length;
         }
 
         final List<JTextField> jTextFields = new ArrayList<JTextField>();
         for (int i = 1; i <= realLength; i++) {
 
             //setup labels
+            if (i == realLength && tabName.trim().equals("M5_AP")){
+                labelName[i-1] = "Frequecy :";
+            }
+            else if (i == realLength && tabName.trim().equals("M5_ST")){
+                labelName[i-1] = "Mac address: ";
+            }
             JLabel labels = new JLabel(labelName[i-1],SwingConstants.LEFT);
             labels.setFont(new Font("ITALIC", 1, 16));
             labels.setLocation(10,40*i);
@@ -90,7 +93,7 @@ public class UBNT_GUI {
                 }
                 else if (buttonText.trim().equals("M5_ST")){
                     M5_Configuration.configM5("ST",jTextFields.get(0).getText(),jTextFields.get(1).getText(),jTextFields.get(2).getText(),
-                            jTextFields.get(3).getText(),jTextFields.get(4).getText(),jTextFields.get(5).getText());
+                            jTextFields.get(3).getText(),null,jTextFields.get(4).getText());
                 }
 
                 if (buttonText.trim().substring(0,2).equals("M2")){

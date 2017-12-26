@@ -24,7 +24,7 @@ public class UpdateConfigFile {
     private static final String originalGateway = "route.1.gateway=";
 
     private static final String originalFruq = "radio.1.freq=";
-    private static final String originalMACAddress = "";
+    private static final String originalMACAddress = "wireless.1.ap=";
 
     /**
      * Update the specific config file based on swing GUI input values.
