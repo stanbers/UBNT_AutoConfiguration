@@ -28,6 +28,14 @@ public class M2_Configuration {
     private final static String relativePath = "D:\\ConfigFile\\M2_Config.cfg";
 
     public static int progress = 0;
+
+    /**
+     * here is the entry to update the UBNT fields
+     * @param updatedSSID   the ssid name from swing input box
+     * @param updatedIP    the new IP address from swing input box
+     * @param updatedNetmask   the new netmask from swing input box
+     * @param updateGatewayIP   the new gateway IP address from swing input box
+     */
     public static void configM2(String updatedSSID,String updatedIP,String updatedNetmask,String updateGatewayIP ){
 
         //to update the config file based on swing input values

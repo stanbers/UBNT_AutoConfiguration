@@ -27,6 +27,11 @@ public class UBNT_GUI {
     private static int realLength;
     private static JFrame jf = new JFrame("Config UBNT automatically");
 
+    /**
+     * To create the panel component under each tab, the panel includes JLabel/JTextField and JButton
+     * @param tabName  the tab name
+     * @return  the rendered panel with JLabel/JTextField and JButton
+     */
     private static JComponent createTextPanel(String tabName){
         JPanel jPanel = new JPanel(null);
         jPanel.setBorder((BorderFactory.createTitledBorder("UBNT( "+tabName+") Configuration")));
@@ -74,6 +79,7 @@ public class UBNT_GUI {
         jButton = new JButton(tabName);
         jPanel.add(jButton);
 
+        //setup button action listener
         jButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -96,6 +102,7 @@ public class UBNT_GUI {
                             jTextFields.get(3).getText(),null,jTextFields.get(4).getText());
                 }
 
+                //to make sure you are using the right flag
                 if (buttonText.trim().substring(0,2).equals("M2")){
                     progress = M2_Configuration.progress;
                 }
@@ -103,6 +110,7 @@ public class UBNT_GUI {
                     progress = M5_Configuration.progress;
                 }
 
+                //setup the popup window to let the user know the configuration is successful or not
                 if (progress == 1){
                     JOptionPane.showMessageDialog(
                             jf,
@@ -125,18 +133,23 @@ public class UBNT_GUI {
         return jPanel;
     }
 
+    /**
+     * the main run method
+     */
     public static void run() {
 
         jf.setSize(400, 500);
         jf.setLocationRelativeTo(null);
         jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+        //setup JTabbedPane
         final JTabbedPane jTabbedPane = new JTabbedPane();
         jTabbedPane.setFont(new Font("ITALIC", 1, 16));
         jTabbedPane.add("M2",createTextPanel("M2"));
         jTabbedPane.add("M5_AP",createTextPanel("M5_AP"));
         jTabbedPane.add("M5_ST",createTextPanel("M5_ST"));
 
+        //add tab event change listener
         jTabbedPane.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {

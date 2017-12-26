@@ -16,6 +16,7 @@ import java.util.List;
  */
 public class UpdateConfigFile {
 
+    //the following fields standby to be updated
     private static final String originalSSID = "wireless.1.ssid=";
     private static final String originalIP = "netconf.3.ip=";
     private static final String originalNetmask1 = "netconf.1.netmask=";

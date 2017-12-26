@@ -27,6 +27,16 @@ public class M5_Configuration {
 
     public static int progress = 0;
 
+    /**
+     * here is to update the target M5(AP/ST) fields
+     * @param side   AP or ST side
+     * @param updatedSSID  the new ssid name from swing input box
+     * @param updatedIP   the new IP address from swing input box
+     * @param updatedNetmask   the new netmask from swing input box
+     * @param updateGatewayIP   the new gateway IP from swing input box
+     * @param updatedFruq  the new frequency fro swing input box
+     * @param updatedMACAddress  the AP end mac address from swing input box
+     */
     public static void configM5(String side,String updatedSSID,String updatedIP,String updatedNetmask,String updateGatewayIP,
                                 String updatedFruq,String updatedMACAddress){
 

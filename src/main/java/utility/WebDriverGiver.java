@@ -6,6 +6,9 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.internal.ProfilesIni;
 
+/**
+ * the firefox webdriver giver
+ */
 public class WebDriverGiver {
     public static WebDriver getWebDriver(){
         ProfilesIni profile = new ProfilesIni();
