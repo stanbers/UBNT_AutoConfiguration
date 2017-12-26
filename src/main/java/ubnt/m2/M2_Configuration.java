@@ -62,8 +62,10 @@ public class M2_Configuration {
             if (getApplyButton() != null){
                 getApplyButton().click();
                 progress = 1;
+
             }
 
+            log.info("the value of progress is: "+ progress);
             Thread.sleep(20000);
             log.info("uploaded done !");
         } catch (InterruptedException e) {

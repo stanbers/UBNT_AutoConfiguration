@@ -5,7 +5,9 @@ import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utility.UpdateConfigFile;
 import utility.WebDriverGiver;
 
@@ -22,6 +24,8 @@ public class M5_Configuration {
     public static WebDriver driver = WebDriverGiver.getWebDriver();
 
     private final static Log log = LogFactory.getLog(M5_Configuration.class);
+
+    public static int progress = 0;
 
     public static void configM5(String side,String updatedSSID,String updatedIP,String updatedNetmask,String updateGatewayIP,
                                 String updatedFruq,String updatedMACAddress){
@@ -46,19 +50,34 @@ public class M5_Configuration {
 //        log.info("The AP mac address is: "+apMacAddress);
 
         //navigate to System tab
-        getSystemTab().click();
+        if (getSystemTab() != null){
+            getSystemTab().click();
+        }else{
+            int attempts = 0;
+            while(attempts < 2) {
+                try {
+                    getSystemTab().click();
+                    break;
+                } catch(Exception e) {
+                }
+                attempts++;
+            }
+        }
 
         try {
             Thread.sleep(3000);
 
-            getScanFileButton().sendKeys("D:\\ConfigFile\\"+side+"Config.cfg");
+            getScanFileButton().sendKeys("D:\\ConfigFile\\"+side+"_Config.cfg");
 
             log.info("the target configuration file was found, waiting for upload");
 
             getUploadFileButton().click();
 
             Thread.sleep(1000);
-            getApplyButton().click();
+            if (getApplyButton() != null){
+                getApplyButton().click();
+                progress = 1;
+            }
 
             Thread.sleep(10000);
             log.info("uploaded done !");
@@ -133,7 +152,9 @@ public class M5_Configuration {
      */
     private static WebElement getAPMacAddress(){
         WebElement apMac = driver.findElement(By.id("apmac"));
-        log.info("The M5 ap mac address is: "+apMac.getText());
+        if (apMac != null){
+            log.info("The M5 ap mac address is: "+apMac.getText());
+        }
         return apMac;
     }
 
@@ -152,8 +173,8 @@ public class M5_Configuration {
      * @return the WebElement
      */
     private static WebElement getScanFileButton(){
-        WebElement scanFileButton = driver.findElement(By.id("cfgfile"));
-        log.info(scanFileButton.getAttribute("realname"));
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebElement scanFileButton = wait.until( ExpectedConditions.presenceOfElementLocated(By.id("cfgfile")));
         return scanFileButton;
     }
 
@@ -163,7 +184,9 @@ public class M5_Configuration {
      */
     private static WebElement getUploadFileButton(){
         WebElement uploadFileButton = driver.findElement(By.id("cfgupload"));
-        log.info(uploadFileButton.getAttribute("value") +" button was clicked !");
+        if (uploadFileButton != null){
+            log.info(uploadFileButton.getAttribute("value") +" button was clicked !");
+        }
         return uploadFileButton;
     }
 
@@ -173,7 +196,9 @@ public class M5_Configuration {
      */
     private static WebElement getApplyButton(){
         WebElement applyButton = driver.findElement(By.id("apply_button"));
-        log.info(applyButton.getAttribute("value"));
+        if (applyButton != null){
+            log.info(applyButton.getAttribute("value"));
+        }
         return applyButton;
     }
 }
