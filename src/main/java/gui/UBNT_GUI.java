@@ -22,10 +22,10 @@ import java.util.List;
 public class UBNT_GUI {
 
     private final static Log log = LogFactory.getLog(UBNT_GUI.class);
-    private static String[] labelName = {"SSID name :","IP Address :","Netmask :","Gateway IP :","Frequecy :","Mac address: "};
+    private static String[] labelName = {"SSID :","IP 地址 :","子网掩码 :","网关 IP :","频率(MHz) :","Mac 地址: "};
     private static JButton jButton = new JButton("M2");
     private static int realLength;
-    private static JFrame jf = new JFrame("Config UBNT automatically");
+    private static JFrame jf = new JFrame("自动化配置UBNT");
 
     /**
      * To create the panel component under each tab, the panel includes JLabel/JTextField and JButton
@@ -34,7 +34,7 @@ public class UBNT_GUI {
      */
     private static JComponent createTextPanel(String tabName){
         JPanel jPanel = new JPanel(null);
-        jPanel.setBorder((BorderFactory.createTitledBorder("UBNT( "+tabName+") Configuration")));
+        jPanel.setBorder((BorderFactory.createTitledBorder("UBNT( "+tabName+") 配置")));
         jPanel.setLayout(null);
 
         JTextField inputBoxes = null;
@@ -56,19 +56,23 @@ public class UBNT_GUI {
 
             //setup labels
             if (i == realLength && tabName.trim().equals("M5_AP")){
-                labelName[i-1] = "Frequecy :";
+                labelName[i-1] = "频率(MHz) :";
             }
             else if (i == realLength && tabName.trim().equals("M5_ST")){
-                labelName[i-1] = "Mac address: ";
+                labelName[i-1] = "Mac 地址: ";
             }
             JLabel labels = new JLabel(labelName[i-1],SwingConstants.LEFT);
-            labels.setFont(new Font("ITALIC", 1, 16));
+            labels.setFont(new Font(null, 1, 16));
             labels.setLocation(10,40*i);
             labels.setSize(115,30);
             jPanel.add(labels);
 
             //setup input boxes
-            inputBoxes = new JTextField(SwingConstants.RIGHT);
+            if (i==1){
+                inputBoxes = new JTextField("SSID name",SwingConstants.RIGHT);
+            }else {
+                inputBoxes = new JTextField(SwingConstants.RIGHT);
+            }
             inputBoxes.setFont(new Font(null, Font.PLAIN, 14));
             inputBoxes.setLocation(120,40*i);
             inputBoxes.setSize(200,30);
@@ -114,15 +118,15 @@ public class UBNT_GUI {
                 if (progress == 1){
                     JOptionPane.showMessageDialog(
                             jf,
-                            "Configuration successful !",
-                            "Configuration result",
+                            "配置成功 !",
+                            "配置结果",
                             JOptionPane.INFORMATION_MESSAGE
                     );
                 }else {
                     JOptionPane.showMessageDialog(
                             jf,
-                            "Configuration failed !",
-                            "Configuration result",
+                            "配置失败，请重新配置 !",
+                            "配置结果",
                             JOptionPane.WARNING_MESSAGE
                     );
                 }

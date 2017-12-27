@@ -52,34 +52,35 @@ public class M5_Configuration {
 
         driver.get("https://192.168.1.20/login.cgi");
 
-        getUsername().sendKeys("ubnt");
-        getPassword().sendKeys("ubnt");
-        selectCountry("840");
-        selectLanguage("en_US");
-        getAgreedCheckbox().click();
+        if (getUsername() != null && getAgreedCheckbox() != null){
+            getUsername().sendKeys("ubnt");
+            getPassword().sendKeys("ubnt");
+            selectCountry("840");
+            selectLanguage("en_US");
+            getAgreedCheckbox().click();
+
+        }else {
+            //login page changed when configuration fail
+            getUsername().sendKeys("ubnt");
+            getPassword().sendKeys("ubnt");
+        }
+
         getLoginButton().click();
 
-        //record AP mac address
-        //may need to write into excel, may handle it later if needed
-//        String apMacAddress = getAPMacAddress().getText();
-//        log.info("The AP mac address is: "+apMacAddress);
-
-        //navigate to System tab
-        if (getSystemTab() != null){
-            getSystemTab().click();
-        }else{
+        try {
+            Thread.sleep(4000);
+            //navigate to System tab
             int attempts = 0;
-            while(attempts < 2) {
+            while(attempts < 10) {
                 try {
                     getSystemTab().click();
+                    log.info("tried "+ attempts + (attempts <= 1 ? " time" : " times"));
                     break;
                 } catch(Exception e) {
                 }
                 attempts++;
             }
-        }
 
-        try {
             Thread.sleep(3000);
 
             getScanFileButton().sendKeys("D:\\ConfigFile\\"+side+"_Config.cfg");
