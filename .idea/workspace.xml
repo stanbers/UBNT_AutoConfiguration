@@ -111,25 +111,22 @@
       <file leaf-file-name="CreatRowDynamically01.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/gui/draft/CreatRowDynamically01.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="333" column="0" lean-forward="false" selection-start-line="333" selection-start-column="0" selection-end-line="333" selection-end-column="0" />
+            <state relative-caret-position="222">
+              <caret line="230" column="22" lean-forward="false" selection-start-line="230" selection-start-column="22" selection-end-line="230" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#main#0;class#CreatRowDynamically01#0" expanded="false" />
-                <element signature="method#createTextPanel#0;class#CreatRowDynamically01#0" expanded="false" />
-                <element signature="e#2166#2167#0" expanded="true" />
-                <element signature="e#2210#2211#0" expanded="true" />
-                <element signature="e#3928#4193#0" expanded="true" />
-                <element signature="e#4192#4193#0" expanded="true" />
-                <element signature="e#4917#4929#0" expanded="true" />
-                <element signature="e#5044#5052#0" expanded="true" />
-                <element signature="e#6636#9233#0" expanded="true" />
-                <element signature="e#9232#9233#0" expanded="true" />
-                <element signature="e#10295#11017#0" expanded="true" />
-                <element signature="e#11016#11017#0" expanded="true" />
-                <element signature="e#12390#12398#0" expanded="true" />
-                <element signature="e#12496#13032#0" expanded="true" />
-                <element signature="e#13031#13032#0" expanded="true" />
+                <element signature="e#2264#2265#0" expanded="true" />
+                <element signature="e#2308#2309#0" expanded="true" />
+                <element signature="e#4036#4295#0" expanded="true" />
+                <element signature="e#4294#4295#0" expanded="true" />
+                <element signature="e#5019#5031#0" expanded="true" />
+                <element signature="e#5146#5154#0" expanded="true" />
+                <element signature="e#6738#9893#0" expanded="true" />
+                <element signature="e#9371#9379#0" expanded="true" />
+                <element signature="e#9892#9893#0" expanded="true" />
+                <element signature="e#10837#11559#0" expanded="true" />
+                <element signature="e#11558#11559#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1285,25 +1282,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/gui/draft/CreatRowDynamically01.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="333" column="0" lean-forward="false" selection-start-line="333" selection-start-column="0" selection-end-line="333" selection-end-column="0" />
+        <state relative-caret-position="222">
+          <caret line="230" column="22" lean-forward="false" selection-start-line="230" selection-start-column="22" selection-end-line="230" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#main#0;class#CreatRowDynamically01#0" expanded="false" />
-            <element signature="method#createTextPanel#0;class#CreatRowDynamically01#0" expanded="false" />
-            <element signature="e#2166#2167#0" expanded="true" />
-            <element signature="e#2210#2211#0" expanded="true" />
-            <element signature="e#3928#4193#0" expanded="true" />
-            <element signature="e#4192#4193#0" expanded="true" />
-            <element signature="e#4917#4929#0" expanded="true" />
-            <element signature="e#5044#5052#0" expanded="true" />
-            <element signature="e#6636#9233#0" expanded="true" />
-            <element signature="e#9232#9233#0" expanded="true" />
-            <element signature="e#10295#11017#0" expanded="true" />
-            <element signature="e#11016#11017#0" expanded="true" />
-            <element signature="e#12390#12398#0" expanded="true" />
-            <element signature="e#12496#13032#0" expanded="true" />
-            <element signature="e#13031#13032#0" expanded="true" />
+            <element signature="e#2264#2265#0" expanded="true" />
+            <element signature="e#2308#2309#0" expanded="true" />
+            <element signature="e#4036#4295#0" expanded="true" />
+            <element signature="e#4294#4295#0" expanded="true" />
+            <element signature="e#5019#5031#0" expanded="true" />
+            <element signature="e#5146#5154#0" expanded="true" />
+            <element signature="e#6738#9893#0" expanded="true" />
+            <element signature="e#9371#9379#0" expanded="true" />
+            <element signature="e#9892#9893#0" expanded="true" />
+            <element signature="e#10837#11559#0" expanded="true" />
+            <element signature="e#11558#11559#0" expanded="true" />
           </folding>
         </state>
       </provider>

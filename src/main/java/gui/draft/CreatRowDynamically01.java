@@ -30,6 +30,7 @@ public class CreatRowDynamically01 {
     private static int realLength;
     private static String[] labelName = {"位置 :","SSID :","IP 地址 :","子网掩码 :","网关 IP :","频率(MHz) :","Mac 地址 :"};
     private static String M2_IP,M5_AP_IP,M5_AP_Fruq,M5_AP_Mac,M5_ST_IP,position;
+    private static final JDialog jDialog = new JDialog();
     public static void main(String[] args) {
         jf.setSize(940, 600);
         jf.setLocationRelativeTo(null);
@@ -48,16 +49,16 @@ public class CreatRowDynamically01 {
         jf.setContentPane(jTabbedPane);
         jf.setVisible(true);
     }
-
+    private static DefaultTableModel defautTableModel;
     public static JPanel createTextPanel(String tabName,Object[][] rowData){
 
-        final DefaultTableModel myData = new DefaultTableModel(rowData,columnNames){
+        defautTableModel = new DefaultTableModel(rowData,columnNames){
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
-        JTable jTable = new JTable(myData);
+        JTable jTable = new JTable(defautTableModel);
 
         jTable.setLocation(20,60);
         jTable.setSize(850,400);
@@ -104,7 +105,7 @@ public class CreatRowDynamically01 {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //ToDo: to generate a new row with all data, but how ?  ---> generate the data frist!
-                rowGenerator(myData);
+                rowGenerator();
             }
         });
 
@@ -229,6 +230,18 @@ public class CreatRowDynamically01 {
                             JOptionPane.WARNING_MESSAGE
                     );
                 }
+                final Vector<String> realValue = new Vector<String>();
+                realValue.add(null);
+                realValue.add(position);
+                realValue.add(M2_IP);
+                realValue.add(M5_AP_IP);
+                realValue.add(M5_AP_Fruq);
+                realValue.add(M5_AP_Mac);
+                realValue.add(M5_ST_IP);
+                realValue.add(M5_AP_Mac);
+                log.info("the first text field input value is :" + M2_IP);
+                defautTableModel.addRow(realValue);
+                jDialog.dispose();
             }
         });
 
@@ -238,9 +251,9 @@ public class CreatRowDynamically01 {
 
     /**
      * Collect cell information from the overlay, include M2 and M5 configuration info.
-     * @param defaultTableModel  the target table which displayed on the main page.
+     *
      */
-    public static void rowGenerator(final DefaultTableModel defaultTableModel){
+    public static void rowGenerator(){
         final JDialog jDialog = new JDialog();
         jDialog.setSize(500,500);
         jDialog.setLocationRelativeTo(jf);
@@ -281,60 +294,32 @@ public class CreatRowDynamically01 {
         jTabbedPane.setSelectedIndex(0);
         createTextPanelOverlay("M2");
 
-        /*
-        final java.util.List<JTextField> cellCollector = new java.util.ArrayList<JTextField>();
-        JTextField inputBoxes = null;
-        String[] positions = new String[]{"左线","右线"};
-        final JComboBox<String> jComboBox = new JComboBox<String>(positions);
-        for (int i = 1; i < columnNames.length-1; i++) {
-            JLabel labels = new JLabel(columnNames[i].toString(),SwingConstants.LEFT);
-            labels.setFont(new Font(null, 1, 16));
-            labels.setLocation(10,40*i);
-            labels.setSize(180,30);
-            jPanel.add(labels);
-            if (i == 1){
-                jComboBox.setLocation(190,40*i);
-                jComboBox.setSize(180,30);
-                jComboBox.setSelectedIndex(0);
-                jPanel.add(jComboBox);
-            }else {
-                inputBoxes = new JTextField();
-                inputBoxes.setFont(new Font(null, Font.PLAIN, 14));
-                inputBoxes.setLocation(190,40*i);
-                inputBoxes.setSize(180,30);
-                jPanel.add(inputBoxes);
-                cellCollector.add(inputBoxes);
-            }
-        }*/
+//        JButton okBtn = new JButton("确定");
+//        okBtn.setLocation(350,400);
+//        okBtn.setSize(200,30);
 
-        JButton okBtn = new JButton("确定");
-        okBtn.setLocation(350,400);
-        okBtn.setSize(100,30);
-
-        final Vector<String> realValue = new Vector<String>();
-        realValue.add(null);
-        realValue.add(position);
-        okBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                realValue.add(M2_IP);
-                realValue.add(M5_AP_IP);
-                realValue.add(M5_AP_Fruq);
-                realValue.add(M5_AP_Mac);
-                realValue.add(M5_ST_IP);
-                realValue.add(M5_AP_Mac);
-                log.info("the first text field input value is :" + M2_IP);
-                defaultTableModel.addRow(realValue);
-                jDialog.dispose();
-            }
-        });
+//        final Vector<String> realValue = new Vector<String>();
+//        realValue.add(null);
+//        realValue.add(position);
+//        okBtn.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//
+//                realValue.add(M2_IP);
+//                realValue.add(M5_AP_IP);
+//                realValue.add(M5_AP_Fruq);
+//                realValue.add(M5_AP_Mac);
+//                realValue.add(M5_ST_IP);
+//                realValue.add(M5_AP_Mac);
+//                log.info("the first text field input value is :" + M2_IP);
+////                defaultTableModel.addRow(realValue);
+//                jDialog.dispose();
+//            }
+//        });
 
 
 
-//        jPanel.add(okBtn);
         jDialog.setContentPane(jTabbedPane);
-//        jDialog.setContentPane(jPanel);
         jDialog.setVisible(true);
 
     }
