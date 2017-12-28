@@ -55,11 +55,22 @@ public class M2_Configuration {
         log.info("The AP mac address is: "+apMacAddress);
 
         //navigate to System tab
-        getSystemTab().click();
 
         try {
-            Thread.sleep(3000);
+            Thread.sleep(5000);
 
+            int attempts = 0;
+            while(attempts < 10) {
+                try {
+                    getSystemTab().click();
+                    log.info("tried "+ attempts + (attempts <= 1 ? " time" : " times"));
+                    break;
+                } catch(Exception e) {
+                }
+                attempts++;
+            }
+
+            Thread.sleep(3000);
             getScanFileButton().sendKeys(relativePath);
 
             log.info("the target configuration file was found, waiting for upload");
