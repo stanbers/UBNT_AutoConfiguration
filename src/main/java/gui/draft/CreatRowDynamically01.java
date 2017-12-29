@@ -294,31 +294,6 @@ public class CreatRowDynamically01 {
         jTabbedPane.setSelectedIndex(0);
         createTextPanelOverlay("M2");
 
-//        JButton okBtn = new JButton("确定");
-//        okBtn.setLocation(350,400);
-//        okBtn.setSize(200,30);
-
-//        final Vector<String> realValue = new Vector<String>();
-//        realValue.add(null);
-//        realValue.add(position);
-//        okBtn.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//
-//                realValue.add(M2_IP);
-//                realValue.add(M5_AP_IP);
-//                realValue.add(M5_AP_Fruq);
-//                realValue.add(M5_AP_Mac);
-//                realValue.add(M5_ST_IP);
-//                realValue.add(M5_AP_Mac);
-//                log.info("the first text field input value is :" + M2_IP);
-////                defaultTableModel.addRow(realValue);
-//                jDialog.dispose();
-//            }
-//        });
-
-
-
         jDialog.setContentPane(jTabbedPane);
         jDialog.setVisible(true);
 
