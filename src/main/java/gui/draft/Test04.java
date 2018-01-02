@@ -235,6 +235,11 @@ public class Test04 {
 
     }
 
+    /**
+     * the final config overlay
+     * @param tabName  the tab name
+     * @return  the overlay panel content
+     */
     private JPanel createTextPanelOverlay(String tabName){
         JPanel jPanel = new JPanel(null);
         jPanel.setBorder((BorderFactory.createTitledBorder("UBNT( "+tabName+") 配置")));
@@ -376,8 +381,8 @@ public class Test04 {
 
 
     /**
-     * Generate new dialog
-     * @return
+     * Generate new project dialog
+     * @return the project dialog
      */
     public JDialog generateNewProjectDilog(){
         final JDialog jDialog = new JDialog();
