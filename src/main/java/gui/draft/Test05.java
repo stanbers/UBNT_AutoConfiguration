@@ -3,6 +3,11 @@ package gui.draft;
 import gui.main.UBNT_GUI;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import utility.Constant;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -15,6 +20,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -47,6 +53,12 @@ public class Test05 {
     private final JDialog jDialog = new JDialog();
     private int recordIndex = 1;
     private int rowNum;
+
+    private static XSSFSheet ExcelWSheet;
+    private static XSSFWorkbook ExcelWBook;
+    private static XSSFCell Cell;
+    private static XSSFRow Row;
+
 
 
 
@@ -238,11 +250,43 @@ public class Test05 {
             }
         });
 
+        export.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exportToExcel();
+            }
+        });
+
         jFrame.setContentPane(homepagePanel);
-//        jFrame.pack();
         jFrame.setVisible(true);
     }
 
+    public void exportToExcel(){
+        XSSFWorkbook wb = new XSSFWorkbook();
+        XSSFSheet sheet = wb.createSheet();
+        for (int i = 0; i < defautTableModel.getRowCount(); i++) {
+            Row = sheet.createRow(i);
+            for (int j = 0; j < defautTableModel.getColumnCount(); j++) {
+                Cell = Row.createCell(j);
+                try {
+                    if (defautTableModel.getValueAt(i,j) != null){
+                        Cell.setCellValue(defautTableModel.getValueAt(i,j).toString());
+                        FileOutputStream fileOut = new FileOutputStream(Constant.Path_TestData_Output);
+                        wb.write(fileOut);
+                        fileOut.flush();
+                        fileOut.close();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    /**
+     * this method is to udpate row data
+     * @param rowData the original row data
+     */
     public void editRow(List<String> rowData){
         final JDialog jDialog = new JDialog();
         jDialog.setSize(500,500);

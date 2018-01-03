@@ -2,7 +2,6 @@ package utility;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.poi.ss.usermodel.Row.MissingCellPolicy;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -92,8 +91,8 @@ public class ExcelUtils {
      */
     public static void setCellData(String Result,  int RowNum, int ColNum) throws Exception	{
         try{
-            Row  = ExcelWSheet.getRow(RowNum);
-            Cell = Row.getCell(ColNum, MissingCellPolicy.RETURN_BLANK_AS_NULL);
+            Row  = ExcelWSheet.createRow(RowNum);
+            Cell = Row.getCell(ColNum, org.apache.poi.ss.usermodel.Row.MissingCellPolicy.RETURN_BLANK_AS_NULL);
             if (Cell == null) {
                 Cell = Row.createCell(ColNum);
                 Cell.setCellValue(Result);
@@ -102,7 +101,7 @@ public class ExcelUtils {
             }
 
             // Constant variables Test Data path and Test Data file name
-            FileOutputStream fileOut = new FileOutputStream(Constant.Path_TestData_UBNT_M5_ST);
+            FileOutputStream fileOut = new FileOutputStream(Constant.Path_TestData_Output);
             ExcelWBook.write(fileOut);
             fileOut.flush();
             fileOut.close();
