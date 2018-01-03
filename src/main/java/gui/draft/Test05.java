@@ -3,8 +3,6 @@ package gui.draft;
 import gui.main.UBNT_GUI;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import ubnt.m2.M2_Configuration;
-import ubnt.m5.M5_Configuration;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -33,19 +31,22 @@ public class Test05 {
     //the container
     private JFrame jFrame = new JFrame("配置界面");
     private String projectId;
-    private Vector<String> commonFields = new Vector<String>();
+    private List<String> commonFields = new ArrayList<String>();
     //the project item should be added dynamically
     final Vector<String> projects = new Vector<String>();
-    private Object[] columnNames = {"编号","位置","M2 IP", "M5_Ap IP", "M5_AP 频率", "M5_AP mac地址", "M5_ST IP","M5_ST 锁定mac地址","操作"};  // 9 columns
+    private Object[] columnNames = {"编号","位置","DK","M2 IP", "M5_Ap IP", "M5_AP 频率", "M5_AP mac地址", "M5_ST IP","M5_ST 锁定mac地址","操作"};  // 9 columns
     private String[] labelName = {"IP 地址 :","频率(MHz) :","Mac 地址 :"};
     private static String M2_IP,M5_AP_IP,M5_AP_Fruq,M5_AP_Mac,M5_ST_IP,position;
     //table page panel
-    private JPanel tablePanel = new JPanel(null);
+    private JPanel outPanel = new JPanel(null);
+    private JScrollPane tablePanel;
 
     private int realLength;
     private JButton jButton = new JButton("M2");
     private DefaultTableModel defautTableModel;
     private final JDialog jDialog = new JDialog();
+    private int recordIndex = 1;
+
 
 
     /**
@@ -53,7 +54,7 @@ public class Test05 {
      */
     public  void show() {
         //setup container's size and location
-        jFrame.setSize(950, 600);
+        jFrame.setSize(1050, 600);
         jFrame.setLocationRelativeTo(null);
         jFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,8 +86,7 @@ public class Test05 {
                 homepagePanel.setVisible(false);
                 SwingUtilities.updateComponentTreeUI(jFrame);
                 jFrame.repaint();
-                jFrame.setContentPane(tablePanel);
-
+                jFrame.setContentPane(outPanel);
             }
         });
 
@@ -119,14 +119,16 @@ public class Test05 {
             }
         };
 
-        JTable jTable = new JTable(defautTableModel);
+        final JTable jTable = new JTable(defautTableModel);
 
         jTable.setLocation(20,60);
-        jTable.setSize(850,400);
+        jTable.setSize(950,450);
         jTable.setRowHeight(25);
 
+
         //setup column width
-        jTable.getColumn("编号").setMaxWidth(40);
+        jTable.getColumn("编号").setMaxWidth(45);
+        jTable.getColumn("DK").setMaxWidth(80);
         jTable.getColumn("位置").setMaxWidth(45);
         jTable.getColumn("M5_AP 频率").setPreferredWidth(40);
         jTable.getColumn("M2 IP").setPreferredWidth(30);
@@ -139,50 +141,60 @@ public class Test05 {
 
         JTableHeader jTableHeader = jTable.getTableHeader();
         jTableHeader.setLocation(20,30);
-        jTableHeader.setSize(850,30);
+        jTableHeader.setSize(950,30);
         jTableHeader.setFont(new Font(null, Font.BOLD, 16));
         jTableHeader.setResizingAllowed(true);
         jTableHeader.setReorderingAllowed(true);
 
-//        jPanel.setBorder((BorderFactory.createTitledBorder(tabName+" 配置")));
-        tablePanel.setLayout(null);
-        tablePanel.add(jTableHeader,BorderLayout.NORTH);
-        tablePanel.add(jTable,BorderLayout.CENTER);
+        tablePanel = new JScrollPane(jTable);
+        tablePanel.setLocation(10,10);
+        tablePanel.setSize(960,400);
+
+        outPanel.add(tablePanel);
+        JButton export = new JButton("导出数据");
+        export.setFont(new Font(null,Font.BOLD,14));
+        export.setLocation(40,450);
+        export.setSize(100,40);
+        outPanel.add(export);
+
+        JButton editRow = new JButton("修改一行");
+        editRow.setLocation(160,450);
+        editRow.setSize(100,40);
+        editRow.setFont(new Font(null,Font.BOLD,14));
+        outPanel.add(editRow);
 
         JButton add = new JButton("选择配置");
         add.setFont(new Font(null,Font.BOLD,14));
-        add.setLocation(700,350);
+        add.setLocation(700,450);
         add.setSize(100,40);
-        jTable.add(add);
-        JButton export = new JButton("导出数据");
-        export.setFont(new Font(null,Font.BOLD,14));
-        export.setLocation(40,350);
-        export.setSize(100,40);
-        jTable.add(export);
+        outPanel.add(add);
 
         add.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //ToDo: to generate a new row with all data, but how ?  ---> generate the data frist!
+                log.info("there are already "+ defautTableModel.getRowCount() + " records");
+                Vector emptyRow = new Vector();
+                for (int i = 0; i < 10; i++) {
+                    emptyRow.add(null);
+                }
+                defautTableModel.addRow(emptyRow);
+                defautTableModel.setValueAt(recordIndex++,defautTableModel.getRowCount()-1,0);
                 rowGenerator();
             }
         });
 
+        editRow.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int rowNum = jTable.getSelectedRow();
+                log.info("the " + rowNum + "th row was selected !");
 
-
-
-
-
-
-
-
-
-
-
-
-
+            }
+        });
 
         jFrame.setContentPane(homepagePanel);
+//        jFrame.pack();
         jFrame.setVisible(true);
     }
 
@@ -208,6 +220,7 @@ public class Test05 {
         jTabbedPane.add("M2",createTextPanelOverlay("M2"));
         jTabbedPane.add("M5_AP",createTextPanelOverlay("M5_AP"));
         jTabbedPane.add("M5_ST",createTextPanelOverlay("M5_ST"));
+//        jTabbedPane.add("记录数据",createTextPanelOverlay("记录数据"));
 
         //add tab event change listener
         jTabbedPane.addChangeListener(new ChangeListener() {
@@ -229,8 +242,8 @@ public class Test05 {
         });
 
         jTabbedPane.setSelectedIndex(0);
-        createTextPanelOverlay("M2");
-
+//        createTextPanelOverlay("M2");
+        createTextPanelOverlay("位置");
         jDialog.setContentPane(jTabbedPane);
         jDialog.setVisible(true);
 
@@ -247,14 +260,16 @@ public class Test05 {
         jPanel.setLayout(null);
 
         JTextField inputBoxes = null;
-
         jButton.setFont(new Font(null,Font.BOLD,14));
         jButton.setLocation(145,310);
         jButton.setSize(105,30);
 
 
-        String[] positions = new String[]{"左线","右线"};
+        final String[] positions = new String[]{"左线","右线"};
         final JComboBox<String> jComboBox = new JComboBox<String>(positions);
+        final JTextField KM = new JTextField(SwingConstants.RIGHT);
+        final JTextField meter = new JTextField(SwingConstants.RIGHT);
+        final List<JTextField> jTextFields = new ArrayList<JTextField>();
         if (tabName.trim().equals("位置")){
 
             JLabel way = new JLabel("设定线路 :",SwingConstants.LEFT);
@@ -277,7 +292,7 @@ public class Test05 {
             DK.setSize(30,30);
             DK.setFont(new Font(null,1,16));
 
-            JTextField KM = new JTextField(SwingConstants.RIGHT);
+
             KM.setLocation(155,90);
             KM.setSize(70,30);
             KM.setFont(new Font(null,1,16));
@@ -287,7 +302,7 @@ public class Test05 {
             plus.setLocation(233,90);
             plus.setSize(20,30);
 
-            JTextField meter = new JTextField(SwingConstants.RIGHT);
+
             meter.setFont(new Font(null,1,16));
             meter.setSize(70,30);
             meter.setLocation(250,90);
@@ -299,36 +314,36 @@ public class Test05 {
             jPanel.add(KM);
             jPanel.add(plus);
             jPanel.add(meter);
-        }else if (tabName.trim().equals("M2")){
-            realLength = labelName.length-2;
-        }
-        else if (tabName.trim().equals("M5_AP") || tabName.trim().equals("M5_ST")){
-            realLength = labelName.length-1;
-        }
-
-        final List<JTextField> jTextFields = new ArrayList<JTextField>();
-
-        for (int i = 1; i <= realLength; i++) {
-
-            //setup labels
-            if (i == realLength && tabName.trim().equals("M5_AP")){
-                labelName[i-1] = "频率(MHz) :";
+        }else {
+             if (tabName.trim().equals("M2")){
+                realLength = labelName.length-2;
             }
-            else if (i == realLength && tabName.trim().equals("M5_ST")){
-                labelName[i-1] = "Mac 地址: ";
+            else if (tabName.trim().equals("M5_AP") || tabName.trim().equals("M5_ST")){
+                realLength = labelName.length-1;
             }
-            JLabel labels = new JLabel(labelName[i-1],SwingConstants.LEFT);
-            labels.setFont(new Font(null, 1, 16));
-            labels.setLocation(10,40*i);
-            labels.setSize(115,30);
-            jPanel.add(labels);
 
-            inputBoxes = new JTextField(SwingConstants.RIGHT);
-            inputBoxes.setFont(new Font(null, Font.PLAIN, 14));
-            inputBoxes.setLocation(120,40*i);
-            inputBoxes.setSize(200,30);
-            jPanel.add(inputBoxes);
-            jTextFields.add(inputBoxes);
+            for (int i = 1; i <= realLength; i++) {
+
+                //setup labels
+                if (i == realLength && tabName.trim().equals("M5_AP")){
+                    labelName[i-1] = "频率(MHz) :";
+                }
+                else if (i == realLength && tabName.trim().equals("M5_ST")){
+                    labelName[i-1] = "Mac 地址: ";
+                }
+                JLabel labels = new JLabel(labelName[i-1],SwingConstants.LEFT);
+                labels.setFont(new Font(null, 1, 16));
+                labels.setLocation(10,40*i);
+                labels.setSize(115,30);
+                jPanel.add(labels);
+
+                inputBoxes = new JTextField(SwingConstants.RIGHT);
+                inputBoxes.setFont(new Font(null, Font.PLAIN, 14));
+                inputBoxes.setLocation(120,40*i);
+                inputBoxes.setSize(200,30);
+                jPanel.add(inputBoxes);
+                jTextFields.add(inputBoxes);
+            }
         }
 
         jButton = new JButton(tabName);
@@ -343,64 +358,73 @@ public class Test05 {
                 log.info(buttonText);
                 //get position
                 position = jComboBox.getSelectedItem().toString();
+                String DK = KM.getText() + " + " + meter.getText();
 
                 int progress = 0;
                 if (buttonText.trim().equals("M2")){
                     M2_IP = jTextFields.get(0).getText();
                     log.info("M2_IP is " + M2_IP);
+//                    cellValue.add(M2_IP);
+                    int targetRow = defautTableModel.getRowCount();
+                    log.info("the real row count is :" + targetRow);
+                    defautTableModel.setValueAt(M2_IP,targetRow-1,3);
+
                     //ssid = commonFields.get(1); netmask = commonFields.get(3); gatewayIP = commonFields.get(2);
-                    M2_Configuration.configM2(commonFields.get(1),M2_IP,commonFields.get(3),commonFields.get(2));
+//                    M2_Configuration.configM2(commonFields.get(1),M2_IP,commonFields.get(3),commonFields.get(2));
                 }
                 else if (buttonText.trim().equals("M5_AP")){
                     M5_AP_IP = jTextFields.get(0).getText();
                     M5_AP_Fruq = jTextFields.get(1).getText();
                     log.info("M5_AP_IP is " + M5_AP_IP);
                     log.info("M5_AP_Fruq is " + M5_AP_Fruq);
-                    M5_Configuration.configM5("AP",commonFields.get(1),M5_AP_IP,commonFields.get(3),commonFields.get(2),M5_AP_Fruq,null);
+                    defautTableModel.setValueAt(M5_AP_IP,defautTableModel.getRowCount()-1,4);
+                    defautTableModel.setValueAt(M5_AP_Fruq,defautTableModel.getRowCount()-1,5);
+                    //M5_Configuration.configM5("AP",commonFields.get(1),M5_AP_IP,commonFields.get(3),commonFields.get(2),M5_AP_Fruq,null);
                 }
                 else if (buttonText.trim().equals("M5_ST")){
                     M5_ST_IP = jTextFields.get(0).getText();
                     M5_AP_Mac = jTextFields.get(1).getText();
                     log.info("M5_ST_IP is " + M5_ST_IP);
                     log.info("M5_AP_Mac is " + M5_AP_Mac);
-                    M5_Configuration.configM5("ST",commonFields.get(1),M5_ST_IP,commonFields.get(3),commonFields.get(2),null,M5_AP_Mac);
+
+                    defautTableModel.setValueAt(M5_AP_Mac,defautTableModel.getRowCount()-1,6);
+                    defautTableModel.setValueAt(M5_ST_IP,defautTableModel.getRowCount()-1,7);
+                    defautTableModel.setValueAt(M5_AP_Mac,defautTableModel.getRowCount()-1,8);
+                    //M5_Configuration.configM5("ST",commonFields.get(1),M5_ST_IP,commonFields.get(3),commonFields.get(2),null,M5_AP_Mac);
+                }else if (buttonText.trim().equals("位置")){
+                    defautTableModel.setValueAt(position,defautTableModel.getRowCount()-1,1);
+                    defautTableModel.setValueAt(DK,defautTableModel.getRowCount()-1,2);
+                    log.info("ssid is " + commonFields.get(0));
+                    log.info("M2 gatewayIP is " + commonFields.get(1));
+                    log.info("M2 netmask is " + commonFields.get(2));
+                    log.info("M5-AP gatewayIP is " + commonFields.get(3));
+                    log.info("M5-AP netmask is " + commonFields.get(4));
                 }
 
                 //to make sure using the right flag
                 if (buttonText.trim().substring(0,2).equals("M2")){
-                    progress = M2_Configuration.progress;
+//                    progress = M2_Configuration.progress;
                 }
                 else if (buttonText.trim().substring(0,2).equals("M5")){
-                    progress = M5_Configuration.progress;
+//                    progress = M5_Configuration.progress;
                 }
 
                 //setup the popup window to let the user know the configuration is successful or not
-                if (progress == 1){
-                    JOptionPane.showMessageDialog(
-                            jFrame,
-                            "配置成功 !",
-                            "配置结果",
-                            JOptionPane.INFORMATION_MESSAGE
-                    );
-                }else {
-                    JOptionPane.showMessageDialog(
-                            jFrame,
-                            "配置失败，请重新配置 !",
-                            "配置结果",
-                            JOptionPane.WARNING_MESSAGE
-                    );
-                }
-                final Vector<String> realValue = new Vector<String>();
-                realValue.add(null);
-                realValue.add(position);
-                realValue.add(M2_IP);
-                realValue.add(M5_AP_IP);
-                realValue.add(M5_AP_Fruq);
-                realValue.add(M5_AP_Mac);
-                realValue.add(M5_ST_IP);
-                realValue.add(M5_AP_Mac);
-                log.info("the first text field input value is :" + M2_IP);
-                defautTableModel.addRow(realValue);
+//                if (progress == 1){
+//                    JOptionPane.showMessageDialog(
+//                            jFrame,
+//                            "配置成功 !",
+//                            "配置结果",
+//                            JOptionPane.INFORMATION_MESSAGE
+//                    );
+//                }else {
+//                    JOptionPane.showMessageDialog(
+//                            jFrame,
+//                            "配置失败，请重新配置 !",
+//                            "配置结果",
+//                            JOptionPane.WARNING_MESSAGE
+//                    );
+//                }
                 jDialog.dispose();
             }
         });
@@ -531,10 +555,10 @@ public class Test05 {
                 projectId = projectIdInputBox.getText();
                 log.info("the project id is "+projectIdInputBox.getText());
                 commonFields.add(ssidInputBox.getText());
-                commonFields.add(netMaskInputBox.getText());
                 commonFields.add(gatewayIPInputBox.getText());
-                commonFields.add(netMask_M5_InputBox.getText());
+                commonFields.add(netMaskInputBox.getText());
                 commonFields.add(gatewayIP_M5_InputBox.getText());
+                commonFields.add(netMask_M5_InputBox.getText());
                 jDialog.dispose();
                 projects.add(projectId);
                 SwingUtilities.updateComponentTreeUI(jFrame);
