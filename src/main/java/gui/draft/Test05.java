@@ -34,7 +34,7 @@ public class Test05 {
     private List<String> commonFields = new ArrayList<String>();
     //the project item should be added dynamically
     final Vector<String> projects = new Vector<String>();
-    private Object[] columnNames = {"编号","位置","DK","M2 IP", "M5_Ap IP", "M5_AP 频率", "M5_AP mac地址", "M5_ST IP","M5_ST 锁定mac地址","操作"};  // 9 columns
+    private Object[] columnNames = {"编号","位置","DK","M2 IP", "M5_Ap IP", "M5_AP 频率", "M5_AP mac地址", "M5_ST IP","M5_ST 锁定mac地址"};  // 9 columns
     private String[] labelName = {"IP 地址 :","频率(MHz) :","Mac 地址 :"};
     private static String M2_IP,M5_AP_IP,M5_AP_Fruq,M5_AP_Mac,M5_ST_IP,position;
     //table page panel
@@ -46,6 +46,7 @@ public class Test05 {
     private DefaultTableModel defautTableModel;
     private final JDialog jDialog = new JDialog();
     private int recordIndex = 1;
+    private int rowNum;
 
 
 
@@ -135,7 +136,6 @@ public class Test05 {
         jTable.getColumn("M5_Ap IP").setPreferredWidth(40);
         jTable.getColumn("M5_ST IP").setPreferredWidth(50);
         jTable.getColumn("M5_ST 锁定mac地址").setPreferredWidth(100);
-        jTable.getColumn("操作").setMaxWidth(45);
         jTable.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
         jTable.setFont(new Font(null, Font.PLAIN, 15));
 
@@ -157,15 +157,21 @@ public class Test05 {
         export.setSize(100,40);
         outPanel.add(export);
 
-        JButton editRow = new JButton("修改一行");
-        editRow.setLocation(160,450);
+        final JButton editRow = new JButton("修改一行");
+        editRow.setLocation(470,450);
         editRow.setSize(100,40);
         editRow.setFont(new Font(null,Font.BOLD,14));
         outPanel.add(editRow);
 
+        JButton removeRow = new JButton("删除一行");
+        removeRow.setLocation(590,450);
+        removeRow.setSize(100,40);
+        removeRow.setFont(new Font(null,Font.BOLD,14));
+        outPanel.add(removeRow);
+
         JButton add = new JButton("选择配置");
         add.setFont(new Font(null,Font.BOLD,14));
-        add.setLocation(700,450);
+        add.setLocation(710,450);
         add.setSize(100,40);
         outPanel.add(add);
 
@@ -179,17 +185,56 @@ public class Test05 {
                     emptyRow.add(null);
                 }
                 defautTableModel.addRow(emptyRow);
-                defautTableModel.setValueAt(recordIndex++,defautTableModel.getRowCount()-1,0);
+                if (recordIndex == 0){
+                    defautTableModel.setValueAt(recordIndex++,defautTableModel.getRowCount()-1,0);
+                }else {
+                    recordIndex = defautTableModel.getRowCount();
+                    defautTableModel.setValueAt(recordIndex++,defautTableModel.getRowCount()-1,0);
+                }
                 rowGenerator();
             }
         });
 
+        //the whole cell of a specific row are stored in this list.
         editRow.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int rowNum = jTable.getSelectedRow();
+                List<String> cellValuesOfSpecificRow = new ArrayList<String>();
+                rowNum = jTable.getSelectedRow();
+                //i started from 1, cause no to edit row number.
                 log.info("the " + rowNum + "th row was selected !");
+                for (int i = 1; i <= 8; i++) {
+                        int a = cellValuesOfSpecificRow.size();
+                        log.info(a);
+                    if (defautTableModel.getValueAt(rowNum,i) != null){
+                        cellValuesOfSpecificRow.add(defautTableModel.getValueAt(rowNum,i).toString());
+                    }else {
+                        cellValuesOfSpecificRow.add("null");
+                    }
+                }
+                editRow(cellValuesOfSpecificRow);
+            }
+        });
 
+        removeRow.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                int remove  = JOptionPane.showConfirmDialog(jFrame,"确定删除吗？");
+                log.info("return int value is " + remove);
+                if (remove == 0){
+
+                    //TODO: need to change the row number, but how ?
+                    int selectedRowNumber = jTable.getSelectedRow();
+                    int allRowsCount = defautTableModel.getRowCount();
+                    int remainingRows = allRowsCount - selectedRowNumber;
+                    log.info("the remaining rows are :" + remainingRows + "; all rows : " + allRowsCount + " ;" + selectedRowNumber + " was selected!");
+                    log.info(jTable.getSelectedRow() +" row was deleting");
+                    for (int i = 1; i < remainingRows; i++) {
+                        defautTableModel.setValueAt(selectedRowNumber + i,selectedRowNumber+i,0);
+                    }
+                    defautTableModel.removeRow(jTable.getSelectedRow());
+                }
             }
         });
 
@@ -197,6 +242,51 @@ public class Test05 {
 //        jFrame.pack();
         jFrame.setVisible(true);
     }
+
+    public void editRow(List<String> rowData){
+        final JDialog jDialog = new JDialog();
+        jDialog.setSize(500,500);
+        jDialog.setLocationRelativeTo(jFrame);
+
+        //setup the logo icon
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Image icon = kit.getImage("D:\\icon\\logo.png");
+        jDialog.setIconImage(icon);
+
+        //setup JTabbedPane
+        final JTabbedPane jTabbedPane = new JTabbedPane();
+        jTabbedPane.setFont(new Font("ITALIC", 1, 16));
+        jTabbedPane.add("位置",updateOverlayPanel("位置",rowData));
+        jTabbedPane.add("M2",updateOverlayPanel("M2",rowData));
+        jTabbedPane.add("M5_AP",updateOverlayPanel("M5_AP",rowData));
+        jTabbedPane.add("M5_ST",updateOverlayPanel("M5_ST",rowData));
+
+        jTabbedPane.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                JTabbedPane tab = (JTabbedPane) e.getSource();
+                log.info(tab.getTitleAt(tab.getSelectedIndex()));
+                if (tab.getTitleAt(tab.getSelectedIndex()).trim().equals("M2")){
+                    realLength = labelName.length-2;
+                }
+                else if (tab.getTitleAt(tab.getSelectedIndex()).trim().equals("M5_AP")){
+                    realLength = labelName.length-1;
+                }
+                else if (tab.getTitleAt(tab.getSelectedIndex()).trim().equals("M5_ST")){
+                    realLength = labelName.length;
+                }
+
+            }
+        });
+
+        jTabbedPane.setSelectedIndex(0);
+        updateOverlayPanel("位置",null);
+        jDialog.setContentPane(jTabbedPane);
+        jDialog.setVisible(true);
+
+    }
+
+
 
     /**
      * generate rows
@@ -249,6 +339,223 @@ public class Test05 {
 
     }
 
+    private JPanel updateOverlayPanel(String tabName,List<String> rowData){
+        JPanel jPanel = new JPanel(null);
+        jPanel.setBorder((BorderFactory.createTitledBorder("UBNT( "+tabName+") 配置")));
+        jPanel.setLayout(null);
+
+        JTextField inputBoxes = null;
+        jButton.setFont(new Font(null,Font.BOLD,14));
+        jButton.setLocation(145,310);
+        jButton.setSize(105,30);
+
+
+        final String[] positions = new String[]{"左线","右线"};
+        final JComboBox<String> jComboBox = new JComboBox<String>(positions);
+        final JTextField KM = new JTextField(SwingConstants.RIGHT);
+        final JTextField meter = new JTextField(SwingConstants.RIGHT);
+        final List<JTextField> jTextFields = new ArrayList<JTextField>();
+        if (tabName != null && tabName.trim().equals("位置")){
+
+            JLabel way = new JLabel("设定线路 :",SwingConstants.LEFT);
+            way.setFont(new Font(null, 1, 16));
+            way.setLocation(10,40);
+            way.setSize(115,30);
+
+            jComboBox.setLocation(120,40);
+            jComboBox.setSize(200,30);
+            jComboBox.setFont(new Font(null, 1, 16));
+            if (rowData != null && rowData.get(0).trim().equals("右线")){
+                jComboBox.setSelectedIndex(1);
+            }else {
+                jComboBox.setSelectedIndex(0);
+            }
+
+            JLabel specificPosition = new JLabel("具体位置 :",SwingConstants.LEFT);
+            specificPosition.setFont(new Font(null, 1, 16));
+            specificPosition.setLocation(10,90);
+            specificPosition.setSize(115,30);
+
+            JLabel DK = new JLabel("DK ");
+            DK.setLocation(120,90);
+            DK.setSize(30,30);
+            DK.setFont(new Font(null,1,16));
+
+            KM.setLocation(155,90);
+            KM.setSize(70,30);
+            KM.setFont(new Font(null,1,16));
+
+            JLabel plus = new JLabel("+");
+            plus.setFont(new Font(null,0,15));
+            plus.setLocation(233,90);
+            plus.setSize(20,30);
+
+            meter.setFont(new Font(null,1,16));
+            meter.setSize(70,30);
+            meter.setLocation(250,90);
+
+            if (rowData != null && rowData.get(1).contains("+")){
+                String originalKM = rowData.get(1).substring(0,rowData.get(1).indexOf("+")-1);
+                String originalMeter = rowData.get(1).substring(rowData.get(1).indexOf("+")+1,rowData.get(1).length());
+                KM.setText(originalKM.trim());
+                meter.setText(originalMeter.trim());
+                log.info("the original km is " + originalKM.trim() + ", meter is " + originalMeter.trim());
+            }else {
+                KM.setText(null);
+                meter.setText(null);
+            }
+
+            jPanel.add(way);
+            jPanel.add(jComboBox);
+            jPanel.add(specificPosition);
+            jPanel.add(DK);
+            jPanel.add(KM);
+            jPanel.add(plus);
+            jPanel.add(meter);
+        }else {
+            if (tabName != null && tabName.trim().equals("M2")){
+                realLength = labelName.length-2;
+            }
+            else if (tabName != null && tabName.trim().equals("M5_AP") || tabName.trim().equals("M5_ST")){
+                realLength = labelName.length-1;
+            }
+
+            for (int i = 1; i <= realLength; i++) {
+                //setup labels
+                if (i == realLength && tabName.trim().equals("M5_AP")){
+                    labelName[i-1] = "频率(MHz) :";
+                }
+                else if (i == realLength && tabName.trim().equals("M5_ST")){
+                    labelName[i-1] = "Mac 地址: ";
+                }
+                JLabel labels = new JLabel(labelName[i-1],SwingConstants.LEFT);
+                labels.setFont(new Font(null, 1, 16));
+                labels.setLocation(10,40*i);
+                labels.setSize(115,30);
+                jPanel.add(labels);
+
+                inputBoxes = new JTextField(SwingConstants.RIGHT);
+                if (rowData !=null){
+
+
+                    if (tabName.trim().equals("M5_AP")){
+                        if (rowData.get(i+2).trim().equals("null")){
+                            inputBoxes.setText(null);
+                        }else {
+                            inputBoxes.setText(rowData.get(i+2));
+                        }
+                    }
+                    if (tabName.trim().equals("M5_ST")){
+                        if (rowData.get(i+5).trim().equals("null")){
+                            inputBoxes.setText(null);
+                        }else {
+                            inputBoxes.setText(rowData.get(i+5));
+                        }
+                    }
+                    if (tabName.trim().equals("M2")){
+                        if (rowData.get(i+4).trim().equals("null")){
+                            inputBoxes.setText(null);
+                        }else {
+                            inputBoxes.setText(rowData.get(i+1));
+                        }
+                    }
+                }
+                inputBoxes.setFont(new Font(null, Font.PLAIN, 14));
+                inputBoxes.setLocation(120,40*i);
+                inputBoxes.setSize(200,30);
+                jPanel.add(inputBoxes);
+                jTextFields.add(inputBoxes);
+            }
+        }
+
+        jButton = new JButton(tabName);
+        jPanel.add(jButton);
+
+        //setup button action listener
+        jButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JButton jb = (JButton)e.getSource();
+                String buttonText = jb.getText();
+                log.info(buttonText);
+                //get position
+                position = jComboBox.getSelectedItem().toString();
+                String DK = KM.getText() + " + " + meter.getText();
+
+                int progress = 0;
+                if (buttonText.trim().equals("M2")){
+                    M2_IP = jTextFields.get(0).getText();
+                    log.info("M2_IP is " + M2_IP);
+//                    cellValue.add(M2_IP);
+                    int targetRow = defautTableModel.getRowCount();
+                    log.info("the real row count is :" + targetRow);
+                    defautTableModel.setValueAt(M2_IP,rowNum,3);
+
+                    //ssid = commonFields.get(1); netmask = commonFields.get(3); gatewayIP = commonFields.get(2);
+//                    M2_Configuration.configM2(commonFields.get(1),M2_IP,commonFields.get(3),commonFields.get(2));
+                }
+                else if (buttonText.trim().equals("M5_AP")){
+                    M5_AP_IP = jTextFields.get(0).getText();
+                    M5_AP_Fruq = jTextFields.get(1).getText();
+                    log.info("M5_AP_IP is " + M5_AP_IP);
+                    log.info("M5_AP_Fruq is " + M5_AP_Fruq);
+                    defautTableModel.setValueAt(M5_AP_IP,rowNum,4);
+                    defautTableModel.setValueAt(M5_AP_Fruq,rowNum,5);
+                    //M5_Configuration.configM5("AP",commonFields.get(1),M5_AP_IP,commonFields.get(3),commonFields.get(2),M5_AP_Fruq,null);
+                }
+                else if (buttonText.trim().equals("M5_ST")){
+                    M5_ST_IP = jTextFields.get(0).getText();
+                    M5_AP_Mac = jTextFields.get(1).getText();
+                    log.info("M5_ST_IP is " + M5_ST_IP);
+                    log.info("M5_AP_Mac is " + M5_AP_Mac);
+
+                    defautTableModel.setValueAt(M5_AP_Mac,rowNum,6);
+                    defautTableModel.setValueAt(M5_ST_IP,rowNum,7);
+                    defautTableModel.setValueAt(M5_AP_Mac,rowNum,8);
+                    //M5_Configuration.configM5("ST",commonFields.get(1),M5_ST_IP,commonFields.get(3),commonFields.get(2),null,M5_AP_Mac);
+                }else if (buttonText.trim().equals("位置")){
+                    defautTableModel.setValueAt(position,rowNum,1);
+                    defautTableModel.setValueAt(DK,rowNum,2);
+                    log.info("ssid is " + commonFields.get(0));
+                    log.info("M2 gatewayIP is " + commonFields.get(1));
+                    log.info("M2 netmask is " + commonFields.get(2));
+                    log.info("M5-AP gatewayIP is " + commonFields.get(3));
+                    log.info("M5-AP netmask is " + commonFields.get(4));
+                }
+
+                //to make sure using the right flag
+                if (buttonText.trim().substring(0,2).equals("M2")){
+//                    progress = M2_Configuration.progress;
+                }
+                else if (buttonText.trim().substring(0,2).equals("M5")){
+//                    progress = M5_Configuration.progress;
+                }
+
+                //setup the popup window to let the user know the configuration is successful or not
+//                if (progress == 1){
+//                    JOptionPane.showMessageDialog(
+//                            jFrame,
+//                            "配置成功 !",
+//                            "配置结果",
+//                            JOptionPane.INFORMATION_MESSAGE
+//                    );
+//                }else {
+//                    JOptionPane.showMessageDialog(
+//                            jFrame,
+//                            "配置失败，请重新配置 !",
+//                            "配置结果",
+//                            JOptionPane.WARNING_MESSAGE
+//                    );
+//                }
+                jDialog.dispose();
+            }
+        });
+
+
+        return jPanel;
+    }
+
+
     /**
      * the final config overlay
      * @param tabName  the tab name
@@ -270,7 +577,7 @@ public class Test05 {
         final JTextField KM = new JTextField(SwingConstants.RIGHT);
         final JTextField meter = new JTextField(SwingConstants.RIGHT);
         final List<JTextField> jTextFields = new ArrayList<JTextField>();
-        if (tabName.trim().equals("位置")){
+        if (tabName != null && tabName.trim().equals("位置")){
 
             JLabel way = new JLabel("设定线路 :",SwingConstants.LEFT);
             way.setFont(new Font(null, 1, 16));
@@ -292,7 +599,6 @@ public class Test05 {
             DK.setSize(30,30);
             DK.setFont(new Font(null,1,16));
 
-
             KM.setLocation(155,90);
             KM.setSize(70,30);
             KM.setFont(new Font(null,1,16));
@@ -301,7 +607,6 @@ public class Test05 {
             plus.setFont(new Font(null,0,15));
             plus.setLocation(233,90);
             plus.setSize(20,30);
-
 
             meter.setFont(new Font(null,1,16));
             meter.setSize(70,30);
@@ -315,15 +620,14 @@ public class Test05 {
             jPanel.add(plus);
             jPanel.add(meter);
         }else {
-             if (tabName.trim().equals("M2")){
+             if (tabName != null && tabName.trim().equals("M2")){
                 realLength = labelName.length-2;
             }
-            else if (tabName.trim().equals("M5_AP") || tabName.trim().equals("M5_ST")){
+            else if (tabName != null && tabName.trim().equals("M5_AP") || tabName.trim().equals("M5_ST")){
                 realLength = labelName.length-1;
             }
 
             for (int i = 1; i <= realLength; i++) {
-
                 //setup labels
                 if (i == realLength && tabName.trim().equals("M5_AP")){
                     labelName[i-1] = "频率(MHz) :";
