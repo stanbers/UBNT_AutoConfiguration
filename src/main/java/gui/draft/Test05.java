@@ -20,6 +20,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +41,7 @@ public class Test05 {
     private List<String> commonFields = new ArrayList<String>();
     //the project item should be added dynamically
     final Vector<String> projects = new Vector<String>();
-    private Object[] columnNames = {"编号","位置","DK","M2 IP", "M5_Ap IP", "M5_AP 频率", "M5_AP mac地址", "M5_ST IP","M5_ST 锁定mac地址"};  // 9 columns
+
     private String[] labelName = {"IP 地址 :","频率(MHz) :","Mac 地址 :"};
     private static String M2_IP,M5_AP_IP,M5_AP_Fruq,M5_AP_Mac,M5_ST_IP,position;
     //table page panel
@@ -49,17 +50,15 @@ public class Test05 {
 
     private int realLength;
     private JButton jButton = new JButton("M2");
-    private DefaultTableModel defautTableModel;
+    private DefaultTableModel defautTableModelOut;
     private final JDialog jDialog = new JDialog();
     private int recordIndex = 1;
     private int rowNum;
 
-    private static XSSFSheet ExcelWSheet;
-    private static XSSFWorkbook ExcelWBook;
-    private static XSSFCell Cell;
-    private static XSSFRow Row;
-
-
+    private XSSFSheet ExcelWSheet;
+    private XSSFWorkbook ExcelWBook;
+    private XSSFCell Cell;
+    private XSSFRow Row;
 
 
     /**
@@ -89,6 +88,18 @@ public class Test05 {
         projectListComboBox.setFont(new Font(null, Font.PLAIN, 25));
         projectListComboBox.setSelectedIndex(0);
 
+        String[] columns = {"编号","位置","DK","M2 IP", "M5_Ap IP", "M5_AP 频率", "M5_AP mac地址", "M5_ST IP","M5_ST 锁定mac地址"};
+//        Vector<String> columnNames = new Vector<String>(); // 9 columns
+//        for (int i = 0; i < columns.length ; i++) {
+//            columnNames.add(columns[i]);
+//        }
+
+        final DefaultTableModel defautTableModel = new DefaultTableModel(null,columns){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
 
         //add combo box item changed listener
         projectListComboBox.addItemListener(new ItemListener() {
@@ -99,6 +110,8 @@ public class Test05 {
                 homepagePanel.setVisible(false);
                 SwingUtilities.updateComponentTreeUI(jFrame);
                 jFrame.repaint();
+                //TODO: render the row data to the outPanel, the problem is how to send the data to outPanel
+                //TODO: the row data are read from excel, one excel server one project
                 jFrame.setContentPane(outPanel);
             }
         });
@@ -123,14 +136,7 @@ public class Test05 {
         homepagePanel.add(projectListComboBox);
         homepagePanel.add(createPojectButton);
 
-
-
-        defautTableModel = new DefaultTableModel(null,columnNames){
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
+        importFromExcel(defautTableModel);
 
         final JTable jTable = new JTable(defautTableModel);
 
@@ -203,7 +209,7 @@ public class Test05 {
                     recordIndex = defautTableModel.getRowCount();
                     defautTableModel.setValueAt(recordIndex++,defautTableModel.getRowCount()-1,0);
                 }
-                rowGenerator();
+                rowGenerator(defautTableModel);
             }
         });
 
@@ -224,7 +230,7 @@ public class Test05 {
                         cellValuesOfSpecificRow.add("null");
                     }
                 }
-                editRow(cellValuesOfSpecificRow);
+                editRow(cellValuesOfSpecificRow,defautTableModel);
             }
         });
 
@@ -253,7 +259,7 @@ public class Test05 {
         export.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                exportToExcel();
+                exportToExcel(defautTableModel);
             }
         });
 
@@ -261,11 +267,66 @@ public class Test05 {
         jFrame.setVisible(true);
     }
 
-    public void exportToExcel(){
+    /**
+     * import excel data to JTable
+     * @param defautTableModel  the target table model
+     * @return all data vector
+     */
+    public Vector<String> importFromExcel(DefaultTableModel defautTableModel){
+        Vector readFromExcel = null;
+        try {
+            FileInputStream ExcelFile = new FileInputStream(Constant.Path_TestData_Output);
+            if(ExcelFile != null){
+                XSSFWorkbook wb = new XSSFWorkbook(ExcelFile);
+                XSSFSheet sheet = wb.getSheet("Sheet0");
+                int lastRowIndex = sheet.getLastRowNum();
+                BreakAllForLooplabel:
+                for (int i = 1; i <= lastRowIndex ; i++) {
+                    readFromExcel = new Vector();
+                    Row  = sheet.getRow(i);
+                    if (Row == null) { break; }
+                    short lastCellNum = Row.getLastCellNum();
+                    for (int j = 0; j < lastCellNum; j++) {
+                        String cellValue = Row.getCell(j).getStringCellValue();
+                        readFromExcel.add(cellValue);
+                    }
+                    defautTableModel.addRow(readFromExcel);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return  readFromExcel;
+
+    }
+
+    /**
+     * export row data to excel
+     */
+    public void exportToExcel(DefaultTableModel defautTableModel){
+
         XSSFWorkbook wb = new XSSFWorkbook();
         XSSFSheet sheet = wb.createSheet();
+        Row = sheet.createRow(0);
+
+        //export column name first.
+        //TODO: need concern the talbe header exist or not, if the table already exist then no need to export again.
+        for (int k = 0; k < 9; k++) {
+            Cell = Row.createCell(k);
+            Cell.setCellValue(defautTableModel.getColumnName(k));
+            try {
+                FileOutputStream fileOut = new FileOutputStream(Constant.Path_TestData_Output);
+                wb.write(fileOut);
+                fileOut.flush();
+                fileOut.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        //then export the table content row from the second row.
         for (int i = 0; i < defautTableModel.getRowCount(); i++) {
-            Row = sheet.createRow(i);
+            Row = sheet.createRow(i+1);
+
             for (int j = 0; j < defautTableModel.getColumnCount(); j++) {
                 Cell = Row.createCell(j);
                 try {
@@ -280,6 +341,7 @@ public class Test05 {
                     e.printStackTrace();
                 }
             }
+
         }
     }
 
@@ -287,7 +349,7 @@ public class Test05 {
      * this method is to udpate row data
      * @param rowData the original row data
      */
-    public void editRow(List<String> rowData){
+    public void editRow(List<String> rowData, DefaultTableModel defautTableModel){
         final JDialog jDialog = new JDialog();
         jDialog.setSize(500,500);
         jDialog.setLocationRelativeTo(jFrame);
@@ -300,10 +362,10 @@ public class Test05 {
         //setup JTabbedPane
         final JTabbedPane jTabbedPane = new JTabbedPane();
         jTabbedPane.setFont(new Font("ITALIC", 1, 16));
-        jTabbedPane.add("位置",updateOverlayPanel("位置",rowData));
-        jTabbedPane.add("M2",updateOverlayPanel("M2",rowData));
-        jTabbedPane.add("M5_AP",updateOverlayPanel("M5_AP",rowData));
-        jTabbedPane.add("M5_ST",updateOverlayPanel("M5_ST",rowData));
+        jTabbedPane.add("位置",updateOverlayPanel("位置",rowData,defautTableModel));
+        jTabbedPane.add("M2",updateOverlayPanel("M2",rowData,defautTableModel));
+        jTabbedPane.add("M5_AP",updateOverlayPanel("M5_AP",rowData,defautTableModel));
+        jTabbedPane.add("M5_ST",updateOverlayPanel("M5_ST",rowData,defautTableModel));
 
         jTabbedPane.addChangeListener(new ChangeListener() {
             @Override
@@ -324,7 +386,7 @@ public class Test05 {
         });
 
         jTabbedPane.setSelectedIndex(0);
-        updateOverlayPanel("位置",null);
+        updateOverlayPanel("位置",null,defautTableModel);
         jDialog.setContentPane(jTabbedPane);
         jDialog.setVisible(true);
 
@@ -335,7 +397,7 @@ public class Test05 {
     /**
      * generate rows
      */
-    public void rowGenerator(){
+    public void rowGenerator(DefaultTableModel defautTableModel){
         final JDialog jDialog = new JDialog();
         jDialog.setSize(500,500);
         jDialog.setLocationRelativeTo(jFrame);
@@ -350,10 +412,10 @@ public class Test05 {
         //setup JTabbedPane
         final JTabbedPane jTabbedPane = new JTabbedPane();
         jTabbedPane.setFont(new Font("ITALIC", 1, 16));
-        jTabbedPane.add("位置",createTextPanelOverlay("位置"));
-        jTabbedPane.add("M2",createTextPanelOverlay("M2"));
-        jTabbedPane.add("M5_AP",createTextPanelOverlay("M5_AP"));
-        jTabbedPane.add("M5_ST",createTextPanelOverlay("M5_ST"));
+        jTabbedPane.add("位置",createTextPanelOverlay("位置",defautTableModel));
+        jTabbedPane.add("M2",createTextPanelOverlay("M2",defautTableModel));
+        jTabbedPane.add("M5_AP",createTextPanelOverlay("M5_AP",defautTableModel));
+        jTabbedPane.add("M5_ST",createTextPanelOverlay("M5_ST",defautTableModel));
 //        jTabbedPane.add("记录数据",createTextPanelOverlay("记录数据"));
 
         //add tab event change listener
@@ -377,13 +439,13 @@ public class Test05 {
 
         jTabbedPane.setSelectedIndex(0);
 //        createTextPanelOverlay("M2");
-        createTextPanelOverlay("位置");
+        createTextPanelOverlay("位置",defautTableModel);
         jDialog.setContentPane(jTabbedPane);
         jDialog.setVisible(true);
 
     }
 
-    private JPanel updateOverlayPanel(String tabName,List<String> rowData){
+    private JPanel updateOverlayPanel(String tabName,List<String> rowData,final DefaultTableModel defautTableModel){
         JPanel jPanel = new JPanel(null);
         jPanel.setBorder((BorderFactory.createTitledBorder("UBNT( "+tabName+") 配置")));
         jPanel.setLayout(null);
@@ -605,7 +667,7 @@ public class Test05 {
      * @param tabName  the tab name
      * @return  the overlay panel content
      */
-    private JPanel createTextPanelOverlay(String tabName){
+    private JPanel createTextPanelOverlay(String tabName, final DefaultTableModel defautTableModel){
         JPanel jPanel = new JPanel(null);
         jPanel.setBorder((BorderFactory.createTitledBorder("UBNT( "+tabName+") 配置")));
         jPanel.setLayout(null);
