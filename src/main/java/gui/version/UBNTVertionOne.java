@@ -61,7 +61,7 @@ public class UBNTVertionOne {
 
 
     /**
-     * to show the homepage
+     * show the homepage
      */
     public void show() {
         //setup container's size and location

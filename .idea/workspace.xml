@@ -2,49 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6297135e-99b4-48ed-8d1f-4be9376233e2" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_virtuald_curvesapi_1_04.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_collections4_4_1.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_poi_poi_3_17.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_poi_poi_ooxml_3_17.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_poi_poi_ooxml_schemas_3_17.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlbeans_xmlbeans_2_6_0.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__stax_stax_api_1_0_1.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/excelFiles/导出的数据.xlsx" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/gui/draft/CreateConfigDialog.java" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/TrainScheduling_jar.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/TrainScheduling_jar.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_poi_poi_3_7.xml" afterPath="" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/gui/version/UBNTVertionTwo.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/gui/version/VersionTwoMain.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/TrainScheduling.iml" afterPath="$PROJECT_DIR$/TrainScheduling.iml" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/TrainScheduling_jar/TrainScheduling.jar" afterPath="$PROJECT_DIR$/out/artifacts/TrainScheduling_jar/TrainScheduling.jar" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/excelFiles/Output.xlsx" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/draft/Test06.java" afterPath="$PROJECT_DIR$/src/main/java/gui/version/UBNTVertionOne.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/draft/Text06Main.java" afterPath="$PROJECT_DIR$/src/main/java/gui/draft/Text06Main.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/main/LaunchGUI.java" afterPath="$PROJECT_DIR$/src/main/java/gui/main/LaunchGUI.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gui/version/UBNTVertionOne.java" afterPath="$PROJECT_DIR$/src/main/java/gui/version/UBNTVertionOne.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ubnt/m2/M2_Configuration.java" afterPath="$PROJECT_DIR$/src/main/java/ubnt/m2/M2_Configuration.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ubnt/m5/M5_Configuration.java" afterPath="$PROJECT_DIR$/src/main/java/ubnt/m5/M5_Configuration.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/utility/Constant.java" afterPath="$PROJECT_DIR$/src/main/java/utility/Constant.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utility/UpdateConfigFile.java" afterPath="$PROJECT_DIR$/src/main/java/utility/UpdateConfigFile.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utility/WebDriverGiver.java" afterPath="$PROJECT_DIR$/src/main/java/utility/WebDriverGiver.java" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test05.class" afterPath="$PROJECT_DIR$/target/classes/gui/draft/Test05.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test06$1.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test06$10.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test06$11.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test06$12.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test06$13.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test06$2.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test06$3.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test06$4.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test06$5.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test06$6.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test06$7.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test06$8.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test06$9.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test06.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Text06Main.class" afterPath="$PROJECT_DIR$/target/classes/gui/draft/Text06Main.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/main/LaunchGUI.class" afterPath="$PROJECT_DIR$/target/classes/gui/main/LaunchGUI.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/utility/Constant.class" afterPath="$PROJECT_DIR$/target/classes/utility/Constant.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/utility/ExcelUtils.class" afterPath="$PROJECT_DIR$/target/classes/utility/ExcelUtils.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionOne.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionOne.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ubnt/m2/M2_Configuration.class" afterPath="$PROJECT_DIR$/target/classes/ubnt/m2/M2_Configuration.class" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ubnt/m5/M5_Configuration.class" afterPath="$PROJECT_DIR$/target/classes/ubnt/m5/M5_Configuration.class" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -68,73 +36,116 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="UBNT_GUI.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/gui/main/UBNT_GUI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="23" column="40" lean-forward="false" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="UBNTVertionOne.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/UBNTVertionOne.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="62">
-              <caret line="297" column="19" lean-forward="false" selection-start-line="297" selection-start-column="14" selection-end-line="297" selection-end-column="19" />
+            <state relative-caret-position="395">
+              <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
               <folding>
                 <element signature="e#1333#1341#0" expanded="true" />
                 <element signature="e#1442#1450#0" expanded="true" />
-                <element signature="e#4239#4891#0" expanded="true" />
-                <element signature="e#4890#4891#0" expanded="true" />
-                <element signature="e#5609#5826#0" expanded="true" />
-                <element signature="e#5825#5826#0" expanded="true" />
-                <element signature="e#8024#8941#0" expanded="true" />
-                <element signature="e#8940#8941#0" expanded="true" />
-                <element signature="e#9047#9955#0" expanded="true" />
-                <element signature="e#9217#9225#0" expanded="true" />
-                <element signature="e#9954#9955#0" expanded="true" />
-                <element signature="e#9995#11078#0" expanded="true" />
-                <element signature="e#11077#11078#0" expanded="true" />
-                <element signature="e#11115#11511#0" expanded="true" />
-                <element signature="e#11510#11511#0" expanded="true" />
-                <element signature="e#15598#16320#0" expanded="true" />
-                <element signature="e#16319#16320#0" expanded="true" />
-                <element signature="e#17687#18409#0" expanded="true" />
-                <element signature="e#18408#18409#0" expanded="true" />
-                <element signature="e#19407#19415#0" expanded="true" />
-                <element signature="e#19625#19637#0" expanded="true" />
-                <element signature="e#25569#29708#0" expanded="true" />
-                <element signature="e#29707#29708#0" expanded="true" />
-                <element signature="e#30415#30423#0" expanded="true" />
-                <element signature="e#30633#30645#0" expanded="true" />
-                <element signature="e#33930#38262#0" expanded="true" />
-                <element signature="e#38261#38262#0" expanded="true" />
-                <element signature="e#43590#44490#0" expanded="true" />
-                <element signature="e#44489#44490#0" expanded="true" />
-                <element signature="e#44572#44732#0" expanded="true" />
-                <element signature="e#44731#44732#0" expanded="true" />
+                <element signature="e#4236#4888#0" expanded="true" />
+                <element signature="e#4887#4888#0" expanded="true" />
+                <element signature="e#5606#5823#0" expanded="true" />
+                <element signature="e#5822#5823#0" expanded="true" />
+                <element signature="e#8021#8938#0" expanded="true" />
+                <element signature="e#8937#8938#0" expanded="true" />
+                <element signature="e#9044#9952#0" expanded="true" />
+                <element signature="e#9214#9222#0" expanded="true" />
+                <element signature="e#9951#9952#0" expanded="true" />
+                <element signature="e#9992#11075#0" expanded="true" />
+                <element signature="e#11074#11075#0" expanded="true" />
+                <element signature="e#11112#11508#0" expanded="true" />
+                <element signature="e#11507#11508#0" expanded="true" />
+                <element signature="e#15595#16317#0" expanded="true" />
+                <element signature="e#16316#16317#0" expanded="true" />
+                <element signature="e#17684#18406#0" expanded="true" />
+                <element signature="e#18405#18406#0" expanded="true" />
+                <element signature="e#19404#19412#0" expanded="true" />
+                <element signature="e#19622#19634#0" expanded="true" />
+                <element signature="e#25566#29705#0" expanded="true" />
+                <element signature="e#29704#29705#0" expanded="true" />
+                <element signature="e#30412#30420#0" expanded="true" />
+                <element signature="e#30630#30642#0" expanded="true" />
+                <element signature="e#33927#38259#0" expanded="true" />
+                <element signature="e#38258#38259#0" expanded="true" />
+                <element signature="e#43587#44487#0" expanded="true" />
+                <element signature="e#44486#44487#0" expanded="true" />
+                <element signature="e#44569#44729#0" expanded="true" />
+                <element signature="e#44728#44729#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="M5_Configuration.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ubnt/m5/M5_Configuration.java">
+      <file leaf-file-name="UBNTVertionTwo.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/UBNTVertionTwo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="20" column="83" lean-forward="false" selection-start-line="20" selection-start-column="83" selection-end-line="20" selection-end-column="83" />
+            <state relative-caret-position="349">
+              <caret line="438" column="39" lean-forward="false" selection-start-line="438" selection-start-column="39" selection-end-line="438" selection-end-column="39" />
+              <folding>
+                <element signature="e#1340#1348#0" expanded="true" />
+                <element signature="e#5060#7415#0" expanded="true" />
+                <element signature="e#7414#7415#0" expanded="true" />
+                <element signature="method#editRow#0;class#UBNTVertionTwo#0" expanded="false" />
+                <element signature="method#rowGenerator#0;class#UBNTVertionTwo#0" expanded="false" />
+                <element signature="method#updateOverlayPanel#0;class#UBNTVertionTwo#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileInputStream.java" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/io/FileInputStream.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="246">
+              <caret line="92" column="34" lean-forward="false" selection-start-line="92" selection-start-column="34" selection-end-line="92" selection-end-column="34" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+      <file leaf-file-name="File.java" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/io/File.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="223">
+              <caret line="274" column="11" lean-forward="false" selection-start-line="274" selection-start-column="11" selection-end-line="274" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DefaultTableModel.java" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/javax/swing/table/DefaultTableModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="223">
+              <caret line="592" column="15" lean-forward="false" selection-start-line="592" selection-start-column="15" selection-end-line="592" selection-end-column="15" />
+              <folding>
+                <element signature="e#20993#20994#0" expanded="true" />
+                <element signature="e#21033#21034#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VersionTwoMain.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/VersionTwoMain.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="161">
-              <caret line="7" column="44" lean-forward="false" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
+              <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+              <folding>
+                <element signature="e#181#182#0" expanded="true" />
+                <element signature="e#224#225#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="M5_Configuration.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ubnt/m5/M5_Configuration.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="256">
+              <caret line="21" column="90" lean-forward="false" selection-start-line="21" selection-start-column="90" selection-end-line="21" selection-end-column="90" />
               <folding />
             </state>
           </provider>
@@ -143,8 +154,8 @@
       <file leaf-file-name="M2_Configuration.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ubnt/m2/M2_Configuration.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="18" column="83" lean-forward="false" selection-start-line="18" selection-start-column="83" selection-end-line="18" selection-end-column="83" />
+            <state relative-caret-position="138">
+              <caret line="19" column="55" lean-forward="false" selection-start-line="19" selection-start-column="55" selection-end-line="19" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -160,41 +171,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ExcelUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/utility/ExcelUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="35" column="12" lean-forward="false" selection-start-line="35" selection-start-column="12" selection-end-line="38" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UpdateConfigFile.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/utility/UpdateConfigFile.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="41" column="33" lean-forward="false" selection-start-line="41" selection-start-column="33" selection-end-line="41" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UBNT_Configuration_M2.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/remoteConfigurationTesting/UBNT_Configuration_M2.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Constant.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/utility/Constant.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="10" column="60" lean-forward="false" selection-start-line="10" selection-start-column="60" selection-end-line="10" selection-end-column="60" />
+            <state relative-caret-position="184">
+              <caret line="8" column="76" lean-forward="false" selection-start-line="8" selection-start-column="60" selection-end-line="8" selection-end-column="76" />
               <folding />
             </state>
           </provider>
@@ -212,26 +193,16 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>tablePanel</find>
-      <find>无线</find>
-      <find>jTable</find>
-      <find>选</find>
-      <find>createTextPanelOverlay</find>
-      <find>改</find>
-      <find>sub</find>
-      <find>删除</find>
       <find>导</find>
       <find>row</find>
       <find>Row</find>
       <find>tableHead</find>
       <find>main</find>
       <find>columnNames</find>
-      <find>exportToExcel</find>
       <find>toIPString</find>
       <find>overlay</find>
       <find>项目</find>
       <find>create</find>
-      <find>选择</find>
       <find>projectListComboBox</find>
       <find>新建</find>
       <find>realLength</find>
@@ -240,8 +211,18 @@
       <find>导出</find>
       <find>show</find>
       <find>EXCEL</find>
-      <find>importFromExcel</find>
       <find>excel</find>
+      <find>选择</find>
+      <find>rowNum</find>
+      <find>generateNewProjectDilog</find>
+      <find>scroll</find>
+      <find>Export</find>
+      <find>import</find>
+      <find>commonFields</find>
+      <find>pName</find>
+      <find>exportToExcel</find>
+      <find>CommonFields</find>
+      <find>importFromExcel</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -255,8 +236,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/gui/common/LaunchGUI.java" />
-        <option value="$PROJECT_DIR$/src/main/java/configData/M2_Config.cfg" />
         <option value="$PROJECT_DIR$/src/main/java/configData/AP_Config.cfg" />
         <option value="$PROJECT_DIR$/src/main/java/gui/LaunchGUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/ubnt/m5/M5_ST.java" />
@@ -299,13 +278,15 @@
         <option value="$PROJECT_DIR$/src/main/java/gui/draft/Test06.java" />
         <option value="$PROJECT_DIR$/src/main/java/gui/draft/UBNTVertionOne.java" />
         <option value="$PROJECT_DIR$/src/main/java/gui/main/LaunchGUI.java" />
-        <option value="$PROJECT_DIR$/src/main/java/gui/version/UBNTVertionOne.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/utility/UpdateConfigFile.java" />
-        <option value="$PROJECT_DIR$/src/main/java/utility/Constant.java" />
         <option value="$PROJECT_DIR$/src/main/java/utility/WebDriverGiver.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ubnt/m2/M2_Configuration.java" />
         <option value="$PROJECT_DIR$/src/main/java/ubnt/m5/M5_Configuration.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ubnt/m2/M2_Configuration.java" />
+        <option value="$PROJECT_DIR$/src/main/java/gui/version/UBNTVertionOne.java" />
+        <option value="$PROJECT_DIR$/src/main/java/gui/version/VersionTwoMain.java" />
+        <option value="$PROJECT_DIR$/src/main/java/utility/Constant.java" />
+        <option value="$PROJECT_DIR$/src/main/java/gui/version/UBNTVertionTwo.java" />
       </list>
     </option>
   </component>
@@ -392,7 +373,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="excelFiles" type="462c0819:PsiDirectoryNode" />
+              <item name="configData" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="remoteConfigCentre" type="b2602c69:ProjectViewProjectNode" />
@@ -400,7 +381,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="geckodriver" type="462c0819:PsiDirectoryNode" />
+              <item name="gui" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="remoteConfigCentre" type="b2602c69:ProjectViewProjectNode" />
@@ -408,7 +389,8 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ubnt" type="462c0819:PsiDirectoryNode" />
+              <item name="gui" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="remoteConfigCentre" type="b2602c69:ProjectViewProjectNode" />
@@ -416,17 +398,8 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ubnt" type="462c0819:PsiDirectoryNode" />
-              <item name="m2" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="remoteConfigCentre" type="b2602c69:ProjectViewProjectNode" />
-              <item name="remoteConfigCentre" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ubnt" type="462c0819:PsiDirectoryNode" />
-              <item name="m5" type="462c0819:PsiDirectoryNode" />
+              <item name="gui" type="462c0819:PsiDirectoryNode" />
+              <item name="version" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="remoteConfigCentre" type="b2602c69:ProjectViewProjectNode" />
@@ -435,27 +408,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="utility" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="remoteConfigCentre" type="b2602c69:ProjectViewProjectNode" />
-              <item name="remoteConfigCentre" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="remoteConfigCentre" type="b2602c69:ProjectViewProjectNode" />
-              <item name="remoteConfigCentre" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="remoteConfigCentre" type="b2602c69:ProjectViewProjectNode" />
-              <item name="remoteConfigCentre" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="remoteConfigurationTesting" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -484,11 +436,11 @@
       <recent name="draft" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="gui.version" />
       <recent name="gui.draft" />
       <recent name="gui" />
       <recent name="remoteConfigurationTesting" />
       <recent name="pageObject" />
-      <recent name="appModules" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\RemoteConfigCentre\remoteConfigCentre\src\main\java\excelFiles" />
@@ -510,32 +462,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.LaunchGUI">
+  <component name="RunManager" selected="Application.VersionTwoMain">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
       <option name="HEIGHT" value="300" />
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <module />
-    </configuration>
-    <configuration name="JMIPV4AddressField" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="gui.version.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="gui.draft.JMIPV4AddressField" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="TrainScheduling" />
-      <envs />
     </configuration>
     <configuration name="LaunchGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
@@ -602,6 +535,25 @@
         </pattern>
       </extension>
       <option name="MAIN_CLASS_NAME" value="gui.version.UBNTVertionOne" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="TrainScheduling" />
+      <envs />
+    </configuration>
+    <configuration name="VersionTwoMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="gui.version.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="gui.version.VersionTwoMain" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -689,18 +641,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Application.Text05Main" />
-      <item index="1" class="java.lang.String" itemvalue="Application.JMIPV4AddressField" />
-      <item index="2" class="java.lang.String" itemvalue="Application.Text06Main" />
-      <item index="3" class="java.lang.String" itemvalue="Application.LaunchGUI" />
-      <item index="4" class="java.lang.String" itemvalue="Application.UBNTVertionOne" />
+      <item index="1" class="java.lang.String" itemvalue="Application.Text06Main" />
+      <item index="2" class="java.lang.String" itemvalue="Application.LaunchGUI" />
+      <item index="3" class="java.lang.String" itemvalue="Application.UBNTVertionOne" />
+      <item index="4" class="java.lang.String" itemvalue="Application.VersionTwoMain" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.LaunchGUI" />
-        <item index="1" class="java.lang.String" itemvalue="Application.UBNTVertionOne" />
-        <item index="2" class="java.lang.String" itemvalue="Application.Text06Main" />
-        <item index="3" class="java.lang.String" itemvalue="Application.Text05Main" />
-        <item index="4" class="java.lang.String" itemvalue="Application.JMIPV4AddressField" />
+        <item index="0" class="java.lang.String" itemvalue="Application.VersionTwoMain" />
+        <item index="1" class="java.lang.String" itemvalue="Application.LaunchGUI" />
+        <item index="2" class="java.lang.String" itemvalue="Application.UBNTVertionOne" />
+        <item index="3" class="java.lang.String" itemvalue="Application.Text06Main" />
+        <item index="4" class="java.lang.String" itemvalue="Application.Text05Main" />
       </list>
     </recent_temporary>
   </component>
@@ -763,6 +715,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1928" y="-8" width="1936" height="1096" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32012847" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -857,7 +810,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/ubnt/m5/M5_Configuration.java</url>
-          <line>92</line>
+          <line>93</line>
           <properties />
           <option name="timeStamp" value="111" />
         </line-breakpoint>
@@ -879,8 +832,14 @@
           <properties />
           <option name="timeStamp" value="145" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/gui/version/UBNTVertionTwo.java</url>
+          <line>337</line>
+          <properties />
+          <option name="timeStamp" value="151" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="146" />
+      <option name="time" value="152" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -889,51 +848,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/javax/swing/UIManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="176" column="13" lean-forward="false" selection-start-line="176" selection-start-column="13" selection-end-line="176" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/javax/swing/JTextField.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="170" column="11" lean-forward="false" selection-start-line="170" selection-start-column="11" selection-end-line="170" selection-end-column="11" />
-          <folding>
-            <element signature="e#6117#6118#0" expanded="false" />
-            <element signature="e#6152#6153#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/gui/draft/Test02.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="53" column="54" lean-forward="false" selection-start-line="53" selection-start-column="43" selection-end-line="53" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/javax/swing/JPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="93" column="11" lean-forward="false" selection-start-line="93" selection-start-column="11" selection-end-line="93" selection-end-column="11" />
-          <folding>
-            <element signature="e#2361#2362#0" expanded="false" />
-            <element signature="e#2395#2396#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/javax/swing/JComboBox.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="249" column="15" lean-forward="false" selection-start-line="249" selection-start-column="14" selection-end-line="249" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/awt/Font.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="232">
@@ -1214,19 +1128,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/javax/swing/table/DefaultTableModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="157" column="40" lean-forward="false" selection-start-line="157" selection-start-column="36" selection-end-line="157" selection-end-column="40" />
-          <folding>
-            <element signature="e#4946#4947#0" expanded="false" />
-            <element signature="e#4994#4995#0" expanded="false" />
-            <element signature="e#5569#5570#0" expanded="false" />
-            <element signature="e#5617#5618#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/gui/draft/Test05.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="121">
@@ -1413,46 +1314,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/UBNTVertionOne.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="62">
-          <caret line="297" column="19" lean-forward="false" selection-start-line="297" selection-start-column="14" selection-end-line="297" selection-end-column="19" />
-          <folding>
-            <element signature="e#1333#1341#0" expanded="true" />
-            <element signature="e#1442#1450#0" expanded="true" />
-            <element signature="e#4239#4891#0" expanded="true" />
-            <element signature="e#4890#4891#0" expanded="true" />
-            <element signature="e#5609#5826#0" expanded="true" />
-            <element signature="e#5825#5826#0" expanded="true" />
-            <element signature="e#8024#8941#0" expanded="true" />
-            <element signature="e#8940#8941#0" expanded="true" />
-            <element signature="e#9047#9955#0" expanded="true" />
-            <element signature="e#9217#9225#0" expanded="true" />
-            <element signature="e#9954#9955#0" expanded="true" />
-            <element signature="e#9995#11078#0" expanded="true" />
-            <element signature="e#11077#11078#0" expanded="true" />
-            <element signature="e#11115#11511#0" expanded="true" />
-            <element signature="e#11510#11511#0" expanded="true" />
-            <element signature="e#15598#16320#0" expanded="true" />
-            <element signature="e#16319#16320#0" expanded="true" />
-            <element signature="e#17687#18409#0" expanded="true" />
-            <element signature="e#18408#18409#0" expanded="true" />
-            <element signature="e#19407#19415#0" expanded="true" />
-            <element signature="e#19625#19637#0" expanded="true" />
-            <element signature="e#25569#29708#0" expanded="true" />
-            <element signature="e#29707#29708#0" expanded="true" />
-            <element signature="e#30415#30423#0" expanded="true" />
-            <element signature="e#30633#30645#0" expanded="true" />
-            <element signature="e#33930#38262#0" expanded="true" />
-            <element signature="e#38261#38262#0" expanded="true" />
-            <element signature="e#43590#44490#0" expanded="true" />
-            <element signature="e#44489#44490#0" expanded="true" />
-            <element signature="e#44572#44732#0" expanded="true" />
-            <element signature="e#44731#44732#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/utility/UpdateConfigFile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
@@ -1461,10 +1322,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/utility/Constant.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ubnt/m5/M5_Configuration.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="10" column="60" lean-forward="false" selection-start-line="10" selection-start-column="60" selection-end-line="10" selection-end-column="60" />
+        <state relative-caret-position="256">
+          <caret line="21" column="90" lean-forward="false" selection-start-line="21" selection-start-column="90" selection-end-line="21" selection-end-column="90" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ubnt/m2/M2_Configuration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="19" column="55" lean-forward="false" selection-start-line="19" selection-start-column="55" selection-end-line="19" selection-end-column="55" />
           <folding />
         </state>
       </provider>
@@ -1477,19 +1346,112 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ubnt/m2/M2_Configuration.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/UBNTVertionOne.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="18" column="83" lean-forward="false" selection-start-line="18" selection-start-column="83" selection-end-line="18" selection-end-column="83" />
+        <state relative-caret-position="395">
+          <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+          <folding>
+            <element signature="e#1333#1341#0" expanded="true" />
+            <element signature="e#1442#1450#0" expanded="true" />
+            <element signature="e#4236#4888#0" expanded="true" />
+            <element signature="e#4887#4888#0" expanded="true" />
+            <element signature="e#5606#5823#0" expanded="true" />
+            <element signature="e#5822#5823#0" expanded="true" />
+            <element signature="e#8021#8938#0" expanded="true" />
+            <element signature="e#8937#8938#0" expanded="true" />
+            <element signature="e#9044#9952#0" expanded="true" />
+            <element signature="e#9214#9222#0" expanded="true" />
+            <element signature="e#9951#9952#0" expanded="true" />
+            <element signature="e#9992#11075#0" expanded="true" />
+            <element signature="e#11074#11075#0" expanded="true" />
+            <element signature="e#11112#11508#0" expanded="true" />
+            <element signature="e#11507#11508#0" expanded="true" />
+            <element signature="e#15595#16317#0" expanded="true" />
+            <element signature="e#16316#16317#0" expanded="true" />
+            <element signature="e#17684#18406#0" expanded="true" />
+            <element signature="e#18405#18406#0" expanded="true" />
+            <element signature="e#19404#19412#0" expanded="true" />
+            <element signature="e#19622#19634#0" expanded="true" />
+            <element signature="e#25566#29705#0" expanded="true" />
+            <element signature="e#29704#29705#0" expanded="true" />
+            <element signature="e#30412#30420#0" expanded="true" />
+            <element signature="e#30630#30642#0" expanded="true" />
+            <element signature="e#33927#38259#0" expanded="true" />
+            <element signature="e#38258#38259#0" expanded="true" />
+            <element signature="e#43587#44487#0" expanded="true" />
+            <element signature="e#44486#44487#0" expanded="true" />
+            <element signature="e#44569#44729#0" expanded="true" />
+            <element signature="e#44728#44729#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/javax/swing/table/DefaultTableModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="592" column="15" lean-forward="false" selection-start-line="592" selection-start-column="15" selection-end-line="592" selection-end-column="15" />
+          <folding>
+            <element signature="e#20993#20994#0" expanded="true" />
+            <element signature="e#21033#21034#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/configData/AP_Config.cfg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ubnt/m5/M5_Configuration.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/VersionTwoMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="20" column="83" lean-forward="false" selection-start-line="20" selection-start-column="83" selection-end-line="20" selection-end-column="83" />
+        <state relative-caret-position="161">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding>
+            <element signature="e#181#182#0" expanded="true" />
+            <element signature="e#224#225#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/utility/Constant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="76" lean-forward="false" selection-start-line="8" selection-start-column="60" selection-end-line="8" selection-end-column="76" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/io/File.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="274" column="11" lean-forward="false" selection-start-line="274" selection-start-column="11" selection-end-line="274" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/io/FileInputStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="92" column="34" lean-forward="false" selection-start-line="92" selection-start-column="34" selection-end-line="92" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/UBNTVertionTwo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="349">
+          <caret line="438" column="39" lean-forward="false" selection-start-line="438" selection-start-column="39" selection-end-line="438" selection-end-column="39" />
+          <folding>
+            <element signature="e#1340#1348#0" expanded="true" />
+            <element signature="e#5060#7415#0" expanded="true" />
+            <element signature="e#7414#7415#0" expanded="true" />
+            <element signature="method#editRow#0;class#UBNTVertionTwo#0" expanded="false" />
+            <element signature="method#rowGenerator#0;class#UBNTVertionTwo#0" expanded="false" />
+            <element signature="method#updateOverlayPanel#0;class#UBNTVertionTwo#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
