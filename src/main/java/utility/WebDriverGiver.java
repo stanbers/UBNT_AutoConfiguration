@@ -12,7 +12,7 @@ import org.openqa.selenium.firefox.internal.ProfilesIni;
 public class WebDriverGiver {
     public static WebDriver getWebDriver(){
         ProfilesIni profile = new ProfilesIni();
-        FirefoxProfile myProfile = profile.getProfile("testProfile");
+        FirefoxProfile myProfile = profile.getProfile("default");
         FirefoxOptions options = new FirefoxOptions().setProfile(myProfile);
         WebDriver driver = new FirefoxDriver(options);
         return driver;
