@@ -386,6 +386,16 @@ public class JMIPV4AddressField extends JTextField implements Serializable {
 
     @Override
     public void setText(String text) {
+//        String[] IPbit = text.split("\\.");
+//        char[] charArray = IPbit[1].toCharArray();
+//        for (int i = 0; i < charArray.length; i++) {
+//            if (!Character.isDigit(charArray[i])){
+//                return;
+//            }
+//        }
+//        if (Integer.parseInt(IPbit[1]) > 255){
+//            return;
+//        }
         setIpAddress(text);
     }
 

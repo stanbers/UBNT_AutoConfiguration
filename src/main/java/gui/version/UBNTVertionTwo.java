@@ -8,6 +8,7 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import utility.Constant;
+import utility.LimitedDocument;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -170,24 +171,6 @@ public class UBNTVertionTwo {
             }
         });
 
-//
-////        //add combo box item changed listener
-//        projectListComboBox.addItemListener(new ItemListener() {
-//            @Override
-//            public void itemStateChanged(ItemEvent e) {
-//                //String selectedItem = (String) e.getItem();
-//                //TODO: here need navigate to the main page to show the table
-//                homepagePanel.setVisible(false);
-//                SwingUtilities.updateComponentTreeUI(jFrame);
-//                jFrame.repaint();
-//                //TODO: render the row data to the outPanel, the problem is how to send the data to outPanel
-//                //TODO: the row data are read from excel, one excel server one project
-//                jFrame.setContentPane(outPanel);
-//            }
-//        });
-
-
-
         //setup project button
         JButton createPojectButton = new JButton("+ 新建项目");
         createPojectButton.setLocation(500,220);
@@ -216,7 +199,6 @@ public class UBNTVertionTwo {
         jTable.setLocation(20,60);
         jTable.setSize(950,450);
         jTable.setRowHeight(25);
-
 
         //setup column width
         jTable.getColumn("编号").setMaxWidth(45);
@@ -497,8 +479,6 @@ public class UBNTVertionTwo {
 
     }
 
-
-
     /**
      * generate rows
      */
@@ -669,6 +649,7 @@ public class UBNTVertionTwo {
 //                        jTextFields.add(fruq_update.getItemAt(fruq_update.getSelectedIndex()).toString());
 
                         if (rowData.get(i+2).trim().equals("null")){
+                            inputBoxes = new JTextField(SwingConstants.RIGHT);
                             inputBoxes.setText(null);
                         }else {
                             fruq_update.setSelectedItem(rowData.get(i+2));
@@ -1080,6 +1061,11 @@ public class UBNTVertionTwo {
         jPanel.add(projectNumLabel);
         jPanel.add(projectNumInputBox);
 
+        //setup the max length of projectNumber input box
+        LimitedDocument ld = new LimitedDocument(3);
+        ld.setAllowChar("0123456789");
+        projectNumInputBox.setDocument(ld);
+
         //project id label and corresponding text field
         JLabel projectNameLabel = new JLabel("项目名称 :");
         final JTextField projectNameInputBox = new JTextField();  // I need the input text, it will be used later
@@ -1113,8 +1099,10 @@ public class UBNTVertionTwo {
 
         //gateway IP label and corresponding text field
         JLabel gatewayIP = new JLabel("无线网关 :");
-//        final JTextField gatewayIPInputBox = new JTextField();  // I need the input text, it will be used later
-        final JTextField gatewayIPInputBox = new JMIPV4AddressField();  // I need the input text, it will be used later
+//        final JTextField gatewayIPInputBox = new JTextField();
+        final JMIPV4AddressField gatewayIPInputBox = new JMIPV4AddressField();
+        String defaultIPValues = "10.1.2.1";
+        gatewayIPInputBox.setIpAddress(defaultIPValues);
         gatewayIP.setLocation(60,230);
         gatewayIP.setSize(120,40);
         gatewayIP.setFont(new Font(null, 1, 18));
@@ -1123,6 +1111,34 @@ public class UBNTVertionTwo {
         gatewayIPInputBox.setFont(new Font(null, Font.PLAIN, 18));
         jPanel.add(gatewayIP);
         jPanel.add(gatewayIPInputBox);
+
+        //TODO: update gatewayIP when lose focus
+        projectNumInputBox.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                JTextField jTextField = (JTextField) e.getSource();
+                String pNumStr = jTextField.getText();
+                int pNum = Integer.parseInt(pNumStr);
+                if (pNum > 255){
+                    JOptionPane.showMessageDialog(
+                            jDialog,
+                            "您输入的编号大于255，请输入小于255的数字 !",
+                            "项目编号",
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
+                    projectNumInputBox.grabFocus();
+                }else {
+                    String dynamicIP = "10."+pNumStr+".2.1";
+                    gatewayIPInputBox.setText(dynamicIP);
+                    projectNameInputBox.grabFocus();
+                }
+            }
+        });
 
         //net mask label and corresponding text field
         JLabel netMaskLabel = new JLabel("子网掩码 :");
