@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6297135e-99b4-48ed-8d1f-4be9376233e2" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/gui/version/UBNTVertionTwo.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/gui/version/VersionTwoMain.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/TrainScheduling_jar/TrainScheduling.jar" afterPath="$PROJECT_DIR$/out/artifacts/TrainScheduling_jar/TrainScheduling.jar" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/version/UBNTVertionOne.java" afterPath="$PROJECT_DIR$/src/main/java/gui/version/UBNTVertionOne.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ubnt/m2/M2_Configuration.java" afterPath="$PROJECT_DIR$/src/main/java/ubnt/m2/M2_Configuration.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ubnt/m5/M5_Configuration.java" afterPath="$PROJECT_DIR$/src/main/java/ubnt/m5/M5_Configuration.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utility/Constant.java" afterPath="$PROJECT_DIR$/src/main/java/utility/Constant.java" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionOne.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionOne.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ubnt/m2/M2_Configuration.class" afterPath="$PROJECT_DIR$/target/classes/ubnt/m2/M2_Configuration.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ubnt/m5/M5_Configuration.class" afterPath="$PROJECT_DIR$/target/classes/ubnt/m5/M5_Configuration.class" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gui/version/UBNTVertionTwo.java" afterPath="$PROJECT_DIR$/src/main/java/gui/version/UBNTVertionTwo.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -39,8 +30,8 @@
       <file leaf-file-name="UBNTVertionOne.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/UBNTVertionOne.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="395">
-              <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+            <state relative-caret-position="-434">
+              <caret line="537" column="35" lean-forward="false" selection-start-line="537" selection-start-column="35" selection-end-line="537" selection-end-column="63" />
               <folding>
                 <element signature="e#1333#1341#0" expanded="true" />
                 <element signature="e#1442#1450#0" expanded="true" />
@@ -81,15 +72,39 @@
       <file leaf-file-name="UBNTVertionTwo.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/UBNTVertionTwo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
-              <caret line="438" column="39" lean-forward="false" selection-start-line="438" selection-start-column="39" selection-end-line="438" selection-end-column="39" />
+            <state relative-caret-position="303">
+              <caret line="885" column="17" lean-forward="true" selection-start-line="885" selection-start-column="17" selection-end-line="885" selection-end-column="17" />
               <folding>
-                <element signature="e#1340#1348#0" expanded="true" />
-                <element signature="e#5060#7415#0" expanded="true" />
-                <element signature="e#7414#7415#0" expanded="true" />
-                <element signature="method#editRow#0;class#UBNTVertionTwo#0" expanded="false" />
-                <element signature="method#rowGenerator#0;class#UBNTVertionTwo#0" expanded="false" />
-                <element signature="method#updateOverlayPanel#0;class#UBNTVertionTwo#0" expanded="false" />
+                <element signature="e#1192#1200#0" expanded="true" />
+                <element signature="e#4912#7267#0" expanded="true" />
+                <element signature="e#7266#7267#0" expanded="true" />
+                <element signature="e#11914#12845#0" expanded="true" />
+                <element signature="e#12844#12845#0" expanded="true" />
+                <element signature="e#30083#34329#0" expanded="true" />
+                <element signature="e#34328#34329#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SwingConstants.java" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/javax/swing/SwingConstants.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="223">
+              <caret line="61" column="32" lean-forward="false" selection-start-line="61" selection-start-column="32" selection-end-line="61" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JTextField.java" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/javax/swing/JTextField.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="214">
+              <caret line="196" column="11" lean-forward="false" selection-start-line="196" selection-start-column="11" selection-end-line="196" selection-end-column="11" />
+              <folding>
+                <element signature="e#6952#6953#0" expanded="true" />
+                <element signature="e#6993#6994#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -141,46 +156,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="M5_Configuration.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ubnt/m5/M5_Configuration.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="21" column="90" lean-forward="false" selection-start-line="21" selection-start-column="90" selection-end-line="21" selection-end-column="90" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="M2_Configuration.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ubnt/m2/M2_Configuration.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="19" column="55" lean-forward="false" selection-start-line="19" selection-start-column="55" selection-end-line="19" selection-end-column="55" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WebDriverGiver.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/utility/WebDriverGiver.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="14" column="62" lean-forward="false" selection-start-line="14" selection-start-column="55" selection-end-line="14" selection-end-column="62" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Constant.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/utility/Constant.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="8" column="76" lean-forward="false" selection-start-line="8" selection-start-column="60" selection-end-line="8" selection-end-column="76" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -193,10 +168,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>导</find>
-      <find>row</find>
-      <find>Row</find>
-      <find>tableHead</find>
       <find>main</find>
       <find>columnNames</find>
       <find>toIPString</find>
@@ -218,11 +189,15 @@
       <find>scroll</find>
       <find>Export</find>
       <find>import</find>
-      <find>commonFields</find>
       <find>pName</find>
       <find>exportToExcel</find>
       <find>CommonFields</find>
+      <find>commonFields</find>
       <find>importFromExcel</find>
+      <find>empty</find>
+      <find>editRow</find>
+      <find>DK</find>
+      <find>mess</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -726,7 +701,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36694387" sideWeight="0.36614582" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976446" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.251606" sideWeight="0.49793753" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.251606" sideWeight="0.49793753" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30085653" sideWeight="0.63385415" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -736,7 +711,7 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20676692" sideWeight="0.21563981" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30299786" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21948609" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -834,12 +809,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/gui/version/UBNTVertionTwo.java</url>
-          <line>337</line>
+          <line>333</line>
           <properties />
           <option name="timeStamp" value="151" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/gui/version/UBNTVertionTwo.java</url>
+          <line>296</line>
+          <properties />
+          <option name="timeStamp" value="156" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="152" />
+      <option name="time" value="157" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -848,21 +829,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/awt/Font.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="693" column="11" lean-forward="false" selection-start-line="693" selection-start-column="11" selection-end-line="693" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/gui/draft/CreateRowDynamically.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/gui/draft/Test03.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-596">
@@ -1346,46 +1312,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/UBNTVertionOne.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
-          <folding>
-            <element signature="e#1333#1341#0" expanded="true" />
-            <element signature="e#1442#1450#0" expanded="true" />
-            <element signature="e#4236#4888#0" expanded="true" />
-            <element signature="e#4887#4888#0" expanded="true" />
-            <element signature="e#5606#5823#0" expanded="true" />
-            <element signature="e#5822#5823#0" expanded="true" />
-            <element signature="e#8021#8938#0" expanded="true" />
-            <element signature="e#8937#8938#0" expanded="true" />
-            <element signature="e#9044#9952#0" expanded="true" />
-            <element signature="e#9214#9222#0" expanded="true" />
-            <element signature="e#9951#9952#0" expanded="true" />
-            <element signature="e#9992#11075#0" expanded="true" />
-            <element signature="e#11074#11075#0" expanded="true" />
-            <element signature="e#11112#11508#0" expanded="true" />
-            <element signature="e#11507#11508#0" expanded="true" />
-            <element signature="e#15595#16317#0" expanded="true" />
-            <element signature="e#16316#16317#0" expanded="true" />
-            <element signature="e#17684#18406#0" expanded="true" />
-            <element signature="e#18405#18406#0" expanded="true" />
-            <element signature="e#19404#19412#0" expanded="true" />
-            <element signature="e#19622#19634#0" expanded="true" />
-            <element signature="e#25566#29705#0" expanded="true" />
-            <element signature="e#29704#29705#0" expanded="true" />
-            <element signature="e#30412#30420#0" expanded="true" />
-            <element signature="e#30630#30642#0" expanded="true" />
-            <element signature="e#33927#38259#0" expanded="true" />
-            <element signature="e#38258#38259#0" expanded="true" />
-            <element signature="e#43587#44487#0" expanded="true" />
-            <element signature="e#44486#44487#0" expanded="true" />
-            <element signature="e#44569#44729#0" expanded="true" />
-            <element signature="e#44728#44729#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/javax/swing/table/DefaultTableModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="223">
@@ -1440,17 +1366,77 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/UBNTVertionOne.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-434">
+          <caret line="537" column="35" lean-forward="false" selection-start-line="537" selection-start-column="35" selection-end-line="537" selection-end-column="63" />
+          <folding>
+            <element signature="e#1333#1341#0" expanded="true" />
+            <element signature="e#1442#1450#0" expanded="true" />
+            <element signature="e#4236#4888#0" expanded="true" />
+            <element signature="e#4887#4888#0" expanded="true" />
+            <element signature="e#5606#5823#0" expanded="true" />
+            <element signature="e#5822#5823#0" expanded="true" />
+            <element signature="e#8021#8938#0" expanded="true" />
+            <element signature="e#8937#8938#0" expanded="true" />
+            <element signature="e#9044#9952#0" expanded="true" />
+            <element signature="e#9214#9222#0" expanded="true" />
+            <element signature="e#9951#9952#0" expanded="true" />
+            <element signature="e#9992#11075#0" expanded="true" />
+            <element signature="e#11074#11075#0" expanded="true" />
+            <element signature="e#11112#11508#0" expanded="true" />
+            <element signature="e#11507#11508#0" expanded="true" />
+            <element signature="e#15595#16317#0" expanded="true" />
+            <element signature="e#16316#16317#0" expanded="true" />
+            <element signature="e#17684#18406#0" expanded="true" />
+            <element signature="e#18405#18406#0" expanded="true" />
+            <element signature="e#19404#19412#0" expanded="true" />
+            <element signature="e#19622#19634#0" expanded="true" />
+            <element signature="e#25566#29705#0" expanded="true" />
+            <element signature="e#29704#29705#0" expanded="true" />
+            <element signature="e#30412#30420#0" expanded="true" />
+            <element signature="e#30630#30642#0" expanded="true" />
+            <element signature="e#33927#38259#0" expanded="true" />
+            <element signature="e#38258#38259#0" expanded="true" />
+            <element signature="e#43587#44487#0" expanded="true" />
+            <element signature="e#44486#44487#0" expanded="true" />
+            <element signature="e#44569#44729#0" expanded="true" />
+            <element signature="e#44728#44729#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/javax/swing/JTextField.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="196" column="11" lean-forward="false" selection-start-line="196" selection-start-column="11" selection-end-line="196" selection-end-column="11" />
+          <folding>
+            <element signature="e#6952#6953#0" expanded="true" />
+            <element signature="e#6993#6994#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/javax/swing/SwingConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="61" column="32" lean-forward="false" selection-start-line="61" selection-start-column="32" selection-end-line="61" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/UBNTVertionTwo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="438" column="39" lean-forward="false" selection-start-line="438" selection-start-column="39" selection-end-line="438" selection-end-column="39" />
+        <state relative-caret-position="303">
+          <caret line="885" column="17" lean-forward="true" selection-start-line="885" selection-start-column="17" selection-end-line="885" selection-end-column="17" />
           <folding>
-            <element signature="e#1340#1348#0" expanded="true" />
-            <element signature="e#5060#7415#0" expanded="true" />
-            <element signature="e#7414#7415#0" expanded="true" />
-            <element signature="method#editRow#0;class#UBNTVertionTwo#0" expanded="false" />
-            <element signature="method#rowGenerator#0;class#UBNTVertionTwo#0" expanded="false" />
-            <element signature="method#updateOverlayPanel#0;class#UBNTVertionTwo#0" expanded="false" />
+            <element signature="e#1192#1200#0" expanded="true" />
+            <element signature="e#4912#7267#0" expanded="true" />
+            <element signature="e#7266#7267#0" expanded="true" />
+            <element signature="e#11914#12845#0" expanded="true" />
+            <element signature="e#12844#12845#0" expanded="true" />
+            <element signature="e#30083#34329#0" expanded="true" />
+            <element signature="e#34328#34329#0" expanded="true" />
           </folding>
         </state>
       </provider>

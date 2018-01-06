@@ -17,10 +17,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -39,7 +36,6 @@ public class UBNTVertionTwo {
     private final static Log log = LogFactory.getLog(UBNTVertionTwo.class);
     //the container
     private JFrame jFrame = new JFrame("配置界面");
-    private String projectId;
     private List<String> commonFields = new ArrayList<String>();
 
     private String[] labelName = {"IP 地址 :","频率(MHz) :","Mac 地址 :"};
@@ -299,7 +295,7 @@ public class UBNTVertionTwo {
                 log.info("the " + rowNum + "th row was selected !");
                 for (int i = 1; i <= 8; i++) {
                         int a = cellValuesOfSpecificRow.size();
-                        log.info(a);
+                        log.info("row has " +a +"columns");
                     if (defautTableModel.getValueAt(rowNum,i) != null){
                         cellValuesOfSpecificRow.add(defautTableModel.getValueAt(rowNum,i).toString());
                     }else {
@@ -362,7 +358,7 @@ public class UBNTVertionTwo {
                 XSSFWorkbook wb = new XSSFWorkbook(excelFile);
                 XSSFSheet sheet = wb.getSheet("Sheet0");
                 int lastRowIndex = sheet.getLastRowNum();
-                for (int i = 1; i <= lastRowIndex ; i++) {
+                for (int i = (defautTableModel == null ? 0 : 1); i <= lastRowIndex ; i++) {
                     readFromExcel = new Vector<String>();
                     Row  = sheet.getRow(i);
                     if (Row == null) { break; }
@@ -576,8 +572,9 @@ public class UBNTVertionTwo {
 
         final String[] positions = new String[]{"左线","右线"};
         final JComboBox<String> jComboBox = new JComboBox<String>(positions);
-        final JTextField KM = new JTextField(SwingConstants.RIGHT);
-        final JTextField meter = new JTextField(SwingConstants.RIGHT);
+        final JTextField DKText = new JTextField(SwingConstants.RIGHT);
+//        final JTextField KM = new JTextField(SwingConstants.RIGHT);
+//        final JTextField meter = new JTextField(SwingConstants.RIGHT);
         final List<JTextField> jTextFields = new ArrayList<JTextField>();
         if (tabName != null && tabName.trim().equals("位置")){
 
@@ -605,37 +602,52 @@ public class UBNTVertionTwo {
             DK.setSize(30,30);
             DK.setFont(new Font(null,1,16));
 
-            KM.setLocation(155,90);
-            KM.setSize(70,30);
-            KM.setFont(new Font(null,1,16));
+            DKText.setLocation(155,90);
+            DKText.setSize(165,30);
+            DKText.setFont(new Font(null,1,16));
 
-            JLabel plus = new JLabel("+");
-            plus.setFont(new Font(null,0,15));
-            plus.setLocation(233,90);
-            plus.setSize(20,30);
-
-            meter.setFont(new Font(null,1,16));
-            meter.setSize(70,30);
-            meter.setLocation(250,90);
-
-            if (rowData != null && rowData.get(1).contains("+")){
-                String originalKM = rowData.get(1).substring(0,rowData.get(1).indexOf("+")-1);
-                String originalMeter = rowData.get(1).substring(rowData.get(1).indexOf("+")+1,rowData.get(1).length());
-                KM.setText(originalKM.trim());
-                meter.setText(originalMeter.trim());
-                log.info("the original km is " + originalKM.trim() + ", meter is " + originalMeter.trim());
-            }else {
-                KM.setText(null);
-                meter.setText(null);
+            if (rowData != null){
+                if (rowData.get(1).trim().equals("null")){
+                    DKText.setText(null);
+                }else {
+                    String dkMiles = rowData.get(1);
+                    DKText.setText(dkMiles);
+                    log.info("the DK mile is " + dkMiles);
+                }
             }
+
+            //validate number input only
+            DKText.addKeyListener(new KeyListener() {
+                @Override
+                public void keyTyped(KeyEvent e) {
+                    char vchar = e.getKeyChar();
+                    if (!(Character.isDigit(vchar)) && (vchar != KeyEvent.VK_BACK_SPACE) && (vchar != KeyEvent.VK_DELETE)){
+                        JOptionPane.showMessageDialog(
+                                jFrame,
+                                "请输入数字 !",
+                                "DK 里数",
+                                JOptionPane.INFORMATION_MESSAGE
+                        );
+                        e.consume();
+                    }
+                }
+
+                @Override
+                public void keyPressed(KeyEvent e) {
+
+                }
+
+                @Override
+                public void keyReleased(KeyEvent e) {
+
+                }
+            });
 
             jPanel.add(way);
             jPanel.add(jComboBox);
             jPanel.add(specificPosition);
             jPanel.add(DK);
-            jPanel.add(KM);
-            jPanel.add(plus);
-            jPanel.add(meter);
+            jPanel.add(DKText);
         }else {
             if (tabName != null && tabName.trim().equals("M2")){
                 realLength = labelName.length-2;
@@ -730,7 +742,7 @@ public class UBNTVertionTwo {
                 log.info(buttonText);
                 //get position
                 position = jComboBox.getSelectedItem().toString();
-                String DK = KM.getText() + " + " + meter.getText();
+                String DK = DKText.getText();
 
                 int progress = 0;
                 if (buttonText.trim().equals("M2")){
@@ -766,11 +778,13 @@ public class UBNTVertionTwo {
                 }else if (buttonText.trim().equals("位置")){
                     defautTableModel.setValueAt(position,rowNum,1);
                     defautTableModel.setValueAt(DK,rowNum,2);
-                    log.info("ssid is " + commonFields.get(0));
-                    log.info("M2 gatewayIP is " + commonFields.get(1));
-                    log.info("M2 netmask is " + commonFields.get(2));
-                    log.info("M5-AP gatewayIP is " + commonFields.get(3));
-                    log.info("M5-AP netmask is " + commonFields.get(4));
+                    if (commonFields != null){
+                        log.info("ssid is " + commonFields.get(0));
+                        log.info("M2 gatewayIP is " + commonFields.get(1));
+                        log.info("M2 netmask is " + commonFields.get(2));
+                        log.info("M5-AP gatewayIP is " + commonFields.get(3));
+                        log.info("M5-AP netmask is " + commonFields.get(4));
+                    }
                 }
 
                 if(!buttonText.trim().equals("位置")){
@@ -827,8 +841,7 @@ public class UBNTVertionTwo {
 
         final String[] positions = new String[]{"左线","右线"};
         final JComboBox<String> jComboBox = new JComboBox<String>(positions);
-        final JTextField KM = new JTextField(SwingConstants.RIGHT);
-        final JTextField meter = new JTextField(SwingConstants.RIGHT);
+        final JTextField DKText = new JTextField(SwingConstants.RIGHT);
         final List<JTextField> jTextFields = new ArrayList<JTextField>();
         if (tabName != null && tabName.trim().equals("位置")){
 
@@ -852,26 +865,42 @@ public class UBNTVertionTwo {
             DK.setSize(30,30);
             DK.setFont(new Font(null,1,16));
 
-            KM.setLocation(155,90);
-            KM.setSize(70,30);
-            KM.setFont(new Font(null,1,16));
+            DKText.setLocation(155,90);
+            DKText.setSize(165,30);
+            DKText.setFont(new Font(null,1,16));
 
-            JLabel plus = new JLabel("+");
-            plus.setFont(new Font(null,0,15));
-            plus.setLocation(233,90);
-            plus.setSize(20,30);
+            //validate number input only
+            DKText.addKeyListener(new KeyListener() {
+                @Override
+                public void keyTyped(KeyEvent e) {
+                    char vchar = e.getKeyChar();
+                    if (!(Character.isDigit(vchar)) && (vchar != KeyEvent.VK_BACK_SPACE) && (vchar != KeyEvent.VK_DELETE)){
+                        JOptionPane.showMessageDialog(
+                                jFrame,
+                                "请输入数字 !",
+                                "DK 里数",
+                                JOptionPane.INFORMATION_MESSAGE
+                        );
+                        e.consume();
+                    }
+                }
 
-            meter.setFont(new Font(null,1,16));
-            meter.setSize(70,30);
-            meter.setLocation(250,90);
+                @Override
+                public void keyPressed(KeyEvent e) {
+
+                }
+
+                @Override
+                public void keyReleased(KeyEvent e) {
+
+                }
+            });
 
             jPanel.add(way);
             jPanel.add(jComboBox);
             jPanel.add(specificPosition);
             jPanel.add(DK);
-            jPanel.add(KM);
-            jPanel.add(plus);
-            jPanel.add(meter);
+            jPanel.add(DKText);
         }else {
              if (tabName != null && tabName.trim().equals("M2")){
                 realLength = labelName.length-2;
@@ -925,7 +954,9 @@ public class UBNTVertionTwo {
                 log.info(buttonText);
                 //get position
                 position = jComboBox.getSelectedItem().toString();
-                String DK = KM.getText() + " + " + meter.getText();
+                String DK = DKText.getText();
+
+                //TODO:
 
                 int progress = 0;
                 if (buttonText.trim().equals("M2")){
@@ -961,11 +992,13 @@ public class UBNTVertionTwo {
                 }else if (buttonText.trim().equals("位置")){
                     defautTableModel.setValueAt(position,defautTableModel.getRowCount()-1,1);
                     defautTableModel.setValueAt(DK,defautTableModel.getRowCount()-1,2);
-                    log.info("ssid is " + commonFields.get(0));
-                    log.info("M2 gatewayIP is " + commonFields.get(1));
-                    log.info("M2 netmask is " + commonFields.get(2));
-                    log.info("M5-AP gatewayIP is " + commonFields.get(3));
-                    log.info("M5-AP netmask is " + commonFields.get(4));
+                    if (commonFields != null){
+                        log.info("ssid is " + commonFields.get(0));
+                        log.info("M2 gatewayIP is " + commonFields.get(1));
+                        log.info("M2 netmask is " + commonFields.get(2));
+                        log.info("M5-AP gatewayIP is " + commonFields.get(3));
+                        log.info("M5-AP netmask is " + commonFields.get(4));
+                    }
                 }
 
                 if (!buttonText.trim().equals("位置")){
