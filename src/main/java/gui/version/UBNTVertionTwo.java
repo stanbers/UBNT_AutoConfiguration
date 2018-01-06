@@ -53,6 +53,7 @@ public class UBNTVertionTwo {
 
     private XSSFCell Cell;
     private XSSFRow Row;
+    private final String[] fruqs = new String[]{"5820","5840","5860","5880","5900","5920"};
 
 
     /**
@@ -241,25 +242,19 @@ public class UBNTVertionTwo {
         tablePanel.setSize(960,400);
 
         outPanel.add(tablePanel);
-        JButton export = new JButton("导出数据");
+        JButton export = new JButton("导出");
         export.setFont(new Font(null,Font.BOLD,14));
         export.setLocation(40,450);
         export.setSize(100,40);
         outPanel.add(export);
 
-        final JButton editRow = new JButton("修改一行");
-        editRow.setLocation(470,450);
-        editRow.setSize(100,40);
-        editRow.setFont(new Font(null,Font.BOLD,14));
-        outPanel.add(editRow);
-
-        JButton removeRow = new JButton("删除一行");
+        JButton removeRow = new JButton("删除");
         removeRow.setLocation(590,450);
         removeRow.setSize(100,40);
         removeRow.setFont(new Font(null,Font.BOLD,14));
         outPanel.add(removeRow);
 
-        JButton add = new JButton("选择配置");
+        JButton add = new JButton("新建");
         add.setFont(new Font(null,Font.BOLD,14));
         add.setLocation(710,450);
         add.setSize(100,40);
@@ -285,24 +280,28 @@ public class UBNTVertionTwo {
             }
         });
 
-        //the whole cell of a specific row are stored in this list.
-        editRow.addActionListener(new ActionListener() {
+        //TODO: use double click table row instead of edit row button
+        jTable.addMouseListener(new MouseAdapter() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                List<String> cellValuesOfSpecificRow = new ArrayList<String>();
-                rowNum = jTable.getSelectedRow();
-                //i started from 1, cause no to edit row number.
-                log.info("the " + rowNum + "th row was selected !");
-                for (int i = 1; i <= 8; i++) {
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2){
+
+                    //the whole cell of a specific row are stored in this list.
+                    List<String> cellValuesOfSpecificRow = new ArrayList<String>();
+                    rowNum = jTable.getSelectedRow();
+                    //i started from 1, cause no to edit row number.
+                    log.info("the " + rowNum + "th row was selected !");
+                    for (int i = 1; i <= 8; i++) {
                         int a = cellValuesOfSpecificRow.size();
                         log.info("row has " +a +"columns");
-                    if (defautTableModel.getValueAt(rowNum,i) != null){
-                        cellValuesOfSpecificRow.add(defautTableModel.getValueAt(rowNum,i).toString());
-                    }else {
-                        cellValuesOfSpecificRow.add("null");
+                        if (defautTableModel.getValueAt(rowNum,i) != null){
+                            cellValuesOfSpecificRow.add(defautTableModel.getValueAt(rowNum,i).toString());
+                        }else {
+                            cellValuesOfSpecificRow.add("null");
+                        }
                     }
+                    editRow(cellValuesOfSpecificRow,defautTableModel);
                 }
-                editRow(cellValuesOfSpecificRow,defautTableModel);
             }
         });
 
@@ -575,7 +574,7 @@ public class UBNTVertionTwo {
         final JTextField DKText = new JTextField(SwingConstants.RIGHT);
 //        final JTextField KM = new JTextField(SwingConstants.RIGHT);
 //        final JTextField meter = new JTextField(SwingConstants.RIGHT);
-        final List<JTextField> jTextFields = new ArrayList<JTextField>();
+        final List<String> jTextFields = new ArrayList<String>();
         if (tabName != null && tabName.trim().equals("位置")){
 
             JLabel way = new JLabel("设定线路 :",SwingConstants.LEFT);
@@ -662,32 +661,32 @@ public class UBNTVertionTwo {
                 if (tabName != null && i == realLength && !tabName.trim().equals("M2")){
                     if (tabName.trim().equals("M5_AP")){
                         labelName[i-1] = "频率(MHz) :";
-                    }else if (tabName.trim().equals("M5_ST")){
-                        labelName[i-1] = "Mac 地址: ";
-                    }
+                        JComboBox fruq_update = new JComboBox(fruqs);
+                        fruq_update.setLocation(120,40*i);
+                        fruq_update.setSize(200,30);
+                        fruq_update.setFont(new Font(null, Font.PLAIN, 14));
+                        jPanel.add(fruq_update);
+//                        jTextFields.add(fruq_update.getItemAt(fruq_update.getSelectedIndex()).toString());
 
-                    inputBoxes = new JTextField(SwingConstants.RIGHT);
-                    inputBoxes.setFont(new Font(null, Font.PLAIN, 14));
-                    inputBoxes.setLocation(120,40*i);
-                    inputBoxes.setSize(200,30);
-
-                    if (tabName.trim().equals("M5_AP")){
                         if (rowData.get(i+2).trim().equals("null")){
                             inputBoxes.setText(null);
                         }else {
-                            inputBoxes.setText(rowData.get(i+2));
+                            fruq_update.setSelectedItem(rowData.get(i+2));
                         }
-                    }
-                    if (tabName.trim().equals("M5_ST")){
+                    }else if (tabName.trim().equals("M5_ST")){
+                        labelName[i-1] = "Mac 地址: ";
+                        inputBoxes = new JTextField(SwingConstants.RIGHT);
+                        inputBoxes.setFont(new Font(null, Font.PLAIN, 14));
+                        inputBoxes.setLocation(120,40*i);
+                        inputBoxes.setSize(200,30);
                         if (rowData.get(i+5).trim().equals("null")){
                             inputBoxes.setText(null);
                         }else {
                             inputBoxes.setText(rowData.get(i+5));
                         }
+                        jPanel.add(inputBoxes);
+                        jTextFields.add(inputBoxes.getText());
                     }
-
-                    jPanel.add(inputBoxes);
-                    jTextFields.add(inputBoxes);
                 }else {
                     //TODO: implements IP input text field
                     JMIPV4AddressField IPTextField = new JMIPV4AddressField();
@@ -719,7 +718,7 @@ public class UBNTVertionTwo {
                     IPTextField.setLocation(120,40*i);
                     IPTextField.setSize(200,30);
                     jPanel.add(IPTextField);
-                    jTextFields.add(IPTextField);
+                    jTextFields.add(IPTextField.getText());
                 }
                 //setup labels
                 JLabel labels = new JLabel(labelName[i-1],SwingConstants.LEFT);
@@ -746,7 +745,7 @@ public class UBNTVertionTwo {
 
                 int progress = 0;
                 if (buttonText.trim().equals("M2")){
-                    M2_IP = jTextFields.get(0).getText();
+                    M2_IP = jTextFields.get(0);
                     log.info("M2_IP is " + M2_IP);
 //                    cellValue.add(M2_IP);
                     int targetRow = defautTableModel.getRowCount();
@@ -757,8 +756,8 @@ public class UBNTVertionTwo {
 //                    M2_Configuration.configM2(commonFields.get(1),M2_IP,commonFields.get(3),commonFields.get(2));
                 }
                 else if (buttonText.trim().equals("M5_AP")){
-                    M5_AP_IP = jTextFields.get(0).getText();
-                    M5_AP_Fruq = jTextFields.get(1).getText();
+                    M5_AP_IP = jTextFields.get(0);
+                    M5_AP_Fruq = jTextFields.get(1);
                     log.info("M5_AP_IP is " + M5_AP_IP);
                     log.info("M5_AP_Fruq is " + M5_AP_Fruq);
                     defautTableModel.setValueAt(M5_AP_IP,rowNum,4);
@@ -766,8 +765,8 @@ public class UBNTVertionTwo {
 //                    M5_Configuration.configM5("AP",commonFields.get(1),M5_AP_IP,commonFields.get(3),commonFields.get(2),M5_AP_Fruq,null);
                 }
                 else if (buttonText.trim().equals("M5_ST")){
-                    M5_ST_IP = jTextFields.get(0).getText();
-                    M5_AP_Mac = jTextFields.get(1).getText();
+                    M5_ST_IP = jTextFields.get(0);
+                    M5_AP_Mac = jTextFields.get(1);
                     log.info("M5_ST_IP is " + M5_ST_IP);
                     log.info("M5_AP_Mac is " + M5_AP_Mac);
 
@@ -822,7 +821,6 @@ public class UBNTVertionTwo {
         return jPanel;
     }
 
-
     /**
      * the final config overlay
      * @param tabName  the tab name
@@ -842,7 +840,7 @@ public class UBNTVertionTwo {
         final String[] positions = new String[]{"左线","右线"};
         final JComboBox<String> jComboBox = new JComboBox<String>(positions);
         final JTextField DKText = new JTextField(SwingConstants.RIGHT);
-        final List<JTextField> jTextFields = new ArrayList<JTextField>();
+        final List<String> jTextFields = new ArrayList<String>();
         if (tabName != null && tabName.trim().equals("位置")){
 
             JLabel way = new JLabel("设定线路 :",SwingConstants.LEFT);
@@ -914,16 +912,32 @@ public class UBNTVertionTwo {
                 if (tabName != null && i == realLength && !tabName.trim().equals("M2")){
                     if (tabName.trim().equals("M5_AP")){
                         labelName[i-1] = "频率(MHz) :";
+
+                        final JComboBox<String> fruq = new JComboBox<String>(fruqs);
+                        fruq.setLocation(120,40*i);
+                        fruq.setSize(200,30);
+                        fruq.setFont(new Font(null, Font.PLAIN, 14));
+                        jPanel.add(fruq);
+
+                        if (fruq.getSelectedIndex() == 0){
+                            jTextFields.add(fruq.getItemAt(fruq.getSelectedIndex()).toString());
+                        }
+                        fruq.addItemListener(new ItemListener() {
+                            @Override
+                            public void itemStateChanged(ItemEvent e) {
+                                jTextFields.set(1,fruq.getItemAt(fruq.getSelectedIndex()).toString());
+                            }
+                        });
                     }else if (tabName.trim().equals("M5_ST")){
                         labelName[i-1] = "Mac 地址: ";
+                        inputBoxes = new JTextField(SwingConstants.RIGHT);
+                        inputBoxes.setFont(new Font(null, Font.PLAIN, 14));
+                        inputBoxes.setLocation(120,40*i);
+                        inputBoxes.setSize(200,30);
+                        jPanel.add(inputBoxes);
+                        jTextFields.add(inputBoxes.getText());
                     }
 
-                    inputBoxes = new JTextField(SwingConstants.RIGHT);
-                    inputBoxes.setFont(new Font(null, Font.PLAIN, 14));
-                    inputBoxes.setLocation(120,40*i);
-                    inputBoxes.setSize(200,30);
-                    jPanel.add(inputBoxes);
-                    jTextFields.add(inputBoxes);
 
                 }else {
                     JMIPV4AddressField IP = new JMIPV4AddressField();
@@ -931,7 +945,7 @@ public class UBNTVertionTwo {
                     IP.setLocation(120,40*i);
                     IP.setSize(200,30);
                     jPanel.add(IP);
-                    jTextFields.add(IP);
+                    jTextFields.add(IP.getText());
                 }
                 //setup labels
                 JLabel labels = new JLabel(labelName[i-1],SwingConstants.LEFT);
@@ -960,7 +974,7 @@ public class UBNTVertionTwo {
 
                 int progress = 0;
                 if (buttonText.trim().equals("M2")){
-                    M2_IP = jTextFields.get(0).getText();
+                    M2_IP = jTextFields.get(0);
                     log.info("M2_IP is " + M2_IP);
 //                    cellValue.add(M2_IP);
                     int targetRow = defautTableModel.getRowCount();
@@ -971,8 +985,8 @@ public class UBNTVertionTwo {
 //                    M2_Configuration.configM2(commonFields.get(1),M2_IP,commonFields.get(3),commonFields.get(2));
                 }
                 else if (buttonText.trim().equals("M5_AP")){
-                    M5_AP_IP = jTextFields.get(0).getText();
-                    M5_AP_Fruq = jTextFields.get(1).getText();
+                    M5_AP_IP = jTextFields.get(0);
+                    M5_AP_Fruq = jTextFields.get(1);
                     log.info("M5_AP_IP is " + M5_AP_IP);
                     log.info("M5_AP_Fruq is " + M5_AP_Fruq);
                     defautTableModel.setValueAt(M5_AP_IP,defautTableModel.getRowCount()-1,4);
@@ -980,8 +994,8 @@ public class UBNTVertionTwo {
 //                    M5_Configuration.configM5("AP",commonFields.get(1),M5_AP_IP,commonFields.get(3),commonFields.get(2),M5_AP_Fruq,null);
                 }
                 else if (buttonText.trim().equals("M5_ST")){
-                    M5_ST_IP = jTextFields.get(0).getText();
-                    M5_AP_Mac = jTextFields.get(1).getText();
+                    M5_ST_IP = jTextFields.get(0);
+                    M5_AP_Mac = jTextFields.get(1);
                     log.info("M5_ST_IP is " + M5_ST_IP);
                     log.info("M5_AP_Mac is " + M5_AP_Mac);
 
@@ -1036,10 +1050,6 @@ public class UBNTVertionTwo {
 
         return jPanel;
     }
-
-
-
-
 
     /**
      * Generate new project dialog
