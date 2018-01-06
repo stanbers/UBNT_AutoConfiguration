@@ -51,6 +51,7 @@ public class UBNTVertionTwo {
     private int recordIndex = 1;
     private int rowNum;
     private String pName;
+    private String pNumber;
 
     private XSSFCell Cell;
     private XSSFRow Row;
@@ -138,6 +139,8 @@ public class UBNTVertionTwo {
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2){
 
+
+
                     homepagePanel.setVisible(false);
                     SwingUtilities.updateComponentTreeUI(jFrame);
                     jFrame.repaint();
@@ -146,7 +149,7 @@ public class UBNTVertionTwo {
                     jFrame.setContentPane(outPanel);
                     int targetRow = projectTable.getSelectedRow();
                     if (targetRow >= 0){
-                        String pNum = projectTableModel.getValueAt(targetRow,0).toString();
+                        pNumber = projectTableModel.getValueAt(targetRow,0).toString();
                         pName = projectTableModel.getValueAt(targetRow,1).toString();
                         //TODO: to show the project config records based on the project name or number
                         //TODO: need import the config records excel under this project, but how ?
@@ -160,9 +163,23 @@ public class UBNTVertionTwo {
                             //import table rows on main page
                             importFromExcel( defautTableModel,specificExcel);
                             //import specific project common fields
-                            //TODO: this time not to render table but to override commonfields, I think may need to define a new method.
+                            //TODO: this time not to render table but to override commonfields.
                             importFromExcel(null,SpecificProjectCommonField);
+                            //import project list excel, in order to show the project name and number on the main page
                         }
+
+                        //in order to get the project number and name
+                        JLabel currentPNumber = new JLabel(pNumber);
+                        currentPNumber.setLocation(150,10);
+                        currentPNumber.setSize(80,40);
+                        currentPNumber.setFont(new Font(null,Font.BOLD,18));
+                        outPanel.add(currentPNumber);
+
+                        JLabel currentPName = new JLabel(pName);
+                        currentPName.setLocation(370,10);
+                        currentPName.setSize(80,40);
+                        currentPName.setFont(new Font(null,Font.BOLD,18));
+                        outPanel.add(currentPName);
 
                     }else {
                         //TODO: may show waring message here.
@@ -194,9 +211,23 @@ public class UBNTVertionTwo {
 
 //        importFromExcel(defautTableModel,Constant.Path_TestData_Output);
 
+        JLabel currentPNumberTitle = new JLabel("当前项目编号：");
+        currentPNumberTitle.setLocation(20,10);
+        currentPNumberTitle.setSize(160,40);
+        currentPNumberTitle.setFont(new Font(null,Font.BOLD,18));
+        outPanel.add(currentPNumberTitle);
+
+        JLabel currentPNameTitle = new JLabel("当前项目名称：");
+        currentPNameTitle.setLocation(240,10);
+        currentPNameTitle.setSize(160,40);
+        currentPNameTitle.setFont(new Font(null,Font.BOLD,18));
+        outPanel.add(currentPNameTitle);
+
+
+
         final JTable jTable = new JTable(defautTableModel);
 
-        jTable.setLocation(20,60);
+        jTable.setLocation(20,100);
         jTable.setSize(950,450);
         jTable.setRowHeight(25);
 
@@ -213,32 +244,32 @@ public class UBNTVertionTwo {
         jTable.setFont(new Font(null, Font.PLAIN, 15));
 
         JTableHeader jTableHeader = jTable.getTableHeader();
-        jTableHeader.setLocation(20,30);
+        jTableHeader.setLocation(20,70);
         jTableHeader.setSize(950,30);
         jTableHeader.setFont(new Font(null, Font.BOLD, 16));
         jTableHeader.setResizingAllowed(true);
         jTableHeader.setReorderingAllowed(true);
 
         tablePanel = new JScrollPane(jTable);
-        tablePanel.setLocation(10,10);
+        tablePanel.setLocation(10,50);
         tablePanel.setSize(960,400);
 
         outPanel.add(tablePanel);
         JButton export = new JButton("导出");
         export.setFont(new Font(null,Font.BOLD,14));
-        export.setLocation(40,450);
+        export.setLocation(40,500);
         export.setSize(100,40);
         outPanel.add(export);
 
         JButton removeRow = new JButton("删除");
-        removeRow.setLocation(590,450);
+        removeRow.setLocation(590,500);
         removeRow.setSize(100,40);
         removeRow.setFont(new Font(null,Font.BOLD,14));
         outPanel.add(removeRow);
 
         JButton add = new JButton("新建");
         add.setFont(new Font(null,Font.BOLD,14));
-        add.setLocation(710,450);
+        add.setLocation(710,500);
         add.setSize(100,40);
         outPanel.add(add);
 
@@ -552,9 +583,8 @@ public class UBNTVertionTwo {
         final String[] positions = new String[]{"左线","右线"};
         final JComboBox<String> jComboBox = new JComboBox<String>(positions);
         final JTextField DKText = new JTextField(SwingConstants.RIGHT);
-//        final JTextField KM = new JTextField(SwingConstants.RIGHT);
-//        final JTextField meter = new JTextField(SwingConstants.RIGHT);
-        final List<String> jTextFields = new ArrayList<String>();
+        final List<JTextField> jTextFields = new ArrayList<JTextField>();
+        final JComboBox<String> fruqComboBox = new JComboBox<String>(fruqs);
         if (tabName != null && tabName.trim().equals("位置")){
 
             JLabel way = new JLabel("设定线路 :",SwingConstants.LEFT);
@@ -638,21 +668,20 @@ public class UBNTVertionTwo {
             for (int i = 1; i <= realLength; i++) {
 
 
+//                final JComboBox fruq_update = new JComboBox(fruqs);
                 if (tabName != null && i == realLength && !tabName.trim().equals("M2")){
                     if (tabName.trim().equals("M5_AP")){
                         labelName[i-1] = "频率(MHz) :";
-                        JComboBox fruq_update = new JComboBox(fruqs);
-                        fruq_update.setLocation(120,40*i);
-                        fruq_update.setSize(200,30);
-                        fruq_update.setFont(new Font(null, Font.PLAIN, 14));
-                        jPanel.add(fruq_update);
+                        fruqComboBox.setLocation(120,40*i);
+                        fruqComboBox.setSize(200,30);
+                        fruqComboBox.setFont(new Font(null, Font.PLAIN, 14));
+                        jPanel.add(fruqComboBox);
 //                        jTextFields.add(fruq_update.getItemAt(fruq_update.getSelectedIndex()).toString());
 
                         if (rowData.get(i+2).trim().equals("null")){
-                            inputBoxes = new JTextField(SwingConstants.RIGHT);
-                            inputBoxes.setText(null);
+                            fruqComboBox.setSelectedItem("5820");
                         }else {
-                            fruq_update.setSelectedItem(rowData.get(i+2));
+                            fruqComboBox.setSelectedItem(rowData.get(i+2));
                         }
                     }else if (tabName.trim().equals("M5_ST")){
                         labelName[i-1] = "Mac 地址: ";
@@ -666,7 +695,7 @@ public class UBNTVertionTwo {
                             inputBoxes.setText(rowData.get(i+5));
                         }
                         jPanel.add(inputBoxes);
-                        jTextFields.add(inputBoxes.getText());
+                        jTextFields.add(inputBoxes);
                     }
                 }else {
                     //TODO: implements IP input text field
@@ -699,7 +728,7 @@ public class UBNTVertionTwo {
                     IPTextField.setLocation(120,40*i);
                     IPTextField.setSize(200,30);
                     jPanel.add(IPTextField);
-                    jTextFields.add(IPTextField.getText());
+                    jTextFields.add(IPTextField);
                 }
                 //setup labels
                 JLabel labels = new JLabel(labelName[i-1],SwingConstants.LEFT);
@@ -726,7 +755,7 @@ public class UBNTVertionTwo {
 
                 int progress = 0;
                 if (buttonText.trim().equals("M2")){
-                    M2_IP = jTextFields.get(0);
+                    M2_IP = jTextFields.get(0).getText();
                     log.info("M2_IP is " + M2_IP);
 //                    cellValue.add(M2_IP);
                     int targetRow = defautTableModel.getRowCount();
@@ -737,8 +766,8 @@ public class UBNTVertionTwo {
 //                    M2_Configuration.configM2(commonFields.get(1),M2_IP,commonFields.get(3),commonFields.get(2));
                 }
                 else if (buttonText.trim().equals("M5_AP")){
-                    M5_AP_IP = jTextFields.get(0);
-                    M5_AP_Fruq = jTextFields.get(1);
+                    M5_AP_IP = jTextFields.get(0).getText();
+                    M5_AP_Fruq = fruqComboBox.getSelectedItem().toString();
                     log.info("M5_AP_IP is " + M5_AP_IP);
                     log.info("M5_AP_Fruq is " + M5_AP_Fruq);
                     defautTableModel.setValueAt(M5_AP_IP,rowNum,4);
@@ -746,8 +775,8 @@ public class UBNTVertionTwo {
 //                    M5_Configuration.configM5("AP",commonFields.get(1),M5_AP_IP,commonFields.get(3),commonFields.get(2),M5_AP_Fruq,null);
                 }
                 else if (buttonText.trim().equals("M5_ST")){
-                    M5_ST_IP = jTextFields.get(0);
-                    M5_AP_Mac = jTextFields.get(1);
+                    M5_ST_IP = jTextFields.get(0).getText();
+                    M5_AP_Mac = jTextFields.get(1).getText();
                     log.info("M5_ST_IP is " + M5_ST_IP);
                     log.info("M5_AP_Mac is " + M5_AP_Mac);
 
@@ -821,7 +850,9 @@ public class UBNTVertionTwo {
         final String[] positions = new String[]{"左线","右线"};
         final JComboBox<String> jComboBox = new JComboBox<String>(positions);
         final JTextField DKText = new JTextField(SwingConstants.RIGHT);
-        final List<String> jTextFields = new ArrayList<String>();
+        // the list have to be add JTextField, can not be String, otherwise can not get the TextField text
+        final List<JTextField> jTextFields = new ArrayList<JTextField>();
+        final List<String> fruqComboBox = new ArrayList<String>();
         if (tabName != null && tabName.trim().equals("位置")){
 
             JLabel way = new JLabel("设定线路 :",SwingConstants.LEFT);
@@ -855,7 +886,7 @@ public class UBNTVertionTwo {
                     char vchar = e.getKeyChar();
                     if (!(Character.isDigit(vchar)) && (vchar != KeyEvent.VK_BACK_SPACE) && (vchar != KeyEvent.VK_DELETE)){
                         JOptionPane.showMessageDialog(
-                                jFrame,
+                                jDialog,
                                 "请输入数字 !",
                                 "DK 里数",
                                 JOptionPane.INFORMATION_MESSAGE
@@ -901,12 +932,12 @@ public class UBNTVertionTwo {
                         jPanel.add(fruq);
 
                         if (fruq.getSelectedIndex() == 0){
-                            jTextFields.add(fruq.getItemAt(fruq.getSelectedIndex()).toString());
+                            fruqComboBox.add(fruq.getItemAt(fruq.getSelectedIndex()));
                         }
                         fruq.addItemListener(new ItemListener() {
                             @Override
                             public void itemStateChanged(ItemEvent e) {
-                                jTextFields.set(1,fruq.getItemAt(fruq.getSelectedIndex()).toString());
+                                fruqComboBox.set(0,fruq.getItemAt(fruq.getSelectedIndex()));
                             }
                         });
                     }else if (tabName.trim().equals("M5_ST")){
@@ -916,7 +947,7 @@ public class UBNTVertionTwo {
                         inputBoxes.setLocation(120,40*i);
                         inputBoxes.setSize(200,30);
                         jPanel.add(inputBoxes);
-                        jTextFields.add(inputBoxes.getText());
+                        jTextFields.add(inputBoxes);
                     }
 
 
@@ -926,7 +957,7 @@ public class UBNTVertionTwo {
                     IP.setLocation(120,40*i);
                     IP.setSize(200,30);
                     jPanel.add(IP);
-                    jTextFields.add(IP.getText());
+                    jTextFields.add(IP);
                 }
                 //setup labels
                 JLabel labels = new JLabel(labelName[i-1],SwingConstants.LEFT);
@@ -955,7 +986,7 @@ public class UBNTVertionTwo {
 
                 int progress = 0;
                 if (buttonText.trim().equals("M2")){
-                    M2_IP = jTextFields.get(0);
+                    M2_IP = jTextFields.get(0).getText();
                     log.info("M2_IP is " + M2_IP);
 //                    cellValue.add(M2_IP);
                     int targetRow = defautTableModel.getRowCount();
@@ -966,8 +997,8 @@ public class UBNTVertionTwo {
 //                    M2_Configuration.configM2(commonFields.get(1),M2_IP,commonFields.get(3),commonFields.get(2));
                 }
                 else if (buttonText.trim().equals("M5_AP")){
-                    M5_AP_IP = jTextFields.get(0);
-                    M5_AP_Fruq = jTextFields.get(1);
+                    M5_AP_Fruq = fruqComboBox.get(0);
+                    M5_AP_IP = jTextFields.get(0).getText();
                     log.info("M5_AP_IP is " + M5_AP_IP);
                     log.info("M5_AP_Fruq is " + M5_AP_Fruq);
                     defautTableModel.setValueAt(M5_AP_IP,defautTableModel.getRowCount()-1,4);
@@ -975,8 +1006,8 @@ public class UBNTVertionTwo {
 //                    M5_Configuration.configM5("AP",commonFields.get(1),M5_AP_IP,commonFields.get(3),commonFields.get(2),M5_AP_Fruq,null);
                 }
                 else if (buttonText.trim().equals("M5_ST")){
-                    M5_ST_IP = jTextFields.get(0);
-                    M5_AP_Mac = jTextFields.get(1);
+                    M5_ST_IP = jTextFields.get(0).getText();
+                    M5_AP_Mac = jTextFields.get(1).getText();
                     log.info("M5_ST_IP is " + M5_ST_IP);
                     log.info("M5_AP_Mac is " + M5_AP_Mac);
 
@@ -1112,7 +1143,7 @@ public class UBNTVertionTwo {
         jPanel.add(gatewayIP);
         jPanel.add(gatewayIPInputBox);
 
-        //TODO: update gatewayIP when lose focus
+        //TODO: update gatewayIP when project number textField lose focus
         projectNumInputBox.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -1123,26 +1154,30 @@ public class UBNTVertionTwo {
             public void focusLost(FocusEvent e) {
                 JTextField jTextField = (JTextField) e.getSource();
                 String pNumStr = jTextField.getText();
-                int pNum = Integer.parseInt(pNumStr);
-                if (pNum > 255){
-                    JOptionPane.showMessageDialog(
-                            jDialog,
-                            "您输入的编号大于255，请输入小于255的数字 !",
-                            "项目编号",
-                            JOptionPane.INFORMATION_MESSAGE
-                    );
-                    projectNumInputBox.grabFocus();
-                }else {
-                    String dynamicIP = "10."+pNumStr+".2.1";
-                    gatewayIPInputBox.setText(dynamicIP);
-                    projectNameInputBox.grabFocus();
+                if (pNumStr != null && !pNumStr.isEmpty()){
+
+                    int pNum = Integer.parseInt(pNumStr);
+                    if (pNum > 255){
+                        JOptionPane.showMessageDialog(
+                                jDialog,
+                                "您输入的编号大于255，请输入小于255的数字 !",
+                                "项目编号",
+                                JOptionPane.INFORMATION_MESSAGE
+                        );
+                        projectNumInputBox.grabFocus();
+                    }else {
+                        String dynamicIP = "10."+pNumStr+".2.1";
+                        gatewayIPInputBox.setText(dynamicIP);
+                        projectNameInputBox.grabFocus();
+                    }
                 }
             }
         });
 
         //net mask label and corresponding text field
         JLabel netMaskLabel = new JLabel("子网掩码 :");
-        final JTextField netMaskInputBox = new JMIPV4AddressField();
+        final JMIPV4AddressField netMaskInputBox = new JMIPV4AddressField();
+        netMaskInputBox.setIpAddress("255.255.255.0");
         netMaskLabel.setLocation(60,280);
         netMaskLabel.setSize(120,40);
         netMaskLabel.setFont(new Font(null, BOLD,18));
@@ -1161,7 +1196,8 @@ public class UBNTVertionTwo {
 
         //M5 bridge gateway IP label and corresponding text field
         JLabel gatewayIP_M5 = new JLabel("网段 :");
-        final JTextField gatewayIP_M5_InputBox = new JMIPV4AddressField();  // I need the input text, it will be used later
+        final JMIPV4AddressField gatewayIP_M5_InputBox = new JMIPV4AddressField();
+        gatewayIP_M5_InputBox.setIpAddress("192.168.155.1");
         gatewayIP_M5.setLocation(60,400);
         gatewayIP_M5.setSize(120,40);
         gatewayIP_M5.setFont(new Font(null, 1, 18));
@@ -1173,7 +1209,8 @@ public class UBNTVertionTwo {
 
         //M5 bridge net mask label and corresponding text field
         JLabel netMaskLabel_M5 = new JLabel("子网掩码 :");
-        final JTextField netMask_M5_InputBox = new JMIPV4AddressField();
+        final JMIPV4AddressField netMask_M5_InputBox = new JMIPV4AddressField();
+        netMask_M5_InputBox.setIpAddress("255.255.248.0");
         netMaskLabel_M5.setLocation(60,450);
         netMaskLabel_M5.setSize(120,40);
         netMaskLabel_M5.setFont(new Font(null, BOLD,18));
@@ -1200,7 +1237,7 @@ public class UBNTVertionTwo {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //save those all fields, those fields will be used to update the config file except project_id.
-                String projectId = projectNumInputBox.getText();
+                pNumber = projectNumInputBox.getText();
                 pName = projectNameInputBox.getText();
                 log.info("the project number is "+projectNumInputBox.getText());
                 commonFields.add(ssidInputBox.getText());
@@ -1216,7 +1253,7 @@ public class UBNTVertionTwo {
                 }
                 projectTableModel.addRow(emptyProjectRow);
                 //fill up the project table with project number and name
-                projectTableModel.setValueAt(projectId,projectTableModel.getRowCount()-1,0);
+                projectTableModel.setValueAt(pNumber,projectTableModel.getRowCount()-1,0);
                 projectTableModel.setValueAt(pName,projectTableModel.getRowCount()-1,1);
                 //TODO: need to write the project info into the specific excel, in order to show these info on homepage once the app was running
                 String projectExcelPath = Constant.Path_TestData_ProjectList;
