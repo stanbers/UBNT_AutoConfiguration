@@ -85,14 +85,20 @@ public class UBNTVertionTwo {
             }
         };
 
+        JLabel titleLabel = new JLabel("中继自动化配置",SwingConstants.CENTER);
+        titleLabel.setSize(1050,100);
+        titleLabel.setFont(new Font(null,Font.BOLD, 60));
+        homepagePanel.add(titleLabel);
+
+
         JLabel projectListLabel = new JLabel("项目列表：");
-        projectListLabel.setLocation(90,45);
+        projectListLabel.setLocation(90,105);
         projectListLabel.setSize(200,40);
         projectListLabel.setFont(new Font(null,BOLD,20));
 
         //store table records
         final JTable projectTable = new JTable(projectTableModel);
-        projectTable.setLocation(100,100);
+        projectTable.setLocation(100,160);
         projectTable.setSize(300,350);
         projectTable.setFont(new Font(null,Font.PLAIN,16));
 
@@ -108,7 +114,7 @@ public class UBNTVertionTwo {
         projectTable.setRowHeight(40);
 
         JTableHeader projectjTableHeader = projectTable.getTableHeader();
-        projectjTableHeader.setLocation(100,40);
+        projectjTableHeader.setLocation(100,100);
         projectjTableHeader.setPreferredSize(new Dimension(300,50));
         projectjTableHeader.setFont(new Font(null, Font.BOLD, 16));
         projectjTableHeader.setResizingAllowed(true);
@@ -117,7 +123,7 @@ public class UBNTVertionTwo {
 
         //project container
         JScrollPane projectTableContainer = new JScrollPane(projectTable);
-        projectTableContainer.setLocation(90,90);
+        projectTableContainer.setLocation(90,150);
         projectTableContainer.setSize(400,300);
 
         //import projects from project_list excel file, and render projects to projectTable
@@ -191,7 +197,7 @@ public class UBNTVertionTwo {
 
         //setup project button
         JButton createPojectButton = new JButton("+ 新建项目");
-        createPojectButton.setLocation(500,220);
+        createPojectButton.setLocation(700,390);
         createPojectButton.setSize(200,60);
         createPojectButton.setFont(new Font(null, BOLD, 25));
 
@@ -342,7 +348,7 @@ public class UBNTVertionTwo {
                 log.info("return int value is " + remove);
                 if (remove == 0){
 
-                    //TODO: need to change the row number, but how ?
+                    //TODO: need to change the row number, but how ? --> done
                     int selectedRowNumber = jTable.getSelectedRow();
                     int allRowsCount = defautTableModel.getRowCount();
                     int remainingRows = allRowsCount - selectedRowNumber;
@@ -351,7 +357,11 @@ public class UBNTVertionTwo {
                     for (int i = 1; i < remainingRows; i++) {
                         defautTableModel.setValueAt(selectedRowNumber + i,selectedRowNumber+i,0);
                     }
-                    defautTableModel.removeRow(jTable.getSelectedRow());
+                    if (jTable.getSelectedRow() >= 0){
+                        defautTableModel.removeRow(jTable.getSelectedRow());
+                    }else {
+                        JOptionPane.showMessageDialog(jFrame,"目前没有可以被删除的记录 ！");
+                    }
                 }
             }
         });
@@ -804,11 +814,11 @@ public class UBNTVertionTwo {
                     defautTableModel.setValueAt(position,rowNum,1);
                     defautTableModel.setValueAt(DK,rowNum,2);
                     if (commonFields != null){
-                        log.info("ssid is " + commonFields.get(0));
-                        log.info("M2 gatewayIP is " + commonFields.get(1));
-                        log.info("M2 netmask is " + commonFields.get(2));
-                        log.info("M5-AP gatewayIP is " + commonFields.get(3));
-                        log.info("M5-AP netmask is " + commonFields.get(4));
+//                        log.info("ssid is " + commonFields.get(0));
+//                        log.info("M2 gatewayIP is " + commonFields.get(1));
+//                        log.info("M2 netmask is " + commonFields.get(2));
+//                        log.info("M5-AP gatewayIP is " + commonFields.get(3));
+//                        log.info("M5-AP netmask is " + commonFields.get(4));
                     }
                 }
 
@@ -881,6 +891,8 @@ public class UBNTVertionTwo {
             jComboBox.setFont(new Font(null, 1, 16));
             jComboBox.setSelectedIndex(0);
 
+
+
             JLabel specificPosition = new JLabel("具体位置 :",SwingConstants.LEFT);
             specificPosition.setFont(new Font(null, 1, 16));
             specificPosition.setLocation(10,90);
@@ -894,6 +906,21 @@ public class UBNTVertionTwo {
             DKText.setLocation(155,90);
             DKText.setSize(165,30);
             DKText.setFont(new Font(null,1,16));
+
+            //TODO: need to fill up the values automatically based on the previous record DK's value
+            if (defautTableModel.getRowCount() > 2){
+                //only for loop the previous two rows
+                String previousDKValue = defautTableModel.getValueAt(defautTableModel.getRowCount()-2,2).toString().trim();
+                String pre_previousDKValue = defautTableModel.getValueAt(defautTableModel.getRowCount()-3,2).toString().trim();
+                    int previousDKValue_int = Integer.parseInt(previousDKValue);
+                    int currentDKValue_int = 0;
+                    if (previousDKValue.equals(pre_previousDKValue)){
+                        currentDKValue_int = previousDKValue_int + 500;
+                    }else {
+                        currentDKValue_int = previousDKValue_int;
+                    }
+                DKText.setText(currentDKValue_int +"");
+            }
 
             //validate number input only
             DKText.addKeyListener(new KeyListener() {
@@ -1035,11 +1062,11 @@ public class UBNTVertionTwo {
                     defautTableModel.setValueAt(position,defautTableModel.getRowCount()-1,1);
                     defautTableModel.setValueAt(DK,defautTableModel.getRowCount()-1,2);
                     if (commonFields != null){
-                        log.info("ssid is " + commonFields.get(0));
-                        log.info("M2 gatewayIP is " + commonFields.get(1));
-                        log.info("M2 netmask is " + commonFields.get(2));
-                        log.info("M5-AP gatewayIP is " + commonFields.get(3));
-                        log.info("M5-AP netmask is " + commonFields.get(4));
+//                        log.info("ssid is " + commonFields.get(0));
+//                        log.info("M2 gatewayIP is " + commonFields.get(1));
+//                        log.info("M2 netmask is " + commonFields.get(2));
+//                        log.info("M5-AP gatewayIP is " + commonFields.get(3));
+//                        log.info("M5-AP netmask is " + commonFields.get(4));
                     }
                 }
 
