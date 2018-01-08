@@ -7,6 +7,8 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import ubnt.m2.M2_Configuration;
+import ubnt.m5.M5_Configuration;
 import utility.Constant;
 import utility.LimitedDocument;
 
@@ -69,7 +71,7 @@ public class UBNTVertionTwo {
 
         //setup the logo icon
         Toolkit kit = Toolkit.getDefaultToolkit();
-        Image icon = kit.getImage("D:\\icon\\logo.png");
+        Image icon = kit.getImage(System.getProperty("user.dir")+"\\icon\\logo.png");
         jFrame.setIconImage(icon);
 
         //create the homepage panel
@@ -170,8 +172,13 @@ public class UBNTVertionTwo {
                         //TODO: need import the config records excel under this project, but how ? --> done
                         //TODO: so it's better to rename the config excel with project name or number when it was generated.
                         //if (can find the specific excel which's name is same with project name or number')
-                        String specificExcel = "D:\\ConfigFile\\"+pName +".xlsx";
-                        String SpecificProjectCommonField = "D:\\ConfigFile\\"+pName +"CommonFields.xlsx";
+                        //need to generate the project excel first, otherwise the following code could not find this specific excel
+//                        exportToExcel(null,"D:\\ConfigFile\\"+pName+".xlsx",9);
+                        exportToExcel(null,System.getProperty("user.dir")+ "\\ConfigFile\\"+pName+".xlsx",9);
+//                        String specificExcel = "D:\\ConfigFile\\"+pName +".xlsx";
+                        String specificExcel = System.getProperty("user.dir")+ "\\ConfigFile\\"+pName +".xlsx";
+//                        String SpecificProjectCommonField = "D:\\ConfigFile\\"+pName +"CommonFields.xlsx";
+                        String SpecificProjectCommonField = System.getProperty("user.dir")+ "\\ConfigFile\\"+pName +"CommonFields.xlsx";
                         File projectCorresspondingConfigFile = new File(specificExcel);
                         File projectCommonFieldFile = new File(SpecificProjectCommonField);
                         if (projectCorresspondingConfigFile.exists() && projectCommonFieldFile.exists()){
@@ -369,7 +376,7 @@ public class UBNTVertionTwo {
         export.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                exportToExcel(defautTableModel,"D:\\ConfigFile\\"+pName+".xlsx",9);
+                exportToExcel(defautTableModel,System.getProperty("user.dir")+ "\\ConfigFile\\"+pName+".xlsx",9);
                 JOptionPane.showMessageDialog(
                         jFrame,
                         "导出数据完毕 !",
@@ -500,7 +507,7 @@ public class UBNTVertionTwo {
 
         //setup the logo icon
         Toolkit kit = Toolkit.getDefaultToolkit();
-        Image icon = kit.getImage("D:\\icon\\logo.png");
+        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
         jDialog.setIconImage(icon);
 
         //setup JTabbedPane
@@ -546,7 +553,7 @@ public class UBNTVertionTwo {
 
         //setup the logo icon
         Toolkit kit = Toolkit.getDefaultToolkit();
-        Image icon = kit.getImage("D:\\icon\\logo.png");
+        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
         jDialog.setIconImage(icon);
 
 //        JPanel jPanel = new JPanel(null);
@@ -789,7 +796,7 @@ public class UBNTVertionTwo {
                     defautTableModel.setValueAt(M2_IP,rowNum,3);
 
                     //ssid = commonFields.get(1); netmask = commonFields.get(3); gatewayIP = commonFields.get(2);
-//                    M2_Configuration.configM2(commonFields.get(1),M2_IP,commonFields.get(3),commonFields.get(2));
+                    M2_Configuration.configM2(commonFields.get(1),M2_IP,commonFields.get(3),commonFields.get(2));
                 }
                 else if (buttonText.trim().equals("M5_AP")){
                     M5_AP_IP = jTextFields.get(0).getText();
@@ -798,7 +805,7 @@ public class UBNTVertionTwo {
                     log.info("M5_AP_Fruq is " + M5_AP_Fruq);
                     defautTableModel.setValueAt(M5_AP_IP,rowNum,4);
                     defautTableModel.setValueAt(M5_AP_Fruq,rowNum,5);
-//                    M5_Configuration.configM5("AP",commonFields.get(1),M5_AP_IP,commonFields.get(3),commonFields.get(2),M5_AP_Fruq,null);
+                    M5_Configuration.configM5("AP",commonFields.get(1),M5_AP_IP,commonFields.get(3),commonFields.get(2),M5_AP_Fruq,null);
                 }
                 else if (buttonText.trim().equals("M5_ST")){
                     M5_ST_IP = jTextFields.get(0).getText();
@@ -809,16 +816,16 @@ public class UBNTVertionTwo {
                     defautTableModel.setValueAt(M5_AP_Mac,rowNum,6);
                     defautTableModel.setValueAt(M5_ST_IP,rowNum,7);
                     defautTableModel.setValueAt(M5_AP_Mac,rowNum,8);
-//                    M5_Configuration.configM5("ST",commonFields.get(1),M5_ST_IP,commonFields.get(3),commonFields.get(2),null,M5_AP_Mac);
+                    M5_Configuration.configM5("ST",commonFields.get(1),M5_ST_IP,commonFields.get(3),commonFields.get(2),null,M5_AP_Mac);
                 }else if (buttonText.trim().equals("位置")){
                     defautTableModel.setValueAt(position,rowNum,1);
                     defautTableModel.setValueAt(DK,rowNum,2);
                     if (commonFields != null){
-//                        log.info("ssid is " + commonFields.get(0));
-//                        log.info("M2 gatewayIP is " + commonFields.get(1));
-//                        log.info("M2 netmask is " + commonFields.get(2));
-//                        log.info("M5-AP gatewayIP is " + commonFields.get(3));
-//                        log.info("M5-AP netmask is " + commonFields.get(4));
+                        log.info("ssid is " + commonFields.get(0));
+                        log.info("M2 gatewayIP is " + commonFields.get(1));
+                        log.info("M2 netmask is " + commonFields.get(2));
+                        log.info("M5-AP gatewayIP is " + commonFields.get(3));
+                        log.info("M5-AP netmask is " + commonFields.get(4));
                     }
                 }
 
@@ -826,28 +833,28 @@ public class UBNTVertionTwo {
 
                     //to make sure using the right flag
                     if (buttonText.trim().substring(0,2).equals("M2")){
-//                        progress = M2_Configuration.progress;
+                        progress = M2_Configuration.progress;
                     }
                     else if (buttonText.trim().substring(0,2).equals("M5")){
-//                        progress = M5_Configuration.progress;
+                        progress = M5_Configuration.progress;
                     }
 
                     //setup the popup window to let the user know the configuration is successful or not
-//                    if (progress == 1){
-//                        JOptionPane.showMessageDialog(
-//                                jFrame,
-//                                "配置成功 !",
-//                                "配置结果",
-//                                JOptionPane.INFORMATION_MESSAGE
-//                        );
-//                    }else {
-//                        JOptionPane.showMessageDialog(
-//                                jFrame,
-//                                "配置失败，请重新配置 !",
-//                                "配置结果",
-//                                JOptionPane.WARNING_MESSAGE
-//                        );
-//                    }
+                    if (progress == 1){
+                        JOptionPane.showMessageDialog(
+                                jFrame,
+                                "配置成功 !",
+                                "配置结果",
+                                JOptionPane.INFORMATION_MESSAGE
+                        );
+                    }else {
+                        JOptionPane.showMessageDialog(
+                                jFrame,
+                                "配置失败，请重新配置 !",
+                                "配置结果",
+                                JOptionPane.WARNING_MESSAGE
+                        );
+                    }
                 }
                 jDialog.dispose();
             }
@@ -920,6 +927,7 @@ public class UBNTVertionTwo {
                         currentDKValue_int = previousDKValue_int;
                     }
                 DKText.setText(currentDKValue_int +"");
+
             }
 
             //validate number input only
@@ -1037,7 +1045,7 @@ public class UBNTVertionTwo {
                     defautTableModel.setValueAt(M2_IP,targetRow-1,3);
 
                     //ssid = commonFields.get(1); netmask = commonFields.get(3); gatewayIP = commonFields.get(2);
-//                    M2_Configuration.configM2(commonFields.get(1),M2_IP,commonFields.get(3),commonFields.get(2));
+                    M2_Configuration.configM2(commonFields.get(1),M2_IP,commonFields.get(3),commonFields.get(2));
                 }
                 else if (buttonText.trim().equals("M5_AP")){
                     M5_AP_Fruq = fruqComboBox.get(0);
@@ -1046,7 +1054,7 @@ public class UBNTVertionTwo {
                     log.info("M5_AP_Fruq is " + M5_AP_Fruq);
                     defautTableModel.setValueAt(M5_AP_IP,defautTableModel.getRowCount()-1,4);
                     defautTableModel.setValueAt(M5_AP_Fruq,defautTableModel.getRowCount()-1,5);
-//                    M5_Configuration.configM5("AP",commonFields.get(1),M5_AP_IP,commonFields.get(3),commonFields.get(2),M5_AP_Fruq,null);
+                    M5_Configuration.configM5("AP",commonFields.get(1),M5_AP_IP,commonFields.get(3),commonFields.get(2),M5_AP_Fruq,null);
                 }
                 else if (buttonText.trim().equals("M5_ST")){
                     M5_ST_IP = jTextFields.get(0).getText();
@@ -1057,16 +1065,44 @@ public class UBNTVertionTwo {
                     defautTableModel.setValueAt(M5_AP_Mac,defautTableModel.getRowCount()-1,6);
                     defautTableModel.setValueAt(M5_ST_IP,defautTableModel.getRowCount()-1,7);
                     defautTableModel.setValueAt(M5_AP_Mac,defautTableModel.getRowCount()-1,8);
-//                    M5_Configuration.configM5("ST",commonFields.get(1),M5_ST_IP,commonFields.get(3),commonFields.get(2),null,M5_AP_Mac);
+                    M5_Configuration.configM5("ST",commonFields.get(1),M5_ST_IP,commonFields.get(3),commonFields.get(2),null,M5_AP_Mac);
                 }else if (buttonText.trim().equals("位置")){
                     defautTableModel.setValueAt(position,defautTableModel.getRowCount()-1,1);
                     defautTableModel.setValueAt(DK,defautTableModel.getRowCount()-1,2);
+
+                    String previousDKValue = null;
+                    String pre_previousDKValue = null;
+                    if (defautTableModel.getRowCount() > 2){
+                        //only for loop the previous two rows
+                        previousDKValue = defautTableModel.getValueAt(defautTableModel.getRowCount()-2,2).toString().trim();
+                        pre_previousDKValue = defautTableModel.getValueAt(defautTableModel.getRowCount()-3,2).toString().trim();
+                        int previousDKValue_int = Integer.parseInt(previousDKValue);
+                        int currentDKValue_int = 0;
+                        if (previousDKValue.equals(pre_previousDKValue)){
+                            currentDKValue_int = previousDKValue_int + 500;
+                        }else {
+                            currentDKValue_int = previousDKValue_int;
+                        }
+                        DKText.setText(currentDKValue_int +"");
+
+                        if (defautTableModel.getValueAt(defautTableModel.getRowCount()-2,1).equals(jComboBox.getSelectedItem())
+                                && previousDKValue.equals(DKText.getText())){
+                            JOptionPane.showMessageDialog(jDialog,"位置重复了!  请修改");
+                        }
+                    }else if (defautTableModel.getRowCount() == 2){
+                        previousDKValue = defautTableModel.getValueAt(defautTableModel.getRowCount()-2,2).toString().trim();
+                        String previousPostionValue = defautTableModel.getValueAt(defautTableModel.getRowCount()-2,1).toString().trim();
+                        if (previousPostionValue.equals(jComboBox.getSelectedItem())
+                                && previousDKValue.equals(DKText.getText())){
+                            JOptionPane.showMessageDialog(jDialog,"位置重复了!  请修改");
+                        }
+                    }
                     if (commonFields != null){
-//                        log.info("ssid is " + commonFields.get(0));
-//                        log.info("M2 gatewayIP is " + commonFields.get(1));
-//                        log.info("M2 netmask is " + commonFields.get(2));
-//                        log.info("M5-AP gatewayIP is " + commonFields.get(3));
-//                        log.info("M5-AP netmask is " + commonFields.get(4));
+                        log.info("ssid is " + commonFields.get(0));
+                        log.info("M2 gatewayIP is " + commonFields.get(1));
+                        log.info("M2 netmask is " + commonFields.get(2));
+                        log.info("M5-AP gatewayIP is " + commonFields.get(3));
+                        log.info("M5-AP netmask is " + commonFields.get(4));
                     }
                 }
 
@@ -1074,28 +1110,28 @@ public class UBNTVertionTwo {
 
                     //to make sure using the right flag
                     if (buttonText.trim().substring(0,2).equals("M2")){
-//                        progress = M2_Configuration.progress;
+                        progress = M2_Configuration.progress;
                     }
                     else if (buttonText.trim().substring(0,2).equals("M5")){
-//                        progress = M5_Configuration.progress;
+                        progress = M5_Configuration.progress;
                     }
 
-                    //setup the popup window to let the user know the configuration is successful or not
-//                    if (progress == 1){
-//                        JOptionPane.showMessageDialog(
-//                                jFrame,
-//                                "配置成功 !",
-//                                "配置结果",
-//                                JOptionPane.INFORMATION_MESSAGE
-//                        );
-//                    }else {
-//                        JOptionPane.showMessageDialog(
-//                                jFrame,
-//                                "配置失败，请重新配置 !",
-//                                "配置结果",
-//                                JOptionPane.WARNING_MESSAGE
-//                        );
-//                    }
+//                    setup the popup window to let the user know the configuration is successful or not
+                    if (progress == 1){
+                        JOptionPane.showMessageDialog(
+                                jFrame,
+                                "配置成功 !",
+                                "配置结果",
+                                JOptionPane.INFORMATION_MESSAGE
+                        );
+                    }else {
+                        JOptionPane.showMessageDialog(
+                                jFrame,
+                                "配置失败，请重新配置 !",
+                                "配置结果",
+                                JOptionPane.WARNING_MESSAGE
+                        );
+                    }
                     jDialog.dispose();
                 }
             }
@@ -1117,7 +1153,7 @@ public class UBNTVertionTwo {
 
         //setup the logo icon
         Toolkit kit = Toolkit.getDefaultToolkit();
-        Image icon = kit.getImage("D:\\icon\\logo.png");
+        Image icon = kit.getImage(System.getProperty("user.dir")+"\\icon\\logo.png");
         jDialog.setIconImage(icon);
 
         JPanel jPanel = new JPanel(null);
@@ -1155,6 +1191,7 @@ public class UBNTVertionTwo {
         //ssid name label and corresponding text field
         JLabel ssidLabel = new JLabel("SSID :");
         final JTextField ssidInputBox = new JTextField();
+        ssidInputBox.setText("ubnt");
         ssidLabel.setLocation(60,180);
         ssidLabel.setSize(120,40);
         ssidLabel.setFont(new Font(null, BOLD,18));
@@ -1300,9 +1337,10 @@ public class UBNTVertionTwo {
                 projectTableModel.setValueAt(pName,projectTableModel.getRowCount()-1,1);
                 //TODO: need to write the project info into the specific excel, in order to show these info on homepage once the app was running
                 String projectExcelPath = Constant.Path_TestData_ProjectList;
-                String commonFieldsExcelPath = "D:\\ConfigFile\\"+pName +"CommonFields.xlsx";
+                String commonFieldsExcelPath = System.getProperty("user.dir")+"\\ConfigFile\\"+pName +"CommonFields.xlsx";
                 exportToExcel(projectTableModel,projectExcelPath,2);
                 exportToExcel(null,commonFieldsExcelPath,7);
+
                 jDialog.dispose();
                 SwingUtilities.updateComponentTreeUI(jFrame);
             }
