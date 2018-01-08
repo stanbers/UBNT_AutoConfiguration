@@ -133,17 +133,26 @@ public class UBNTVertionTwo {
             }
         };
 
+        final JLabel currentPNumber = new JLabel(pNumber);
+        currentPNumber.setLocation(150,10);
+        currentPNumber.setSize(80,40);
+        currentPNumber.setFont(new Font(null,Font.BOLD,18));
+
+
+        final JLabel currentPName = new JLabel(pName);
+        currentPName.setLocation(370,10);
+        currentPName.setSize(80,40);
+        currentPName.setFont(new Font(null,Font.BOLD,18));
+
+
         //TODO: double click the project record, navigate to the main page
         projectTable.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2){
-
-
-
                     homepagePanel.setVisible(false);
-                    SwingUtilities.updateComponentTreeUI(jFrame);
-                    jFrame.repaint();
+//                    SwingUtilities.updateComponentTreeUI(jFrame);
+//                    jFrame.repaint();
                     //TODO: render the row data to the outPanel, the problem is how to send the data to outPanel
                     //TODO: the row data are read from excel, one excel server one project
                     jFrame.setContentPane(outPanel);
@@ -152,7 +161,7 @@ public class UBNTVertionTwo {
                         pNumber = projectTableModel.getValueAt(targetRow,0).toString();
                         pName = projectTableModel.getValueAt(targetRow,1).toString();
                         //TODO: to show the project config records based on the project name or number
-                        //TODO: need import the config records excel under this project, but how ?
+                        //TODO: need import the config records excel under this project, but how ? --> done
                         //TODO: so it's better to rename the config excel with project name or number when it was generated.
                         //if (can find the specific excel which's name is same with project name or number')
                         String specificExcel = "D:\\ConfigFile\\"+pName +".xlsx";
@@ -168,18 +177,10 @@ public class UBNTVertionTwo {
                             //import project list excel, in order to show the project name and number on the main page
                         }
 
-                        //in order to get the project number and name
-                        JLabel currentPNumber = new JLabel(pNumber);
-                        currentPNumber.setLocation(150,10);
-                        currentPNumber.setSize(80,40);
-                        currentPNumber.setFont(new Font(null,Font.BOLD,18));
-                        outPanel.add(currentPNumber);
-
-                        JLabel currentPName = new JLabel(pName);
-                        currentPName.setLocation(370,10);
-                        currentPName.setSize(80,40);
-                        currentPName.setFont(new Font(null,Font.BOLD,18));
-                        outPanel.add(currentPName);
+                            outPanel.add(currentPName);
+                            outPanel.add(currentPNumber);
+                            currentPName.setText(pName);
+                            currentPNumber.setText(pNumber);
 
                     }else {
                         //TODO: may show waring message here.
@@ -223,7 +224,22 @@ public class UBNTVertionTwo {
         currentPNameTitle.setFont(new Font(null,Font.BOLD,18));
         outPanel.add(currentPNameTitle);
 
+        //add backward button, go back to homepage
+        JButton  backwardButton = new JButton("返回首页");
+        backwardButton.setLocation(850,15);
+        backwardButton.setSize(120,30);
+        backwardButton.setFont(new Font(null,Font.BOLD,18));
+        outPanel.add(backwardButton);
 
+        backwardButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //need remove these two JLabel to make sure every time these two label are new added to outPanel
+                outPanel.remove(currentPName);
+                outPanel.remove(currentPNumber);
+                show();
+            }
+        });
 
         final JTable jTable = new JTable(defautTableModel);
 
