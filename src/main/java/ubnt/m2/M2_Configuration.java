@@ -16,8 +16,8 @@ import utility.WebDriverGiver;
  */
 public class M2_Configuration {
     static{
-//        System.setProperty("webdriver.gecko.driver",System.getProperty("user.dir")+"\\SeleniumGecko\\geckodriver.exe");
-        System.setProperty("webdriver.gecko.driver","D:\\SeleniumGecko\\geckodriver.exe");
+        System.setProperty("webdriver.gecko.driver",System.getProperty("user.dir")+"\\SeleniumGecko\\geckodriver.exe");
+//        System.setProperty("webdriver.gecko.driver","D:\\SeleniumGecko\\geckodriver.exe");
     }
 
     public static WebDriver driver = WebDriverGiver.getWebDriver();
@@ -25,8 +25,8 @@ public class M2_Configuration {
     private final static Log log = LogFactory.getLog(M2_Configuration.class);
 
 //    private final static String relativePath = System.getProperty("user.dir")+"\\src\\main\\java\\configData\\M2_Config.cfg";
-    private final static String relativePath = "D:\\ConfigFile\\M2_Config.cfg";
-//    private final static String relativePath = System.getProperty("user.dir")+"\\ConfigFile\\M2_Config.cfg";
+//    private final static String relativePath = "D:\\ConfigFile\\M2_Config.cfg";
+    private final static String relativePath = System.getProperty("user.dir")+"\\ConfigFile\\M2_Config.cfg";
 
     public static int progress = 0;
 

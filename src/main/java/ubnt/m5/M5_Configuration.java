@@ -18,8 +18,8 @@ import utility.WebDriverGiver;
  */
 public class M5_Configuration {
     static{
-//        System.setProperty("webdriver.gecko.driver",System.getProperty("user.dir")+"\\SeleniumGecko\\geckodriver.exe");
-        System.setProperty("webdriver.gecko.driver","D:\\SeleniumGecko\\geckodriver.exe");
+        System.setProperty("webdriver.gecko.driver",System.getProperty("user.dir")+"\\SeleniumGecko\\geckodriver.exe");
+//        System.setProperty("webdriver.gecko.driver","D:\\SeleniumGecko\\geckodriver.exe");
     }
 
     public static WebDriver driver = WebDriverGiver.getWebDriver();
@@ -84,7 +84,8 @@ public class M5_Configuration {
 
             Thread.sleep(3000);
 
-            getScanFileButton().sendKeys("D:\\ConfigFile\\"+side+"_Config.cfg");
+//            getScanFileButton().sendKeys("D:\\ConfigFile\\"+side+"_Config.cfg");
+            getScanFileButton().sendKeys(System.getProperty("user.dir")+"\\ConfigFile\\"+side+"_Config.cfg");
 
             log.info("the target configuration file was found, waiting for upload");
 
