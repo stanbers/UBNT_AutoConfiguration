@@ -132,7 +132,7 @@ public class UBNTVertionTwo {
         importFromExcel(projectTableModel,Constant.Path_TestData_ProjectList);
 
         //initialize table header
-        String[] columns = {"编号","位置","DK","M2 IP", "M5_Ap IP", "M5_AP 频率", "M5_AP mac地址", "M5_ST IP","M5_ST 锁定mac地址"};
+        String[] columns = {"编号","线路","位置","M2 IP", "M5_Ap IP", "M5_AP 频率", "M5_AP mac地址", "M5_ST IP","M5_ST 锁定mac地址"};
 
         final DefaultTableModel defautTableModel = new DefaultTableModel(null,columns){
             @Override
@@ -173,14 +173,16 @@ public class UBNTVertionTwo {
                         //TODO: so it's better to rename the config excel with project name or number when it was generated.
                         //if (can find the specific excel which's name is same with project name or number')
                         //need to generate the project excel first, otherwise the following code could not find this specific excel
-//                        exportToExcel(null,"D:\\ConfigFile\\"+pName+".xlsx",9);
-                        exportToExcel(null,System.getProperty("user.dir")+ "\\ConfigFile\\"+pName+".xlsx",9);
 //                        String specificExcel = "D:\\ConfigFile\\"+pName +".xlsx";
                         String specificExcel = System.getProperty("user.dir")+ "\\ConfigFile\\"+pName +".xlsx";
 //                        String SpecificProjectCommonField = "D:\\ConfigFile\\"+pName +"CommonFields.xlsx";
                         String SpecificProjectCommonField = System.getProperty("user.dir")+ "\\ConfigFile\\"+pName +"CommonFields.xlsx";
                         File projectCorresspondingConfigFile = new File(specificExcel);
                         File projectCommonFieldFile = new File(SpecificProjectCommonField);
+//                        exportToExcel(null,"D:\\ConfigFile\\"+pName+".xlsx",9);
+                        if (!projectCorresspondingConfigFile.exists()){
+                            exportToExcel(null,System.getProperty("user.dir")+ "\\ConfigFile\\"+pName+".xlsx",9);
+                        }
                         if (projectCorresspondingConfigFile.exists() && projectCommonFieldFile.exists()){
                             //import table rows on main page
                             importFromExcel( defautTableModel,specificExcel);
@@ -262,8 +264,8 @@ public class UBNTVertionTwo {
 
         //setup column width
         jTable.getColumn("编号").setMaxWidth(45);
-        jTable.getColumn("DK").setMaxWidth(80);
-        jTable.getColumn("位置").setMaxWidth(45);
+        jTable.getColumn("位置").setMaxWidth(80);
+        jTable.getColumn("线路").setMaxWidth(45);
         jTable.getColumn("M5_AP 频率").setPreferredWidth(40);
         jTable.getColumn("M2 IP").setPreferredWidth(30);
         jTable.getColumn("M5_Ap IP").setPreferredWidth(40);
@@ -549,7 +551,7 @@ public class UBNTVertionTwo {
     public void rowGenerator(DefaultTableModel defautTableModel){
         final JDialog jDialog = new JDialog();
         jDialog.setSize(500,500);
-        jDialog.setLocationRelativeTo(jFrame);
+        jDialog.setLocationRelativeTo(outPanel);
 
         //setup the logo icon
         Toolkit kit = Toolkit.getDefaultToolkit();
@@ -639,13 +641,13 @@ public class UBNTVertionTwo {
             specificPosition.setLocation(10,90);
             specificPosition.setSize(115,30);
 
-            JLabel DK = new JLabel("DK ");
-            DK.setLocation(120,90);
-            DK.setSize(30,30);
-            DK.setFont(new Font(null,1,16));
+//            JLabel DK = new JLabel("DK ");
+//            DK.setLocation(120,90);
+//            DK.setSize(30,30);
+//            DK.setFont(new Font(null,1,16));
 
-            DKText.setLocation(155,90);
-            DKText.setSize(165,30);
+            DKText.setLocation(120,90);
+            DKText.setSize(200,30);
             DKText.setFont(new Font(null,1,16));
 
             if (rowData != null){
@@ -688,7 +690,7 @@ public class UBNTVertionTwo {
             jPanel.add(way);
             jPanel.add(jComboBox);
             jPanel.add(specificPosition);
-            jPanel.add(DK);
+//            jPanel.add(DK);
             jPanel.add(DKText);
         }else {
             if (tabName != null && tabName.trim().equals("M2")){
@@ -905,13 +907,13 @@ public class UBNTVertionTwo {
             specificPosition.setLocation(10,90);
             specificPosition.setSize(115,30);
 
-            JLabel DK = new JLabel("DK ");
-            DK.setLocation(120,90);
-            DK.setSize(30,30);
-            DK.setFont(new Font(null,1,16));
+//            JLabel DK = new JLabel("DK ");
+//            DK.setLocation(120,90);
+//            DK.setSize(30,30);
+//            DK.setFont(new Font(null,1,16));
 
-            DKText.setLocation(155,90);
-            DKText.setSize(165,30);
+            DKText.setLocation(120,90);
+            DKText.setSize(200,30);
             DKText.setFont(new Font(null,1,16));
 
             //TODO: need to fill up the values automatically based on the previous record DK's value
@@ -960,7 +962,7 @@ public class UBNTVertionTwo {
             jPanel.add(way);
             jPanel.add(jComboBox);
             jPanel.add(specificPosition);
-            jPanel.add(DK);
+//            jPanel.add(DK);
             jPanel.add(DKText);
         }else {
              if (tabName != null && tabName.trim().equals("M2")){
@@ -1212,7 +1214,7 @@ public class UBNTVertionTwo {
         JLabel gatewayIP = new JLabel("无线网关 :");
 //        final JTextField gatewayIPInputBox = new JTextField();
         final JMIPV4AddressField gatewayIPInputBox = new JMIPV4AddressField();
-        String defaultIPValues = "10.1.2.1";
+        String defaultIPValues = "10.23.0.1";
         gatewayIPInputBox.setIpAddress(defaultIPValues);
         gatewayIP.setLocation(60,230);
         gatewayIP.setSize(120,40);
@@ -1246,7 +1248,7 @@ public class UBNTVertionTwo {
                         );
                         projectNumInputBox.grabFocus();
                     }else {
-                        String dynamicIP = "10."+pNumStr+".2.1";
+                        String dynamicIP = "10."+pNumStr+".0.1";
                         gatewayIPInputBox.setText(dynamicIP);
                         projectNameInputBox.grabFocus();
                     }
@@ -1257,7 +1259,7 @@ public class UBNTVertionTwo {
         //net mask label and corresponding text field
         JLabel netMaskLabel = new JLabel("子网掩码 :");
         final JMIPV4AddressField netMaskInputBox = new JMIPV4AddressField();
-        netMaskInputBox.setIpAddress("255.255.255.0");
+        netMaskInputBox.setIpAddress("255.255.248.0");
         netMaskLabel.setLocation(60,280);
         netMaskLabel.setSize(120,40);
         netMaskLabel.setFont(new Font(null, BOLD,18));
@@ -1290,7 +1292,7 @@ public class UBNTVertionTwo {
         //M5 bridge net mask label and corresponding text field
         JLabel netMaskLabel_M5 = new JLabel("子网掩码 :");
         final JMIPV4AddressField netMask_M5_InputBox = new JMIPV4AddressField();
-        netMask_M5_InputBox.setIpAddress("255.255.248.0");
+        netMask_M5_InputBox.setIpAddress("255.255.255.0");
         netMaskLabel_M5.setLocation(60,450);
         netMaskLabel_M5.setSize(120,40);
         netMaskLabel_M5.setFont(new Font(null, BOLD,18));
