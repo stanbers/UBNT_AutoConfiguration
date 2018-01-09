@@ -5,178 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6297135e-99b4-48ed-8d1f-4be9376233e2" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/gui/version/UBNTConfigurationRelativePathMain.java" />
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/TrainScheduling_jar.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/TrainScheduling_jar.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/TrainScheduling_jar/TrainScheduling.jar" afterPath="$PROJECT_DIR$/out/artifacts/TrainScheduling_jar/TrainScheduling.jar" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/configData/AP_Config.cfg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/configData/ConfigData_UBNT_M5_ST.xlsx" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/configData/M2_Config.cfg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/configData/ST_Config.cfg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/excelFiles/APMacAddress.xlsx" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/excelFiles/ConfigData_UBNT_M2.xlsx" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/excelFiles/ConfigData_UBNT_M5_AP.xlsx" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/excelFiles/ConfigData_UBNT_M5_ST.xlsx" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/excelFiles/导出的数据.xlsx" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/geckodriver/geckodriver.exe" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/draft/BackForward.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/draft/CreatRowDynamically01.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/draft/CreateConfigDialog.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/draft/CreateRowDynamically.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/draft/ExcelTojTable.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/draft/FenYeTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/draft/JMIPV4AddressField.java" afterPath="$PROJECT_DIR$/src/main/java/utility/JMIPV4AddressField.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/draft/JTableDefineTest.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/draft/Test.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/draft/Test02.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/draft/Test03.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/draft/Test04.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/draft/Test05.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/draft/TestScrollPanel.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/draft/TestVection.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/draft/Text04Main.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/draft/Text05Main.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/draft/Text06Main.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/draft/UBNT_GUI_02.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/draft/UBNT_GUI_03.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/draft/UBNT_GUI_04.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/draft/UBNT_GUI_backup.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/draft/User.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/main/LaunchGUI.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/main/UBNT_GUI.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/version/UBNTVertionOne.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/version/UBNTVertionThree.java" afterPath="$PROJECT_DIR$/src/main/java/gui/version/UBNTConfigrationRelativePath.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/version/UBNTVertionTwo.java" afterPath="$PROJECT_DIR$/src/main/java/gui/version/UBNTConfigration.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/version/VersionTwoMain.java" afterPath="$PROJECT_DIR$/src/main/java/gui/version/UBNTConfigurationMain.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/icon/SwingControlDemo.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pageObject/UBNT_M2_Configuration.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pageObject/UBNT_M5_Configuration_AP.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pageObject/UBNT_M5_Configuration_ST.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ubnt/m2/M2_Configuration.java" afterPath="$PROJECT_DIR$/src/main/java/ubnt/m2/M2_Configuration.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ubnt/m5/M5_AP.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ubnt/m5/M5_Configuration.java" afterPath="$PROJECT_DIR$/src/main/java/ubnt/m5/M5_Configuration.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ubnt/m5/M5_ST.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utility/Constant.java" afterPath="$PROJECT_DIR$/src/main/java/utility/Constant.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utility/ExcelUtils.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utility/UpdateConfigFile.java" afterPath="$PROJECT_DIR$/src/main/java/utility/UpdateConfigFile.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/remoteConfigurationTesting/UBNT_Configuration_M2.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/remoteConfigurationTesting/UBNT_Configuration_M5_AP.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/remoteConfigurationTesting/UBNT_Configuration_M5_ST.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/BackForward.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/CreatRowDynamically01$1.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/CreatRowDynamically01$2.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/CreatRowDynamically01$3.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/CreatRowDynamically01$4.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/CreatRowDynamically01.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/CreateConfigDialog$1.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/CreateConfigDialog.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/CreateRowDynamically.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/ExcelTojTable$1.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/ExcelTojTable.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/FenYeTest.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/JMIPV4AddressField$1.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/JMIPV4AddressField$Dot.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/JMIPV4AddressField$IPKeyAdapter.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/JMIPV4AddressField$JIPV4Field$IPBlockDocument.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/JMIPV4AddressField$JIPV4Field.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/JMIPV4AddressField$KeyPressListener.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/JMIPV4AddressField.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/JTableDefineTest$MyTable.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/JTableDefineTest.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test02.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test03$MyTableModel.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test03.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test04$1.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test04$2.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test04$3.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test04$4.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test04$5.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test04$6.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test04$7.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test04$8.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test04.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test05$1.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test05$10.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test05$11.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test05$12.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test05$13.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test05$2.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test05$3.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test05$4.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test05$5.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test05$6.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test05$7.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test05$8.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test05$9.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Test05.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/TestScrollPanel$1.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/TestScrollPanel.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/TestVection.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Text04Main.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Text05Main.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/Text06Main.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/UBNT_GUI_02$1.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/UBNT_GUI_02$2.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/UBNT_GUI_02$3.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/UBNT_GUI_02.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/UBNT_GUI_03.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/UBNT_GUI_04.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/UBNT_GUI_backup$1.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/UBNT_GUI_backup$2.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/UBNT_GUI_backup.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/draft/User.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/main/LaunchGUI.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/main/UBNT_GUI$1.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/main/UBNT_GUI$2.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/main/UBNT_GUI.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionOne$1.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionOne$10.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionOne$11.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionOne$12.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionOne$13.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionOne$2.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionOne$3.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionOne$4.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionOne$5.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionOne$6.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionOne$7.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionOne$8.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionOne$9.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionOne.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionTwo$1.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionTwo$10.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionTwo$11.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionTwo$12.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionTwo$13.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionTwo$14.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionTwo$15.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionTwo$16.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionTwo$17.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionTwo$18.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionTwo$19.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionTwo$2.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionTwo$3.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionTwo$4.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionTwo$5.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionTwo$6.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionTwo$7.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionTwo$8.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionTwo$9.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTVertionTwo.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/VersionTwoMain.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/icon/SwingControlDemo$1.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/icon/SwingControlDemo.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pageObject/UBNT_M2_Configuration.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pageObject/UBNT_M5_Configuration_AP.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pageObject/UBNT_M5_Configuration_ST.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ubnt/m5/M5_AP.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ubnt/m5/M5_ST.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/classes/utility/Constant.class" afterPath="$PROJECT_DIR$/target/classes/utility/Constant.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/utility/ExcelUtils.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/remoteConfigurationTesting/UBNT_Configuration_M2.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/remoteConfigurationTesting/UBNT_Configuration_M5_AP.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/remoteConfigurationTesting/UBNT_Configuration_M5_ST.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gui/version/UBNTConfigration.java" afterPath="$PROJECT_DIR$/src/main/java/gui/version/UBNTConfigration.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gui/version/UBNTConfigrationRelativePath.java" afterPath="$PROJECT_DIR$/src/main/java/gui/version/UBNTConfigrationRelativePath.java" />
+      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/UBNTConfigration$13.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/UBNTConfigration$13.class" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -206,8 +40,8 @@
       <file leaf-file-name="UBNTConfigration.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/UBNTConfigration.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="1351" column="34" lean-forward="false" selection-start-line="1351" selection-start-column="34" selection-end-line="1351" selection-end-column="34" />
+            <state relative-caret-position="250">
+              <caret line="1055" column="60" lean-forward="false" selection-start-line="1055" selection-start-column="60" selection-end-line="1055" selection-end-column="60" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1292#1300#0" expanded="true" />
@@ -231,7 +65,6 @@
                 <element signature="e#23196#23197#0" expanded="true" />
                 <element signature="e#24671#25393#0" expanded="true" />
                 <element signature="e#25392#25393#0" expanded="true" />
-                <element signature="method#updateOverlayPanel#0;class#UBNTConfigration#0" expanded="false" />
                 <element signature="e#26391#26399#0" expanded="true" />
                 <element signature="e#26542#26554#0" expanded="true" />
                 <element signature="e#26618#26626#0" expanded="true" />
@@ -257,9 +90,12 @@
       <file leaf-file-name="UBNTConfigrationRelativePath.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/UBNTConfigrationRelativePath.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1551">
-              <caret line="1289" column="52" lean-forward="true" selection-start-line="1289" selection-start-column="52" selection-end-line="1289" selection-end-column="52" />
-              <folding />
+            <state relative-caret-position="484">
+              <caret line="877" column="99" lean-forward="false" selection-start-line="877" selection-start-column="99" selection-end-line="877" selection-end-column="99" />
+              <folding>
+                <element signature="e#1316#1324#0" expanded="true" />
+                <element signature="method#createTextPanelOverlay#0;class#UBNTConfigrationRelativePath#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -277,8 +113,8 @@
       <file leaf-file-name="M2_Configuration.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ubnt/m2/M2_Configuration.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="28" column="79" lean-forward="false" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="79" />
+            <state relative-caret-position="264">
+              <caret line="42" column="88" lean-forward="false" selection-start-line="42" selection-start-column="73" selection-end-line="42" selection-end-column="88" />
               <folding />
             </state>
           </provider>
@@ -287,8 +123,8 @@
       <file leaf-file-name="M5_Configuration.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ubnt/m5/M5_Configuration.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-818">
-              <caret line="87" column="73" lean-forward="false" selection-start-line="87" selection-start-column="73" selection-end-line="87" selection-end-column="73" />
+            <state relative-caret-position="195">
+              <caret line="40" column="23" lean-forward="false" selection-start-line="40" selection-start-column="23" selection-end-line="40" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -297,8 +133,8 @@
       <file leaf-file-name="UpdateConfigFile.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/utility/UpdateConfigFile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-774">
-              <caret line="39" column="23" lean-forward="false" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
+            <state relative-caret-position="57">
+              <caret line="39" column="91" lean-forward="false" selection-start-line="39" selection-start-column="77" selection-end-line="39" selection-end-column="91" />
               <folding />
             </state>
           </provider>
@@ -326,9 +162,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>jTextFields</find>
-      <find>fruqs</find>
-      <find>outpanel</find>
       <find>repain</find>
       <find>projectTable</find>
       <find>新建项目</find>
@@ -356,6 +189,9 @@
       <find>export.</find>
       <find>新建</find>
       <find>创建</find>
+      <find>M2</find>
+      <find>commonFields.add</find>
+      <find>commonFields.get</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -411,15 +247,15 @@
         <option value="$PROJECT_DIR$/src/main/java/gui/version/UBNTVertionThree.java" />
         <option value="$PROJECT_DIR$/src/main/java/gui/version/UBNTVertionTwo.java" />
         <option value="$PROJECT_DIR$/src/main/java/utility/JMIPV4AddressField.java" />
-        <option value="$PROJECT_DIR$/src/main/java/gui/version/UBNTConfigration.java" />
         <option value="$PROJECT_DIR$/src/main/java/gui/version/UBNTConfigrationAbsolutePath.java" />
         <option value="$PROJECT_DIR$/src/main/java/gui/version/UBNTConfigurationAbsolutePathMain.java" />
         <option value="$PROJECT_DIR$/src/main/java/gui/version/UBNTConfigurationRelativePathMain.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ubnt/m2/M2_Configuration.java" />
         <option value="$PROJECT_DIR$/src/main/java/utility/UpdateConfigFile.java" />
         <option value="$PROJECT_DIR$/src/main/java/ubnt/m5/M5_Configuration.java" />
         <option value="$PROJECT_DIR$/src/main/java/utility/Constant.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ubnt/m2/M2_Configuration.java" />
         <option value="$PROJECT_DIR$/src/main/java/gui/version/UBNTConfigrationRelativePath.java" />
+        <option value="$PROJECT_DIR$/src/main/java/gui/version/UBNTConfigration.java" />
       </list>
     </option>
   </component>
@@ -521,7 +357,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../38" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../41" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -830,9 +666,9 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36694387" sideWeight="0.36614582" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38972163" sideWeight="0.49793753" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38972163" sideWeight="0.49793753" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976446" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31263384" sideWeight="0.63385415" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31263384" sideWeight="0.63385415" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23952739" sideWeight="0.7843602" order="0" side_tool="false" content_ui="combo" />
@@ -1360,10 +1196,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/utility/Constant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" column="82" lean-forward="false" selection-start-line="11" selection-start-column="82" selection-end-line="11" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/UBNTConfigurationRelativePathMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="9" column="42" lean-forward="false" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ubnt/m5/M5_Configuration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="40" column="23" lean-forward="false" selection-start-line="40" selection-start-column="23" selection-end-line="40" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/utility/UpdateConfigFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="39" column="91" lean-forward="false" selection-start-line="39" selection-start-column="77" selection-end-line="39" selection-end-column="91" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ubnt/m2/M2_Configuration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="42" column="88" lean-forward="false" selection-start-line="42" selection-start-column="73" selection-end-line="42" selection-end-column="88" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/UBNTConfigration.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="1351" column="34" lean-forward="false" selection-start-line="1351" selection-start-column="34" selection-end-line="1351" selection-end-column="34" />
+        <state relative-caret-position="250">
+          <caret line="1055" column="60" lean-forward="false" selection-start-line="1055" selection-start-column="60" selection-end-line="1055" selection-end-column="60" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1292#1300#0" expanded="true" />
@@ -1387,7 +1263,6 @@
             <element signature="e#23196#23197#0" expanded="true" />
             <element signature="e#24671#25393#0" expanded="true" />
             <element signature="e#25392#25393#0" expanded="true" />
-            <element signature="method#updateOverlayPanel#0;class#UBNTConfigration#0" expanded="false" />
             <element signature="e#26391#26399#0" expanded="true" />
             <element signature="e#26542#26554#0" expanded="true" />
             <element signature="e#26618#26626#0" expanded="true" />
@@ -1409,51 +1284,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ubnt/m2/M2_Configuration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="28" column="79" lean-forward="false" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="79" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ubnt/m5/M5_Configuration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-818">
-          <caret line="87" column="73" lean-forward="false" selection-start-line="87" selection-start-column="73" selection-end-line="87" selection-end-column="73" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/utility/Constant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="11" column="82" lean-forward="false" selection-start-line="11" selection-start-column="82" selection-end-line="11" selection-end-column="82" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/utility/UpdateConfigFile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-774">
-          <caret line="39" column="23" lean-forward="false" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/UBNTConfigurationRelativePathMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="9" column="42" lean-forward="false" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/UBNTConfigrationRelativePath.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1551">
-          <caret line="1289" column="52" lean-forward="true" selection-start-line="1289" selection-start-column="52" selection-end-line="1289" selection-end-column="52" />
-          <folding />
+        <state relative-caret-position="484">
+          <caret line="877" column="99" lean-forward="false" selection-start-line="877" selection-start-column="99" selection-end-line="877" selection-end-column="99" />
+          <folding>
+            <element signature="e#1316#1324#0" expanded="true" />
+            <element signature="method#createTextPanelOverlay#0;class#UBNTConfigrationRelativePath#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -802,7 +802,7 @@ public class UBNTConfigration {
                     defautTableModel.setValueAt(M2_IP,rowNum,3);
 
                     //ssid = commonFields.get(1); netmask = commonFields.get(3); gatewayIP = commonFields.get(2);
-                    M2_Configuration.configM2(commonFields.get(0),M2_IP,commonFields.get(1),commonFields.get(2));
+                    M2_Configuration.configM2(commonFields.get(0),M2_IP,commonFields.get(2),commonFields.get(1));
                 }
                 else if (buttonText.trim().equals("M5_AP")){
                     M5_AP_IP = jTextFields.get(0).getText();
@@ -1051,7 +1051,7 @@ public class UBNTConfigration {
                     defautTableModel.setValueAt(M2_IP,targetRow-1,3);
 
                     //ssid = commonFields.get(1); netmask = commonFields.get(3); gatewayIP = commonFields.get(2);
-                    M2_Configuration.configM2(commonFields.get(0),M2_IP,commonFields.get(1),commonFields.get(2));
+                    M2_Configuration.configM2(commonFields.get(0),M2_IP,commonFields.get(2),commonFields.get(1));
                 }
                 else if (buttonText.trim().equals("M5_AP")){
                     M5_AP_Fruq = fruqComboBox.get(0);
