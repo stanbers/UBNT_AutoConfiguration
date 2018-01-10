@@ -339,7 +339,6 @@ public class UBNTConfigrationRelativePath {
                     defautTableModel.setValueAt(recordIndex++,defautTableModel.getRowCount()-1,0);
                 }
                 rowGenerator(defautTableModel);
-                tabbedjDialog.dispose();
             }
         });
 
@@ -583,7 +582,7 @@ public class UBNTConfigrationRelativePath {
     public void rowGenerator(DefaultTableModel defautTableModel){
 
         tabbedjDialog.setSize(500,500);
-        tabbedjDialog.setLocationRelativeTo(outPanel);
+        tabbedjDialog.setLocationRelativeTo(jFrame);
 
         //setup the logo icon
         Toolkit kit = Toolkit.getDefaultToolkit();
@@ -843,7 +842,7 @@ public class UBNTConfigrationRelativePath {
                     defautTableModel.setValueAt(M5_AP_IP,rowNum,4);
                     defautTableModel.setValueAt(M5_AP_Fruq,rowNum,5);
 
-                    M5_Configuration.configM5("AP",commonFields.get(0),M5_AP_IP,commonFields.get(4),commonFields.get(3),M5_AP_Fruq,null,updatedIP_AP);
+//                    M5_Configuration.configM5("AP",commonFields.get(0),M5_AP_IP,commonFields.get(4),commonFields.get(3),M5_AP_Fruq,null,updatedIP_AP);
                     jDialog_updateRow.setVisible(false);
                     jDialog_updateRow.dispose();
                 }
@@ -873,10 +872,10 @@ public class UBNTConfigrationRelativePath {
 
                     //to make sure using the right flag
                     if (buttonText.trim().substring(0,2).equals("M2")){
-                        progress = M2_Configuration.progress;
+//                        progress = M2_Configuration.progress;
                     }
                     else if (buttonText.trim().substring(0,2).equals("M5")){
-                        progress = M5_Configuration.progress;
+//                        progress = M5_Configuration.progress;
                     }
 
                     //setup the popup window to let the user know the configuration is successful or not
@@ -1094,7 +1093,7 @@ public class UBNTConfigrationRelativePath {
                     log.info("M5_AP_Fruq is " + M5_AP_Fruq);
                     defautTableModel.setValueAt(M5_AP_IP,defautTableModel.getRowCount()-1,4);
                     defautTableModel.setValueAt(M5_AP_Fruq,defautTableModel.getRowCount()-1,5);
-                    M5_Configuration.configM5("AP",commonFields.get(0),M5_AP_IP,commonFields.get(4),commonFields.get(3),M5_AP_Fruq,null,null);
+//                    M5_Configuration.configM5("AP",commonFields.get(0),M5_AP_IP,commonFields.get(4),commonFields.get(3),M5_AP_Fruq,null,null);
                     tabbedjDialog.setVisible(false);
                     tabbedjDialog.dispose();
                 }
@@ -1157,10 +1156,10 @@ public class UBNTConfigrationRelativePath {
 
                     //to make sure using the right flag
                     if (buttonText.trim().substring(0,2).equals("M2")){
-                        progress = M2_Configuration.progress;
+//                        progress = M2_Configuration.progress;
                     }
                     else if (buttonText.trim().substring(0,2).equals("M5")){
-                        progress = M5_Configuration.progress;
+//                        progress = M5_Configuration.progress;
                     }
 
 //                    setup the popup window to let the user know the configuration is successful or not
