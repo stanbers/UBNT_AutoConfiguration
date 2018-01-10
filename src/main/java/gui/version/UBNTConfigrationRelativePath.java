@@ -842,7 +842,7 @@ public class UBNTConfigrationRelativePath {
                     defautTableModel.setValueAt(M5_AP_IP,rowNum,4);
                     defautTableModel.setValueAt(M5_AP_Fruq,rowNum,5);
 
-//                    M5_Configuration.configM5("AP",commonFields.get(0),M5_AP_IP,commonFields.get(4),commonFields.get(3),M5_AP_Fruq,null,updatedIP_AP);
+                    M5_Configuration.configM5("AP",commonFields.get(0),M5_AP_IP,commonFields.get(4),commonFields.get(3),M5_AP_Fruq,null,updatedIP_AP);
                     jDialog_updateRow.setVisible(false);
                     jDialog_updateRow.dispose();
                 }
@@ -958,6 +958,8 @@ public class UBNTConfigrationRelativePath {
                 //only for loop the previous two rows
                 String previousDKValue = defautTableModel.getValueAt(defautTableModel.getRowCount()-2,2).toString().trim();
                 String pre_previousDKValue = defautTableModel.getValueAt(defautTableModel.getRowCount()-3,2).toString().trim();
+                if (!pre_previousDKValue.isEmpty() && !previousDKValue.isEmpty()){
+
                     int previousDKValue_int = Integer.parseInt(previousDKValue);
                     int currentDKValue_int = 0;
                     if (previousDKValue.equals(pre_previousDKValue)){
@@ -965,7 +967,8 @@ public class UBNTConfigrationRelativePath {
                     }else {
                         currentDKValue_int = previousDKValue_int;
                     }
-                DKText.setText(currentDKValue_int +"");
+                    DKText.setText(currentDKValue_int +"");
+                }
 
             }
 
@@ -1043,6 +1046,13 @@ public class UBNTConfigrationRelativePath {
 
                 }else {
                     JMIPV4AddressField IP = new JMIPV4AddressField();
+                    if (tabName.trim().equals("M2")){
+                        IP.setIpAddress("10.1.2.1");
+                    }else if (tabName.trim().equals("M5_AP")){
+                        IP.setIpAddress("192.168.155.1");
+                    }else if (tabName.trim().equals("M5_ST")){
+                        IP.setIpAddress("192.168.155.1");
+                    }
                     IP.setFont(new Font(null, Font.PLAIN, 14));
                     IP.setLocation(120,40*i);
                     IP.setSize(200,30);
@@ -1093,7 +1103,7 @@ public class UBNTConfigrationRelativePath {
                     log.info("M5_AP_Fruq is " + M5_AP_Fruq);
                     defautTableModel.setValueAt(M5_AP_IP,defautTableModel.getRowCount()-1,4);
                     defautTableModel.setValueAt(M5_AP_Fruq,defautTableModel.getRowCount()-1,5);
-//                    M5_Configuration.configM5("AP",commonFields.get(0),M5_AP_IP,commonFields.get(4),commonFields.get(3),M5_AP_Fruq,null,null);
+                    M5_Configuration.configM5("AP",commonFields.get(0),M5_AP_IP,commonFields.get(4),commonFields.get(3),M5_AP_Fruq,null,null);
                     tabbedjDialog.setVisible(false);
                     tabbedjDialog.dispose();
                 }

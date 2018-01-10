@@ -63,19 +63,17 @@
       <file leaf-file-name="UBNTConfigrationRelativePath.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/UBNTConfigrationRelativePath.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="334">
-              <caret line="1097" column="44" lean-forward="true" selection-start-line="1097" selection-start-column="44" selection-end-line="1097" selection-end-column="44" />
+            <state relative-caret-position="365">
+              <caret line="1053" column="54" lean-forward="false" selection-start-line="1053" selection-start-column="54" selection-end-line="1053" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#13920#14837#0" expanded="true" />
                 <element signature="e#14836#14837#0" expanded="true" />
                 <element signature="method#importFromExcel#0;class#UBNTConfigrationRelativePath#0" expanded="false" />
                 <element signature="method#exportToExcel#0;class#UBNTConfigrationRelativePath#0" expanded="false" />
-                <element signature="method#editRow#0;class#UBNTConfigrationRelativePath#0" expanded="false" />
-                <element signature="method#updateOverlayPanel#0;class#UBNTConfigrationRelativePath#0" expanded="false" />
-                <element signature="e#39787#39795#0" expanded="true" />
-                <element signature="e#40045#40057#0" expanded="true" />
-                <element signature="e#40116#40124#0" expanded="true" />
+                <element signature="e#39785#39793#0" expanded="true" />
+                <element signature="e#40043#40055#0" expanded="true" />
+                <element signature="e#40114#40122#0" expanded="true" />
                 <element signature="method#generateNewProjectDilog#0;class#UBNTConfigrationRelativePath#0" expanded="false" />
               </folding>
             </state>
@@ -147,10 +145,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>当前</find>
-      <find>位置重复</find>
-      <find>== 2</find>
-      <find>M5_Configuration</find>
       <find>edit</find>
       <find>IP</find>
       <find>updateIP</find>
@@ -177,6 +171,10 @@
       <find>add.</find>
       <find>jDialog_updateRow</find>
       <find>dispose()</find>
+      <find>DKTe</find>
+      <find>create</find>
+      <find>overlay</find>
+      <find>tabb</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -679,7 +677,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36694387" sideWeight="0.36614582" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26552463" sideWeight="0.49793753" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26552463" sideWeight="0.49793753" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976446" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16702355" sideWeight="0.63385415" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1253,19 +1251,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/UBNTConfigrationRelativePath.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="1097" column="44" lean-forward="true" selection-start-line="1097" selection-start-column="44" selection-end-line="1097" selection-end-column="44" />
+        <state relative-caret-position="365">
+          <caret line="1053" column="54" lean-forward="false" selection-start-line="1053" selection-start-column="54" selection-end-line="1053" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#13920#14837#0" expanded="true" />
             <element signature="e#14836#14837#0" expanded="true" />
             <element signature="method#importFromExcel#0;class#UBNTConfigrationRelativePath#0" expanded="false" />
             <element signature="method#exportToExcel#0;class#UBNTConfigrationRelativePath#0" expanded="false" />
-            <element signature="method#editRow#0;class#UBNTConfigrationRelativePath#0" expanded="false" />
-            <element signature="method#updateOverlayPanel#0;class#UBNTConfigrationRelativePath#0" expanded="false" />
-            <element signature="e#39787#39795#0" expanded="true" />
-            <element signature="e#40045#40057#0" expanded="true" />
-            <element signature="e#40116#40124#0" expanded="true" />
+            <element signature="e#39785#39793#0" expanded="true" />
+            <element signature="e#40043#40055#0" expanded="true" />
+            <element signature="e#40114#40122#0" expanded="true" />
             <element signature="method#generateNewProjectDilog#0;class#UBNTConfigrationRelativePath#0" expanded="false" />
           </folding>
         </state>
