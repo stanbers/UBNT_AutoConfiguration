@@ -9,6 +9,8 @@ import org.openqa.selenium.support.ui.Select;
 import utility.UpdateConfigFile;
 import utility.WebDriverGiver;
 
+import java.util.List;
+
 /**
  * @Author by XuLiang
  * @Date 2017/12/22 11:37
@@ -29,6 +31,7 @@ public class M2_Configuration {
     private final static String relativePath = System.getProperty("user.dir")+"\\ConfigFile\\M2_Config.cfg";
 
     public static int progress = 0;
+    public static String updateIP = "192.168.1.20";
 
     /**
      * here is the entry to update the UBNT fields
@@ -37,18 +40,16 @@ public class M2_Configuration {
      * @param updatedNetmask   the new netmask from swing input box
      * @param updateGatewayIP   the new gateway IP address from swing input box
      */
-    public static void configM2(String updatedSSID,String updatedIP,String updatedNetmask,String updateGatewayIP ){
+    public static void configM2(String updatedSSID,String updatedIP,String updatedNetmask,String updateGatewayIP,String currentIP){
 
         //to update the config file based on swing input values
         UpdateConfigFile.updateFile(updatedSSID,updatedIP,updatedNetmask,updateGatewayIP,null,null,"M2");
 
-        driver.get("https://192.168.1.20/login.cgi");
-        getUsername().sendKeys("ubnt");
-        getPassword().sendKeys("ubnt");
-        selectCountry("840");
-        selectLanguage("en_US");
-        getAgreedCheckbox().click();
-        getLoginButton().click();
+        if (currentIP != null){
+            driver.get("https://"+currentIP+"/login.cgi");
+        }else {
+            driver.get("https://192.168.1.20/login.cgi");
+        }
 
         //record AP mac address
         //may need to write into excel, may handle it later if needed
@@ -58,6 +59,16 @@ public class M2_Configuration {
         //navigate to System tab
 
         try {
+            getUsername().sendKeys("ubnt");
+            getPassword().sendKeys("ubnt");
+            if (getTableRows() > 5){
+
+                selectCountry("840");
+                selectLanguage("en_US");
+                getAgreedCheckbox().click();
+            }
+//            Thread.sleep(3000);
+            getLoginButton().click();
             Thread.sleep(5000);
 
             int attempts = 0;
@@ -142,6 +153,15 @@ public class M2_Configuration {
      */
     private static WebElement getAgreedCheckbox(){
         return driver.findElement(By.id("agreed"));
+    }
+
+    /**
+     * get the login table row size
+     * @return the table row size
+     */
+    private static int getTableRows(){
+        List<WebElement> trRows = driver.findElements(By.cssSelector(".logintable > tr"));
+        return trRows.size();
     }
 
     /**

@@ -11,15 +11,17 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import utility.UpdateConfigFile;
 import utility.WebDriverGiver;
 
+import java.util.List;
+
 /**
  * @Author by XuLiang
  * @Date 2017/12/22 11:14
  * @Email stanxu526@gmail.com
  */
 public class M5_Configuration {
-    static{
-        System.setProperty("webdriver.gecko.driver",System.getProperty("user.dir")+"\\SeleniumGecko\\geckodriver.exe");
-//        System.setProperty("webdriver.gecko.driver","D:\\SeleniumGecko\\geckodriver.exe");
+    static {
+            System.setProperty("webdriver.gecko.driver","D:\\SeleniumGecko\\geckodriver.exe");
+//        System.setProperty("webdriver.gecko.driver",System.getProperty("user.dir")+"\\SeleniumGecko\\geckodriver.exe");
     }
 
     public static WebDriver driver = WebDriverGiver.getWebDriver();
@@ -39,7 +41,8 @@ public class M5_Configuration {
      * @param updatedMACAddress  the AP end mac address from swing input box
      */
     public static void configM5(String side,String updatedSSID,String updatedIP,String updatedNetmask,String updateGatewayIP,
-                                String updatedFruq,String updatedMACAddress){
+                                String updatedFruq,String updatedMACAddress,String currentIP){
+//        System.setProperty("webdriver.gecko.driver","D:\\SeleniumGecko\\geckodriver.exe");
 
         //String relativePath = "D:\\ConfigFile\\"+side+"Config.cfg";
 
@@ -51,25 +54,27 @@ public class M5_Configuration {
             UpdateConfigFile.updateFile(updatedSSID,updatedIP,updatedNetmask,updateGatewayIP,null,updatedMACAddress,side);
         }
 
-        driver.get("https://192.168.1.20/login.cgi");
-
-        if (getUsername() != null && getAgreedCheckbox() != null){
-            getUsername().sendKeys("ubnt");
-            getPassword().sendKeys("ubnt");
-            selectCountry("840");
-            selectLanguage("en_US");
-            getAgreedCheckbox().click();
-
+        if (currentIP != null){
+            driver.get("https://"+currentIP+"/login.cgi");
         }else {
-            //login page changed when configuration fail
-            getUsername().sendKeys("ubnt");
-            getPassword().sendKeys("ubnt");
+            driver.get("https://192.168.1.20/login.cgi");
         }
 
-        getLoginButton().click();
 
         try {
-            Thread.sleep(4000);
+            getUsername().sendKeys("ubnt");
+            getPassword().sendKeys("ubnt");
+            if (getTableRows() > 5){
+                selectCountry("840");
+                selectLanguage("en_US");
+                getAgreedCheckbox().click();
+
+            }
+//            Thread.sleep(3000);
+            getLoginButton().click();
+            Thread.sleep(5000);
+            //TODO: dismiss the warning message
+            getDismissButton().click();
             //navigate to System tab
             int attempts = 0;
             while(attempts < 10) {
@@ -84,11 +89,12 @@ public class M5_Configuration {
 
             Thread.sleep(3000);
 
-//            getScanFileButton().sendKeys("D:\\ConfigFile\\"+side+"_Config.cfg");
-            getScanFileButton().sendKeys(System.getProperty("user.dir")+"\\ConfigFile\\"+side+"_Config.cfg");
+            getScanFileButton().sendKeys("D:\\ConfigFile\\"+side+"_Config.cfg");
+//            getScanFileButton().sendKeys(System.getProperty("user.dir")+"\\ConfigFile\\"+side+"_Config.cfg");
 
             log.info("the target configuration file was found, waiting for upload");
 
+            Thread.sleep(2000);
             getUploadFileButton().click();
 
             Thread.sleep(1000);
@@ -99,6 +105,7 @@ public class M5_Configuration {
 
             Thread.sleep(10000);
             log.info("uploaded done !");
+//            driver.quit();
 
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -154,6 +161,15 @@ public class M5_Configuration {
      */
     private static WebElement getAgreedCheckbox(){
         return driver.findElement(By.id("agreed"));
+    }
+
+    /**
+     * get the login table row size
+     * @return the table row size
+     */
+    public static int getTableRows(){
+        List<WebElement> trRows = driver.findElements(By.cssSelector(".logintable > tbody > tr"));
+        return trRows.size();
     }
 
     /**
@@ -218,5 +234,14 @@ public class M5_Configuration {
             log.info(applyButton.getAttribute("value"));
         }
         return applyButton;
+    }
+
+    /**
+     * Get dismiss button on the right_bottom side
+     * @return
+     */
+    private static WebElement getDismissButton(){
+        WebElement dismissButton = driver.findElement(By.id("hide-warning"));
+        return dismissButton;
     }
 }

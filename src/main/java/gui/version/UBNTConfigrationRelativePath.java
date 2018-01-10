@@ -59,6 +59,9 @@ public class UBNTConfigrationRelativePath {
     private XSSFRow Row;
     private final String[] fruqs = new String[]{"5820","5840","5860","5880","5900","5920"};
 
+    private String updatedIP_M2,updatedIP_AP,updatedIP_ST;
+    final JDialog tabbedjDialog = new JDialog(jFrame,"配置页面",true);
+    final JDialog jDialog_updateRow = new JDialog(jFrame,"配置页面",true);
 
     /**
      * show the homepage
@@ -71,15 +74,15 @@ public class UBNTConfigrationRelativePath {
 
         //setup the logo icon
         Toolkit kit = Toolkit.getDefaultToolkit();
-        Image icon = kit.getImage(System.getProperty("user.dir")+"\\icon\\logo.png");
-//        Image icon = kit.getImage("D:\\icon\\logo.png");
+//        Image icon = kit.getImage(System.getProperty("user.dir")+"\\icon\\logo.png");
+        Image icon = kit.getImage("D:\\icon\\logo.png");
         jFrame.setIconImage(icon);
 
         //create the homepage panel
         final JPanel homepagePanel = new JPanel(null);
 
         //initialize project table header
-        String[] projectHeader = {"项目编号","项目名称"};
+        final String[] projectHeader = {"项目编号","项目名称"};
 
         final DefaultTableModel projectTableModel = new DefaultTableModel(null,projectHeader){
             @Override
@@ -133,7 +136,7 @@ public class UBNTConfigrationRelativePath {
         importFromExcel(projectTableModel,Constant.Path_TestData_ProjectList);
 
         //initialize table header
-        String[] columns = {"编号","线路","位置","M2 IP", "M5_Ap IP", "M5_AP 频率", "M5_AP mac地址", "M5_ST IP","M5_ST 锁定mac地址"};
+        final String[] columns = {"编号","线路","位置","M2 IP", "M5_Ap IP", "M5_AP 频率", "M5_AP mac地址", "M5_ST IP","M5_ST 锁定mac地址"};
 
         final DefaultTableModel defautTableModel = new DefaultTableModel(null,columns){
             @Override
@@ -150,8 +153,10 @@ public class UBNTConfigrationRelativePath {
 
         final JLabel currentPName = new JLabel(pName);
         currentPName.setLocation(370,10);
-        currentPName.setSize(80,40);
+        currentPName.setSize(180,40);
         currentPName.setFont(new Font(null,Font.BOLD,18));
+
+        final JTable jTable = new JTable(defautTableModel);
 
 
         //TODO: double click the project record, navigate to the main page
@@ -160,6 +165,7 @@ public class UBNTConfigrationRelativePath {
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2){
                     homepagePanel.setVisible(false);
+                    outPanel.setVisible(true);
 //                    SwingUtilities.updateComponentTreeUI(jFrame);
 //                    jFrame.repaint();
                     //TODO: render the row data to the outPanel, the problem is how to send the data to outPanel
@@ -174,19 +180,26 @@ public class UBNTConfigrationRelativePath {
                         //TODO: so it's better to rename the config excel with project name or number when it was generated.
                         //if (can find the specific excel which's name is same with project name or number')
                         //need to generate the project excel first, otherwise the following code could not find this specific excel
-//                        String specificExcel = "D:\\ConfigFile\\"+pName +".xlsx";
-                        String specificExcel = System.getProperty("user.dir")+ "\\ConfigFile\\"+pName +".xlsx";
-//                        String SpecificProjectCommonField = "D:\\ConfigFile\\"+pName +"CommonFields.xlsx";
-                        String SpecificProjectCommonField = System.getProperty("user.dir")+ "\\ConfigFile\\"+pName +"CommonFields.xlsx";
+                        String specificExcel = "D:\\ConfigFile\\"+pName +".xlsx";
+//                        String specificExcel = System.getProperty("user.dir")+ "\\ConfigFile\\"+pName +".xlsx";
+                        String SpecificProjectCommonField = "D:\\ConfigFile\\"+pName +"CommonFields.xlsx";
+//                        String SpecificProjectCommonField = System.getProperty("user.dir")+ "\\ConfigFile\\"+pName +"CommonFields.xlsx";
                         File projectCorresspondingConfigFile = new File(specificExcel);
                         File projectCommonFieldFile = new File(SpecificProjectCommonField);
+//                        DefaultTableModel defaultTableModel = new DefaultTableModel(null,columns){
+//                            @Override
+//                            public boolean isCellEditable(int row, int column) {
+//                                return false;
+//                            }
+//                        };
                         if (!projectCorresspondingConfigFile.exists()){
-//                            exportToExcel(defautTableModel,"D:\\ConfigFile\\"+pName+".xlsx",9);
-                            exportToExcel(null,System.getProperty("user.dir")+ "\\ConfigFile\\"+pName+".xlsx",9);
+                            exportToExcel(defautTableModel,"D:\\ConfigFile\\"+pName+".xlsx",9);
+//                            exportToExcel(null,System.getProperty("user.dir")+ "\\ConfigFile\\"+pName+".xlsx",9);
                         }
                         if (projectCorresspondingConfigFile.exists() && projectCommonFieldFile.exists()){
                             //import table rows on main page
                             importFromExcel( defautTableModel,specificExcel);
+//                            jTable.setModel(defaultTableModel);
                             //import specific project common fields
                             //TODO: this time not to render table but to override commonfields.
                             importFromExcel(null,SpecificProjectCommonField);
@@ -253,11 +266,15 @@ public class UBNTConfigrationRelativePath {
                 //need remove these two JLabel to make sure every time these two label are new added to outPanel
                 outPanel.remove(currentPName);
                 outPanel.remove(currentPNumber);
-                show();
+                defautTableModel.getDataVector().clear();
+                outPanel.setVisible(false);
+                homepagePanel.setVisible(true);
+                jFrame.setContentPane(homepagePanel);
             }
+
         });
 
-        final JTable jTable = new JTable(defautTableModel);
+
 
         jTable.setLocation(20,100);
         jTable.setSize(950,450);
@@ -322,6 +339,7 @@ public class UBNTConfigrationRelativePath {
                     defautTableModel.setValueAt(recordIndex++,defautTableModel.getRowCount()-1,0);
                 }
                 rowGenerator(defautTableModel);
+                tabbedjDialog.dispose();
             }
         });
 
@@ -344,6 +362,17 @@ public class UBNTConfigrationRelativePath {
                         }else {
                             cellValuesOfSpecificRow.add("null");
                         }
+                    }
+
+                    //TODO: get the AP olderIP,
+                    if (defautTableModel.getValueAt(rowNum,3) != null){
+                        updatedIP_M2 = defautTableModel.getValueAt(rowNum,3).toString();
+                    }
+                    if (defautTableModel.getValueAt(rowNum,4) != null){
+                        updatedIP_AP = defautTableModel.getValueAt(rowNum,4).toString();
+                    }
+                    if (defautTableModel.getValueAt(rowNum,7) != null){
+                        updatedIP_ST = defautTableModel.getValueAt(rowNum,7).toString();
                     }
                     editRow(cellValuesOfSpecificRow,defautTableModel);
                 }
@@ -379,8 +408,8 @@ public class UBNTConfigrationRelativePath {
         export.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                exportToExcel(defautTableModel,"D:\\ConfigFile\\"+pName+".xlsx",9);
-                exportToExcel(defautTableModel,System.getProperty("user.dir")+ "\\ConfigFile\\"+pName+".xlsx",9);
+                exportToExcel(defautTableModel,"D:\\ConfigFile\\"+pName+".xlsx",9);
+//                exportToExcel(defautTableModel,System.getProperty("user.dir")+ "\\ConfigFile\\"+pName+".xlsx",9);
                 JOptionPane.showMessageDialog(
                         jFrame,
                         "导出数据完毕 !",
@@ -505,15 +534,15 @@ public class UBNTConfigrationRelativePath {
      * @param rowData the original row data
      */
     public void editRow(List<String> rowData, DefaultTableModel defautTableModel){
-        final JDialog jDialog = new JDialog(jFrame,"配置页面",true);
-        jDialog.setSize(500,500);
-        jDialog.setLocationRelativeTo(jFrame);
+
+        jDialog_updateRow.setSize(500,500);
+        jDialog_updateRow.setLocationRelativeTo(jFrame);
 
         //setup the logo icon
         Toolkit kit = Toolkit.getDefaultToolkit();
-//        Image icon = kit.getImage("D:\\icon\\logo.png");
-        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
-        jDialog.setIconImage(icon);
+        Image icon = kit.getImage("D:\\icon\\logo.png");
+//        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
+        jDialog_updateRow.setIconImage(icon);
 
         //setup JTabbedPane
         final JTabbedPane jTabbedPane = new JTabbedPane();
@@ -543,8 +572,8 @@ public class UBNTConfigrationRelativePath {
 
         jTabbedPane.setSelectedIndex(0);
         updateOverlayPanel("位置",null,defautTableModel);
-        jDialog.setContentPane(jTabbedPane);
-        jDialog.setVisible(true);
+        jDialog_updateRow.setContentPane(jTabbedPane);
+        jDialog_updateRow.setVisible(true);
 
     }
 
@@ -552,15 +581,15 @@ public class UBNTConfigrationRelativePath {
      * generate rows
      */
     public void rowGenerator(DefaultTableModel defautTableModel){
-        final JDialog jDialog = new JDialog(jFrame,"配置页面",true);
-        jDialog.setSize(500,500);
-        jDialog.setLocationRelativeTo(outPanel);
+
+        tabbedjDialog.setSize(500,500);
+        tabbedjDialog.setLocationRelativeTo(outPanel);
 
         //setup the logo icon
         Toolkit kit = Toolkit.getDefaultToolkit();
-//        Image icon = kit.getImage("D:\\icon\\logo.png");
-        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
-        jDialog.setIconImage(icon);
+        Image icon = kit.getImage("D:\\icon\\logo.png");
+//        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
+        tabbedjDialog.setIconImage(icon);
 
 //        JPanel jPanel = new JPanel(null);
 
@@ -596,8 +625,8 @@ public class UBNTConfigrationRelativePath {
         jTabbedPane.setSelectedIndex(0);
 //        createTextPanelOverlay("M2");
         createTextPanelOverlay("位置",defautTableModel);
-        jDialog.setContentPane(jTabbedPane);
-        jDialog.setVisible(true);
+        tabbedjDialog.setContentPane(jTabbedPane);
+        tabbedjDialog.setVisible(true);
 
     }
 
@@ -698,6 +727,7 @@ public class UBNTConfigrationRelativePath {
             jPanel.add(DKText);
         }else {
             if (tabName != null && tabName.trim().equals("M2")){
+
                 realLength = labelName.length-2;
             }
             else if (tabName != null && tabName.trim().equals("M5_AP") || tabName.trim().equals("M5_ST")){
@@ -785,6 +815,7 @@ public class UBNTConfigrationRelativePath {
         jButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                exportToExcel(defautTableModel,"D:\\ConfigFile\\"+pName+".xlsx",9);
                 JButton jb = (JButton)e.getSource();
                 String buttonText = jb.getText();
                 log.info(buttonText);
@@ -802,7 +833,7 @@ public class UBNTConfigrationRelativePath {
                     defautTableModel.setValueAt(M2_IP,rowNum,3);
 
                     //ssid = commonFields.get(1); netmask = commonFields.get(3); gatewayIP = commonFields.get(2);
-                    M2_Configuration.configM2(commonFields.get(0),M2_IP,commonFields.get(2),commonFields.get(1));
+                    M2_Configuration.configM2(commonFields.get(0),M2_IP,commonFields.get(2),commonFields.get(1),updatedIP_M2);
                 }
                 else if (buttonText.trim().equals("M5_AP")){
                     M5_AP_IP = jTextFields.get(0).getText();
@@ -811,7 +842,10 @@ public class UBNTConfigrationRelativePath {
                     log.info("M5_AP_Fruq is " + M5_AP_Fruq);
                     defautTableModel.setValueAt(M5_AP_IP,rowNum,4);
                     defautTableModel.setValueAt(M5_AP_Fruq,rowNum,5);
-                    M5_Configuration.configM5("AP",commonFields.get(0),M5_AP_IP,commonFields.get(4),commonFields.get(3),M5_AP_Fruq,null);
+
+                    M5_Configuration.configM5("AP",commonFields.get(0),M5_AP_IP,commonFields.get(4),commonFields.get(3),M5_AP_Fruq,null,updatedIP_AP);
+                    jDialog_updateRow.setVisible(false);
+                    jDialog_updateRow.dispose();
                 }
                 else if (buttonText.trim().equals("M5_ST")){
                     M5_ST_IP = jTextFields.get(0).getText();
@@ -822,7 +856,7 @@ public class UBNTConfigrationRelativePath {
                     defautTableModel.setValueAt(M5_AP_Mac,rowNum,6);
                     defautTableModel.setValueAt(M5_ST_IP,rowNum,7);
                     defautTableModel.setValueAt(M5_AP_Mac,rowNum,8);
-                    M5_Configuration.configM5("ST",commonFields.get(0),M5_ST_IP,commonFields.get(4),commonFields.get(3),null,M5_AP_Mac);
+                    M5_Configuration.configM5("ST",commonFields.get(0),M5_ST_IP,commonFields.get(4),commonFields.get(3),null,M5_AP_Mac,updatedIP_ST);
                 }else if (buttonText.trim().equals("位置")){
                     defautTableModel.setValueAt(position,rowNum,1);
                     defautTableModel.setValueAt(DK,rowNum,2);
@@ -1051,7 +1085,7 @@ public class UBNTConfigrationRelativePath {
                     defautTableModel.setValueAt(M2_IP,targetRow-1,3);
 
                     //ssid = commonFields.get(1); netmask = commonFields.get(3); gatewayIP = commonFields.get(2);
-                    M2_Configuration.configM2(commonFields.get(0),M2_IP,commonFields.get(2),commonFields.get(1));
+                    M2_Configuration.configM2(commonFields.get(0),M2_IP,commonFields.get(2),commonFields.get(1),null);
                 }
                 else if (buttonText.trim().equals("M5_AP")){
                     M5_AP_Fruq = fruqComboBox.get(0);
@@ -1060,7 +1094,9 @@ public class UBNTConfigrationRelativePath {
                     log.info("M5_AP_Fruq is " + M5_AP_Fruq);
                     defautTableModel.setValueAt(M5_AP_IP,defautTableModel.getRowCount()-1,4);
                     defautTableModel.setValueAt(M5_AP_Fruq,defautTableModel.getRowCount()-1,5);
-                    M5_Configuration.configM5("AP",commonFields.get(0),M5_AP_IP,commonFields.get(4),commonFields.get(3),M5_AP_Fruq,null);
+                    M5_Configuration.configM5("AP",commonFields.get(0),M5_AP_IP,commonFields.get(4),commonFields.get(3),M5_AP_Fruq,null,null);
+                    tabbedjDialog.setVisible(false);
+                    tabbedjDialog.dispose();
                 }
                 else if (buttonText.trim().equals("M5_ST")){
                     M5_ST_IP = jTextFields.get(0).getText();
@@ -1071,10 +1107,9 @@ public class UBNTConfigrationRelativePath {
                     defautTableModel.setValueAt(M5_AP_Mac,defautTableModel.getRowCount()-1,6);
                     defautTableModel.setValueAt(M5_ST_IP,defautTableModel.getRowCount()-1,7);
                     defautTableModel.setValueAt(M5_AP_Mac,defautTableModel.getRowCount()-1,8);
-                    M5_Configuration.configM5("ST",commonFields.get(1),M5_ST_IP,commonFields.get(4),commonFields.get(3),null,M5_AP_Mac);
+                    M5_Configuration.configM5("ST",commonFields.get(1),M5_ST_IP,commonFields.get(4),commonFields.get(3),null,M5_AP_Mac,null);
                 }else if (buttonText.trim().equals("位置")){
                     defautTableModel.setValueAt(position,defautTableModel.getRowCount()-1,1);
-                    defautTableModel.setValueAt(DK,defautTableModel.getRowCount()-1,2);
 
                     String previousDKValue = null;
                     String pre_previousDKValue = null;
@@ -1094,6 +1129,8 @@ public class UBNTConfigrationRelativePath {
                         if (defautTableModel.getValueAt(defautTableModel.getRowCount()-2,1).equals(jComboBox.getSelectedItem())
                                 && previousDKValue.equals(DKText.getText())){
                             JOptionPane.showMessageDialog(jDialog,"位置重复了!  请修改");
+                        }else {
+                            defautTableModel.setValueAt(DK,defautTableModel.getRowCount()-1,2);
                         }
                     }else if (defautTableModel.getRowCount() == 2){
                         previousDKValue = defautTableModel.getValueAt(defautTableModel.getRowCount()-2,2).toString().trim();
@@ -1101,7 +1138,11 @@ public class UBNTConfigrationRelativePath {
                         if (previousPostionValue.equals(jComboBox.getSelectedItem())
                                 && previousDKValue.equals(DKText.getText())){
                             JOptionPane.showMessageDialog(jDialog,"位置重复了!  请修改");
+                        }else {
+                            defautTableModel.setValueAt(DK,defautTableModel.getRowCount()-1,2);
                         }
+                    }else {
+                        defautTableModel.setValueAt(DK,defautTableModel.getRowCount()-1,2);
                     }
                     if (commonFields != null){
                         log.info("ssid is " + commonFields.get(0));
@@ -1159,8 +1200,8 @@ public class UBNTConfigrationRelativePath {
 
         //setup the logo icon
         Toolkit kit = Toolkit.getDefaultToolkit();
-        Image icon = kit.getImage(System.getProperty("user.dir")+"\\icon\\logo.png");
-//        Image icon = kit.getImage("D:\\icon\\logo.png");
+//        Image icon = kit.getImage(System.getProperty("user.dir")+"\\icon\\logo.png");
+        Image icon = kit.getImage("D:\\icon\\logo.png");
         jDialog.setIconImage(icon);
 
         JPanel jPanel = new JPanel(null);
@@ -1284,7 +1325,7 @@ public class UBNTConfigrationRelativePath {
         //M5 bridge gateway IP label and corresponding text field
         JLabel gatewayIP_M5 = new JLabel("网段 :");
         final JMIPV4AddressField gatewayIP_M5_InputBox = new JMIPV4AddressField();
-        gatewayIP_M5_InputBox.setIpAddress("192.168.1.1");
+        gatewayIP_M5_InputBox.setIpAddress("192.168.155.1");
         gatewayIP_M5.setLocation(60,400);
         gatewayIP_M5.setSize(120,40);
         gatewayIP_M5.setFont(new Font(null, 1, 18));
@@ -1344,8 +1385,8 @@ public class UBNTConfigrationRelativePath {
                 projectTableModel.setValueAt(pName,projectTableModel.getRowCount()-1,1);
                 //TODO: need to write the project info into the specific excel, in order to show these info on homepage once the app was running
                 String projectExcelPath = Constant.Path_TestData_ProjectList;
-                String commonFieldsExcelPath = System.getProperty("user.dir")+"\\ConfigFile\\"+pName +"CommonFields.xlsx";
-//                String commonFieldsExcelPath = "D:\\ConfigFile\\"+pName +"CommonFields.xlsx";
+//                String commonFieldsExcelPath = System.getProperty("user.dir")+"\\ConfigFile\\"+pName +"CommonFields.xlsx";
+                String commonFieldsExcelPath = "D:\\ConfigFile\\"+pName +"CommonFields.xlsx";
                 exportToExcel(projectTableModel,projectExcelPath,2);
                 exportToExcel(null,commonFieldsExcelPath,7);
 

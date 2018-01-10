@@ -7,6 +7,6 @@ package gui.version;
  */
 public class UBNTConfigurationMain {
     public static void main(String[] args) {
-        new UBNTConfigration().show();
+        new UBNTConfigrationRelativePath().show();
     }
 }
