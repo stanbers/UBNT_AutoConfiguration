@@ -3,7 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/TrainScheduling_jar</output-path>
     <root id="archive" name="TrainScheduling.jar">
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/../54/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/../57/META-INF/MANIFEST.MF" />
       </element>
       <element id="module-output" name="TrainScheduling" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/commons/commons-collections4/4.1/commons-collections4-4.1.jar" path-in-jar="/" />
