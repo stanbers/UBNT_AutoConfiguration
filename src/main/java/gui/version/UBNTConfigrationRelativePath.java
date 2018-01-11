@@ -74,8 +74,8 @@ public class UBNTConfigrationRelativePath {
 
         //setup the logo icon
         Toolkit kit = Toolkit.getDefaultToolkit();
-//        Image icon = kit.getImage(System.getProperty("user.dir")+"\\icon\\logo.png");
-        Image icon = kit.getImage("D:\\icon\\logo.png");
+        Image icon = kit.getImage(System.getProperty("user.dir")+"\\icon\\logo.png");
+//        Image icon = kit.getImage("D:\\icon\\logo.png");
         jFrame.setIconImage(icon);
 
         //create the homepage panel
@@ -180,10 +180,10 @@ public class UBNTConfigrationRelativePath {
                         //TODO: so it's better to rename the config excel with project name or number when it was generated.
                         //if (can find the specific excel which's name is same with project name or number')
                         //need to generate the project excel first, otherwise the following code could not find this specific excel
-                        String specificExcel = "D:\\ConfigFile\\"+pName +".xlsx";
-//                        String specificExcel = System.getProperty("user.dir")+ "\\ConfigFile\\"+pName +".xlsx";
-                        String SpecificProjectCommonField = "D:\\ConfigFile\\"+pName +"CommonFields.xlsx";
-//                        String SpecificProjectCommonField = System.getProperty("user.dir")+ "\\ConfigFile\\"+pName +"CommonFields.xlsx";
+//                        String specificExcel = "D:\\ConfigFile\\"+pName +".xlsx";
+                        String specificExcel = System.getProperty("user.dir")+ "\\ConfigFile\\"+pName +".xlsx";
+//                        String SpecificProjectCommonField = "D:\\ConfigFile\\"+pName +"CommonFields.xlsx";
+                        String SpecificProjectCommonField = System.getProperty("user.dir")+ "\\ConfigFile\\"+pName +"CommonFields.xlsx";
                         File projectCorresspondingConfigFile = new File(specificExcel);
                         File projectCommonFieldFile = new File(SpecificProjectCommonField);
 //                        DefaultTableModel defaultTableModel = new DefaultTableModel(null,columns){
@@ -193,8 +193,8 @@ public class UBNTConfigrationRelativePath {
 //                            }
 //                        };
                         if (!projectCorresspondingConfigFile.exists()){
-                            exportToExcel(defautTableModel,"D:\\ConfigFile\\"+pName+".xlsx",9);
-//                            exportToExcel(null,System.getProperty("user.dir")+ "\\ConfigFile\\"+pName+".xlsx",9);
+//                            exportToExcel(defautTableModel,"D:\\ConfigFile\\"+pName+".xlsx",9);
+                            exportToExcel(null,System.getProperty("user.dir")+ "\\ConfigFile\\"+pName+".xlsx",9);
                         }
                         if (projectCorresspondingConfigFile.exists() && projectCommonFieldFile.exists()){
                             //import table rows on main page
@@ -407,8 +407,8 @@ public class UBNTConfigrationRelativePath {
         export.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                exportToExcel(defautTableModel,"D:\\ConfigFile\\"+pName+".xlsx",9);
-//                exportToExcel(defautTableModel,System.getProperty("user.dir")+ "\\ConfigFile\\"+pName+".xlsx",9);
+//                exportToExcel(defautTableModel,"D:\\ConfigFile\\"+pName+".xlsx",9);
+                exportToExcel(defautTableModel,System.getProperty("user.dir")+ "\\ConfigFile\\"+pName+".xlsx",9);
                 JOptionPane.showMessageDialog(
                         jFrame,
                         "导出数据完毕 !",
@@ -539,8 +539,8 @@ public class UBNTConfigrationRelativePath {
 
         //setup the logo icon
         Toolkit kit = Toolkit.getDefaultToolkit();
-        Image icon = kit.getImage("D:\\icon\\logo.png");
-//        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
+//        Image icon = kit.getImage("D:\\icon\\logo.png");
+        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
         jDialog_updateRow.setIconImage(icon);
 
         //setup JTabbedPane
@@ -586,8 +586,8 @@ public class UBNTConfigrationRelativePath {
 
         //setup the logo icon
         Toolkit kit = Toolkit.getDefaultToolkit();
-        Image icon = kit.getImage("D:\\icon\\logo.png");
-//        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
+//        Image icon = kit.getImage("D:\\icon\\logo.png");
+        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
         tabbedjDialog.setIconImage(icon);
 
 //        JPanel jPanel = new JPanel(null);
@@ -872,10 +872,10 @@ public class UBNTConfigrationRelativePath {
 
                     //to make sure using the right flag
                     if (buttonText.trim().substring(0,2).equals("M2")){
-//                        progress = M2_Configuration.progress;
+                        progress = M2_Configuration.progress;
                     }
                     else if (buttonText.trim().substring(0,2).equals("M5")){
-//                        progress = M5_Configuration.progress;
+                        progress = M5_Configuration.progress;
                     }
 
                     //setup the popup window to let the user know the configuration is successful or not
@@ -1166,10 +1166,10 @@ public class UBNTConfigrationRelativePath {
 
                     //to make sure using the right flag
                     if (buttonText.trim().substring(0,2).equals("M2")){
-//                        progress = M2_Configuration.progress;
+                        progress = M2_Configuration.progress;
                     }
                     else if (buttonText.trim().substring(0,2).equals("M5")){
-//                        progress = M5_Configuration.progress;
+                        progress = M5_Configuration.progress;
                     }
 
 //                    setup the popup window to let the user know the configuration is successful or not
@@ -1209,8 +1209,8 @@ public class UBNTConfigrationRelativePath {
 
         //setup the logo icon
         Toolkit kit = Toolkit.getDefaultToolkit();
-//        Image icon = kit.getImage(System.getProperty("user.dir")+"\\icon\\logo.png");
-        Image icon = kit.getImage("D:\\icon\\logo.png");
+        Image icon = kit.getImage(System.getProperty("user.dir")+"\\icon\\logo.png");
+//        Image icon = kit.getImage("D:\\icon\\logo.png");
         jDialog.setIconImage(icon);
 
         JPanel jPanel = new JPanel(null);
@@ -1394,8 +1394,8 @@ public class UBNTConfigrationRelativePath {
                 projectTableModel.setValueAt(pName,projectTableModel.getRowCount()-1,1);
                 //TODO: need to write the project info into the specific excel, in order to show these info on homepage once the app was running
                 String projectExcelPath = Constant.Path_TestData_ProjectList;
-//                String commonFieldsExcelPath = System.getProperty("user.dir")+"\\ConfigFile\\"+pName +"CommonFields.xlsx";
-                String commonFieldsExcelPath = "D:\\ConfigFile\\"+pName +"CommonFields.xlsx";
+                String commonFieldsExcelPath = System.getProperty("user.dir")+"\\ConfigFile\\"+pName +"CommonFields.xlsx";
+//                String commonFieldsExcelPath = "D:\\ConfigFile\\"+pName +"CommonFields.xlsx";
                 exportToExcel(projectTableModel,projectExcelPath,2);
                 exportToExcel(null,commonFieldsExcelPath,7);
 
