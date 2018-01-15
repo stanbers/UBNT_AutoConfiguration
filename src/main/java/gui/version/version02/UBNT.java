@@ -7,6 +7,7 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import ubnt.m2.M2_Configuration_Absolute;
+import ubnt.m5.M5_Configuration_Absolute;
 import utility.Constant_Relative;
 import utility.JMIPV4AddressField;
 import utility.LimitedDocument;
@@ -69,8 +70,8 @@ public class UBNT {
     private String pName;
     private String pNumber;
 
-    //the older IP which waiting for update
-    private String updatedIP_M2;
+    //the older IP which waiting for update, need this older ip to login
+    private String updatedIP_M2,originalIP_M5AP,originalIP_M5ST;
 
     /**
      * To render homepage, include project table and create project dialog
@@ -103,7 +104,7 @@ public class UBNT {
 
         //setup homepage top title
         JLabel titleLabel = new JLabel("中继自动化配置",SwingConstants.CENTER);
-        titleLabel.setSize(1050,100);
+        titleLabel.setSize(1300,100);
         titleLabel.setFont(new Font(null,Font.BOLD, 60));
         homepagePanel.add(titleLabel);
 
@@ -169,7 +170,7 @@ public class UBNT {
         projectTable.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                final JPanel M2_outermostPanel = showConfigRecordsPage();
+                final JPanel outermostPanel = showConfigRecordsPage();
 
                 JPanel outermostHeaderPanel = new JPanel(){
                     @Override
@@ -184,20 +185,20 @@ public class UBNT {
                 };
                 outermostHeaderPanel.setLocation(10,45);
                 outermostHeaderPanel.setSize(1135,13);
-                M2_outermostPanel.add(outermostHeaderPanel);
+                outermostPanel.add(outermostHeaderPanel);
 
                 // create the header dynamically
                 JLabel currentPNumberTitle = new JLabel("当前项目编号：");
                 currentPNumberTitle.setLocation(20,10);
                 currentPNumberTitle.setSize(160,40);
                 currentPNumberTitle.setFont(new Font(null,Font.BOLD,18));
-                M2_outermostPanel.add(currentPNumberTitle);
+                outermostPanel.add(currentPNumberTitle);
 
                 JLabel currentPNameTitle = new JLabel("当前项目名称：");
                 currentPNameTitle.setLocation(240,10);
                 currentPNameTitle.setSize(160,40);
                 currentPNameTitle.setFont(new Font(null,Font.BOLD,18));
-                M2_outermostPanel.add(currentPNameTitle);
+                outermostPanel.add(currentPNameTitle);
 
                 final JLabel currentPName = new JLabel(pName);
                 currentPName.setLocation(370,10);
@@ -214,17 +215,18 @@ public class UBNT {
                 backwardButton.setLocation(1020,15);
                 backwardButton.setSize(120,30);
                 backwardButton.setFont(new Font(null,Font.BOLD,18));
-                M2_outermostPanel.add(backwardButton);
+                outermostPanel.add(backwardButton);
 
                 //add backward button event listener
                 backwardButton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         //need remove these two JLabel to make sure every time these two label are new added to outPanel
-                        M2_outermostPanel.remove(currentPName);
-                        M2_outermostPanel.remove(currentPNumber);
+                        outermostPanel.remove(currentPName);
+                        outermostPanel.remove(currentPNumber);
                         tableModel_M2.getDataVector().clear();
-                        M2_outermostPanel.setVisible(false);
+                        tableModel_M5.getDataVector().clear();
+                        outermostPanel.setVisible(false);
                         homepagePanel.setVisible(true);
                         mainFrame.setContentPane(homepagePanel);
                     }
@@ -235,25 +237,40 @@ public class UBNT {
                 if (e.getClickCount() == 2){
                     homepagePanel.setVisible(false);
                     showConfigRecordsPage().setVisible(true);
-                    mainFrame.setContentPane(M2_outermostPanel);
+                    mainFrame.setContentPane(outermostPanel);
                     int targetRow = projectTable.getSelectedRow();
                     if (targetRow >= 0){
                         //set the value to these two global fields
                         pNumber = projectTableModel.getValueAt(targetRow,0).toString();
                         pName = projectTableModel.getValueAt(targetRow,1).toString();
-                        String specificExcel = "D:\\ConfigFile\\M2\\"+pName +".xlsx";
+                        String specificExcel_M2 = "D:\\ConfigFile\\M2\\"+pName +".xlsx";
+                        String specificExcel_M5 = "D:\\ConfigFile\\M5\\"+pName +".xlsx";
 //                        String specificExcel = System.getProperty("user.dir")+ "\\ConfigFile\\"+pName +".xlsx";
                         String SpecificProjectCommonField = "D:\\ConfigFile\\"+pName +"CommonFields.xlsx";
 //                        String SpecificProjectCommonField = System.getProperty("user.dir")+ "\\ConfigFile\\"+pName +"CommonFields.xlsx";
-                        File projectCorresspondingConfigFile = new File(specificExcel);
+                        File projectCorresspondingConfigFile_M2 = new File(specificExcel_M2);
+                        File projectCorresspondingConfigFile_M5 = new File(specificExcel_M5);
                         File projectCommonFieldFile = new File(SpecificProjectCommonField);
-                        if (!projectCorresspondingConfigFile.exists()){
+                        if (!projectCorresspondingConfigFile_M2.exists()){
                             exportToExcel(tableModel_M2,"D:\\ConfigFile\\M2\\"+pName+".xlsx",4);
 //                            exportToExcel(null,System.getProperty("user.dir")+ "\\ConfigFile\\"+pName+".xlsx",9);
                         }
-                        if (projectCorresspondingConfigFile.exists() && projectCommonFieldFile.exists()){
+                        if (!projectCorresspondingConfigFile_M5.exists()){
+                            exportToExcel(tableModel_M5,"D:\\ConfigFile\\M5\\"+pName+".xlsx",8);
+//                            exportToExcel(null,System.getProperty("user.dir")+ "\\ConfigFile\\"+pName+".xlsx",9);
+                        }
+                        if (projectCorresspondingConfigFile_M2.exists() && projectCommonFieldFile.exists()){
                             //import table rows on main page
-                            importFromExcel(tableModel_M2 ,specificExcel);
+                            importFromExcel(tableModel_M2 ,specificExcel_M2);
+//                            jTable.setModel(defaultTableModel);
+                            //import specific project common fields
+                            //TODO: this time not to render table but to override commonfields.
+                            importFromExcel(null,SpecificProjectCommonField);
+                            //import project list excel, in order to show the project name and number on the main page
+                        }
+                        if (projectCorresspondingConfigFile_M5.exists() && projectCommonFieldFile.exists()){
+                            //import table rows on main page
+                            importFromExcel(tableModel_M5 ,specificExcel_M5);
 //                            jTable.setModel(defaultTableModel);
                             //import specific project common fields
                             //TODO: this time not to render table but to override commonfields.
@@ -261,8 +278,8 @@ public class UBNT {
                             //import project list excel, in order to show the project name and number on the main page
                         }
 
-                        M2_outermostPanel.add(currentPName);
-                        M2_outermostPanel.add(currentPNumber);
+                        outermostPanel.add(currentPName);
+                        outermostPanel.add(currentPNumber);
                         currentPName.setText(pName);
                         currentPNumber.setText(pNumber);
 
@@ -473,7 +490,7 @@ public class UBNT {
 
         //setup cell context align center
         DefaultTableCellRenderer centerRenderer_M5 = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment( SwingConstants.CENTER );
+        centerRenderer_M5.setHorizontalAlignment( SwingConstants.CENTER );
         jTable_M5.getColumn("编号").setCellRenderer(centerRenderer_M5);
         jTable_M5.getColumn("位置").setCellRenderer(centerRenderer_M5);
         jTable_M5.getColumn("线路").setCellRenderer(centerRenderer_M5);
@@ -518,7 +535,7 @@ public class UBNT {
         exportM5Records.setSize(80,30);
         M5ContainerPanel.add(exportM5Records);
 
-
+        //add event listener to create button
         createM5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -537,6 +554,80 @@ public class UBNT {
             }
         });
 
+        //add export all M5 config records
+        exportM5Records.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exportToExcel(tableModel_M5,"D:\\ConfigFile\\M5\\"+pName+".xlsx",8);
+//                exportToExcel(defautTableModel,System.getProperty("user.dir")+ "\\ConfigFile\\"+pName+".xlsx",9);
+                JOptionPane.showMessageDialog(
+                        mainFrame,
+                        "导出数据完毕 !",
+                        "配置结果",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+            }
+        });
+
+        //add remove record event listener to M5
+        removeM5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                int remove  = JOptionPane.showConfirmDialog(mainFrame,"确定删除吗？");
+                log.info("return int value is " + remove);
+                if (remove == 0){
+
+                    int selectedRowNumber = jTable_M5.getSelectedRow();
+                    int allRowsCount = tableModel_M5.getRowCount();
+                    int remainingRows = allRowsCount - selectedRowNumber;
+                    log.info("the remaining rows are : " + remainingRows + "; all rows : " + allRowsCount + " ;" + selectedRowNumber + " was selected!");
+                    log.info(jTable_M5.getSelectedRow() +" row was deleting");
+                    for (int i = 1; i < remainingRows; i++) {
+                        tableModel_M5.setValueAt(selectedRowNumber + i,selectedRowNumber+i,0);
+                    }
+                    if (jTable_M5.getSelectedRow() >= 0){
+                        tableModel_M5.removeRow(jTable_M5.getSelectedRow());
+                    }else {
+                        JOptionPane.showMessageDialog(mainFrame,"目前没有可以被删除的记录 ！");
+                    }
+                }
+            }
+        });
+
+        //update M5 row
+        jTable_M5.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2){
+
+                    //the whole cell of a specific row are stored in this list.
+                    List<String> cellValuesOfSpecificRow = new ArrayList<String>();
+                    int rowNum = jTable_M5.getSelectedRow();
+                    //i started from 1, cause no need to edit row number.
+                    log.info("the " + rowNum + "th row was selected !");
+                    for (int i = 1; i <= 7; i++) {
+                        int a = cellValuesOfSpecificRow.size();
+                        log.info("row has " +a +"columns");
+                        if (tableModel_M5.getValueAt(rowNum,i) != null){
+                            cellValuesOfSpecificRow.add(tableModel_M5.getValueAt(rowNum,i).toString());
+                        }else {
+                            cellValuesOfSpecificRow.add("null");
+                        }
+                    }
+
+                    //TODO: get the M5 AP older IP/fruq/MAC, ST IP
+                    if (tableModel_M5.getValueAt(rowNum,3) != null){
+                        originalIP_M5AP = tableModel_M5.getValueAt(rowNum,3).toString();
+                    }
+                    if (tableModel_M5.getValueAt(rowNum,6) != null){
+                        originalIP_M5ST = tableModel_M5.getValueAt(rowNum,6).toString();
+                    }
+
+                    updateM5Overlay(cellValuesOfSpecificRow,tableModel_M5);
+                }
+            }
+        });
 
 
 
@@ -558,6 +649,275 @@ public class UBNT {
     }
 
     /**
+     * to update M5 row
+     * @param rowData  the target row data
+     * @param tableModel  the table model
+     */
+    public void updateM5Overlay(List<String> rowData,DefaultTableModel tableModel){
+        final JDialog M5jDialog_update = new JDialog(mainFrame,"M5 修改页面",true);
+        M5jDialog_update.setSize(450,500);
+        M5jDialog_update.setLocationRelativeTo(mainFrame);
+
+        //setup the logo icon
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Image icon = kit.getImage("D:\\icon\\logo.png");
+//        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
+        M5jDialog_update.setIconImage(icon);
+
+        //setup JTabbedPane
+        final JTabbedPane jTabbedPane_M5 = new JTabbedPane();
+        jTabbedPane_M5.setFont(new Font("ITALIC", 1, 16));
+        jTabbedPane_M5.add("位置",updateM5Panel("位置",tableModel,M5jDialog_update,rowData));
+        jTabbedPane_M5.add("M5_AP",updateM5Panel("M5_AP",tableModel,M5jDialog_update,rowData));
+        jTabbedPane_M5.add("M5_ST",updateM5Panel("M5_ST",tableModel,M5jDialog_update,rowData));
+
+        jTabbedPane_M5.setSelectedIndex(0);
+//        createTextPanelOverlay("M2");
+//        createTextPanelOverlay("位置",defautTableModel);
+        M5jDialog_update.setContentPane(jTabbedPane_M5);
+        M5jDialog_update.setVisible(true);
+    }
+
+    /**
+     * to update M5
+     * @param tabName  the tab name
+     * @param tableModel the table model
+     * @param dialog the target overlay
+     * @param rowData the selected row data
+     * @return  the updated M5 panel
+     */
+    public JPanel updateM5Panel(String tabName, final DefaultTableModel tableModel, final JDialog dialog, List<String> rowData){
+        JPanel jPanel = new JPanel(null);
+        jPanel.setBorder((BorderFactory.createTitledBorder("UBNT( "+tabName+") 修改")));
+
+        JButton update = new JButton(tabName);
+        update.setFont(new Font(null,Font.BOLD,14));
+        update.setLocation(145,310);
+        update.setSize(105,30);
+        jPanel.add(update);
+
+        final String[] ways = new String[]{"左线","右线"};
+        final JComboBox<String> jComboBoxWay = new JComboBox<String>(ways);
+        final JTextField DKText = new JTextField(SwingConstants.RIGHT);
+        // the list have to be add JTextField, can not be String, otherwise can not get the TextField text
+        final List<JTextField> jTextFields = new ArrayList<JTextField>();
+        final List<String> fruqComboBoxList = new ArrayList<String>();
+
+        if (tabName != null && tabName.trim().equals("位置")){
+            //setup way title label
+            JLabel way = new JLabel("设定线路 :",SwingConstants.LEFT);
+            way.setFont(new Font(null, 1, 16));
+            way.setLocation(10,40);
+            way.setSize(115,30);
+
+            //setup way combo box
+            jComboBoxWay.setLocation(120,40);
+            jComboBoxWay.setSize(200,30);
+            jComboBoxWay.setFont(new Font(null, 1, 16));
+            jComboBoxWay.setSelectedIndex(0);
+
+            if (rowData != null && rowData.get(0).trim().equals("右线")){
+                jComboBoxWay.setSelectedIndex(1);
+            }else {
+                jComboBoxWay.setSelectedIndex(0);
+            }
+
+            //setup position title label
+            JLabel specificPosition = new JLabel("具体位置 :",SwingConstants.LEFT);
+            specificPosition.setFont(new Font(null, 1, 16));
+            specificPosition.setLocation(10,90);
+            specificPosition.setSize(115,30);
+
+            //setup specific position
+            DKText.setLocation(120,90);
+            DKText.setSize(200,30);
+            DKText.setFont(new Font(null,1,16));
+
+            //setup the max length of DK input box
+            LimitedDocument ld = new LimitedDocument(5);
+            ld.setAllowChar("0123456789");
+            DKText.setDocument(ld);
+
+            if (rowData != null){
+                if (rowData.get(1).trim().equals("null")){
+                    DKText.setText(null);
+                }else {
+                    String dkMiles = rowData.get(1);
+                    DKText.setText(dkMiles);
+                    log.info("the DK mile is " + dkMiles);
+                }
+            }
+
+            jPanel.add(way);
+            jPanel.add(jComboBoxWay);
+            jPanel.add(specificPosition);
+            jPanel.add(DKText);
+
+            //add event listener when 'position' button clicked
+            update.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String way = jComboBoxWay.getSelectedItem().toString();
+                    String DK = DKText.getText();
+                    tableModel.setValueAt(way,tableModel.getRowCount()-1,1);
+                    tableModel.setValueAt(DK,tableModel.getRowCount()-1,2);
+                }
+            });
+        }
+
+        //M5_AP configuration
+        if (tabName != null && tabName.trim().equals("M5_AP")){
+
+            //setup M5_AP ip address title label
+            JLabel IPAddress_AP = new JLabel("IP 地址 :",SwingConstants.LEFT);
+            IPAddress_AP.setFont(new Font(null, 1, 16));
+            IPAddress_AP.setLocation(10,40);
+            IPAddress_AP.setSize(115,30);
+            jPanel.add(IPAddress_AP);
+
+            //setup M5_AP input box with default value
+            final JMIPV4AddressField IP_AP = new JMIPV4AddressField();
+
+            if (rowData !=null){
+                if (rowData.get(2).trim().equals("null")){
+                    IP_AP.setText(null);
+                }else {
+                    IP_AP.setText(rowData.get(2));
+                }
+            }
+
+//            IP_AP.setIpAddress("192.168.155.1");
+            IP_AP.setFont(new Font(null, Font.PLAIN, 14));
+            IP_AP.setLocation(120,40);
+            IP_AP.setSize(200,30);
+            jPanel.add(IP_AP);
+
+            //setup M5_AP frequency title label
+            JLabel fruq_AP = new JLabel("频率(MHz) :",SwingConstants.LEFT);
+            fruq_AP.setFont(new Font(null, 1, 16));
+            fruq_AP.setLocation(10,80);
+            fruq_AP.setSize(115,30);
+            jPanel.add(fruq_AP);
+
+            //setup the frequency combo box
+            final String[] fruqs = new String[]{"5820","5840","5860"};
+            final JComboBox<String> fruq = new JComboBox<String>(fruqs);
+            fruq.setLocation(120,80);
+            fruq.setSize(200,30);
+            fruq.setFont(new Font(null, Font.PLAIN, 14));
+            jPanel.add(fruq);
+
+            if (rowData.get(3).trim().equals("null")){
+                fruq.setSelectedItem("5820");
+            }else {
+                fruq.setSelectedItem(rowData.get(3));
+            }
+
+            //add event listener when 'M5_AP' button clicked
+            update.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    int progress = 0;
+                    String IPAddress_AP =  IP_AP.getText();
+                    String fruq_AP = fruq.getSelectedItem().toString();
+                    tableModel.setValueAt(IPAddress_AP,tableModel.getRowCount()-1,3);
+                    tableModel.setValueAt(fruq_AP,tableModel.getRowCount()-1,4);
+                    progress = new M5_Configuration_Absolute().configM5("AP",commonFields.get(2),IPAddress_AP,commonFields.get(6),commonFields.get(5),fruq_AP,null,originalIP_M5AP);
+                    if (progress == 1){
+                        JOptionPane.showMessageDialog(
+                                mainFrame,
+                                "更新成功 !",
+                                "配置结果",
+                                JOptionPane.INFORMATION_MESSAGE
+                        );
+                    }else {
+                        JOptionPane.showMessageDialog(
+                                mainFrame,
+                                "更新失败，请重新配置 !",
+                                "配置结果",
+                                JOptionPane.WARNING_MESSAGE
+                        );
+                    }
+                    dialog.dispose();
+                }
+            });
+        }
+
+        if (tabName != null && tabName.trim().equals("M5_ST")){
+
+            //setup M5_ST ip address title label
+            JLabel IPAddress_ST = new JLabel("IP 地址 :",SwingConstants.LEFT);
+            IPAddress_ST.setFont(new Font(null, 1, 16));
+            IPAddress_ST.setLocation(10,40);
+            IPAddress_ST.setSize(115,30);
+            jPanel.add(IPAddress_ST);
+
+            //setup M5_ST  input box with default value
+            final JMIPV4AddressField IP_ST = new JMIPV4AddressField();
+            if (rowData.get(5).trim().equals("null")){
+                IP_ST.setText(null);
+            }else {
+                IP_ST.setText(rowData.get(5));
+            }
+            IP_ST.setFont(new Font(null, Font.PLAIN, 14));
+            IP_ST.setLocation(120,40);
+            IP_ST.setSize(200,30);
+            jPanel.add(IP_ST);
+
+            //setup M5_AP MAC address title label
+            JLabel mac_AP = new JLabel("AP mac 地址 :",SwingConstants.LEFT);
+            mac_AP.setFont(new Font(null, 1, 16));
+            mac_AP.setLocation(10,90);
+            mac_AP.setSize(115,30);
+            jPanel.add(mac_AP);
+
+            //setup the frequency combo box
+            final JTextField macBox = new JTextField(SwingConstants.RIGHT);
+            macBox.setLocation(120,90);
+            macBox.setSize(200,30);
+            macBox.setFont(new Font(null,1,16));
+            if (rowData.get(5).trim().equals("null")){
+                macBox.setText(null);
+            }else {
+                macBox.setText(rowData.get(4));
+            }
+            jPanel.add(macBox);
+
+            //add event listener when 'M5_AP' button clicked
+            update.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    int progress = 0;
+                    String IPAddress_ST = IP_ST.getText();
+                    String macAddress = macBox.getText();
+                    tableModel.setValueAt(macAddress,tableModel.getRowCount()-1,5);
+                    tableModel.setValueAt(IPAddress_ST,tableModel.getRowCount()-1,6);
+                    tableModel.setValueAt(macAddress,tableModel.getRowCount()-1,7);
+
+                    progress = new M5_Configuration_Absolute().configM5("ST",commonFields.get(2),IPAddress_ST,commonFields.get(6),commonFields.get(5),null,macAddress,originalIP_M5ST);
+                    if (progress == 1){
+                        JOptionPane.showMessageDialog(
+                                mainFrame,
+                                "更新成功 !",
+                                "配置结果",
+                                JOptionPane.INFORMATION_MESSAGE
+                        );
+                    }else {
+                        JOptionPane.showMessageDialog(
+                                mainFrame,
+                                "更新失败，请重新配置 !",
+                                "配置结果",
+                                JOptionPane.WARNING_MESSAGE
+                        );
+                    }
+                    dialog.dispose();
+                }
+            });
+        }
+        return jPanel;
+    }
+
+    /**
      * create M5 dialog popup
      * @param tableModel  the table model
      */
@@ -576,9 +936,9 @@ public class UBNT {
         //setup JTabbedPane
         final JTabbedPane jTabbedPane_M5 = new JTabbedPane();
         jTabbedPane_M5.setFont(new Font("ITALIC", 1, 16));
-        jTabbedPane_M5.add("位置",createM5Panel("位置",tableModel));
-        jTabbedPane_M5.add("M5_AP",createM5Panel("M5_AP",tableModel));
-        jTabbedPane_M5.add("M5_ST",createM5Panel("M5_ST",tableModel));
+        jTabbedPane_M5.add("位置",createM5Panel("位置",tableModel,M5jDialog_create));
+        jTabbedPane_M5.add("M5_AP",createM5Panel("M5_AP",tableModel,M5jDialog_create));
+        jTabbedPane_M5.add("M5_ST",createM5Panel("M5_ST",tableModel,M5jDialog_create));
 
         jTabbedPane_M5.setSelectedIndex(0);
 //        createTextPanelOverlay("M2");
@@ -593,21 +953,207 @@ public class UBNT {
      * @param tableModel the M5 config records table model
      * @return the panel container
      */
-    public JPanel createM5Panel(String tabName, DefaultTableModel tableModel){
+    public JPanel createM5Panel(String tabName, final DefaultTableModel tableModel, final JDialog dialog){
         JPanel jPanel = new JPanel(null);
         jPanel.setBorder((BorderFactory.createTitledBorder("UBNT( "+tabName+") 配置")));
 
-        if (tabName.trim().equals("M5_AP")){
+        JButton create = new JButton(tabName);
+        create.setFont(new Font(null,Font.BOLD,14));
+        create.setLocation(145,310);
+        create.setSize(105,30);
+        jPanel.add(create);
 
+        final String[] ways = new String[]{"左线","右线"};
+        final JComboBox<String> jComboBoxWay = new JComboBox<String>(ways);
+        final JTextField DKText = new JTextField(SwingConstants.RIGHT);
+        // the list have to be add JTextField, can not be String, otherwise can not get the TextField text
+        final List<JTextField> jTextFields = new ArrayList<JTextField>();
+        final List<String> fruqComboBoxList = new ArrayList<String>();
 
+        if (tabName != null && tabName.trim().equals("位置")){
+            //setup way title label
+            JLabel way = new JLabel("设定线路 :",SwingConstants.LEFT);
+            way.setFont(new Font(null, 1, 16));
+            way.setLocation(10,40);
+            way.setSize(115,30);
 
+            //setup way combo box
+            jComboBoxWay.setLocation(120,40);
+            jComboBoxWay.setSize(200,30);
+            jComboBoxWay.setFont(new Font(null, 1, 16));
+            jComboBoxWay.setSelectedIndex(0);
 
+            //setup position title label
+            JLabel specificPosition = new JLabel("具体位置 :",SwingConstants.LEFT);
+            specificPosition.setFont(new Font(null, 1, 16));
+            specificPosition.setLocation(10,90);
+            specificPosition.setSize(115,30);
 
+            //setup specific position
+            DKText.setLocation(120,90);
+            DKText.setSize(200,30);
+            DKText.setFont(new Font(null,1,16));
+
+            //setup the max length of DK input box
+            LimitedDocument ld = new LimitedDocument(5);
+            ld.setAllowChar("0123456789");
+            DKText.setDocument(ld);
+
+            jPanel.add(way);
+            jPanel.add(jComboBoxWay);
+            jPanel.add(specificPosition);
+            jPanel.add(DKText);
+
+            //add event listener when 'position' button clicked
+            create.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String way = jComboBoxWay.getSelectedItem().toString();
+                    String DK = DKText.getText();
+                    tableModel.setValueAt(way,tableModel.getRowCount()-1,1);
+                    tableModel.setValueAt(DK,tableModel.getRowCount()-1,2);
+                }
+            });
         }
 
+        //M5_AP configuration
+        if (tabName != null && tabName.trim().equals("M5_AP")){
 
+            //setup M5_AP ip address title label
+            JLabel IPAddress_AP = new JLabel("IP 地址 :",SwingConstants.LEFT);
+            IPAddress_AP.setFont(new Font(null, 1, 16));
+            IPAddress_AP.setLocation(10,40);
+            IPAddress_AP.setSize(115,30);
+            jPanel.add(IPAddress_AP);
 
-        return null;
+            //setup M5_AP input box with default value
+            final JMIPV4AddressField IP_AP = new JMIPV4AddressField();
+            IP_AP.setIpAddress("192.168.155.1");
+            IP_AP.setFont(new Font(null, Font.PLAIN, 14));
+            IP_AP.setLocation(120,40);
+            IP_AP.setSize(200,30);
+            jPanel.add(IP_AP);
+
+            //setup M5_AP frequency title label
+            JLabel fruq_AP = new JLabel("频率(MHz) :",SwingConstants.LEFT);
+            fruq_AP.setFont(new Font(null, 1, 16));
+            fruq_AP.setLocation(10,80);
+            fruq_AP.setSize(115,30);
+            jPanel.add(fruq_AP);
+
+            //setup the frequency combo box
+            final String[] fruqs = new String[]{"5820","5840","5860"};
+            final JComboBox<String> fruq = new JComboBox<String>(fruqs);
+            fruq.setLocation(120,80);
+            fruq.setSize(200,30);
+            fruq.setFont(new Font(null, Font.PLAIN, 14));
+            jPanel.add(fruq);
+
+            //add the selected fruq to the list, just like the IP
+            if (fruq.getSelectedIndex() == 0){
+                fruqComboBoxList.add(fruq.getItemAt(fruq.getSelectedIndex()));
+            }
+            fruq.addItemListener(new ItemListener() {
+                @Override
+                public void itemStateChanged(ItemEvent e) {
+                    fruqComboBoxList.set(0,fruq.getItemAt(fruq.getSelectedIndex()));
+                }
+            });
+
+            //add event listener when 'M5_AP' button clicked
+            create.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    int progress = 0;
+                    String IPAddress_AP =  IP_AP.getText();
+                    String fruq_AP = fruqComboBoxList.get(0);
+                    tableModel.setValueAt(IPAddress_AP,tableModel.getRowCount()-1,3);
+                    tableModel.setValueAt(fruq_AP,tableModel.getRowCount()-1,4);
+
+                    progress = new M5_Configuration_Absolute().configM5("AP",commonFields.get(2),IPAddress_AP,commonFields.get(6),commonFields.get(5),fruq_AP,null,null);
+                    if (progress == 1){
+                        JOptionPane.showMessageDialog(
+                                mainFrame,
+                                "更新成功 !",
+                                "配置结果",
+                                JOptionPane.INFORMATION_MESSAGE
+                        );
+                    }else {
+                        JOptionPane.showMessageDialog(
+                                mainFrame,
+                                "更新失败，请重新配置 !",
+                                "配置结果",
+                                JOptionPane.WARNING_MESSAGE
+                        );
+                    }
+                    dialog.dispose();
+                }
+            });
+        }
+
+        if (tabName != null && tabName.trim().equals("M5_ST")){
+
+            //setup M5_ST ip address title label
+            JLabel IPAddress_ST = new JLabel("IP 地址 :",SwingConstants.LEFT);
+            IPAddress_ST.setFont(new Font(null, 1, 16));
+            IPAddress_ST.setLocation(10,40);
+            IPAddress_ST.setSize(115,30);
+            jPanel.add(IPAddress_ST);
+
+            //setup M5_ST  input box with default value
+            final JMIPV4AddressField IP_ST = new JMIPV4AddressField();
+            IP_ST.setIpAddress("192.168.155.1");
+            IP_ST.setFont(new Font(null, Font.PLAIN, 14));
+            IP_ST.setLocation(120,40);
+            IP_ST.setSize(200,30);
+            jPanel.add(IP_ST);
+
+            //setup M5_AP MAC address title label
+            JLabel mac_AP = new JLabel("AP mac 地址 :",SwingConstants.LEFT);
+            mac_AP.setFont(new Font(null, 1, 16));
+            mac_AP.setLocation(10,90);
+            mac_AP.setSize(115,30);
+            jPanel.add(mac_AP);
+
+            //setup the frequency combo box
+            final JTextField macBox = new JTextField(SwingConstants.RIGHT);
+            macBox.setLocation(120,90);
+            macBox.setSize(200,30);
+            macBox.setFont(new Font(null,1,16));
+            jPanel.add(macBox);
+
+            //add event listener when 'M5_AP' button clicked
+            create.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    int progress = 0;
+                    String IPAddress_ST = IP_ST.getText();
+                    String macAddress = macBox.getText();
+                    tableModel.setValueAt(macAddress,tableModel.getRowCount()-1,5);
+                    tableModel.setValueAt(IPAddress_ST,tableModel.getRowCount()-1,6);
+                    tableModel.setValueAt(macAddress,tableModel.getRowCount()-1,7);
+
+                    progress = new M5_Configuration_Absolute().configM5("ST",commonFields.get(2),IPAddress_ST,commonFields.get(6),commonFields.get(5),null,macAddress,null);
+                    if (progress == 1){
+                        JOptionPane.showMessageDialog(
+                                mainFrame,
+                                "更新成功 !",
+                                "配置结果",
+                                JOptionPane.INFORMATION_MESSAGE
+                        );
+                    }else {
+                        JOptionPane.showMessageDialog(
+                                mainFrame,
+                                "更新失败，请重新配置 !",
+                                "配置结果",
+                                JOptionPane.WARNING_MESSAGE
+                        );
+                    }
+                    dialog.dispose();
+                }
+            });
+        }
+        return jPanel;
     }
 
 
@@ -716,12 +1262,8 @@ public class UBNT {
                 tableModel.setValueAt(way,targetRow,1);
                 tableModel.setValueAt(DK,targetRow,2);
 
-                if (!updatedIP_M2.trim().equals(M2_IP.trim())){
-                    progress = new M2_Configuration_Absolute().configM2(commonFields.get(2),M2_IP,commonFields.get(4),commonFields.get(3),updatedIP_M2);
-                    tableModel.setValueAt(M2_IP,targetRow,3);
-                }else {
-                    progress = 1;
-                }
+                progress = new M2_Configuration_Absolute().configM2(commonFields.get(2),M2_IP,commonFields.get(4),commonFields.get(3),updatedIP_M2);
+                tableModel.setValueAt(M2_IP,targetRow,3);
 
                 if (progress == 1){
                     JOptionPane.showMessageDialog(
@@ -741,11 +1283,6 @@ public class UBNT {
                 jDialog_updateRow.dispose();
             }
         });
-
-
-
-
-
         jDialog_updateRow.setContentPane(M2Overlay_update);
         jDialog_updateRow.setVisible(true);
 

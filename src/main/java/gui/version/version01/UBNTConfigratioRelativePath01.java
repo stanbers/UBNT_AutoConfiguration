@@ -945,11 +945,6 @@ public class UBNTConfigratioRelativePath01 {
             specificPosition.setLocation(10,90);
             specificPosition.setSize(115,30);
 
-//            JLabel DK = new JLabel("DK ");
-//            DK.setLocation(120,90);
-//            DK.setSize(30,30);
-//            DK.setFont(new Font(null,1,16));
-
             DKText.setLocation(120,90);
             DKText.setSize(200,30);
             DKText.setFont(new Font(null,1,16));
