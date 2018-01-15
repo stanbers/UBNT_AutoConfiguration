@@ -6,9 +6,9 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import ubnt.m2.M2_Configuration_Absolute;
-import ubnt.m5.M5_Configuration_Absolute;
-import utility.Constant_Relative;
+import ubnt.m2.M2_Configuration;
+import ubnt.m5.M5_Configuration;
+import utility.Constant;
 import utility.JMIPV4AddressField;
 import utility.LimitedDocument;
 
@@ -84,8 +84,8 @@ public class UBNT {
 
         //setup the logo icon
         Toolkit kit = Toolkit.getDefaultToolkit();
-//        Image icon = kit.getImage(System.getProperty("user.dir")+"\\icon\\logo.png");
-        Image icon = kit.getImage("D:\\icon\\logo.png");
+        Image icon = kit.getImage(System.getProperty("user.dir")+"\\icon\\logo.png");
+//        Image icon = kit.getImage("D:\\icon\\logo.png");
         mainFrame.setIconImage(icon);
 
         //create homepage panel
@@ -147,7 +147,7 @@ public class UBNT {
         projectTableContainer.setSize(400,300);
 
         //import projects from project_list excel file, and render projects to projectTable
-        importFromExcel(projectTableModel, Constant_Relative.Path_TestData_ProjectList);
+        importFromExcel(projectTableModel, Constant.Path_TestData_ProjectList);
 
         //setup project button
         JButton createPojectButton = new JButton("+ 新建项目");
@@ -243,21 +243,22 @@ public class UBNT {
                         //set the value to these two global fields
                         pNumber = projectTableModel.getValueAt(targetRow,0).toString();
                         pName = projectTableModel.getValueAt(targetRow,1).toString();
-                        String specificExcel_M2 = "D:\\ConfigFile\\M2\\"+pName +".xlsx";
-                        String specificExcel_M5 = "D:\\ConfigFile\\M5\\"+pName +".xlsx";
-//                        String specificExcel = System.getProperty("user.dir")+ "\\ConfigFile\\"+pName +".xlsx";
-                        String SpecificProjectCommonField = "D:\\ConfigFile\\"+pName +"CommonFields.xlsx";
-//                        String SpecificProjectCommonField = System.getProperty("user.dir")+ "\\ConfigFile\\"+pName +"CommonFields.xlsx";
+//                        String specificExcel_M2 = "D:\\ConfigFile\\M2\\"+pName +".xlsx";
+                        String specificExcel_M2 = System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName +".xlsx";
+//                        String specificExcel_M5 = "D:\\ConfigFile\\M5\\"+pName +".xlsx";
+                        String specificExcel_M5 = System.getProperty("user.dir")+ "\\ConfigFile\\M5\\"+pName +".xlsx";
+//                        String SpecificProjectCommonField = "D:\\ConfigFile\\"+pName +"CommonFields.xlsx";
+                        String SpecificProjectCommonField = System.getProperty("user.dir")+ "\\ConfigFile\\"+pName +"CommonFields.xlsx";
                         File projectCorresspondingConfigFile_M2 = new File(specificExcel_M2);
                         File projectCorresspondingConfigFile_M5 = new File(specificExcel_M5);
                         File projectCommonFieldFile = new File(SpecificProjectCommonField);
                         if (!projectCorresspondingConfigFile_M2.exists()){
-                            exportToExcel(tableModel_M2,"D:\\ConfigFile\\M2\\"+pName+".xlsx",4);
-//                            exportToExcel(null,System.getProperty("user.dir")+ "\\ConfigFile\\"+pName+".xlsx",9);
+//                            exportToExcel(tableModel_M2,"D:\\ConfigFile\\M2\\"+pName+".xlsx",4);
+                            exportToExcel(tableModel_M2,System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName+".xlsx",4);
                         }
                         if (!projectCorresspondingConfigFile_M5.exists()){
-                            exportToExcel(tableModel_M5,"D:\\ConfigFile\\M5\\"+pName+".xlsx",8);
-//                            exportToExcel(null,System.getProperty("user.dir")+ "\\ConfigFile\\"+pName+".xlsx",9);
+//                            exportToExcel(tableModel_M5,"D:\\ConfigFile\\M5\\"+pName+".xlsx",8);
+                            exportToExcel(tableModel_M5,System.getProperty("user.dir")+ "\\ConfigFile\\M5\\"+pName+".xlsx",8);
                         }
                         if (projectCorresspondingConfigFile_M2.exists() && projectCommonFieldFile.exists()){
                             //import table rows on main page
@@ -378,8 +379,8 @@ public class UBNT {
         exportM2Records.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                exportToExcel(tableModel_M2,"D:\\ConfigFile\\M2\\"+pName+".xlsx",4);
-//                exportToExcel(defautTableModel,System.getProperty("user.dir")+ "\\ConfigFile\\"+pName+".xlsx",9);
+//                exportToExcel(tableModel_M2,"D:\\ConfigFile\\M2\\"+pName+".xlsx",4);
+                exportToExcel(tableModel_M2,System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName+".xlsx",4);
                 JOptionPane.showMessageDialog(
                         mainFrame,
                         "导出数据完毕 !",
@@ -558,8 +559,8 @@ public class UBNT {
         exportM5Records.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                exportToExcel(tableModel_M5,"D:\\ConfigFile\\M5\\"+pName+".xlsx",8);
-//                exportToExcel(defautTableModel,System.getProperty("user.dir")+ "\\ConfigFile\\"+pName+".xlsx",9);
+//                exportToExcel(tableModel_M5,"D:\\ConfigFile\\M5\\"+pName+".xlsx",8);
+                exportToExcel(tableModel_M5,System.getProperty("user.dir")+ "\\ConfigFile\\M5\\"+pName+".xlsx",8);
                 JOptionPane.showMessageDialog(
                         mainFrame,
                         "导出数据完毕 !",
@@ -629,20 +630,6 @@ public class UBNT {
             }
         });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         outermostContainerPanel.add(M2ContainerPanel);
         outermostContainerPanel.add(M5ContainerPanel);
         return outermostContainerPanel;
@@ -660,8 +647,8 @@ public class UBNT {
 
         //setup the logo icon
         Toolkit kit = Toolkit.getDefaultToolkit();
-        Image icon = kit.getImage("D:\\icon\\logo.png");
-//        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
+//        Image icon = kit.getImage("D:\\icon\\logo.png");
+        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
         M5jDialog_update.setIconImage(icon);
 
         //setup JTabbedPane
@@ -822,7 +809,7 @@ public class UBNT {
                     String fruq_AP = fruq.getSelectedItem().toString();
                     tableModel.setValueAt(IPAddress_AP,tableModel.getRowCount()-1,3);
                     tableModel.setValueAt(fruq_AP,tableModel.getRowCount()-1,4);
-                    progress = new M5_Configuration_Absolute().configM5("AP",commonFields.get(2),IPAddress_AP,commonFields.get(6),commonFields.get(5),fruq_AP,null,originalIP_M5AP);
+                    progress = new M5_Configuration().configM5("AP",commonFields.get(2),IPAddress_AP,commonFields.get(6),commonFields.get(5),fruq_AP,null,originalIP_M5AP);
                     if (progress == 1){
                         JOptionPane.showMessageDialog(
                                 mainFrame,
@@ -894,7 +881,7 @@ public class UBNT {
                     tableModel.setValueAt(IPAddress_ST,tableModel.getRowCount()-1,6);
                     tableModel.setValueAt(macAddress,tableModel.getRowCount()-1,7);
 
-                    progress = new M5_Configuration_Absolute().configM5("ST",commonFields.get(2),IPAddress_ST,commonFields.get(6),commonFields.get(5),null,macAddress,originalIP_M5ST);
+                    progress = new M5_Configuration().configM5("ST",commonFields.get(2),IPAddress_ST,commonFields.get(6),commonFields.get(5),null,macAddress,originalIP_M5ST);
                     if (progress == 1){
                         JOptionPane.showMessageDialog(
                                 mainFrame,
@@ -929,8 +916,8 @@ public class UBNT {
 
         //setup the logo icon
         Toolkit kit = Toolkit.getDefaultToolkit();
-        Image icon = kit.getImage("D:\\icon\\logo.png");
-//        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
+//        Image icon = kit.getImage("D:\\icon\\logo.png");
+        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
         M5jDialog_create.setIconImage(icon);
 
         //setup JTabbedPane
@@ -1070,7 +1057,7 @@ public class UBNT {
                     tableModel.setValueAt(IPAddress_AP,tableModel.getRowCount()-1,3);
                     tableModel.setValueAt(fruq_AP,tableModel.getRowCount()-1,4);
 
-                    progress = new M5_Configuration_Absolute().configM5("AP",commonFields.get(2),IPAddress_AP,commonFields.get(6),commonFields.get(5),fruq_AP,null,null);
+                    progress = new M5_Configuration().configM5("AP",commonFields.get(2),IPAddress_AP,commonFields.get(6),commonFields.get(5),fruq_AP,null,null);
                     if (progress == 1){
                         JOptionPane.showMessageDialog(
                                 mainFrame,
@@ -1133,7 +1120,7 @@ public class UBNT {
                     tableModel.setValueAt(IPAddress_ST,tableModel.getRowCount()-1,6);
                     tableModel.setValueAt(macAddress,tableModel.getRowCount()-1,7);
 
-                    progress = new M5_Configuration_Absolute().configM5("ST",commonFields.get(2),IPAddress_ST,commonFields.get(6),commonFields.get(5),null,macAddress,null);
+                    progress = new M5_Configuration().configM5("ST",commonFields.get(2),IPAddress_ST,commonFields.get(6),commonFields.get(5),null,macAddress,null);
                     if (progress == 1){
                         JOptionPane.showMessageDialog(
                                 mainFrame,
@@ -1169,8 +1156,8 @@ public class UBNT {
 
         //setup the logo icon
         Toolkit kit = Toolkit.getDefaultToolkit();
-        Image icon = kit.getImage("D:\\icon\\logo.png");
-//        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
+//        Image icon = kit.getImage("D:\\icon\\logo.png");
+        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
         jDialog_updateRow.setIconImage(icon);
 
         JPanel M2Overlay_update = new JPanel(null);
@@ -1262,7 +1249,7 @@ public class UBNT {
                 tableModel.setValueAt(way,targetRow,1);
                 tableModel.setValueAt(DK,targetRow,2);
 
-                progress = new M2_Configuration_Absolute().configM2(commonFields.get(2),M2_IP,commonFields.get(4),commonFields.get(3),updatedIP_M2);
+                progress = new M2_Configuration().configM2(commonFields.get(2),M2_IP,commonFields.get(4),commonFields.get(3),updatedIP_M2);
                 tableModel.setValueAt(M2_IP,targetRow,3);
 
                 if (progress == 1){
@@ -1301,8 +1288,8 @@ public class UBNT {
 
         //setup the logo icon
         Toolkit kit = Toolkit.getDefaultToolkit();
-        Image icon = kit.getImage("D:\\icon\\logo.png");
-//        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
+//        Image icon = kit.getImage("D:\\icon\\logo.png");
+        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
         M2jDialog_create.setIconImage(icon);
 
         //prepare the context panel
@@ -1380,7 +1367,7 @@ public class UBNT {
                 tableModel.setValueAt(DK,targetRow,2);
                 tableModel.setValueAt(M2_IP,targetRow,3);
 
-                progress = new M2_Configuration_Absolute().configM2(commonFields.get(2),M2_IP,commonFields.get(4),commonFields.get(3),null);
+                progress = new M2_Configuration().configM2(commonFields.get(2),M2_IP,commonFields.get(4),commonFields.get(3),null);
 
                 if (progress == 1){
                     JOptionPane.showMessageDialog(
@@ -1420,8 +1407,8 @@ public class UBNT {
 
         //setup the logo icon
         Toolkit kit = Toolkit.getDefaultToolkit();
-//        Image icon = kit.getImage(System.getProperty("user.dir")+"\\icon\\logo.png");
-        Image icon = kit.getImage("D:\\icon\\logo.png");
+        Image icon = kit.getImage(System.getProperty("user.dir")+"\\icon\\logo.png");
+//        Image icon = kit.getImage("D:\\icon\\logo.png");
         newProjectDialog.setIconImage(icon);
 
         //this JPanel was created for store all these components which will shown on the project dialog
@@ -1607,9 +1594,9 @@ public class UBNT {
                 projectTableModel.setValueAt(projectNameInputBox.getText(),projectTableModel.getRowCount()-1,1);
 
                 //TODO: need to write the project info into the specific excel, in order to show these info on homepage once the app was running
-                String projectExcelPath = Constant_Relative.Path_TestData_ProjectList;
-//                String commonFieldsExcelPath = System.getProperty("user.dir")+"\\ConfigFile\\"+projectNameInputBox.getText() +"CommonFields.xlsx";
-                String commonFieldsExcelPath = "D:\\ConfigFile\\"+projectNameInputBox.getText() +"CommonFields.xlsx";
+                String projectExcelPath = Constant.Path_TestData_ProjectList;
+                String commonFieldsExcelPath = System.getProperty("user.dir")+"\\ConfigFile\\"+projectNameInputBox.getText() +"CommonFields.xlsx";
+//                String commonFieldsExcelPath = "D:\\ConfigFile\\"+projectNameInputBox.getText() +"CommonFields.xlsx";
                 exportToExcel(projectTableModel,projectExcelPath,2);
                 exportToExcel(null,commonFieldsExcelPath,7);
 

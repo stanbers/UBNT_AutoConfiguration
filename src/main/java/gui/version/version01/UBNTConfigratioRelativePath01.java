@@ -6,9 +6,9 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import ubnt.m2.M2_Configuration_Relative;
-import ubnt.m5.M5_Configuration_Relative;
-import utility.Constant_Relative;
+import ubnt.m2.M2_Configuration;
+import ubnt.m5.M5_Configuration;
+import utility.Constant;
 import utility.JMIPV4AddressField;
 import utility.LimitedDocument;
 
@@ -133,7 +133,7 @@ public class UBNTConfigratioRelativePath01 {
         projectTableContainer.setSize(400,300);
 
         //import projects from project_list excel file, and render projects to projectTable
-        importFromExcel(projectTableModel, Constant_Relative.Path_TestData_ProjectList);
+        importFromExcel(projectTableModel, Constant.Path_TestData_ProjectList);
 
         //initialize table header
         final String[] columns = {"编号","线路","位置","M2 IP", "M5_Ap IP", "M5_AP 频率", "M5_AP mac地址", "M5_ST IP","M5_ST 锁定mac地址"};
@@ -832,7 +832,7 @@ public class UBNTConfigratioRelativePath01 {
                     defautTableModel.setValueAt(M2_IP,rowNum,3);
 
                     //ssid = commonFields.get(1); netmask = commonFields.get(3); gatewayIP = commonFields.get(2);
-                    progress = new M2_Configuration_Relative().configM2(commonFields.get(0),M2_IP,commonFields.get(2),commonFields.get(1),updatedIP_M2);
+                    progress = new M2_Configuration().configM2(commonFields.get(0),M2_IP,commonFields.get(2),commonFields.get(1),updatedIP_M2);
                 }
                 else if (buttonText.trim().equals("M5_AP")){
                     M5_AP_IP = jTextFields.get(0).getText();
@@ -842,7 +842,7 @@ public class UBNTConfigratioRelativePath01 {
                     defautTableModel.setValueAt(M5_AP_IP,rowNum,4);
                     defautTableModel.setValueAt(M5_AP_Fruq,rowNum,5);
 
-                    progress = new M5_Configuration_Relative().configM5("AP",commonFields.get(0),M5_AP_IP,commonFields.get(4),commonFields.get(3),M5_AP_Fruq,null,updatedIP_AP);
+                    progress = new M5_Configuration().configM5("AP",commonFields.get(0),M5_AP_IP,commonFields.get(4),commonFields.get(3),M5_AP_Fruq,null,updatedIP_AP);
                     jDialog_updateRow.setVisible(false);
                     jDialog_updateRow.dispose();
                 }
@@ -855,7 +855,7 @@ public class UBNTConfigratioRelativePath01 {
                     defautTableModel.setValueAt(M5_AP_Mac,rowNum,6);
                     defautTableModel.setValueAt(M5_ST_IP,rowNum,7);
                     defautTableModel.setValueAt(M5_AP_Mac,rowNum,8);
-                    progress = new M5_Configuration_Relative().configM5("ST",commonFields.get(0),M5_ST_IP,commonFields.get(4),commonFields.get(3),null,M5_AP_Mac,updatedIP_ST);
+                    progress = new M5_Configuration().configM5("ST",commonFields.get(0),M5_ST_IP,commonFields.get(4),commonFields.get(3),null,M5_AP_Mac,updatedIP_ST);
 
                 }else if (buttonText.trim().equals("位置")){
                     defautTableModel.setValueAt(position,rowNum,1);
@@ -873,10 +873,10 @@ public class UBNTConfigratioRelativePath01 {
 
                     //to make sure using the right flag
 //                    if (buttonText.trim().substring(0,2).equals("M2")){
-//                        progress = M2_Configuration_Absolute.progress;
+//                        progress = M2_Configuration.progress;
 //                    }
 //                    else if (buttonText.trim().substring(0,2).equals("M5")){
-//                        progress = new M5_Configuration_Absolute().progress;
+//                        progress = new M5_Configuration().progress;
 //                    }
 
                     //setup the popup window to let the user know the configuration is successful or not
@@ -1090,7 +1090,7 @@ public class UBNTConfigratioRelativePath01 {
                     defautTableModel.setValueAt(M2_IP,targetRow-1,3);
 
                     //ssid = commonFields.get(1); netmask = commonFields.get(3); gatewayIP = commonFields.get(2);
-                    progress = new M2_Configuration_Relative().configM2(commonFields.get(0),M2_IP,commonFields.get(2),commonFields.get(1),null);
+                    progress = new M2_Configuration().configM2(commonFields.get(0),M2_IP,commonFields.get(2),commonFields.get(1),null);
                 }
                 else if (buttonText.trim().equals("M5_AP")){
                     M5_AP_Fruq = fruqComboBox.get(0);
@@ -1099,7 +1099,7 @@ public class UBNTConfigratioRelativePath01 {
                     log.info("M5_AP_Fruq is " + M5_AP_Fruq);
                     defautTableModel.setValueAt(M5_AP_IP,defautTableModel.getRowCount()-1,4);
                     defautTableModel.setValueAt(M5_AP_Fruq,defautTableModel.getRowCount()-1,5);
-                    progress = new M5_Configuration_Relative().configM5("AP",commonFields.get(0),M5_AP_IP,commonFields.get(4),commonFields.get(3),M5_AP_Fruq,null,null);
+                    progress = new M5_Configuration().configM5("AP",commonFields.get(0),M5_AP_IP,commonFields.get(4),commonFields.get(3),M5_AP_Fruq,null,null);
                     tabbedjDialog.setVisible(false);
                     tabbedjDialog.dispose();
                 }
@@ -1112,7 +1112,7 @@ public class UBNTConfigratioRelativePath01 {
                     defautTableModel.setValueAt(M5_AP_Mac,defautTableModel.getRowCount()-1,6);
                     defautTableModel.setValueAt(M5_ST_IP,defautTableModel.getRowCount()-1,7);
                     defautTableModel.setValueAt(M5_AP_Mac,defautTableModel.getRowCount()-1,8);
-                    progress = new M5_Configuration_Relative().configM5("ST",commonFields.get(1),M5_ST_IP,commonFields.get(4),commonFields.get(3),null,M5_AP_Mac,null);
+                    progress = new M5_Configuration().configM5("ST",commonFields.get(1),M5_ST_IP,commonFields.get(4),commonFields.get(3),null,M5_AP_Mac,null);
                 }else if (buttonText.trim().equals("位置")){
                     defautTableModel.setValueAt(position,defautTableModel.getRowCount()-1,1);
 
@@ -1162,10 +1162,10 @@ public class UBNTConfigratioRelativePath01 {
 
                     //to make sure using the right flag
 //                    if (buttonText.trim().substring(0,2).equals("M2")){
-//                        progress = M2_Configuration_Absolute.progress;
+//                        progress = M2_Configuration.progress;
 //                    }
 //                    else if (buttonText.trim().substring(0,2).equals("M5")){
-//                        progress = new M5_Configuration_Absolute().progress;
+//                        progress = new M5_Configuration().progress;
 //                    }
 
 //                    setup the popup window to let the user know the configuration is successful or not
@@ -1389,7 +1389,7 @@ public class UBNTConfigratioRelativePath01 {
                 projectTableModel.setValueAt(pNumber,projectTableModel.getRowCount()-1,0);
                 projectTableModel.setValueAt(pName,projectTableModel.getRowCount()-1,1);
                 //TODO: need to write the project info into the specific excel, in order to show these info on homepage once the app was running
-                String projectExcelPath = Constant_Relative.Path_TestData_ProjectList;
+                String projectExcelPath = Constant.Path_TestData_ProjectList;
                 String commonFieldsExcelPath = System.getProperty("user.dir")+"\\ConfigFile\\"+pName +"CommonFields.xlsx";
 //                String commonFieldsExcelPath = "D:\\ConfigFile\\"+pName +"CommonFields.xlsx";
                 exportToExcel(projectTableModel,projectExcelPath,2);
