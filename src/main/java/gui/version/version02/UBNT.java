@@ -6,7 +6,7 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import ubnt.m2.M2_Configuration_Relative;
+import ubnt.m2.M2_Configuration_Absolute;
 import utility.Constant_Relative;
 import utility.JMIPV4AddressField;
 import utility.LimitedDocument;
@@ -59,6 +59,9 @@ public class UBNT {
     //define the global fields
     private String pName;
     private String pNumber;
+
+    //the older IP which waiting for update
+    private String updatedIP_M2;
 
     /**
      * To render homepage, include project table and create project dialog
@@ -229,14 +232,14 @@ public class UBNT {
                         //set the value to these two global fields
                         pNumber = projectTableModel.getValueAt(targetRow,0).toString();
                         pName = projectTableModel.getValueAt(targetRow,1).toString();
-                        String specificExcel = "D:\\ConfigFile\\"+pName +".xlsx";
+                        String specificExcel = "D:\\ConfigFile\\M2\\"+pName +".xlsx";
 //                        String specificExcel = System.getProperty("user.dir")+ "\\ConfigFile\\"+pName +".xlsx";
                         String SpecificProjectCommonField = "D:\\ConfigFile\\"+pName +"CommonFields.xlsx";
 //                        String SpecificProjectCommonField = System.getProperty("user.dir")+ "\\ConfigFile\\"+pName +"CommonFields.xlsx";
                         File projectCorresspondingConfigFile = new File(specificExcel);
                         File projectCommonFieldFile = new File(SpecificProjectCommonField);
                         if (!projectCorresspondingConfigFile.exists()){
-                            exportToExcel(tableModel_M2,"D:\\ConfigFile\\"+pName+".xlsx",4);
+                            exportToExcel(tableModel_M2,"D:\\ConfigFile\\M2\\"+pName+".xlsx",4);
 //                            exportToExcel(null,System.getProperty("user.dir")+ "\\ConfigFile\\"+pName+".xlsx",9);
                         }
                         if (projectCorresspondingConfigFile.exists() && projectCommonFieldFile.exists()){
@@ -339,11 +342,26 @@ public class UBNT {
         M2ContainerPanel.add(removeM2);
 
         //setup export M2 records button
-        JButton exportM2 = new JButton("导出");
-        exportM2.setFont(new Font(null,Font.BOLD,14));
-        exportM2.setLocation(15,500);
-        exportM2.setSize(80,30);
-        M2ContainerPanel.add(exportM2);
+        JButton exportM2Records = new JButton("导出");
+        exportM2Records.setFont(new Font(null,Font.BOLD,14));
+        exportM2Records.setLocation(15,500);
+        exportM2Records.setSize(80,30);
+        M2ContainerPanel.add(exportM2Records);
+
+        //add export all M2 config records
+        exportM2Records.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exportToExcel(tableModel_M2,"D:\\ConfigFile\\M2\\"+pName+".xlsx",4);
+//                exportToExcel(defautTableModel,System.getProperty("user.dir")+ "\\ConfigFile\\"+pName+".xlsx",9);
+                JOptionPane.showMessageDialog(
+                        mainFrame,
+                        "导出数据完毕 !",
+                        "配置结果",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+            }
+        });
 
         //add action listener to create button
         createM2.addActionListener(new ActionListener() {
@@ -410,9 +428,9 @@ public class UBNT {
                         }
                     }
 
-                    //TODO: get the AP olderIP,
+                    //TODO: get the M2 olderIP,
                     if (tableModel_M2.getValueAt(rowNum,3) != null){
-                        String updatedIP_M2 = tableModel_M2.getValueAt(rowNum,3).toString();
+                        updatedIP_M2 = tableModel_M2.getValueAt(rowNum,3).toString();
                     }
                     updateM2Dialog(cellValuesOfSpecificRow,tableModel_M2);
                 }
@@ -532,7 +550,6 @@ public class UBNT {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int progress = 0;
-                String buttonText = M2UpdateButton.getText();
                 String way = wayComboBox.getSelectedItem().toString();
                 String DK = DKText.getText();
                 String M2_IP = IP.getText();
@@ -540,9 +557,30 @@ public class UBNT {
 
                 tableModel.setValueAt(way,targetRow,1);
                 tableModel.setValueAt(DK,targetRow,2);
-                tableModel.setValueAt(M2_IP,targetRow,3);
 
-                progress = new M2_Configuration_Relative().configM2(commonFields.get(0),M2_IP,commonFields.get(2),commonFields.get(1),null);
+                if (!updatedIP_M2.trim().equals(M2_IP.trim())){
+                    progress = new M2_Configuration_Absolute().configM2(commonFields.get(2),M2_IP,commonFields.get(4),commonFields.get(3),updatedIP_M2);
+                    tableModel.setValueAt(M2_IP,targetRow,3);
+                }else {
+                    progress = 1;
+                }
+
+                if (progress == 1){
+                    JOptionPane.showMessageDialog(
+                            mainFrame,
+                            "更新成功 !",
+                            "配置结果",
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
+                }else {
+                    JOptionPane.showMessageDialog(
+                            mainFrame,
+                            "更新失败，请重新配置 !",
+                            "配置结果",
+                            JOptionPane.WARNING_MESSAGE
+                    );
+                }
+                jDialog_updateRow.dispose();
             }
         });
 
@@ -555,7 +593,6 @@ public class UBNT {
 
     }
 
-
     /**
      * create M2 dialog
      * @return the M2 configuration dialog
@@ -563,7 +600,7 @@ public class UBNT {
     public JDialog createM2Dialog(final DefaultTableModel tableModel){
 
         //prepare the M2 create dialog
-        JDialog M2jDialog_create = new JDialog(mainFrame,"M2 配置页面",true);
+        final JDialog M2jDialog_create = new JDialog(mainFrame,"M2 配置页面",true);
         M2jDialog_create.setSize(450,500);
         M2jDialog_create.setLocationRelativeTo(mainFrame);
 
@@ -607,6 +644,11 @@ public class UBNT {
         DKText.setFont(new Font(null,1,16));
         M2Overlay_create.add(DKText);
 
+        //setup the max length of DK input box
+        LimitedDocument ld = new LimitedDocument(5);
+        ld.setAllowChar("0123456789");
+        DKText.setDocument(ld);
+
         //setup M2 IP label:
         JLabel M2IPLabel = new JLabel("IP 地址 :",SwingConstants.LEFT);
         M2IPLabel.setFont(new Font(null, 1, 16));
@@ -634,7 +676,6 @@ public class UBNT {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int progress = 0;
-                String buttonText = M2ConfigButton.getText();
                 String way = wayComboBox.getSelectedItem().toString();
                 String DK = DKText.getText();
                 String M2_IP = IP.getText();
@@ -644,7 +685,24 @@ public class UBNT {
                 tableModel.setValueAt(DK,targetRow,2);
                 tableModel.setValueAt(M2_IP,targetRow,3);
 
-//                progress = new M2_Configuration_Relative().configM2(commonFields.get(0),M2_IP,commonFields.get(2),commonFields.get(1),null);
+                progress = new M2_Configuration_Absolute().configM2(commonFields.get(2),M2_IP,commonFields.get(4),commonFields.get(3),null);
+
+                if (progress == 1){
+                    JOptionPane.showMessageDialog(
+                            mainFrame,
+                            "配置成功 !",
+                            "配置结果",
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
+                }else {
+                    JOptionPane.showMessageDialog(
+                            mainFrame,
+                            "配置失败，请重新配置 !",
+                            "配置结果",
+                            JOptionPane.WARNING_MESSAGE
+                    );
+                }
+                M2jDialog_create.dispose();
             }
         });
 

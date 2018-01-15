@@ -47,20 +47,22 @@ public class M2_Configuration_Absolute {
 
         if (currentIP != null){
             driver.get("https://"+currentIP+"/login.cgi");
+            getUsername().sendKeys("ubnt");
+            getPassword().sendKeys("xalt12345");
         }else {
             driver.get("https://192.168.1.20/login.cgi");
+            getUsername().sendKeys("ubnt");
+            getPassword().sendKeys("ubnt");
         }
 
-        //record AP mac address
-        //may need to write into excel, may handle it later if needed
-        String apMacAddress = getAPMacAddress().getText();
-        log.info("The AP mac address is: "+apMacAddress);
+//        //record AP mac address
+//        //may need to write into excel, may handle it later if needed
+//        String apMacAddress = getAPMacAddress().getText();
+//        log.info("The AP mac address is: "+apMacAddress);
 
         //navigate to System tab
 
         try {
-            getUsername().sendKeys("ubnt");
-            getPassword().sendKeys("ubnt");
             if (getTableRows() > 5){
 
                 selectCountry("840");
@@ -70,6 +72,9 @@ public class M2_Configuration_Absolute {
 //            Thread.sleep(3000);
             getLoginButton().click();
             Thread.sleep(5000);
+
+//            //TODO: dismiss the warning message
+//            getDismissButton().click();
 
             int attempts = 0;
             while(attempts < 10) {
@@ -161,7 +166,7 @@ public class M2_Configuration_Absolute {
      * @return the table row size
      */
     private int getTableRows(){
-        List<WebElement> trRows = driver.findElements(By.cssSelector(".logintable > tr"));
+        List<WebElement> trRows = driver.findElements(By.cssSelector(".logintable > tbody > tr"));
         return trRows.size();
     }
 
@@ -222,4 +227,13 @@ public class M2_Configuration_Absolute {
         log.info(applyButton.getAttribute("value"));
         return applyButton;
     }
+
+//    /**
+//     * Get dismiss button on the right_bottom side
+//     * @return
+//     */
+//    private WebElement getDismissButton(){
+//        WebElement dismissButton = driver.findElement(By.id("hide-warning"));
+//        return dismissButton;
+//    }
 }
