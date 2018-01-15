@@ -45,11 +45,20 @@ public class UBNT {
     //init record index
     private int recordIndex = 1;
 
-    //initialize M2 table header
+    //initialize M2/M5 table header
     final String[] columns_M2 = {"编号","线路","位置","M2 IP"};
+    final String[] columns_M5 = {"编号","线路","位置","M5_AP IP","M5_AP 频率","M5_AP mac地址","M5_ST IP","M5_ST锁定的AP mac地址"};
 
     //define M2 table model
     private final DefaultTableModel tableModel_M2 = new DefaultTableModel(null,columns_M2){
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
+
+    //define M5 table model
+    private final DefaultTableModel tableModel_M5 = new DefaultTableModel(null,columns_M5){
         @Override
         public boolean isCellEditable(int row, int column) {
             return false;
@@ -68,7 +77,7 @@ public class UBNT {
      */
     public void showHomepage(){
         //setup container's size and location
-        mainFrame.setSize(1200, 700);
+        mainFrame.setSize(1300, 700);
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -286,14 +295,14 @@ public class UBNT {
         //M2 records container
         JPanel M2ContainerPanel = new JPanel(null);
         M2ContainerPanel.setLocation(10,60);
-        M2ContainerPanel.setSize(450,550);
+        M2ContainerPanel.setSize(380,550);
         M2ContainerPanel.setBorder(BorderFactory.createTitledBorder(null,"M2 配置记录：", TitledBorder.LEFT,TitledBorder.TOP,new Font(null,Font.BOLD,15)));
         M2ContainerPanel.setLayout(null);
 
         //create a JTable to record the configuration info
         final JTable jTable_M2 = new JTable(tableModel_M2);
         jTable_M2.setLocation(20,10);
-        jTable_M2.setSize(400,450);
+        jTable_M2.setSize(340,450);
         jTable_M2.setRowHeight(25);
 
         //setup column width
@@ -316,7 +325,7 @@ public class UBNT {
         //setup M2 table header
         JTableHeader jTableHeader_M2 = jTable_M2.getTableHeader();
         jTableHeader_M2.setLocation(20,10);
-        jTableHeader_M2.setSize(400,30);
+        jTableHeader_M2.setSize(340,30);
         jTableHeader_M2.setFont(new Font(null, Font.BOLD, 16));
         jTableHeader_M2.setResizingAllowed(true);
         jTableHeader_M2.setReorderingAllowed(true);
@@ -324,19 +333,19 @@ public class UBNT {
         //setup M2 table context scrollable
         final JScrollPane tablePanel_M2 = new JScrollPane(jTable_M2);
         tablePanel_M2.setLocation(15,40);
-        tablePanel_M2.setSize(400,450);
+        tablePanel_M2.setSize(340,450);
         M2ContainerPanel.add(tablePanel_M2);
 
         //setup new create button
         JButton createM2 = new JButton("新建");
         createM2.setFont(new Font(null,Font.BOLD,14));
-        createM2.setLocation(335,500);
+        createM2.setLocation(275,500);
         createM2.setSize(80,30);
         M2ContainerPanel.add(createM2);
 
         //setup remove button
         JButton removeM2 = new JButton("删除");
-        removeM2.setLocation(225,500);
+        removeM2.setLocation(165,500);
         removeM2.setSize(80,30);
         removeM2.setFont(new Font(null,Font.BOLD,14));
         M2ContainerPanel.add(removeM2);
@@ -437,21 +446,170 @@ public class UBNT {
             }
         });
 
-
-
-
-
         //M5 records container
         JPanel M5ContainerPanel = new JPanel(null);
-        M5ContainerPanel.setLocation(500,60);
-        M5ContainerPanel.setSize(650,550);
+        M5ContainerPanel.setLocation(425,60);
+        M5ContainerPanel.setSize(850,550);
         M5ContainerPanel.setBorder(BorderFactory.createTitledBorder(null,"M5 配置记录：", TitledBorder.LEFT,TitledBorder.TOP,new Font(null,Font.BOLD,15)));
         M5ContainerPanel.setLayout(null);
+
+        //create a JTable to record the configuration info
+        final JTable jTable_M5 = new JTable(tableModel_M5);
+        jTable_M5.setLocation(20,10);
+        jTable_M5.setSize(820,450);
+        jTable_M5.setRowHeight(25);
+
+        //setup column width
+        jTable_M5.getColumn("编号").setMaxWidth(45);
+        jTable_M5.getColumn("位置").setMaxWidth(45);
+        jTable_M5.getColumn("线路").setMaxWidth(45);
+        jTable_M5.getColumn("M5_AP IP").setMaxWidth(100);
+        jTable_M5.getColumn("M5_AP 频率").setMaxWidth(120);
+        jTable_M5.getColumn("M5_AP mac地址").setMaxWidth(140);
+        jTable_M5.getColumn("M5_ST IP").setMaxWidth(100);
+        jTable_M5.getColumn("M5_ST锁定的AP mac地址").setMaxWidth(230);
+        jTable_M5.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+        jTable_M5.setFont(new Font(null, Font.PLAIN, 15));
+
+        //setup cell context align center
+        DefaultTableCellRenderer centerRenderer_M5 = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( SwingConstants.CENTER );
+        jTable_M5.getColumn("编号").setCellRenderer(centerRenderer_M5);
+        jTable_M5.getColumn("位置").setCellRenderer(centerRenderer_M5);
+        jTable_M5.getColumn("线路").setCellRenderer(centerRenderer_M5);
+        jTable_M5.getColumn("M5_AP IP").setCellRenderer(centerRenderer_M5);
+        jTable_M5.getColumn("M5_AP 频率").setCellRenderer(centerRenderer_M5);
+        jTable_M5.getColumn("M5_ST IP").setCellRenderer(centerRenderer_M5);
+        jTable_M5.getColumn("M5_ST锁定的AP mac地址").setCellRenderer(centerRenderer_M5);
+
+
+        //setup M5 table header
+        JTableHeader jTableHeader_M5 = jTable_M5.getTableHeader();
+        jTableHeader_M5.setLocation(20,10);
+        jTableHeader_M5.setSize(820,30);
+        jTableHeader_M5.setFont(new Font(null, Font.BOLD, 16));
+        jTableHeader_M5.setResizingAllowed(true);
+        jTableHeader_M5.setReorderingAllowed(true);
+
+        //setup M5 table context scrollable
+        final JScrollPane tablePanel_M5 = new JScrollPane(jTable_M5);
+        tablePanel_M5.setLocation(15,40);
+        tablePanel_M5.setSize(820,450);
+        M5ContainerPanel.add(tablePanel_M5);
+
+        //setup new create button
+        JButton createM5 = new JButton("新建");
+        createM5.setFont(new Font(null,Font.BOLD,14));
+        createM5.setLocation(735,500);
+        createM5.setSize(80,30);
+        M5ContainerPanel.add(createM5);
+
+        //setup remove button
+        JButton removeM5 = new JButton("删除");
+        removeM5.setLocation(625,500);
+        removeM5.setSize(80,30);
+        removeM5.setFont(new Font(null,Font.BOLD,14));
+        M5ContainerPanel.add(removeM5);
+
+        //setup export M2 records button
+        JButton exportM5Records = new JButton("导出");
+        exportM5Records.setFont(new Font(null,Font.BOLD,14));
+        exportM5Records.setLocation(415,500);
+        exportM5Records.setSize(80,30);
+        M5ContainerPanel.add(exportM5Records);
+
+
+        createM5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Vector emptyRow = new Vector();
+                for (int i = 0; i < 10; i++) {
+                    emptyRow.add(null);
+                }
+                tableModel_M5.addRow(emptyRow);
+                if (recordIndex == 0){
+                    tableModel_M5.setValueAt(recordIndex++,tableModel_M5.getRowCount()-1,0);
+                }else {
+                    recordIndex = tableModel_M5.getRowCount();
+                    tableModel_M5.setValueAt(recordIndex++,tableModel_M5.getRowCount()-1,0);
+                }
+                createM5Overlay(tableModel_M5);
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         outermostContainerPanel.add(M2ContainerPanel);
         outermostContainerPanel.add(M5ContainerPanel);
         return outermostContainerPanel;
     }
+
+    /**
+     * create M5 dialog popup
+     * @param tableModel  the table model
+     */
+    public void createM5Overlay(final DefaultTableModel tableModel){
+        //prepare the M5 create dialog
+        final JDialog M5jDialog_create = new JDialog(mainFrame,"M5 配置页面",true);
+        M5jDialog_create.setSize(450,500);
+        M5jDialog_create.setLocationRelativeTo(mainFrame);
+
+        //setup the logo icon
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Image icon = kit.getImage("D:\\icon\\logo.png");
+//        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
+        M5jDialog_create.setIconImage(icon);
+
+        //setup JTabbedPane
+        final JTabbedPane jTabbedPane_M5 = new JTabbedPane();
+        jTabbedPane_M5.setFont(new Font("ITALIC", 1, 16));
+        jTabbedPane_M5.add("位置",createM5Panel("位置",tableModel));
+        jTabbedPane_M5.add("M5_AP",createM5Panel("M5_AP",tableModel));
+        jTabbedPane_M5.add("M5_ST",createM5Panel("M5_ST",tableModel));
+
+        jTabbedPane_M5.setSelectedIndex(0);
+//        createTextPanelOverlay("M2");
+//        createTextPanelOverlay("位置",defautTableModel);
+        M5jDialog_create.setContentPane(jTabbedPane_M5);
+        M5jDialog_create.setVisible(true);
+    }
+
+    /**
+     * M5 panel container
+     * @param tabName  the tab name :M5_AP or M5_ST
+     * @param tableModel the M5 config records table model
+     * @return the panel container
+     */
+    public JPanel createM5Panel(String tabName, DefaultTableModel tableModel){
+        JPanel jPanel = new JPanel(null);
+        jPanel.setBorder((BorderFactory.createTitledBorder("UBNT( "+tabName+") 配置")));
+
+        if (tabName.trim().equals("M5_AP")){
+
+
+
+
+
+        }
+
+
+
+        return null;
+    }
+
 
     /**
      * this method is to udpate row data
