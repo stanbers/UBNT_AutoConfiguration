@@ -73,6 +73,8 @@ public class ConfigSet {
     //the older IP which waiting for update, need this older ip to login
     private String updatedIP_M2,originalIP_M5AP,originalIP_M5ST;
 
+    final String[] commonFieldsLabels = {"SSID: ","M2 无线网关：","M2 子网掩码：","M5 网桥网段：","M5 子网掩码："};
+
     /**
      * To render homepage, include project table and create project dialog
      */
@@ -151,9 +153,9 @@ public class ConfigSet {
 
         //setup project button
         JButton createPojectButton = new JButton("+ 新建项目");
-        createPojectButton.setLocation(90,460);
-        createPojectButton.setSize(160,40);
-        createPojectButton.setFont(new Font(null, BOLD, 25));
+        createPojectButton.setLocation(340,100);
+        createPojectButton.setSize(150,40);
+        createPojectButton.setFont(new Font(null, BOLD, 18));
 
         //show common fields on homepage
         final JPanel commonFieldsPanel = new JPanel(null);
@@ -161,7 +163,25 @@ public class ConfigSet {
         commonFieldsPanel.setSize(600, 300);
         commonFieldsPanel.setBorder(BorderFactory.createTitledBorder(null, "项目其他参数：", TitledBorder.LEFT, TitledBorder.TOP, new Font(null, BOLD, 18)));
         homepagePanel.add(commonFieldsPanel);
-        final String[] commonFieldsLabels = {"SSID: ","M2 无线网关：","M2 子网掩码：","M5 网桥网段：","M5 子网掩码："};
+
+        //setup update common field button
+        JButton updateCommonField = new JButton("修改参数");
+        updateCommonField.setLocation(450,252);
+        updateCommonField.setSize(135,40);
+        updateCommonField.setFont(new Font(null, BOLD, 18));
+        commonFieldsPanel.add(updateCommonField);
+
+        final JPanel fieldValuePanel = new JPanel(null);
+
+        //add action listener to update_fields button
+        updateCommonField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                generateNewProjectDilog(projectTableModel,commonFieldsPanel,true,fieldValuePanel);
+            }
+        });
+
+
         //'i' started from 1, in order to setup the first label offset in vertical direction
         for (int i = 1; i <= commonFieldsLabels.length; i++) {
             JLabel commonFiledsLabel = new JLabel(commonFieldsLabels[i-1]);
@@ -170,27 +190,44 @@ public class ConfigSet {
             commonFiledsLabel.setSize(125,30);
             commonFieldsPanel.add(commonFiledsLabel);
         }
+
+
         //add button event listener
         createPojectButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 //to invoke new project dialog
-                generateNewProjectDilog(projectTableModel);
-
-                // render the common fields value
-                for (int i = 1; i <= commonFieldsLabels.length; i++) {
-                    if (commonFields.size() > 0){
-                        JLabel commonFieldsValue = new JLabel(commonFields.get(i+1));
-                        commonFieldsValue.setLocation(135,40*i);
-                        commonFieldsValue.setSize(140,30);
-                        commonFieldsValue.setFont(new Font(null,Font.BOLD,16));
-                        commonFieldsPanel.add(commonFieldsValue);
-                    }
-
-                }
+                generateNewProjectDilog(projectTableModel,commonFieldsPanel,false,fieldValuePanel);
             }
         });
+
+        //setup ubnt button
+        JButton ubnt_homepage = new JButton("配置中继");
+        ubnt_homepage.setLocation(100,530);
+        ubnt_homepage.setSize(150,50);
+        ubnt_homepage.setFont(new Font(null, BOLD, 20));
+        homepagePanel.add(ubnt_homepage);
+
+        //setup wall hanging button
+        JButton wallHanging_homepage = new JButton("配置壁挂");
+        wallHanging_homepage.setLocation(400,530);
+        wallHanging_homepage.setSize(150,50);
+        wallHanging_homepage.setFont(new Font(null, BOLD, 20));
+        homepagePanel.add(wallHanging_homepage);
+
+        //setup camera button
+        JButton camera_homepage = new JButton("配置摄像头");
+        camera_homepage.setLocation(700,530);
+        camera_homepage.setSize(150,50);
+        camera_homepage.setFont(new Font(null, BOLD, 20));
+        homepagePanel.add(camera_homepage);
+
+        //setup router button
+        JButton router_homepage = new JButton("配置路由器");
+        router_homepage.setLocation(1000,530);
+        router_homepage.setSize(150,50);
+        router_homepage.setFont(new Font(null, BOLD, 20));
+        homepagePanel.add(router_homepage);
 
         //navigate to config details page, add double click project event listener
         projectTable.addMouseListener(new MouseAdapter() {
@@ -198,7 +235,7 @@ public class ConfigSet {
             public void mouseClicked(MouseEvent e) {
 
                 //initialize the field value panel, need to clear this panel each time
-                JPanel fieldValuePanel = new JPanel(null);
+
                 fieldValuePanel.setLocation(135,40);
                 fieldValuePanel.setSize(150,230);
                 commonFieldsPanel.add(fieldValuePanel);
@@ -1469,7 +1506,7 @@ public class ConfigSet {
      * Create a new project dialog when "create_project" button clicked
      * @param projectTableModel
      */
-    public JDialog generateNewProjectDilog(final DefaultTableModel projectTableModel){
+    public JDialog generateNewProjectDilog(final DefaultTableModel projectTableModel, final JPanel commonFieldsPanel, final boolean isUpdate,final JPanel fieldValuePanel){
 
         //initialize new project dialog, the third parameter value is true ,means current dialog focused on the homepage,and
         //homepage only can ge clicked only if the project dialog was closed
@@ -1496,6 +1533,10 @@ public class ConfigSet {
         projectNumInputBox.setLocation(190,40);
         projectNumInputBox.setSize(200,40);
         projectNumInputBox.setFont(new Font(null, Font.PLAIN, 18));
+        if (isUpdate){
+            log.info(commonFields.get(0));
+            projectNumInputBox.setText(commonFields.get(0));
+        }
         projectContainerPanel.add(projectNumLabel);
         projectContainerPanel.add(projectNumInputBox);
 
@@ -1513,9 +1554,11 @@ public class ConfigSet {
         projectNameInputBox.setLocation(190,90);
         projectNameInputBox.setSize(200,40);
         projectNameInputBox.setFont(new Font(null, Font.PLAIN, 18));
+        if (isUpdate){
+            projectNameInputBox.setText(commonFields.get(1));
+        }
         projectContainerPanel.add(projectNameLabel);
         projectContainerPanel.add(projectNameInputBox);
-
         //ssid name label and corresponding text field
         JLabel ssidLabel = new JLabel("SSID :");
         final JTextField ssidInputBox = new JTextField();
@@ -1526,6 +1569,9 @@ public class ConfigSet {
         ssidInputBox.setLocation(190,180);
         ssidInputBox.setSize(180,40);
         ssidInputBox.setFont(new Font(null, Font.PLAIN, 18));
+        if (isUpdate){
+            ssidInputBox.setText(commonFields.get(2));
+        }
         projectContainerPanel.add(ssidLabel);
         projectContainerPanel.add(ssidInputBox);
 
@@ -1548,6 +1594,9 @@ public class ConfigSet {
         gatewayIPInputBox.setLocation(190,230);
         gatewayIPInputBox.setSize(180,40);
         gatewayIPInputBox.setFont(new Font(null, Font.PLAIN, 18));
+        if (isUpdate){
+            gatewayIPInputBox.setText(commonFields.get(3));
+        }
         projectContainerPanel.add(gatewayIP);
         projectContainerPanel.add(gatewayIPInputBox);
 
@@ -1592,6 +1641,9 @@ public class ConfigSet {
         netMaskInputBox.setLocation(190,280);
         netMaskInputBox.setSize(180,40);
         netMaskInputBox.setFont(new Font(null, Font.PLAIN, 18));
+        if (isUpdate){
+            netMaskInputBox.setText(commonFields.get(4));
+        }
         projectContainerPanel.add(netMaskLabel);
         projectContainerPanel.add(netMaskInputBox);
 
@@ -1612,6 +1664,9 @@ public class ConfigSet {
         gatewayIP_M5_InputBox.setLocation(190,400);
         gatewayIP_M5_InputBox.setSize(180,40);
         gatewayIP_M5_InputBox.setFont(new Font(null, Font.PLAIN, 18));
+        if (isUpdate){
+            gatewayIP_M5.setText(commonFields.get(5));
+        }
         projectContainerPanel.add(gatewayIP_M5);
         projectContainerPanel.add(gatewayIP_M5_InputBox);
 
@@ -1625,11 +1680,14 @@ public class ConfigSet {
         netMask_M5_InputBox.setLocation(190,450);
         netMask_M5_InputBox.setSize(180,40);
         netMask_M5_InputBox.setFont(new Font(null, Font.PLAIN, 18));
+        if (isUpdate){
+            netMask_M5_InputBox.setText(commonFields.get(6));
+        }
         projectContainerPanel.add(netMaskLabel_M5);
         projectContainerPanel.add(netMask_M5_InputBox);
 
         //ok button
-        JButton createProjectButton = new JButton("创建");
+        JButton createProjectButton = new JButton(isUpdate?"修改":"创建");
         createProjectButton.setFont(new Font(null,Font.BOLD,16));
         createProjectButton.setLocation(100,530);
         createProjectButton.setSize(85,40);
@@ -1644,26 +1702,29 @@ public class ConfigSet {
         createProjectButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //save those all fields.
-                log.info("the project number is "+projectNumInputBox.getText());
-                commonFields.add(projectNumInputBox.getText());
-                commonFields.add(projectNameInputBox.getText());
-                commonFields.add(ssidInputBox.getText());
-                commonFields.add(gatewayIPInputBox.getText());
-                commonFields.add(netMaskInputBox.getText());
-                commonFields.add(gatewayIP_M5_InputBox.getText());
-                commonFields.add(netMask_M5_InputBox.getText());
 
-                //TODO: need to generate project row
-                Vector emptyProjectRow = new Vector();
-                for (int i = 0; i < 2; i++) {
-                    emptyProjectRow.add(null);
+                    //save those all fields.
+                    log.info("the project number is "+projectNumInputBox.getText());
+                    commonFields.clear();
+                    commonFields.add(projectNumInputBox.getText());
+                    commonFields.add(projectNameInputBox.getText());
+                    commonFields.add(ssidInputBox.getText());
+                    commonFields.add(gatewayIPInputBox.getText());
+                    commonFields.add(netMaskInputBox.getText());
+                    commonFields.add(gatewayIP_M5_InputBox.getText());
+                    commonFields.add(netMask_M5_InputBox.getText());
+                if (!isUpdate){
+                    //TODO: need to generate project row
+                    Vector emptyProjectRow = new Vector();
+                    for (int i = 0; i < 2; i++) {
+                        emptyProjectRow.add(null);
+                    }
+                    projectTableModel.addRow(emptyProjectRow);
+                    //fill up the project table with project number and name
+                    projectTableModel.setValueAt(projectNumInputBox.getText(),projectTableModel.getRowCount()-1,0);
+                    projectTableModel.setValueAt(projectNameInputBox.getText(),projectTableModel.getRowCount()-1,1);
                 }
-                projectTableModel.addRow(emptyProjectRow);
 
-                //fill up the project table with project number and name
-                projectTableModel.setValueAt(projectNumInputBox.getText(),projectTableModel.getRowCount()-1,0);
-                projectTableModel.setValueAt(projectNameInputBox.getText(),projectTableModel.getRowCount()-1,1);
 
                 //TODO: need to write the project info into the specific excel, in order to show these info on homepage once the app was running
                 String projectExcelPath = Constant.Path_TestData_ProjectList;
@@ -1672,7 +1733,28 @@ public class ConfigSet {
                 exportToExcel(projectTableModel,projectExcelPath,2);
                 exportToExcel(null,commonFieldsExcelPath,7);
 
+//                //initialize the field value panel, need to clear this panel each time
+//                JPanel fieldValuePanel = new JPanel(null);
+                fieldValuePanel.setLocation(135,40);
+                fieldValuePanel.setSize(150,230);
+                commonFieldsPanel.add(fieldValuePanel);
+                commonFieldsPanel.remove(fieldValuePanel);
+
+                // render the common fields value
+                for (int i = 0; i < commonFieldsLabels.length; i++) {
+                    if (commonFields.size() > 0){
+                        log.info(commonFields.get(i+2));
+                        JLabel commonFieldsValue  = new JLabel(commonFields.get(i+2));
+                        commonFieldsValue.setLocation(0,40*i);
+                        commonFieldsValue.setSize(140,30);
+                        commonFieldsValue.setFont(new Font(null,Font.BOLD,16));
+                        fieldValuePanel.add(commonFieldsValue);
+                    }
+
+                }
                 newProjectDialog.dispose();
+                commonFieldsPanel.add(fieldValuePanel);
+                fieldValuePanel.repaint();
                 SwingUtilities.updateComponentTreeUI(mainFrame);
             }
         });
