@@ -1,4 +1,4 @@
-package gui.version.Integration;
+package gui.version.integration;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

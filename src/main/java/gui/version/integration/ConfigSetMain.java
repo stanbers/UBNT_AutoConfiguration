@@ -1,4 +1,4 @@
-package gui.version.Integration;
+package gui.version.integration;
 
 /**
  * @Author by XuLiang
