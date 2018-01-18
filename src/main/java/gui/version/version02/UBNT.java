@@ -103,7 +103,7 @@ public class UBNT {
         };
 
         //setup homepage top title
-        JLabel titleLabel = new JLabel("中继自动化配置",SwingConstants.CENTER);
+        JLabel titleLabel = new JLabel("自动化配置",SwingConstants.CENTER);
         titleLabel.setSize(1300,100);
         titleLabel.setFont(new Font(null,Font.BOLD, 60));
         homepagePanel.add(titleLabel);
