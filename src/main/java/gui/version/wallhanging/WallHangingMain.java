@@ -7,6 +7,7 @@ package gui.version.wallhanging;
  */
 public class WallHangingMain {
     public static void main(String[] args) {
-        new WallHanging().config("test","192.168.0.101","255.255.255.0","192.168.0.1","192.168.0.98");
+//        new WallHangingConfig().config("test","192.168.0.101","255.255.255.0","192.168.0.1","192.168.0.98");
+        new WallHangingGUI().showHomepage();
     }
 }
