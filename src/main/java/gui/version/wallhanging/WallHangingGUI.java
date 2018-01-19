@@ -45,7 +45,7 @@ public class WallHangingGUI {
     private int recordIndex = 1;
 
     //initialize wall hanging table header
-    final String[] columns_wall = {"编号","线路","位置","壁挂 IP","服务器地址"};
+    final String[] columns_wall = {"编号","线路","位置","壁挂 IP"};
 
     //define wall hanging table model
     private DefaultTableModel tableModel_wall = new DefaultTableModel(null,columns_wall){
@@ -58,6 +58,7 @@ public class WallHangingGUI {
     //define the global fields
     private String pName;
     private String pNumber;
+    private String serverIP;
 
     //the older IP which waiting for update, need this older ip to login
     private String olderIP_wall;
@@ -159,7 +160,7 @@ public class WallHangingGUI {
         projectTable.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                final JPanel outermostPanel = showConfigRecordsPage(pName,pNumber,tableModel_wall);
+                final JPanel outermostPanel = showConfigRecordsPage(pName,pNumber,tableModel_wall,serverIP);
 
                 JPanel outermostHeaderPanel = new JPanel(){
                     @Override
@@ -210,6 +211,7 @@ public class WallHangingGUI {
                 backwardButton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+
                         //need remove these two JLabel to make sure every time these two label are new added to outPanel
                         outermostPanel.remove(currentPName);
                         outermostPanel.remove(currentPNumber);
@@ -224,7 +226,7 @@ public class WallHangingGUI {
                 //double click
                 if (e.getClickCount() == 2){
                     homepagePanel.setVisible(false);
-                    showConfigRecordsPage(pName,pNumber,tableModel_wall).setVisible(true);
+                    showConfigRecordsPage(pName,pNumber,tableModel_wall,serverIP).setVisible(true);
                     mainFrame.setContentPane(outermostPanel);
                     int targetRow = projectTable.getSelectedRow();
                     //set the value to these two global fields
@@ -237,7 +239,7 @@ public class WallHangingGUI {
                     File projectCorresspondingConfigFile_wall = new File(specificExcel_wall);
                     File projectCommonFieldFile = new File(SpecificProjectCommonField);
                     if (!projectCorresspondingConfigFile_wall.exists()){
-                        exportToExcel(tableModel_wall,"D:\\ConfigFile\\M2\\"+pName+".xlsx",5);
+                        exportToExcel(tableModel_wall,"D:\\ConfigFile\\wall\\"+pName+".xlsx",4);
 //                            exportToExcel(tableModel_M2,System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName+".xlsx",4);
                     }
                     if (projectCorresspondingConfigFile_wall.exists() && projectCommonFieldFile.exists()){
@@ -271,10 +273,11 @@ public class WallHangingGUI {
     /**
      * To generate the outermost container panel records page
      */
-    public JPanel showConfigRecordsPage(String pName_wall,String pNumber_wall,DefaultTableModel tableModel){
+    public JPanel showConfigRecordsPage(String pName_wall,String pNumber_wall,DefaultTableModel tableModel,String serverIP){
         this.pName = pName_wall;
         this.pNumber = pNumber_wall;
         this.tableModel_wall = tableModel;
+        this.serverIP = serverIP;
         //TODO: this page will include two main panels, one is M2 container another one is M5 container
         //this panel the outermost panel container, no need to set location and size
         JPanel outermostContainerPanel = new JPanel(null);
@@ -298,7 +301,6 @@ public class WallHangingGUI {
         jTable_wall.getColumn("位置").setMaxWidth(80);
         jTable_wall.getColumn("线路").setMaxWidth(45);
         jTable_wall.getColumn("壁挂 IP").setPreferredWidth(30);
-        jTable_wall.getColumn("服务器地址").setPreferredWidth(30);
         jTable_wall.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
         jTable_wall.setFont(new Font(null, Font.PLAIN, 15));
 
@@ -309,7 +311,6 @@ public class WallHangingGUI {
         jTable_wall.getColumn("位置").setCellRenderer(centerRenderer);
         jTable_wall.getColumn("线路").setCellRenderer(centerRenderer);
         jTable_wall.getColumn("壁挂 IP").setCellRenderer(centerRenderer);
-        jTable_wall.getColumn("服务器地址").setCellRenderer(centerRenderer);
 
 
         //setup wall hanging table header
@@ -351,7 +352,7 @@ public class WallHangingGUI {
         exportWallRecords.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                exportToExcel(tableModel_wall,"D:\\ConfigFile\\wall\\"+pName+".xlsx",5);
+                exportToExcel(tableModel_wall,"D:\\ConfigFile\\wall\\"+pName+".xlsx",4);
 //                exportToExcel(tableModel_M2,System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName+".xlsx",4);
                 JOptionPane.showMessageDialog(
                         mainFrame,
@@ -417,7 +418,7 @@ public class WallHangingGUI {
                     int rowNum = jTable_wall.getSelectedRow();
                     //i started from 1, cause no to edit row number.
                     log.info("the " + rowNum + "th row was selected !");
-                    for (int i = 1; i <= 4; i++) {
+                    for (int i = 1; i <= 3; i++) {
                         int a = cellValuesOfSpecificRow.size();
                         log.info("row has " +a +"columns");
                         if (tableModel_wall.getValueAt(rowNum,i) != null){
@@ -526,26 +527,26 @@ public class WallHangingGUI {
             IP_wall.setText(rowData.get(2));
         }
 
-        //setup wall hanging server IP label:
-        JLabel wallIPLabel_server = new JLabel("服务器 IP 地址 :",SwingConstants.LEFT);
-        wallIPLabel_server.setFont(new Font(null, 1, 16));
-        wallIPLabel_server.setLocation(20,190);
-        wallIPLabel_server.setSize(135,30);
-        wallOverlay_update.add(wallIPLabel_server);
-
-        //setup wall hanging server IP text field
-        final JMIPV4AddressField IP_wall_server = new JMIPV4AddressField();
-        IP_wall_server.setIpAddress("10.1.2.1");
-        IP_wall_server.setFont(new Font(null, Font.PLAIN, 14));
-        IP_wall_server.setLocation(160,190);
-        IP_wall_server.setSize(200,30);
-        wallOverlay_update.add(IP_wall_server);
-
-        if (rowData.get(3).trim().equals("null")){
-            IP_wall_server.setText(null);
-        }else {
-            IP_wall_server.setText(rowData.get(3));
-        }
+//        //setup wall hanging server IP label:
+//        JLabel wallIPLabel_server = new JLabel("服务器 IP 地址 :",SwingConstants.LEFT);
+//        wallIPLabel_server.setFont(new Font(null, 1, 16));
+//        wallIPLabel_server.setLocation(20,190);
+//        wallIPLabel_server.setSize(135,30);
+//        wallOverlay_update.add(wallIPLabel_server);
+//
+//        //setup wall hanging server IP text field
+//        final JMIPV4AddressField IP_wall_server = new JMIPV4AddressField();
+//        IP_wall_server.setIpAddress("10.1.2.1");
+//        IP_wall_server.setFont(new Font(null, Font.PLAIN, 14));
+//        IP_wall_server.setLocation(160,190);
+//        IP_wall_server.setSize(200,30);
+//        wallOverlay_update.add(IP_wall_server);
+//
+//        if (rowData.get(3).trim().equals("null")){
+//            IP_wall_server.setText(null);
+//        }else {
+//            IP_wall_server.setText(rowData.get(3));
+//        }
 
         //setup config button
         final JButton wallUpdateButton = new JButton("壁挂");
@@ -561,7 +562,7 @@ public class WallHangingGUI {
                 String way = wayComboBox.getSelectedItem().toString();
                 String DK = DKText.getText();
                 String wall_IP = IP_wall.getText();
-                String serverIP = IP_wall_server.getText();
+                String serverIP = "";
                 int targetRow = tableModel.getRowCount() -1;
 
                 tableModel.setValueAt(way,targetRow,1);
@@ -665,20 +666,20 @@ public class WallHangingGUI {
         IP.setSize(200,30);
         wallOverlay_create.add(IP);
 
-        //setup wall hanging server IP label:
-        JLabel wallIPLabel_server = new JLabel("服务器 IP 地址 :",SwingConstants.LEFT);
-        wallIPLabel_server.setFont(new Font(null, 1, 16));
-        wallIPLabel_server.setLocation(20,190);
-        wallIPLabel_server.setSize(135,30);
-        wallOverlay_create.add(wallIPLabel_server);
-
-        //setup wall hanging server IP text field
-        final JMIPV4AddressField IP_server = new JMIPV4AddressField();
-        IP_server.setIpAddress("10.1.2.0");
-        IP_server.setFont(new Font(null, Font.PLAIN, 14));
-        IP_server.setLocation(160,190);
-        IP_server.setSize(200,30);
-        wallOverlay_create.add(IP_server);
+//        //setup wall hanging server IP label:
+//        JLabel wallIPLabel_server = new JLabel("服务器 IP 地址 :",SwingConstants.LEFT);
+//        wallIPLabel_server.setFont(new Font(null, 1, 16));
+//        wallIPLabel_server.setLocation(20,190);
+//        wallIPLabel_server.setSize(135,30);
+//        wallOverlay_create.add(wallIPLabel_server);
+//
+//        //setup wall hanging server IP text field
+//        final JMIPV4AddressField IP_server = new JMIPV4AddressField();
+//        IP_server.setIpAddress("10.1.2.0");
+//        IP_server.setFont(new Font(null, Font.PLAIN, 14));
+//        IP_server.setLocation(160,190);
+//        IP_server.setSize(200,30);
+//        wallOverlay_create.add(IP_server);
 
         //setup config button
         final JButton wallConfigButton = new JButton("壁挂");
@@ -695,7 +696,7 @@ public class WallHangingGUI {
                 String way = wayComboBox.getSelectedItem().toString();
                 String DK = DKText.getText();
                 String wall_IP = IP.getText();
-                String serverIP = IP_server.getText();
+                String serverIP = "";
                 int targetRow = tableModel.getRowCount() -1;
 
                 tableModel.setValueAt(way,targetRow,1);

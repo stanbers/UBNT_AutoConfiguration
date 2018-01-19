@@ -52,7 +52,7 @@ public class ConfigSet {
     final String[] columns_M5 = {"编号","线路","位置","M5_AP IP","M5_AP 频率","M5_AP mac地址","M5_ST IP","M5_ST锁定的AP mac地址"};
 
     //initialize wall hanging table header
-    final String[] columns_wall = {"编号","线路","位置","壁挂 IP","服务器地址"};
+    final String[] columns_wall = {"编号","线路","位置","壁挂 IP"};
 
     //define M2 table model
     private final DefaultTableModel tableModel_M2 = new DefaultTableModel(null,columns_M2){
@@ -85,7 +85,7 @@ public class ConfigSet {
     //the older IP which waiting for update, need this older ip to login
     private String updatedIP_M2,originalIP_M5AP,originalIP_M5ST;
 
-    final String[] commonFieldsLabels = {"SSID: ","M2 无线网关：","M2 子网掩码：","M5 网桥网段：","M5 子网掩码："};
+    final String[] commonFieldsLabels = {"SSID: ","M2 无线网关：","M2 子网掩码：","M5 网桥网段：","M5 子网掩码：","壁挂服务器 IP: "};
 
 
 
@@ -250,7 +250,7 @@ public class ConfigSet {
         router_homepage.setFont(new Font(null, BOLD, 20));
         homepagePanel.add(router_homepage);
 
-        final JPanel outermostPanel = showConfigRecordsPage();
+
 
         //navigate to config details page, add double click project event listener
         projectTable.addMouseListener(new MouseAdapter() {
@@ -279,6 +279,7 @@ public class ConfigSet {
             @Override
             public void actionPerformed(ActionEvent e) {
                 {
+                    final JPanel outermostPanel = showConfigRecordsPage();
                     JPanel outermostHeaderPanel = new JPanel(){
                         @Override
                         public void paintComponent(Graphics graphics){
@@ -404,7 +405,7 @@ public class ConfigSet {
                 File projectCorresspondingConfigFile_wall = new File(specificExcel_wall);
                 File projectCommonFieldFile = new File(SpecificProjectCommonField);
                 if (!projectCorresspondingConfigFile_wall.exists()){
-                    exportToExcel(tableModel_wall,"D:\\ConfigFile\\wall\\"+pName_wall+".xlsx",5);
+                    exportToExcel(tableModel_wall,"D:\\ConfigFile\\wall\\"+pName_wall+".xlsx",4);
                 }
                 if (projectCorresspondingConfigFile_wall.exists() && projectCommonFieldFile.exists()){
                     //import table rows on main page
@@ -415,7 +416,8 @@ public class ConfigSet {
                     importFromExcel(null,SpecificProjectCommonField);
                     //import project list excel, in order to show the project name and number on the main page
                 }
-                final JPanel outermostPanel_wall = new WallHangingGUI().showConfigRecordsPage(pName_wall,pNumber_wall,tableModel_wall);
+
+                final JPanel outermostPanel_wall = new WallHangingGUI().showConfigRecordsPage(pName_wall,pNumber_wall,tableModel_wall,commonFields.get(7));
                 JPanel outermostHeaderPanel = new JPanel(){
                     @Override
                     public void paintComponent(Graphics graphics){
@@ -432,17 +434,17 @@ public class ConfigSet {
                 outermostPanel_wall.add(outermostHeaderPanel);
 
                 // create the header dynamically
-                JLabel currentPNumberTitle = new JLabel("当前项目编号：");
-                currentPNumberTitle.setLocation(20,10);
-                currentPNumberTitle.setSize(160,40);
-                currentPNumberTitle.setFont(new Font(null,Font.BOLD,18));
-                outermostPanel_wall.add(currentPNumberTitle);
+                JLabel currentPNumberTitle_wall = new JLabel("当前项目编号：");
+                currentPNumberTitle_wall.setLocation(20,10);
+                currentPNumberTitle_wall.setSize(160,40);
+                currentPNumberTitle_wall.setFont(new Font(null,Font.BOLD,18));
+                outermostPanel_wall.add(currentPNumberTitle_wall);
 
-                JLabel currentPNameTitle = new JLabel("当前项目名称：");
-                currentPNameTitle.setLocation(240,10);
-                currentPNameTitle.setSize(160,40);
-                currentPNameTitle.setFont(new Font(null,Font.BOLD,18));
-                outermostPanel_wall.add(currentPNameTitle);
+                JLabel currentPNameTitle_wall = new JLabel("当前项目名称：");
+                currentPNameTitle_wall.setLocation(240,10);
+                currentPNameTitle_wall.setSize(160,40);
+                currentPNameTitle_wall.setFont(new Font(null,Font.BOLD,18));
+                outermostPanel_wall.add(currentPNameTitle_wall);
 
                 final JLabel currentPName_wall = new JLabel(pName);
                 currentPName_wall.setLocation(370,10);
@@ -455,14 +457,14 @@ public class ConfigSet {
                 currentPNumber_wall.setFont(new Font(null,Font.BOLD,18));
 
                 //add backward button, go back to homepage
-                JButton  backwardButton = new JButton("返回首页");
-                backwardButton.setLocation(640,15);
-                backwardButton.setSize(120,30);
-                backwardButton.setFont(new Font(null,Font.BOLD,18));
-                outermostPanel_wall.add(backwardButton);
+                JButton  backwardButton_wall = new JButton("返回首页");
+                backwardButton_wall.setLocation(640,15);
+                backwardButton_wall.setSize(120,30);
+                backwardButton_wall.setFont(new Font(null,Font.BOLD,18));
+                outermostPanel_wall.add(backwardButton_wall);
 
                 //add backward button event listener
-                backwardButton.addActionListener(new ActionListener() {
+                backwardButton_wall.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         //need remove these two JLabel to make sure every time these two label are new added to outPanel
@@ -479,7 +481,7 @@ public class ConfigSet {
 
 
                 homepagePanel.setVisible(false);
-                new WallHangingGUI().showConfigRecordsPage(pName_wall,pNumber_wall,tableModel_wall).setVisible(true);
+                new WallHangingGUI().showConfigRecordsPage(pName_wall,pNumber_wall,tableModel_wall,commonFields.get(7)).setVisible(true);
                 mainFrame.setContentPane(outermostPanel_wall);
 
 
@@ -1635,7 +1637,7 @@ public class ConfigSet {
         //initialize new project dialog, the third parameter value is true ,means current dialog focused on the homepage,and
         //homepage only can ge clicked only if the project dialog was closed
         final JDialog newProjectDialog = new JDialog(mainFrame,"新建项目",true);
-        newProjectDialog.setSize(470,580);
+        newProjectDialog.setSize(470,isUpdate ? 580:800);
         newProjectDialog.setLocationRelativeTo(mainFrame);
 
         //setup the logo icon
@@ -1811,16 +1813,39 @@ public class ConfigSet {
         projectContainerPanel.add(netMaskLabel_M5);
         projectContainerPanel.add(netMask_M5_InputBox);
 
+        //subway wall hanging panel include server IP
+        JPanel innerJPanel_wall = new JPanel();
+        innerJPanel_wall.setLocation(50,isUpdate ? 460:530);
+        innerJPanel_wall.setSize(340,100);
+        innerJPanel_wall.setBorder(BorderFactory.createTitledBorder(null,"壁挂", TitledBorder.LEFT,TitledBorder.TOP,new Font(null, BOLD,18)));
+        innerJPanel_wall.setLayout(null);
+
+        //wall hanging server ip label and corresponding text field
+        JLabel serverIP_wall = new JLabel("服务器 IP :");
+        final JMIPV4AddressField serverIP_InputBox_wall = new JMIPV4AddressField();
+        serverIP_InputBox_wall.setIpAddress("192.168.0.100");
+        serverIP_wall.setLocation(60,isUpdate ? 520:570);
+        serverIP_wall.setSize(120,40);
+        serverIP_wall.setFont(new Font(null, BOLD,18));
+        serverIP_InputBox_wall.setLocation(190,isUpdate ? 520:570);
+        serverIP_InputBox_wall.setSize(180,40);
+        serverIP_InputBox_wall.setFont(new Font(null, Font.PLAIN, 18));
+        if (isUpdate){
+            serverIP_InputBox_wall.setText(commonFields.get(7));
+        }
+        projectContainerPanel.add(serverIP_wall);
+        projectContainerPanel.add(serverIP_InputBox_wall);
+
         //ok button
         JButton createProjectButton = new JButton(isUpdate?"修改":"创建");
         createProjectButton.setFont(new Font(null,Font.BOLD,16));
-        createProjectButton.setLocation(100,isUpdate ? 480:530);
+        createProjectButton.setLocation(100,isUpdate ? 480:680);
         createProjectButton.setSize(85,40);
 
         //cancel button
         JButton cancelButton = new JButton("取消");
         cancelButton.setFont(new Font(null,Font.BOLD,16));
-        cancelButton.setLocation(265,isUpdate ? 480:530);
+        cancelButton.setLocation(265,isUpdate ? 480:680);
         cancelButton.setSize(85,40);
 
         //create project button event listener
@@ -1838,6 +1863,7 @@ public class ConfigSet {
                     commonFields.add(netMaskInputBox.getText());
                     commonFields.add(gatewayIP_M5_InputBox.getText());
                     commonFields.add(netMask_M5_InputBox.getText());
+                    commonFields.add(serverIP_InputBox_wall.getText());
                 if (!isUpdate){
                     //TODO: need to generate project row
                     Vector emptyProjectRow = new Vector();
@@ -1880,6 +1906,7 @@ public class ConfigSet {
 
         projectContainerPanel.add(innerJPanelWifi);
         projectContainerPanel.add(innerJPanel_M5);
+        projectContainerPanel.add(innerJPanel_wall);
 
         newProjectDialog.setContentPane(projectContainerPanel);
         newProjectDialog.setVisible(true);
