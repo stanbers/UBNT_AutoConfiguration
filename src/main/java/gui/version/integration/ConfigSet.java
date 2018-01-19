@@ -71,7 +71,7 @@ public class ConfigSet {
     };
 
     //define wall hanging table model
-    private final DefaultTableModel tableModel_wall = new DefaultTableModel(null,columns_wall){
+    private DefaultTableModel tableModel_wall = new DefaultTableModel(null,columns_wall){
         @Override
         public boolean isCellEditable(int row, int column) {
             return false;
@@ -394,9 +394,28 @@ public class ConfigSet {
 
                 int targetRow = projectTable.getSelectedRow();
                 //set the value to these two global fields
-                pNumber = projectTableModel.getValueAt(targetRow,0).toString();
-                pName = projectTableModel.getValueAt(targetRow,1).toString();
-                final JPanel outermostPanel_wall = new WallHangingGUI().showConfigRecordsPage();
+                String pNumber_wall = projectTableModel.getValueAt(targetRow,0).toString();
+                String pName_wall = projectTableModel.getValueAt(targetRow,1).toString();
+
+                String specificExcel_wall = "D:\\ConfigFile\\wall\\"+pName_wall +".xlsx";
+//                        String specificExcel_wall = System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName +".xlsx";
+                String SpecificProjectCommonField = "D:\\ConfigFile\\"+pName_wall +"CommonFields.xlsx";
+//                        String SpecificProjectCommonField = System.getProperty("user.dir")+ "\\ConfigFile\\"+pName +"CommonFields.xlsx";
+                File projectCorresspondingConfigFile_wall = new File(specificExcel_wall);
+                File projectCommonFieldFile = new File(SpecificProjectCommonField);
+                if (!projectCorresspondingConfigFile_wall.exists()){
+                    exportToExcel(tableModel_wall,"D:\\ConfigFile\\wall\\"+pName_wall+".xlsx",5);
+                }
+                if (projectCorresspondingConfigFile_wall.exists() && projectCommonFieldFile.exists()){
+                    //import table rows on main page
+                    importFromExcel(tableModel_wall ,specificExcel_wall);
+//                            jTable.setModel(defaultTableModel);
+                    //import specific project common fields
+                    //TODO: this time not to render table but to override commonfields.
+                    importFromExcel(null,SpecificProjectCommonField);
+                    //import project list excel, in order to show the project name and number on the main page
+                }
+                final JPanel outermostPanel_wall = new WallHangingGUI().showConfigRecordsPage(pName_wall,pNumber_wall,tableModel_wall);
                 JPanel outermostHeaderPanel = new JPanel(){
                     @Override
                     public void paintComponent(Graphics graphics){
@@ -460,32 +479,16 @@ public class ConfigSet {
 
 
                 homepagePanel.setVisible(false);
-                new WallHangingGUI().showConfigRecordsPage().setVisible(true);
+                new WallHangingGUI().showConfigRecordsPage(pName_wall,pNumber_wall,tableModel_wall).setVisible(true);
                 mainFrame.setContentPane(outermostPanel_wall);
 
-                String specificExcel_wall = "D:\\ConfigFile\\wall\\"+pName +".xlsx";
-//                        String specificExcel_wall = System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName +".xlsx";
-                String SpecificProjectCommonField = "D:\\ConfigFile\\"+pName +"CommonFields.xlsx";
-//                        String SpecificProjectCommonField = System.getProperty("user.dir")+ "\\ConfigFile\\"+pName +"CommonFields.xlsx";
-                File projectCorresspondingConfigFile_wall = new File(specificExcel_wall);
-                File projectCommonFieldFile = new File(SpecificProjectCommonField);
-                if (!projectCorresspondingConfigFile_wall.exists()){
-                    exportToExcel(tableModel_wall,"D:\\ConfigFile\\wall\\"+pName+".xlsx",5);
-                }
-                if (projectCorresspondingConfigFile_wall.exists() && projectCommonFieldFile.exists()){
-                    //import table rows on main page
-                    importFromExcel(tableModel_wall ,specificExcel_wall);
-//                            jTable.setModel(defaultTableModel);
-                    //import specific project common fields
-                    //TODO: this time not to render table but to override commonfields.
-                    importFromExcel(null,SpecificProjectCommonField);
-                    //import project list excel, in order to show the project name and number on the main page
-                }
+
+
 
                 outermostPanel_wall.add(currentPName_wall);
                 outermostPanel_wall.add(currentPNumber_wall);
-                currentPName_wall.setText(pName);
-                currentPNumber_wall.setText(pNumber);
+                currentPName_wall.setText(pName_wall);
+                currentPNumber_wall.setText(pNumber_wall);
             }
         });
 

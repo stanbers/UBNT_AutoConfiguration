@@ -48,7 +48,7 @@ public class WallHangingGUI {
     final String[] columns_wall = {"编号","线路","位置","壁挂 IP","服务器地址"};
 
     //define wall hanging table model
-    private final DefaultTableModel tableModel_wall = new DefaultTableModel(null,columns_wall){
+    private DefaultTableModel tableModel_wall = new DefaultTableModel(null,columns_wall){
         @Override
         public boolean isCellEditable(int row, int column) {
             return false;
@@ -159,7 +159,7 @@ public class WallHangingGUI {
         projectTable.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                final JPanel outermostPanel = showConfigRecordsPage();
+                final JPanel outermostPanel = showConfigRecordsPage(pName,pNumber,tableModel_wall);
 
                 JPanel outermostHeaderPanel = new JPanel(){
                     @Override
@@ -224,7 +224,7 @@ public class WallHangingGUI {
                 //double click
                 if (e.getClickCount() == 2){
                     homepagePanel.setVisible(false);
-                    showConfigRecordsPage().setVisible(true);
+                    showConfigRecordsPage(pName,pNumber,tableModel_wall).setVisible(true);
                     mainFrame.setContentPane(outermostPanel);
                     int targetRow = projectTable.getSelectedRow();
                     //set the value to these two global fields
@@ -271,7 +271,10 @@ public class WallHangingGUI {
     /**
      * To generate the outermost container panel records page
      */
-    public JPanel showConfigRecordsPage(){
+    public JPanel showConfigRecordsPage(String pName_wall,String pNumber_wall,DefaultTableModel tableModel){
+        this.pName = pName_wall;
+        this.pNumber = pNumber_wall;
+        this.tableModel_wall = tableModel;
         //TODO: this page will include two main panels, one is M2 container another one is M5 container
         //this panel the outermost panel container, no need to set location and size
         JPanel outermostContainerPanel = new JPanel(null);
