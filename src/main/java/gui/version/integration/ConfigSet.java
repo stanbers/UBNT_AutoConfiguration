@@ -181,7 +181,7 @@ public class ConfigSet {
         //initialize the field value panel, need to clear this panel each time
         final JPanel fieldValuePanel = new JPanel(null);
         fieldValuePanel.setLocation(135,40);
-        fieldValuePanel.setSize(150,230);
+        fieldValuePanel.setSize(200,230);
         commonFieldsPanel.add(fieldValuePanel);
 
         //setup update common field button
@@ -336,7 +336,20 @@ public class ConfigSet {
                             tableModel_M5.getDataVector().clear();
                             outermostPanel.setVisible(false);
                             homepagePanel.setVisible(true);
+                            log.info("the current common fields' size is "+commonFields.size());
+                            log.info("the current project name is "+pName);
+//                            if (fieldValuePanel.getComponents().length == 0){
+
+//                            };
                             mainFrame.setContentPane(homepagePanel);
+                            if (fieldValuePanel.getComponents().length == 0){
+                                JPanel filedsValue = generateCommondFields(commonFieldsPanel,fieldValuePanel,false);
+                                filedsValue.repaint();
+                            }else {
+                                fieldValuePanel.removeAll();
+                                JPanel filedsValue_new = generateCommondFields(commonFieldsPanel,fieldValuePanel,false);
+                                filedsValue_new.repaint();
+                            }
                         }
 
                     });
@@ -474,6 +487,15 @@ public class ConfigSet {
                         outermostPanel_wall.setVisible(false);
                         homepagePanel.setVisible(true);
                         mainFrame.setContentPane(homepagePanel);
+
+                        if (fieldValuePanel.getComponents().length == 0){
+                            JPanel filedsValue = generateCommondFields(commonFieldsPanel,fieldValuePanel,false);
+                            filedsValue.repaint();
+                        }else {
+                            fieldValuePanel.removeAll();
+                            JPanel filedsValue_new = generateCommondFields(commonFieldsPanel,fieldValuePanel,false);
+                            filedsValue_new.repaint();
+                        }
                     }
 
                 });
@@ -514,7 +536,7 @@ public class ConfigSet {
         if (isFromProjectTable){
             fieldValuePanel = new JPanel(null);
             fieldValuePanel.setLocation(135,40);
-            fieldValuePanel.setSize(150,230);
+            fieldValuePanel.setSize(145,230);
             commonFieldsPanel.add(fieldValuePanel);
 
         }
@@ -1637,7 +1659,7 @@ public class ConfigSet {
         //initialize new project dialog, the third parameter value is true ,means current dialog focused on the homepage,and
         //homepage only can ge clicked only if the project dialog was closed
         final JDialog newProjectDialog = new JDialog(mainFrame,"新建项目",true);
-        newProjectDialog.setSize(470,isUpdate ? 580:800);
+        newProjectDialog.setSize(470,isUpdate ? 700:800);
         newProjectDialog.setLocationRelativeTo(mainFrame);
 
         //setup the logo icon
@@ -1824,10 +1846,10 @@ public class ConfigSet {
         JLabel serverIP_wall = new JLabel("服务器 IP :");
         final JMIPV4AddressField serverIP_InputBox_wall = new JMIPV4AddressField();
         serverIP_InputBox_wall.setIpAddress("192.168.0.100");
-        serverIP_wall.setLocation(60,isUpdate ? 520:570);
+        serverIP_wall.setLocation(60,isUpdate ? 500:570);
         serverIP_wall.setSize(120,40);
         serverIP_wall.setFont(new Font(null, BOLD,18));
-        serverIP_InputBox_wall.setLocation(190,isUpdate ? 520:570);
+        serverIP_InputBox_wall.setLocation(190,isUpdate ? 500:570);
         serverIP_InputBox_wall.setSize(180,40);
         serverIP_InputBox_wall.setFont(new Font(null, Font.PLAIN, 18));
         if (isUpdate){
@@ -1839,13 +1861,13 @@ public class ConfigSet {
         //ok button
         JButton createProjectButton = new JButton(isUpdate?"修改":"创建");
         createProjectButton.setFont(new Font(null,Font.BOLD,16));
-        createProjectButton.setLocation(100,isUpdate ? 480:680);
+        createProjectButton.setLocation(100,isUpdate ? 600:680);
         createProjectButton.setSize(85,40);
 
         //cancel button
         JButton cancelButton = new JButton("取消");
         cancelButton.setFont(new Font(null,Font.BOLD,16));
-        cancelButton.setLocation(265,isUpdate ? 480:680);
+        cancelButton.setLocation(265,isUpdate ? 600:680);
         cancelButton.setSize(85,40);
 
         //create project button event listener
