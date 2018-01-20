@@ -430,7 +430,7 @@ public class ConfigSet {
                     //import project list excel, in order to show the project name and number on the main page
                 }
 
-                final JPanel outermostPanel_wall = new WallHangingGUI().showConfigRecordsPage(pName_wall,pNumber_wall,tableModel_wall,commonFields.get(7));
+                final JPanel outermostPanel_wall = new WallHangingGUI().showConfigRecordsPage(pName_wall,pNumber_wall,tableModel_wall,commonFields);
                 JPanel outermostHeaderPanel = new JPanel(){
                     @Override
                     public void paintComponent(Graphics graphics){
@@ -503,7 +503,7 @@ public class ConfigSet {
 
 
                 homepagePanel.setVisible(false);
-                new WallHangingGUI().showConfigRecordsPage(pName_wall,pNumber_wall,tableModel_wall,commonFields.get(7)).setVisible(true);
+                new WallHangingGUI().showConfigRecordsPage(pName_wall,pNumber_wall,tableModel_wall,commonFields).setVisible(true);
                 mainFrame.setContentPane(outermostPanel_wall);
 
 

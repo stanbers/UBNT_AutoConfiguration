@@ -4,6 +4,7 @@
     <list default="true" id="6297135e-99b4-48ed-8d1f-4be9376233e2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/main/java/gui/version/integration/ConfigSet.java" afterPath="$PROJECT_DIR$/src/main/java/gui/version/integration/ConfigSet.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gui/version/wallhanging/WallHangingGUI.java" afterPath="$PROJECT_DIR$/src/main/java/gui/version/wallhanging/WallHangingGUI.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -32,21 +33,40 @@
       <file leaf-file-name="WallHangingGUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/wallhanging/WallHangingGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+            <state relative-caret-position="134">
+              <caret line="573" column="55" lean-forward="false" selection-start-line="573" selection-start-column="55" selection-end-line="573" selection-end-column="55" />
               <folding>
                 <element signature="e#1211#1219#0" expanded="true" />
                 <element signature="e#1591#1592#0" expanded="true" />
                 <element signature="e#1627#1628#0" expanded="true" />
-                <element signature="e#5810#11418#0" expanded="true" />
-                <element signature="e#8292#8940#0" expanded="true" />
-                <element signature="e#8939#8940#0" expanded="true" />
-                <element signature="e#11417#11418#0" expanded="true" />
-                <element signature="e#16839#18144#0" expanded="true" />
-                <element signature="e#18143#18144#0" expanded="true" />
-                <element signature="e#18185#19557#0" expanded="true" />
-                <element signature="e#19556#19557#0" expanded="true" />
+                <element signature="e#5451#5685#0" expanded="true" />
+                <element signature="e#5684#5685#0" expanded="true" />
+                <element signature="e#5810#11426#0" expanded="true" />
+                <element signature="e#6066#6557#0" expanded="true" />
+                <element signature="e#6556#6557#0" expanded="true" />
+                <element signature="e#8296#8944#0" expanded="true" />
+                <element signature="e#8943#8944#0" expanded="true" />
+                <element signature="e#11425#11426#0" expanded="true" />
+                <element signature="e#15461#16017#0" expanded="true" />
+                <element signature="e#16016#16017#0" expanded="true" />
+                <element signature="e#16105#16824#0" expanded="true" />
+                <element signature="e#16823#16824#0" expanded="true" />
+                <element signature="e#16865#18170#0" expanded="true" />
+                <element signature="e#18169#18170#0" expanded="true" />
+                <element signature="e#18211#19583#0" expanded="true" />
+                <element signature="e#18505#18513#0" expanded="true" />
+                <element signature="e#19582#19583#0" expanded="true" />
+                <element signature="e#20882#20890#0" expanded="true" />
+                <element signature="e#24228#25790#0" expanded="true" />
+                <element signature="e#25789#25790#0" expanded="true" />
+                <element signature="e#27144#27152#0" expanded="true" />
+                <element signature="e#29808#31348#0" expanded="true" />
+                <element signature="e#31347#31348#0" expanded="true" />
                 <element signature="method#generateNewProjectDilog#0;class#WallHangingGUI#0" expanded="false" />
+                <element signature="e#38149#40016#0" expanded="true" />
+                <element signature="e#40015#40016#0" expanded="true" />
+                <element signature="e#40098#40267#0" expanded="true" />
+                <element signature="e#40266#40267#0" expanded="true" />
                 <element signature="method#exportToExcel#0;class#WallHangingGUI#0" expanded="false" />
                 <element signature="method#importFromExcel#0;class#WallHangingGUI#0" expanded="false" />
               </folding>
@@ -54,21 +74,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WallHangingConfig.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="WallHangingConfig.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/wallhanging/WallHangingConfig.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="367">
-              <caret line="31" column="24" lean-forward="false" selection-start-line="31" selection-start-column="24" selection-end-line="31" selection-end-column="24" />
+            <state relative-caret-position="125">
+              <caret line="27" column="115" lean-forward="false" selection-start-line="27" selection-start-column="95" selection-end-line="27" selection-end-column="115" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ConfigSet.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ConfigSet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/integration/ConfigSet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="497" column="25" lean-forward="false" selection-start-line="497" selection-start-column="25" selection-end-line="497" selection-end-column="25" />
+            <state relative-caret-position="134">
+              <caret line="433" column="59" lean-forward="true" selection-start-line="433" selection-start-column="59" selection-end-line="433" selection-end-column="59" />
               <folding>
                 <element signature="e#1314#1322#0" expanded="true" />
                 <element signature="e#2391#2392#0" expanded="true" />
@@ -85,12 +105,11 @@
                 <element signature="e#13371#14971#0" expanded="true" />
                 <element signature="e#14970#14971#0" expanded="true" />
                 <element signature="e#18260#18261#0" expanded="true" />
-                <element signature="e#18312#24468#0" expanded="true" />
-                <element signature="e#20381#20872#0" expanded="true" />
-                <element signature="e#20871#20872#0" expanded="true" />
-                <element signature="e#22751#23949#0" expanded="true" />
-                <element signature="e#23948#23949#0" expanded="true" />
-                <element signature="e#24467#24468#0" expanded="true" />
+                <element signature="e#18312#24454#0" expanded="true" />
+                <element signature="e#20864#20865#0" expanded="true" />
+                <element signature="e#22744#23942#0" expanded="true" />
+                <element signature="e#23941#23942#0" expanded="true" />
+                <element signature="e#24453#24454#0" expanded="true" />
                 <element signature="method#showConfigRecordsPage#0;class#ConfigSet#0" expanded="false" />
                 <element signature="method#updateM5Overlay#0;class#ConfigSet#0" expanded="false" />
                 <element signature="method#updateM5Panel#0;class#ConfigSet#0" expanded="false" />
@@ -98,10 +117,10 @@
                 <element signature="method#createM5Panel#0;class#ConfigSet#0" expanded="false" />
                 <element signature="method#updateM2Dialog#0;class#ConfigSet#0" expanded="false" />
                 <element signature="method#createM2Dialog#0;class#ConfigSet#0" expanded="false" />
-                <element signature="e#82773#85140#0" expanded="true" />
-                <element signature="e#85139#85140#0" expanded="true" />
-                <element signature="e#85222#85391#0" expanded="true" />
-                <element signature="e#85390#85391#0" expanded="true" />
+                <element signature="e#82759#85126#0" expanded="true" />
+                <element signature="e#85125#85126#0" expanded="true" />
+                <element signature="e#85208#85377#0" expanded="true" />
+                <element signature="e#85376#85377#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -229,11 +248,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>导出</find>
-      <find>jTable_wall</find>
-      <find>backward</find>
-      <find>服务器地</find>
-      <find>exportTo</find>
       <find>新建</find>
       <find>== 2</find>
       <find>commonFieldsLabels</find>
@@ -246,7 +260,6 @@
       <find>tableModel_wall</find>
       <find>String server</find>
       <find>.showConfigRecordsPage</find>
-      <find>showConfigRecordsPage</find>
       <find>progress</find>
       <find>remove</find>
       <find>.remove</find>
@@ -259,6 +272,12 @@
       <find>green</find>
       <find>red</find>
       <find>removeLayoutComponent</find>
+      <find>壁挂</find>
+      <find>showConfigRecordsPage</find>
+      <find>this.</find>
+      <find>new WallHangingGUI().showConfigRecordsPage</find>
+      <find>create</find>
+      <find>log.info(commonFields</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -321,8 +340,8 @@
         <option value="$PROJECT_DIR$/src/main/java/gui/version/Integration/ConfigSetMain.java" />
         <option value="$PROJECT_DIR$/src/main/java/gui/version/version02/UBNT.java" />
         <option value="$PROJECT_DIR$/src/main/java/gui/version/Integration/ConfigSet.java" />
-        <option value="$PROJECT_DIR$/src/main/java/gui/version/wallhanging/WallHangingGUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/gui/version/integration/ConfigSet.java" />
+        <option value="$PROJECT_DIR$/src/main/java/gui/version/wallhanging/WallHangingGUI.java" />
       </list>
     </option>
   </component>
@@ -754,9 +773,9 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36694387" sideWeight="0.36614582" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40792292" sideWeight="0.49793753" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.53747326" sideWeight="0.49793753" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976446" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2537473" sideWeight="0.63385415" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25267667" sideWeight="0.63385415" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24167562" sideWeight="0.7843602" order="0" side_tool="false" content_ui="combo" />
@@ -1212,42 +1231,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/wallhanging/WallHangingConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="31" column="24" lean-forward="false" selection-start-line="31" selection-start-column="24" selection-end-line="31" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/wallhanging/WallHangingMain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
           <caret line="10" column="44" lean-forward="false" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/wallhanging/WallHangingGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding>
-            <element signature="e#1211#1219#0" expanded="true" />
-            <element signature="e#1591#1592#0" expanded="true" />
-            <element signature="e#1627#1628#0" expanded="true" />
-            <element signature="e#5810#11418#0" expanded="true" />
-            <element signature="e#8292#8940#0" expanded="true" />
-            <element signature="e#8939#8940#0" expanded="true" />
-            <element signature="e#11417#11418#0" expanded="true" />
-            <element signature="e#16839#18144#0" expanded="true" />
-            <element signature="e#18143#18144#0" expanded="true" />
-            <element signature="e#18185#19557#0" expanded="true" />
-            <element signature="e#19556#19557#0" expanded="true" />
-            <element signature="method#generateNewProjectDilog#0;class#WallHangingGUI#0" expanded="false" />
-            <element signature="method#exportToExcel#0;class#WallHangingGUI#0" expanded="false" />
-            <element signature="method#importFromExcel#0;class#WallHangingGUI#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1345,8 +1333,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/integration/ConfigSet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="497" column="25" lean-forward="false" selection-start-line="497" selection-start-column="25" selection-end-line="497" selection-end-column="25" />
+        <state relative-caret-position="134">
+          <caret line="433" column="59" lean-forward="true" selection-start-line="433" selection-start-column="59" selection-end-line="433" selection-end-column="59" />
           <folding>
             <element signature="e#1314#1322#0" expanded="true" />
             <element signature="e#2391#2392#0" expanded="true" />
@@ -1363,12 +1351,11 @@
             <element signature="e#13371#14971#0" expanded="true" />
             <element signature="e#14970#14971#0" expanded="true" />
             <element signature="e#18260#18261#0" expanded="true" />
-            <element signature="e#18312#24468#0" expanded="true" />
-            <element signature="e#20381#20872#0" expanded="true" />
-            <element signature="e#20871#20872#0" expanded="true" />
-            <element signature="e#22751#23949#0" expanded="true" />
-            <element signature="e#23948#23949#0" expanded="true" />
-            <element signature="e#24467#24468#0" expanded="true" />
+            <element signature="e#18312#24454#0" expanded="true" />
+            <element signature="e#20864#20865#0" expanded="true" />
+            <element signature="e#22744#23942#0" expanded="true" />
+            <element signature="e#23941#23942#0" expanded="true" />
+            <element signature="e#24453#24454#0" expanded="true" />
             <element signature="method#showConfigRecordsPage#0;class#ConfigSet#0" expanded="false" />
             <element signature="method#updateM5Overlay#0;class#ConfigSet#0" expanded="false" />
             <element signature="method#updateM5Panel#0;class#ConfigSet#0" expanded="false" />
@@ -1376,11 +1363,61 @@
             <element signature="method#createM5Panel#0;class#ConfigSet#0" expanded="false" />
             <element signature="method#updateM2Dialog#0;class#ConfigSet#0" expanded="false" />
             <element signature="method#createM2Dialog#0;class#ConfigSet#0" expanded="false" />
-            <element signature="e#82773#85140#0" expanded="true" />
-            <element signature="e#85139#85140#0" expanded="true" />
-            <element signature="e#85222#85391#0" expanded="true" />
-            <element signature="e#85390#85391#0" expanded="true" />
+            <element signature="e#82759#85126#0" expanded="true" />
+            <element signature="e#85125#85126#0" expanded="true" />
+            <element signature="e#85208#85377#0" expanded="true" />
+            <element signature="e#85376#85377#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/wallhanging/WallHangingGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="573" column="55" lean-forward="false" selection-start-line="573" selection-start-column="55" selection-end-line="573" selection-end-column="55" />
+          <folding>
+            <element signature="e#1211#1219#0" expanded="true" />
+            <element signature="e#1591#1592#0" expanded="true" />
+            <element signature="e#1627#1628#0" expanded="true" />
+            <element signature="e#5451#5685#0" expanded="true" />
+            <element signature="e#5684#5685#0" expanded="true" />
+            <element signature="e#5810#11426#0" expanded="true" />
+            <element signature="e#6066#6557#0" expanded="true" />
+            <element signature="e#6556#6557#0" expanded="true" />
+            <element signature="e#8296#8944#0" expanded="true" />
+            <element signature="e#8943#8944#0" expanded="true" />
+            <element signature="e#11425#11426#0" expanded="true" />
+            <element signature="e#15461#16017#0" expanded="true" />
+            <element signature="e#16016#16017#0" expanded="true" />
+            <element signature="e#16105#16824#0" expanded="true" />
+            <element signature="e#16823#16824#0" expanded="true" />
+            <element signature="e#16865#18170#0" expanded="true" />
+            <element signature="e#18169#18170#0" expanded="true" />
+            <element signature="e#18211#19583#0" expanded="true" />
+            <element signature="e#18505#18513#0" expanded="true" />
+            <element signature="e#19582#19583#0" expanded="true" />
+            <element signature="e#20882#20890#0" expanded="true" />
+            <element signature="e#24228#25790#0" expanded="true" />
+            <element signature="e#25789#25790#0" expanded="true" />
+            <element signature="e#27144#27152#0" expanded="true" />
+            <element signature="e#29808#31348#0" expanded="true" />
+            <element signature="e#31347#31348#0" expanded="true" />
+            <element signature="method#generateNewProjectDilog#0;class#WallHangingGUI#0" expanded="false" />
+            <element signature="e#38149#40016#0" expanded="true" />
+            <element signature="e#40015#40016#0" expanded="true" />
+            <element signature="e#40098#40267#0" expanded="true" />
+            <element signature="e#40266#40267#0" expanded="true" />
+            <element signature="method#exportToExcel#0;class#WallHangingGUI#0" expanded="false" />
+            <element signature="method#importFromExcel#0;class#WallHangingGUI#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/wallhanging/WallHangingConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="27" column="115" lean-forward="false" selection-start-line="27" selection-start-column="95" selection-end-line="27" selection-end-column="115" />
+          <folding />
         </state>
       </provider>
     </entry>

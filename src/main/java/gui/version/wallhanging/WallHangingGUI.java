@@ -160,7 +160,7 @@ public class WallHangingGUI {
         projectTable.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                final JPanel outermostPanel = showConfigRecordsPage(pName,pNumber,tableModel_wall,serverIP);
+                final JPanel outermostPanel = showConfigRecordsPage(pName,pNumber,tableModel_wall,commonFields);
 
                 JPanel outermostHeaderPanel = new JPanel(){
                     @Override
@@ -226,7 +226,7 @@ public class WallHangingGUI {
                 //double click
                 if (e.getClickCount() == 2){
                     homepagePanel.setVisible(false);
-                    showConfigRecordsPage(pName,pNumber,tableModel_wall,serverIP).setVisible(true);
+                    showConfigRecordsPage(pName,pNumber,tableModel_wall,commonFields).setVisible(true);
                     mainFrame.setContentPane(outermostPanel);
                     int targetRow = projectTable.getSelectedRow();
                     //set the value to these two global fields
@@ -273,11 +273,11 @@ public class WallHangingGUI {
     /**
      * To generate the outermost container panel records page
      */
-    public JPanel showConfigRecordsPage(String pName_wall,String pNumber_wall,DefaultTableModel tableModel,String serverIP){
+    public JPanel showConfigRecordsPage(String pName_wall,String pNumber_wall,DefaultTableModel tableModel,List<String> commonFields){
         this.pName = pName_wall;
         this.pNumber = pNumber_wall;
         this.tableModel_wall = tableModel;
-        this.serverIP = serverIP;
+        this.commonFields = commonFields;
         //TODO: this page will include two main panels, one is M2 container another one is M5 container
         //this panel the outermost panel container, no need to set location and size
         JPanel outermostContainerPanel = new JPanel(null);
@@ -562,14 +562,16 @@ public class WallHangingGUI {
                 String way = wayComboBox.getSelectedItem().toString();
                 String DK = DKText.getText();
                 String wall_IP = IP_wall.getText();
-                String serverIP = "";
                 int targetRow = tableModel.getRowCount() -1;
 
                 tableModel.setValueAt(way,targetRow,1);
                 tableModel.setValueAt(DK,targetRow,2);
-                tableModel.setValueAt(serverIP,targetRow,4);
-
-                progress = new WallHangingConfig().config(commonFields.get(2),olderIP_wall,commonFields.get(4),commonFields.get(3),serverIP);
+                log.info(commonFields.get(2));
+                log.info(olderIP_wall);
+                log.info(commonFields.get(4));
+                log.info(commonFields.get(3));
+                log.info(commonFields.get(7));
+                progress = new WallHangingConfig().config(commonFields.get(2),olderIP_wall,commonFields.get(4),commonFields.get(3),commonFields.get(7));
                 tableModel.setValueAt(wall_IP,targetRow,3);
 
                 if (progress == 1){
@@ -696,15 +698,18 @@ public class WallHangingGUI {
                 String way = wayComboBox.getSelectedItem().toString();
                 String DK = DKText.getText();
                 String wall_IP = IP.getText();
-                String serverIP = "";
                 int targetRow = tableModel.getRowCount() -1;
 
                 tableModel.setValueAt(way,targetRow,1);
                 tableModel.setValueAt(DK,targetRow,2);
                 tableModel.setValueAt(wall_IP,targetRow,3);
-                tableModel.setValueAt(serverIP,targetRow,4);
 
-                progress = new WallHangingConfig().config(commonFields.get(2),wall_IP,commonFields.get(4),commonFields.get(3),serverIP);
+                log.info(commonFields.get(2));
+                log.info(wall_IP);
+                log.info(commonFields.get(4));
+                log.info(commonFields.get(3));
+                log.info(commonFields.get(7));
+                //progress = new WallHangingConfig().config(commonFields.get(2),wall_IP,commonFields.get(4),commonFields.get(3),serverIP);
 
                 if (progress == 1){
                     JOptionPane.showMessageDialog(
