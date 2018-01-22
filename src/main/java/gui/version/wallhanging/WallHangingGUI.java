@@ -58,7 +58,6 @@ public class WallHangingGUI {
     //define the global fields
     private String pName;
     private String pNumber;
-    private String serverIP;
 
     //the older IP which waiting for update, need this older ip to login
     private String olderIP_wall;
@@ -709,7 +708,7 @@ public class WallHangingGUI {
                 log.info(commonFields.get(4));
                 log.info(commonFields.get(3));
                 log.info(commonFields.get(7));
-                //progress = new WallHangingConfig().config(commonFields.get(2),wall_IP,commonFields.get(4),commonFields.get(3),serverIP);
+                progress = new WallHangingConfig().config(commonFields.get(2),wall_IP,commonFields.get(4),commonFields.get(3),commonFields.get(7));
 
                 if (progress == 1){
                     JOptionPane.showMessageDialog(

@@ -39,8 +39,8 @@ public class UpdateConfigFilee {
      */
     public static void updateFile(String updatedSSID,String updatedIP,String updatedNetmask,String updateGatewayIP,
                                   String updatedFruq, String updatedMACAddress,String targetFile){
-//        String relativePath = "D:\\ConfigFile\\"+targetFile+"_Config.cfg";
-        String relativePath = System.getProperty("user.dir")+"\\ConfigFile\\"+targetFile+"_Config.cfg";
+        String relativePath = "D:\\ConfigFile\\"+targetFile+"_Config.cfg";
+//        String relativePath = System.getProperty("user.dir")+"\\ConfigFile\\"+targetFile+"_Config.cfg";
         //update the above fields which passed from swing GUI input box in the config file
         List<String> newLines = new ArrayList<String>();
         try {
