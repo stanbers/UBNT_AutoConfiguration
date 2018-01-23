@@ -3,7 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/TrainScheduling_jar</output-path>
     <root id="archive" name="TrainScheduling.jar">
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/../59/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/../60/META-INF/MANIFEST.MF" />
       </element>
       <element id="module-output" name="TrainScheduling" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/beust/jcommander/1.48/jcommander-1.48.jar" path-in-jar="/" />
