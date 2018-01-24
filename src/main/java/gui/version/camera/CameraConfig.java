@@ -4,6 +4,7 @@ import gui.version.wallhanging.WallHangingConfig;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -27,7 +28,7 @@ public class CameraConfig {
 
     public int progress = 0;
 
-    public void config(){
+    public void config(String cameraIP,String cameraNetMask,String cameraGatewayIP,String serverIP,String deviceID){
         String URL = "http://192.168.1.64/doc/page/login.asp";
         driver.get(URL);
         try {
@@ -43,7 +44,7 @@ public class CameraConfig {
                 this.getUpdateButton().click();
                 //need wait for few seconds in order to load the next overlay
                 Thread.sleep(2000);
-                this.getCancelButton().click();
+                this.getCancelButton(2).click();
             }
 
             Thread.sleep(1000);
@@ -63,37 +64,219 @@ public class CameraConfig {
 
             //IPv4
             this.getIPInputBox(5).clear();
-            this.getIPInputBox(5).sendKeys("192.168.1.63");
+            this.getIPInputBox(5).sendKeys(cameraIP);
 
             //IPv4 net mask
             this.getIPInputBox(6).clear();
-            this.getIPInputBox(6).sendKeys("255.255.254.0");
+            this.getIPInputBox(6).sendKeys(cameraNetMask);
 
             //IPv4 gateway IP
             this.getIPInputBox(7).clear();
-            this.getIPInputBox(7).sendKeys("192.168.1.2");
+            this.getIPInputBox(7).sendKeys(cameraGatewayIP);
             this.getSaveButton("basicTcpIp").click();
-
-            //advianced configuration
-            this.getSubTab(3,3).click();
             Thread.sleep(3000);
 
-            this.viaID("ui-id-13").click();
-            Thread.sleep(3000);
+            try{
+                this.getCancelButton(2).click();
+                this.secondConfig(serverIP,deviceID);
+            }catch (NoSuchElementException e){
+                log.info("this is not the first login");
+                this.secondConfig(serverIP,deviceID);
+            }
 
-            this.selectAccess(2,"E-Home",false);
-            this.selectAccess(3,"0",true);
-            this.accessInputBox(2).clear();
-            this.accessInputBox(2).sendKeys("124.115.21.16");
-            //device id
-            this.accessInputBox(4).clear();
-            this.accessInputBox(4).sendKeys("164070392");
+
+
+
+
+
 
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
+    private void secondConfig(String serverIP, String deviceID){
+        try {
+            //advianced configuration
+            this.getSubTab(3,3).click();
+            Thread.sleep(3000);
+
+            //access platform
+            this.viaID("ui-id-13").click();
+            Thread.sleep(3000);
+
+            this.selectAccess(2,"E-Home",false);
+            this.selectAccess(3,"0",true);
+            Thread.sleep(1000);
+            //server IP
+            this.accessInputBox(2).clear();
+            this.accessInputBox(2).sendKeys(serverIP);
+            Thread.sleep(1000);
+            //device id
+            this.accessInputBox(4).clear();
+            this.accessInputBox(4).sendKeys(deviceID);
+            Thread.sleep(1000);
+            this.getSaveButton("advancedPlatform").click();
+            Thread.sleep(3000);
+
+            //video and auido
+            this.getLeftTab("videoAudio").click();
+            Thread.sleep(1000);
+
+            //select main Stream
+            this.selectUnderVideo(4,"01");
+            Thread.sleep(1000);
+
+            //select bit rate type
+            this.selectUnderVideo(7,"1");
+
+            //bit rate upper limit
+            this.getBitRateUpperLimit(10).clear();
+            this.getBitRateUpperLimit(10).sendKeys("2048");
+            Thread.sleep(1000);
+
+            //video coding
+            this.selectUnderVideo(12,"1");
+            this.getSaveButtonUnderVideo().click();
+            Thread.sleep(1000);
+
+            //select sub stream
+            this.selectUnderVideo(4,"02");
+            Thread.sleep(1000);
+
+            //select bit rate type
+            this.selectUnderVideo(7,"1");
+            Thread.sleep(1000);
+
+            //select video frame rate
+            this.selectUnderVideo(9,"14");
+            Thread.sleep(1000);
+
+            //input bit rate upper limit
+            this.getBitRateUpperLimit(10).clear();
+            this.getBitRateUpperLimit(10).sendKeys("512");
+            Thread.sleep(1000);
+
+            //video coding
+            this.selectUnderVideo(12,"2");
+            this.getSaveButtonUnderVideo().click();
+            Thread.sleep(1000);
+
+            this.getSaveButtonUnderVideo().click();
+            Thread.sleep(1000);
+
+            //the third stream
+            this.selectUnderVideo(4,"03");
+            Thread.sleep(1000);
+
+            //select bit rate type
+            this.selectUnderVideo(7,"1");
+            Thread.sleep(1000);
+
+            //input bit rate upper limit
+            this.getBitRateUpperLimit(10).clear();
+            this.getBitRateUpperLimit(10).sendKeys("128");
+            Thread.sleep(1000);
+
+            //video coding
+            this.selectUnderVideo(12,"1");
+            this.getSaveButtonUnderVideo().click();
+            Thread.sleep(1000);
+
+            //navigate to storage tab
+            this.getLeftTab("storage").click();
+            Thread.sleep(1000);
+
+            //click storage manage sub tab
+            this.getLeftTab("storageManage").click();
+            Thread.sleep(2000);
+
+            //capture pic
+            this.getInputBoxUnderStorage().clear();
+            this.getInputBoxUnderStorage().sendKeys("1");
+
+            //save
+            this.getSaveButton("storageManageHarddisk").click();
+            Thread.sleep(2000);
+
+            //select disk
+            this.getCheckBox().click();
+            Thread.sleep(2000);
+
+            //format disk
+            this.getFormatButton().click();
+            this.getCancelButton(1).click();
+            Thread.sleep(60000);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+    /**
+     * Get format button under disk management table
+     * @return the web element
+     */
+    private WebElement getFormatButton(){
+        WebElement format = driver.findElement(By.xpath("//input[@value='格式化' and @type='button']"));
+        return format;
+    }
+
+    /**
+     * Get check box under disk management table
+     * @return the web element
+     */
+    private WebElement getCheckBox(){
+        WebElement checkBox = driver.findElement(By.cssSelector("#tableHdd > div > div:nth-child(2) > div:nth-child(1) > span:nth-child(1) > input"));
+        return checkBox;
+    }
+
+    /**
+     * Get capture picture text field box
+     * @return the web element
+     */
+    private WebElement getInputBoxUnderStorage(){
+        WebElement capturePic = driver.findElement(By.cssSelector("#storageManageHarddisk > div:nth-child(2) > div:nth-child(6) > span:nth-child(2) > input"));
+        return capturePic;
+    }
+
+    /**
+     * Get save button under video tab page
+     * @return the web element
+     */
+    private WebElement getSaveButtonUnderVideo(){
+        WebElement save = driver.findElement(By.cssSelector("#video > div:nth-child(2) > span:nth-child(2) > button"));
+        return save;
+    }
+
+    /**
+     * Get bit rate upper limit input box
+     * @return the web element
+     */
+    private WebElement getBitRateUpperLimit(int index){
+        WebElement upperLimit = driver.findElement(By.cssSelector("#video > div:nth-child(1) > div:nth-child("+index+") > span:nth-child(2) > input"));
+        return upperLimit;
+    }
+
+    /**
+     * Select option under video tab
+     * @param index the field index
+     * @param optionValue the target option value
+     */
+    private void selectUnderVideo(int index, String optionValue){
+        WebElement streamType = driver.findElement(By.cssSelector("#video > div:nth-child(1) > div:nth-child("+index+") > span:nth-child(2) > select"));
+        Select select = new Select(streamType);
+        select.selectByValue(optionValue);
+    }
+
+    /**
+     * Get tab from the left menu bar
+     * @param tabName the tab name
+     * @return the web element
+     */
+    private WebElement getLeftTab(String tabName){
+        WebElement tab = driver.findElement(By.name(tabName));
+        return tab;
+    }
     /**
      * select platform access method
      */
@@ -147,8 +330,8 @@ public class CameraConfig {
      * Get cancel button after update the password when first login
      * @return the web element
      */
-    private WebElement getCancelButton(){
-        WebElement cancelButton = driver.findElement(By.cssSelector(".aui_buttons > button:nth-child(2)"));
+    private WebElement getCancelButton(int index){
+        WebElement cancelButton = driver.findElement(By.cssSelector(".aui_buttons > button:nth-child("+index+")"));
         log.info(cancelButton.getText());
         return cancelButton;
     }
