@@ -8,7 +8,6 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import ubnt.m2.M2_Configuration;
 import ubnt.m5.M5_Configuration;
 import utility.Constant;
 import utility.JMIPV4AddressField;
@@ -1712,7 +1711,14 @@ public class ConfigSet {
                 tableModel.setValueAt(way,targetRow,1);
                 tableModel.setValueAt(DK,targetRow,2);
 
-//                progress = new M2_Configuration().configM2(commonFields.get(2),M2_IP,commonFields.get(4),commonFields.get(3),updatedIP_M2);
+                log.info("线路是: "+way);
+                log.info("DK是 "+DK);
+                log.info("ssid is " + commonFields_ubnt.get(2));
+                log.info("M2 IP is "+M2_IP);
+                log.info("net mask is "+commonFields_ubnt.get(4));
+                log.info("gateway IP is "+commonFields_ubnt.get(3));
+
+//                progress = new M2_Configuration().configM2(commonFields_ubnt.get(2),M2_IP,commonFields_ubnt.get(4),commonFields_ubnt.get(3),updatedIP_M2);
                 tableModel.setValueAt(M2_IP,targetRow,3);
 
                 if (progress == 1){
@@ -1849,7 +1855,7 @@ public class ConfigSet {
                 log.info("M2 IP is "+M2_IP);
                 log.info("net mask is "+commonFields_ubnt.get(4));
                 log.info("gateway IP is "+commonFields_ubnt.get(3));
-                progress = new M2_Configuration().configM2(commonFields_ubnt.get(2),M2_IP,commonFields_ubnt.get(4),commonFields_ubnt.get(3),null);
+//                progress = new M2_Configuration().configM2(commonFields_ubnt.get(2),M2_IP,commonFields_ubnt.get(4),commonFields_ubnt.get(3),null);
 
                 if (progress == 1){
                     JOptionPane.showMessageDialog(
