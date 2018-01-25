@@ -1,5 +1,6 @@
 package gui.version.integration;
 
+import gui.version.camera.CameraGUI;
 import gui.version.wallhanging.WallHangingGUI;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -54,6 +55,9 @@ public class ConfigSet {
     //initialize wall hanging table header
     final String[] columns_wall = {"编号","线路","位置","壁挂 IP"};
 
+    //initialize wall hanging table header
+    final String[] columns_camera = {"编号","线路","位置","摄像头 IP"};
+
     //define M2 table model
     private final DefaultTableModel tableModel_M2 = new DefaultTableModel(null,columns_M2){
         @Override
@@ -72,6 +76,14 @@ public class ConfigSet {
 
     //define wall hanging table model
     private DefaultTableModel tableModel_wall = new DefaultTableModel(null,columns_wall){
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
+
+    //define wall hanging table model
+    private DefaultTableModel tableModel_camera = new DefaultTableModel(null,columns_camera){
         @Override
         public boolean isCellEditable(int row, int column) {
             return false;
@@ -243,6 +255,7 @@ public class ConfigSet {
         camera_homepage.setFont(new Font(null, BOLD, 20));
         homepagePanel.add(camera_homepage);
 
+
         //setup router button
         JButton router_homepage = new JButton("配置路由器");
         router_homepage.setLocation(1000,530);
@@ -399,6 +412,117 @@ public class ConfigSet {
                         currentPNumber.setText(pNumber);
 
                 }
+            }
+        });
+
+        camera_homepage.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int targetRow = projectTable.getSelectedRow();
+
+                //set the value to these two global fields
+                String pNumber_camera = projectTableModel.getValueAt(targetRow,0).toString();
+                String pName_camera = projectTableModel.getValueAt(targetRow,1).toString();
+
+                String specificExcel_camera = "D:\\ConfigFile\\camera\\"+pName_camera +".xlsx";
+//                        String specificExcel_wall = System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName +".xlsx";
+                String SpecificProjectCommonField = "D:\\ConfigFile\\"+pName_camera +"CommonFields.xlsx";
+//                        String SpecificProjectCommonField = System.getProperty("user.dir")+ "\\ConfigFile\\"+pName +"CommonFields.xlsx";
+                File projectCorresspondingConfigFile_camera = new File(specificExcel_camera);
+                File projectCommonFieldFile = new File(SpecificProjectCommonField);
+                if (!projectCorresspondingConfigFile_camera.exists()){
+                    exportToExcel(tableModel_camera,"D:\\ConfigFile\\camera\\"+pName_camera+".xlsx",4);
+                }
+                if (projectCorresspondingConfigFile_camera.exists() && projectCommonFieldFile.exists()){
+                    //import table rows on main page
+                    importFromExcel(tableModel_camera ,specificExcel_camera);
+//                            jTable.setModel(defaultTableModel);
+                    //import specific project common fields
+                    //TODO: this time not to render table but to override commonfields.
+                    importFromExcel(null,SpecificProjectCommonField);
+                    //import project list excel, in order to show the project name and number on the main page
+                }
+
+                // the camera config records page
+                final JPanel outermostPanel_camera = new CameraGUI().showConfigRecordsPage(pName_camera,pNumber_camera,tableModel_camera,commonFields);
+
+                JPanel outermostHeaderPanel = new JPanel(){
+                    @Override
+                    public void paintComponent(Graphics graphics){
+                        super.paintComponent(graphics);
+                        Graphics2D g2 = (Graphics2D) graphics;
+                        Shape line01 = new Line2D.Double(0,3,1135,3);
+                        Shape line02 = new Line2D.Double(0,5,1135,5);
+                        g2.draw(line01);
+                        g2.draw(line02);
+                    }
+                };
+                outermostHeaderPanel.setLocation(10,45);
+                outermostHeaderPanel.setSize(760,13);
+                outermostPanel_camera.add(outermostHeaderPanel);
+
+                // create the header dynamically
+                JLabel currentPNumberTitle_camera = new JLabel("当前项目编号：");
+                currentPNumberTitle_camera.setLocation(20,10);
+                currentPNumberTitle_camera.setSize(160,40);
+                currentPNumberTitle_camera.setFont(new Font(null,Font.BOLD,18));
+                outermostPanel_camera.add(currentPNumberTitle_camera);
+
+                JLabel currentPNameTitle_camera = new JLabel("当前项目名称：");
+                currentPNameTitle_camera.setLocation(240,10);
+                currentPNameTitle_camera.setSize(160,40);
+                currentPNameTitle_camera.setFont(new Font(null,Font.BOLD,18));
+                outermostPanel_camera.add(currentPNameTitle_camera);
+
+                final JLabel currentPName_camera = new JLabel(pName);
+                currentPName_camera.setLocation(370,10);
+                currentPName_camera.setSize(180,40);
+                currentPName_camera.setFont(new Font(null,Font.BOLD,18));
+
+                final JLabel currentPNumber_camera = new JLabel(pNumber);
+                currentPNumber_camera.setLocation(150,10);
+                currentPNumber_camera.setSize(80,40);
+                currentPNumber_camera.setFont(new Font(null,Font.BOLD,18));
+
+                //add backward button, go back to homepage
+                JButton  backwardButton_camera = new JButton("返回首页");
+                backwardButton_camera.setLocation(640,15);
+                backwardButton_camera.setSize(120,30);
+                backwardButton_camera.setFont(new Font(null,Font.BOLD,18));
+                outermostPanel_camera.add(backwardButton_camera);
+
+                //add backward button event listener
+                backwardButton_camera.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        //need remove these two JLabel to make sure every time these two label are new added to outPanel
+                        outermostPanel_camera.remove(currentPName_camera);
+                        outermostPanel_camera.remove(currentPNumber_camera);
+                        tableModel_wall.getDataVector().clear();
+                        outermostPanel_camera.setVisible(false);
+                        homepagePanel.setVisible(true);
+                        mainFrame.setContentPane(homepagePanel);
+
+                        if (fieldValuePanel.getComponents().length == 0){
+                            JPanel filedsValue = generateCommondFields(commonFieldsPanel,fieldValuePanel,false);
+                            filedsValue.repaint();
+                        }else {
+                            fieldValuePanel.removeAll();
+                            JPanel filedsValue_new = generateCommondFields(commonFieldsPanel,fieldValuePanel,false);
+                            filedsValue_new.repaint();
+                        }
+                    }
+
+                });
+
+                homepagePanel.setVisible(false);
+                new CameraGUI().showConfigRecordsPage(pName_camera,pNumber_camera,tableModel_camera,commonFields).setVisible(true);
+                mainFrame.setContentPane(outermostPanel_camera);
+
+                outermostPanel_camera.add(currentPName_camera);
+                outermostPanel_camera.add(currentPNumber_camera);
+                currentPName_camera.setText(pName_camera);
+                currentPNumber_camera.setText(pNumber_camera);
             }
         });
 
@@ -1656,10 +1780,10 @@ public class ConfigSet {
      */
     public JDialog generateNewProjectDilog(final DefaultTableModel projectTableModel, final boolean isUpdate, final JPanel fieldValuePanel, final JPanel commonFieldPanel){
 
-        //initialize new project dialog, the third parameter value is true ,means current dialog focused on the homepage,and
-        //homepage only can ge clicked only if the project dialog was closed
+        //initialize new project dialog, the third parameter value is true means current dialog focused on the homepage,and
+        //homepage can be clicked only if the project dialog was closed
         final JDialog newProjectDialog = new JDialog(mainFrame,"新建项目",true);
-        newProjectDialog.setSize(470,isUpdate ? 700:800);
+        newProjectDialog.setSize(800,isUpdate ? 700:800);
         newProjectDialog.setLocationRelativeTo(mainFrame);
 
         //setup the logo icon
@@ -1676,11 +1800,11 @@ public class ConfigSet {
         JLabel projectNumLabel = new JLabel("项目编号 :");
         final JTextField projectNumInputBox = new JTextField();  // I need the input text, it will be used later
         if (!isUpdate){
-            projectNumLabel.setLocation(50,40);
+            projectNumLabel.setLocation(30,40);
             projectNumLabel.setSize(120,40);
             projectNumLabel.setFont(new Font(null, 1, 18));
-            projectNumInputBox.setLocation(190,40);
-            projectNumInputBox.setSize(200,40);
+            projectNumInputBox.setLocation(130,40);
+            projectNumInputBox.setSize(150,40);
             projectNumInputBox.setFont(new Font(null, Font.PLAIN, 18));
             projectContainerPanel.add(projectNumLabel);
             projectContainerPanel.add(projectNumInputBox);
@@ -1697,11 +1821,11 @@ public class ConfigSet {
         if (isUpdate){
             projectNameInputBox.setEditable(false);
         }
-        projectNameLabel.setLocation(50,isUpdate ? 40:90);
+        projectNameLabel.setLocation(isUpdate ? 30:380,40);
         projectNameLabel.setSize(120,40);
         projectNameLabel.setFont(new Font(null, 1, 18));
-        projectNameInputBox.setLocation(190,isUpdate ? 40:90);
-        projectNameInputBox.setSize(200,40);
+        projectNameInputBox.setLocation(isUpdate?170:480,40);
+        projectNameInputBox.setSize(220,40);
         projectNameInputBox.setFont(new Font(null, Font.PLAIN, 18));
         if (isUpdate){
             projectNameInputBox.setText(commonFields.get(1));
@@ -1712,10 +1836,10 @@ public class ConfigSet {
         JLabel ssidLabel = new JLabel("SSID :");
         final JTextField ssidInputBox = new JTextField();
         ssidInputBox.setText("ubnt");
-        ssidLabel.setLocation(60,isUpdate?130:180);
+        ssidLabel.setLocation(40,140);
         ssidLabel.setSize(120,40);
         ssidLabel.setFont(new Font(null, BOLD,18));
-        ssidInputBox.setLocation(190,isUpdate?130:180);
+        ssidInputBox.setLocation(150,140);
         ssidInputBox.setSize(180,40);
         ssidInputBox.setFont(new Font(null, Font.PLAIN, 18));
         if (isUpdate){
@@ -1726,8 +1850,8 @@ public class ConfigSet {
 
         //subway wifi panel include netmask and gateIP
         JPanel innerJPanelWifi = new JPanel();
-        innerJPanelWifi.setLocation(50,isUpdate ? 90:140);
-        innerJPanelWifi.setSize(340,200);
+        innerJPanelWifi.setLocation(30,100);
+        innerJPanelWifi.setSize(320,200);
         innerJPanelWifi.setBorder(BorderFactory.createTitledBorder(null,"隧道无线网络", TitledBorder.LEFT,TitledBorder.TOP,new Font(null, BOLD,18)));
         innerJPanelWifi.setLayout(null);
 
@@ -1737,10 +1861,10 @@ public class ConfigSet {
         final JMIPV4AddressField gatewayIPInputBox = new JMIPV4AddressField();
         String defaultIPValues = "10.23.0.1";
         gatewayIPInputBox.setIpAddress(defaultIPValues);
-        gatewayIP.setLocation(60,isUpdate ? 180:230);
+        gatewayIP.setLocation(40,190);
         gatewayIP.setSize(120,40);
         gatewayIP.setFont(new Font(null, 1, 18));
-        gatewayIPInputBox.setLocation(190,isUpdate ? 180:230);
+        gatewayIPInputBox.setLocation(150,190);
         gatewayIPInputBox.setSize(180,40);
         gatewayIPInputBox.setFont(new Font(null, Font.PLAIN, 18));
         if (isUpdate){
@@ -1784,10 +1908,10 @@ public class ConfigSet {
         JLabel netMaskLabel = new JLabel("子网掩码 :");
         final JMIPV4AddressField netMaskInputBox = new JMIPV4AddressField();
         netMaskInputBox.setIpAddress("255.255.248.0");
-        netMaskLabel.setLocation(60,isUpdate ? 230:280);
+        netMaskLabel.setLocation(40,240);
         netMaskLabel.setSize(120,40);
         netMaskLabel.setFont(new Font(null, BOLD,18));
-        netMaskInputBox.setLocation(190,isUpdate ? 230:280);
+        netMaskInputBox.setLocation(150,240);
         netMaskInputBox.setSize(180,40);
         netMaskInputBox.setFont(new Font(null, Font.PLAIN, 18));
         if (isUpdate){
@@ -1798,8 +1922,8 @@ public class ConfigSet {
 
         //subway M5 bridge panel include netmask and gateIP
         JPanel innerJPanel_M5 = new JPanel();
-        innerJPanel_M5.setLocation(50,isUpdate ? 310:360);
-        innerJPanel_M5.setSize(340,150);
+        innerJPanel_M5.setLocation(30,310);
+        innerJPanel_M5.setSize(320,250);
         innerJPanel_M5.setBorder(BorderFactory.createTitledBorder(null,"M5 网桥", TitledBorder.LEFT,TitledBorder.TOP,new Font(null, BOLD,18)));
         innerJPanel_M5.setLayout(null);
 
@@ -1807,10 +1931,10 @@ public class ConfigSet {
         JLabel gatewayIP_M5 = new JLabel("网段 :");
         final JMIPV4AddressField gatewayIP_M5_InputBox = new JMIPV4AddressField();
         gatewayIP_M5_InputBox.setIpAddress("192.168.155.1");
-        gatewayIP_M5.setLocation(60,isUpdate ? 350:400);
+        gatewayIP_M5.setLocation(40,350);
         gatewayIP_M5.setSize(120,40);
         gatewayIP_M5.setFont(new Font(null, 1, 18));
-        gatewayIP_M5_InputBox.setLocation(190,isUpdate ? 350:400);
+        gatewayIP_M5_InputBox.setLocation(150,350);
         gatewayIP_M5_InputBox.setSize(180,40);
         gatewayIP_M5_InputBox.setFont(new Font(null, Font.PLAIN, 18));
         if (isUpdate){
@@ -1823,10 +1947,10 @@ public class ConfigSet {
         JLabel netMaskLabel_M5 = new JLabel("子网掩码 :");
         final JMIPV4AddressField netMask_M5_InputBox = new JMIPV4AddressField();
         netMask_M5_InputBox.setIpAddress("255.255.255.0");
-        netMaskLabel_M5.setLocation(60,isUpdate ? 400:450);
+        netMaskLabel_M5.setLocation(40,400);
         netMaskLabel_M5.setSize(120,40);
         netMaskLabel_M5.setFont(new Font(null, BOLD,18));
-        netMask_M5_InputBox.setLocation(190,isUpdate ? 400:450);
+        netMask_M5_InputBox.setLocation(150,400);
         netMask_M5_InputBox.setSize(180,40);
         netMask_M5_InputBox.setFont(new Font(null, Font.PLAIN, 18));
         if (isUpdate){
@@ -1837,26 +1961,128 @@ public class ConfigSet {
 
         //subway wall hanging panel include server IP
         JPanel innerJPanel_wall = new JPanel();
-        innerJPanel_wall.setLocation(50,isUpdate ? 460:530);
-        innerJPanel_wall.setSize(340,100);
+        innerJPanel_wall.setLocation(380,100);
+        innerJPanel_wall.setSize(320,200);
         innerJPanel_wall.setBorder(BorderFactory.createTitledBorder(null,"壁挂", TitledBorder.LEFT,TitledBorder.TOP,new Font(null, BOLD,18)));
         innerJPanel_wall.setLayout(null);
 
         //wall hanging server ip label and corresponding text field
         JLabel serverIP_wall = new JLabel("服务器 IP :");
         final JMIPV4AddressField serverIP_InputBox_wall = new JMIPV4AddressField();
-        serverIP_InputBox_wall.setIpAddress("192.168.0.100");
-        serverIP_wall.setLocation(60,isUpdate ? 500:570);
+        serverIP_InputBox_wall.setIpAddress("10.10.100.254");
+        serverIP_wall.setLocation(390,140);
         serverIP_wall.setSize(120,40);
         serverIP_wall.setFont(new Font(null, BOLD,18));
-        serverIP_InputBox_wall.setLocation(190,isUpdate ? 500:570);
+        serverIP_InputBox_wall.setLocation(500,140);
         serverIP_InputBox_wall.setSize(180,40);
         serverIP_InputBox_wall.setFont(new Font(null, Font.PLAIN, 18));
         if (isUpdate){
-            serverIP_InputBox_wall.setText(commonFields.get(7));
+//            serverIP_InputBox_wall.setText(commonFields.get(7));
         }
         projectContainerPanel.add(serverIP_wall);
         projectContainerPanel.add(serverIP_InputBox_wall);
+
+        //wall hanging gateway IP label and corresponding text field
+        JLabel gatewayIP_wall = new JLabel("网关 :");
+        final JMIPV4AddressField gatewayIP_InputBox_wall = new JMIPV4AddressField();
+        gatewayIP_InputBox_wall.setIpAddress("10.10.100.254");
+        gatewayIP_wall.setLocation(390,190);
+        gatewayIP_wall.setSize(120,40);
+        gatewayIP_wall.setFont(new Font(null, BOLD,18));
+        gatewayIP_InputBox_wall.setLocation(500,190);
+        gatewayIP_InputBox_wall.setSize(180,40);
+        gatewayIP_InputBox_wall.setFont(new Font(null, Font.PLAIN, 18));
+        if (isUpdate){
+//            gatewayIP_InputBox_wall.setText(commonFields.get(7));
+        }
+        projectContainerPanel.add(gatewayIP_wall);
+        projectContainerPanel.add(gatewayIP_InputBox_wall);
+
+        //wall hanging gateway IP label and corresponding text field
+        JLabel netMask_wall = new JLabel("子网掩码 :");
+        final JMIPV4AddressField netMask_InputBox_wall = new JMIPV4AddressField();
+        netMask_InputBox_wall.setIpAddress("255.255.255.0");
+        netMask_wall.setLocation(390,240);
+        netMask_wall.setSize(120,40);
+        netMask_wall.setFont(new Font(null, BOLD,18));
+        netMask_InputBox_wall.setLocation(500,240);
+        netMask_InputBox_wall.setSize(180,40);
+        netMask_InputBox_wall.setFont(new Font(null, Font.PLAIN, 18));
+        if (isUpdate){
+//            netMask_InputBox_wall.setText(commonFields.get(7));
+        }
+        projectContainerPanel.add(netMask_wall);
+        projectContainerPanel.add(netMask_InputBox_wall);
+
+        //subway camera panel include server IP
+        JPanel innerJPanel_camera = new JPanel();
+        innerJPanel_camera.setLocation(380,310);
+        innerJPanel_camera.setSize(320,250);
+        innerJPanel_camera.setBorder(BorderFactory.createTitledBorder(null,"摄像头", TitledBorder.LEFT,TitledBorder.TOP,new Font(null, BOLD,18)));
+        innerJPanel_camera.setLayout(null);
+
+        //wall hanging server ip label and corresponding text field
+        JLabel serverIP_camera = new JLabel("服务器 IP :");
+        final JMIPV4AddressField server_InputBox_camera = new JMIPV4AddressField();
+        server_InputBox_camera.setIpAddress("124.115.21.16");
+        serverIP_camera.setLocation(390,350);
+        serverIP_camera.setSize(120,40);
+        serverIP_camera.setFont(new Font(null, BOLD,18));
+        server_InputBox_camera.setLocation(500,350);
+        server_InputBox_camera.setSize(180,40);
+        server_InputBox_camera.setFont(new Font(null, Font.PLAIN, 18));
+        if (isUpdate){
+//            server_InputBox_camera.setText(commonFields.get(7));
+        }
+        projectContainerPanel.add(serverIP_camera);
+        projectContainerPanel.add(server_InputBox_camera);
+
+        //camera gateway IP label and corresponding text field
+        JLabel gatewayIP_camera = new JLabel("网关 :");
+        final JMIPV4AddressField gatewayIP_InputBox_camera = new JMIPV4AddressField();
+        gatewayIP_InputBox_camera.setIpAddress("192.168.1.1");
+        gatewayIP_camera.setLocation(390,400);
+        gatewayIP_camera.setSize(120,40);
+        gatewayIP_camera.setFont(new Font(null, BOLD,18));
+        gatewayIP_InputBox_camera.setLocation(500,400);
+        gatewayIP_InputBox_camera.setSize(180,40);
+        gatewayIP_InputBox_camera.setFont(new Font(null, Font.PLAIN, 18));
+        if (isUpdate){
+//            gatewayIP_InputBox_camera.setText(commonFields.get(7));
+        }
+        projectContainerPanel.add(gatewayIP_camera);
+        projectContainerPanel.add(gatewayIP_InputBox_camera);
+
+        //camera gateway IP label and corresponding text field
+        JLabel netMask_camera = new JLabel("子网掩码 :");
+        final JMIPV4AddressField netMask_InputBox_camera = new JMIPV4AddressField();
+        netMask_InputBox_camera.setIpAddress("255.255.255.0");
+        netMask_camera.setLocation(390,450);
+        netMask_camera.setSize(120,40);
+        netMask_camera.setFont(new Font(null, BOLD,18));
+        netMask_InputBox_camera.setLocation(500,450);
+        netMask_InputBox_camera.setSize(180,40);
+        netMask_InputBox_camera.setFont(new Font(null, Font.PLAIN, 18));
+        if (isUpdate){
+//            netMask_InputBox_camera.setText(commonFields.get(7));
+        }
+        projectContainerPanel.add(netMask_camera);
+        projectContainerPanel.add(netMask_InputBox_camera);
+
+        //device id label and corresponding text field
+        JLabel deviceID_camera = new JLabel("设备ID :");
+        final JTextField deviceIDInputBox = new JTextField();
+        deviceID_camera.setLocation(390,500);
+        deviceID_camera.setSize(120,40);
+        deviceID_camera.setFont(new Font(null, BOLD,18));
+        deviceIDInputBox.setLocation(500,500);
+        deviceIDInputBox.setSize(180,40);
+        deviceIDInputBox.setFont(new Font(null, Font.PLAIN, 18));
+        if (isUpdate){
+//            deviceID_InputBox_camera.setText(commonFields.get(7));
+        }
+        projectContainerPanel.add(deviceID_camera);
+        projectContainerPanel.add(deviceIDInputBox);
 
         //ok button
         JButton createProjectButton = new JButton(isUpdate?"修改":"创建");
@@ -1929,6 +2155,7 @@ public class ConfigSet {
         projectContainerPanel.add(innerJPanelWifi);
         projectContainerPanel.add(innerJPanel_M5);
         projectContainerPanel.add(innerJPanel_wall);
+        projectContainerPanel.add(innerJPanel_camera);
 
         newProjectDialog.setContentPane(projectContainerPanel);
         newProjectDialog.setVisible(true);
