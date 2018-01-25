@@ -8,6 +8,7 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import ubnt.m2.M2_Configuration;
 import ubnt.m5.M5_Configuration;
 import utility.Constant;
 import utility.JMIPV4AddressField;
@@ -405,16 +406,16 @@ public class ConfigSet {
                         File projectCorresspondingConfigFile_M5 = new File(specificExcel_M5);
 
                         if (!projectCorresspondingConfigFile_M2.exists()){
-//                            exportToExcel(tableModel_M2,"D:\\ConfigFile\\M2\\"+pName+".xlsx",4);
+                            exportToExcel(tableModel_M2,"D:\\ConfigFile\\M2\\"+pName+".xlsx",4,commonFields_ubnt);
 //                            exportToExcel(tableModel_M2,System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName+".xlsx",4);
                         }
                         if (!projectCorresspondingConfigFile_M5.exists()){
-//                            exportToExcel(tableModel_M5,"D:\\ConfigFile\\M5\\"+pName+".xlsx",8);
+                            exportToExcel(tableModel_M5,"D:\\ConfigFile\\M5\\"+pName+".xlsx",8,commonFields_ubnt);
 //                            exportToExcel(tableModel_M5,System.getProperty("user.dir")+ "\\ConfigFile\\M5\\"+pName+".xlsx",8);
                         }
                         if (projectCorresspondingConfigFile_M2.exists()){
                             //import table rows on main page
-//                            importFromExcel(tableModel_M2 ,specificExcel_M2);
+                            importFromExcel(tableModel_M2 ,specificExcel_M2,commonFields_ubnt);
 //                            jTable.setModel(defaultTableModel);
                             //import specific project common fields
                             //TODO: this time not to render table but to override commonfields.
@@ -423,7 +424,7 @@ public class ConfigSet {
                         }
                         if (projectCorresspondingConfigFile_M5.exists()){
                             //import table rows on main page
-//                            importFromExcel(tableModel_M5 ,specificExcel_M5);
+                            importFromExcel(tableModel_M5 ,specificExcel_M5,commonFields_ubnt);
 //                            jTable.setModel(defaultTableModel);
                             //import specific project common fields
                             //TODO: this time not to render table but to override commonfields.
@@ -866,17 +867,7 @@ public class ConfigSet {
         createM2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Vector emptyRow = new Vector();
-                for (int i = 0; i < 10; i++) {
-                    emptyRow.add(null);
-                }
-                tableModel_M2.addRow(emptyRow);
-                if (recordIndex == 0){
-                    tableModel_M2.setValueAt(recordIndex++,tableModel_M2.getRowCount()-1,0);
-                }else {
-                    recordIndex = tableModel_M2.getRowCount();
-                    tableModel_M2.setValueAt(recordIndex++,tableModel_M2.getRowCount()-1,0);
-                }
+
                 createM2Dialog(tableModel_M2);
             }
         });
@@ -1829,6 +1820,19 @@ public class ConfigSet {
         M2ConfigButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //to generate place hold on row
+                Vector emptyRow = new Vector();
+                for (int i = 0; i < 10; i++) {
+                    emptyRow.add(null);
+                }
+                tableModel_M2.addRow(emptyRow);
+                if (recordIndex == 0){
+                    tableModel_M2.setValueAt(recordIndex++,tableModel_M2.getRowCount()-1,0);
+                }else {
+                    recordIndex = tableModel_M2.getRowCount();
+                    tableModel_M2.setValueAt(recordIndex++,tableModel_M2.getRowCount()-1,0);
+                }
+
                 int progress = 0;
                 String way = wayComboBox.getSelectedItem().toString();
                 String DK = DKText.getText();
@@ -1839,7 +1843,13 @@ public class ConfigSet {
                 tableModel.setValueAt(DK,targetRow,2);
                 tableModel.setValueAt(M2_IP,targetRow,3);
 
-//                progress = new M2_Configuration().configM2(commonFields.get(2),M2_IP,commonFields.get(4),commonFields.get(3),null);
+                log.info("线路是: "+way);
+                log.info("DK是 "+DK);
+                log.info("ssid is " + commonFields_ubnt.get(2));
+                log.info("M2 IP is "+M2_IP);
+                log.info("net mask is "+commonFields_ubnt.get(4));
+                log.info("gateway IP is "+commonFields_ubnt.get(3));
+                progress = new M2_Configuration().configM2(commonFields_ubnt.get(2),M2_IP,commonFields_ubnt.get(4),commonFields_ubnt.get(3),null);
 
                 if (progress == 1){
                     JOptionPane.showMessageDialog(
@@ -1888,9 +1898,6 @@ public class ConfigSet {
         fieldValuePanel_camera.setLocation(400,160);
         fieldValuePanel_camera.setSize(130,110);
         commonFieldPanel.add(fieldValuePanel_camera);
-
-
-
 
         //initialize new project dialog, the third parameter value is true means current dialog focused on the homepage,and
         //homepage can be clicked only if the project dialog was closed
