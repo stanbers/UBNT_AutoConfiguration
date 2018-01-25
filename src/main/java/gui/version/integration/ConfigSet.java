@@ -8,7 +8,6 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import ubnt.m2.M2_Configuration;
 import ubnt.m5.M5_Configuration;
 import utility.Constant;
 import utility.JMIPV4AddressField;
@@ -43,7 +42,9 @@ public class ConfigSet {
     private JFrame mainFrame = new JFrame("配置页面");
 
     //create for store the common fields
-    private List<String> commonFields = new ArrayList<String>();
+    private List<String> commonFields_ubnt = new ArrayList<String>();
+    private List<String> commonFields_wall = new ArrayList<String>();
+    private List<String> commonFields_camera = new ArrayList<String>();
 
     //init record index
     private int recordIndex = 1;
@@ -176,7 +177,7 @@ public class ConfigSet {
         projectTableContainer.setSize(400,300);
 
         //import projects from project_list excel file, and render projects to projectTable
-        importFromExcel(projectTableModel, Constant.Path_TestData_ProjectList);
+        importFromExcel(projectTableModel, Constant.Path_TestData_ProjectList,commonFields_ubnt);
 
         //setup project button
         JButton createPojectButton = new JButton("+ 新建项目");
@@ -191,7 +192,7 @@ public class ConfigSet {
         commonFieldsPanel.setBorder(BorderFactory.createTitledBorder(null, "项目其他参数：", TitledBorder.LEFT, TitledBorder.TOP, new Font(null, BOLD, 18)));
         homepagePanel.add(commonFieldsPanel);
 
-        //initialize the field value panel, need to clear this panel each time
+        //initialize the ubnt field value panel, need to clear this panel each time
         final JPanel fieldValuePanel = new JPanel(null);
         fieldValuePanel.setLocation(125,40);
         fieldValuePanel.setSize(130,230);
@@ -211,7 +212,7 @@ public class ConfigSet {
             @Override
             public void actionPerformed(ActionEvent e) {
 //                updateCommonFieldDialog();
-                generateNewProjectDilog(projectTableModel,true,fieldValuePanel,commonFieldsPanel);
+                generateNewProjectDilog(projectTableModel,true,commonFieldsPanel);
             }
         });
 
@@ -230,24 +231,24 @@ public class ConfigSet {
             JLabel commonFiledsLabel_right = new JLabel(commonFieldsLabels_right[i-1]);
             commonFiledsLabel_right.setFont(new Font(null, 1, 16));
             commonFiledsLabel_right.setLocation(260,40*i);
-            commonFiledsLabel_right.setSize(150,30);
+            commonFiledsLabel_right.setSize(135,30);
             commonFieldsPanel.add(commonFiledsLabel_right);
         }
 
-        JLabel lineSaperator = new JLabel("--");
-        lineSaperator.setLocation(255,157);
-        lineSaperator.setSize(270,1);
-        lineSaperator.setOpaque(true);
-        lineSaperator.setBackground(Color.black);
-        commonFieldsPanel.add(lineSaperator);
-
+        //to separate wall hanging and camera
+        JLabel lineseparator = new JLabel("--");
+        lineseparator.setLocation(255,157);
+        lineseparator.setSize(270,1);
+        lineseparator.setOpaque(true);
+        lineseparator.setBackground(Color.black);
+        commonFieldsPanel.add(lineseparator);
 
         //add button event listener
         createPojectButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //to invoke new project dialog
-                generateNewProjectDilog(projectTableModel,false,null,commonFieldsPanel);
+                generateNewProjectDilog(projectTableModel,false,commonFieldsPanel);
             }
         });
 
@@ -289,18 +290,26 @@ public class ConfigSet {
 
                 int targetRow = projectTable.getSelectedRow();
                 if (e.getClickCount() == 1){
-                    log.info(commonFields.size());
                     //set the value to these two global fields
                     pNumber = projectTableModel.getValueAt(targetRow,0).toString();
                     pName = projectTableModel.getValueAt(targetRow,1).toString();
 
-                    String SpecificProjectCommonField = "D:\\ConfigFile\\"+pName +"CommonFields.xlsx";
-                    File projectCommonFieldFile = new File(SpecificProjectCommonField);
-                    if (projectCommonFieldFile.exists()){
-                        importFromExcel(null,SpecificProjectCommonField);
+                    //now that the different device's common fields are in the different folders, so we need to import all of them once select project.
+                    String spCommonField_ubnt = "D:\\ConfigFile\\ubnt\\"+pName +"CommonFields.xlsx";
+                    String spCommonField_wall = "D:\\ConfigFile\\wall\\"+pName +"CommonFields.xlsx";
+                    String spCommonField_camera = "D:\\ConfigFile\\camera\\"+pName +"CommonFields.xlsx";
+                    File projectCommonFieldFile_ubnt = new File(spCommonField_ubnt);
+                    File projectCommonFieldFile_wall = new File(spCommonField_wall);
+                    File projectCommonFieldFile_camera = new File(spCommonField_camera);
+                    if (projectCommonFieldFile_ubnt.exists() && projectCommonFieldFile_wall.exists() && projectCommonFieldFile_camera.exists() ){
+                        importFromExcel(null,spCommonField_ubnt,commonFields_ubnt);
+                        importFromExcel(null,spCommonField_wall,commonFields_wall);
+                        importFromExcel(null,spCommonField_camera,commonFields_camera);
                     }
                     //render common field values
-                    generateCommondFields(commonFieldsPanel,fieldValuePanel,true);
+                    generateUBNTCommondFields(commonFieldsPanel,fieldValuePanel,true);
+                    generateWallCommondFields(commonFieldsPanel,fieldValuePanel,true);
+                    generateCameraCommondFields(commonFieldsPanel,fieldValuePanel,true);
                 }
             }
         });
@@ -366,20 +375,19 @@ public class ConfigSet {
                             tableModel_M5.getDataVector().clear();
                             outermostPanel.setVisible(false);
                             homepagePanel.setVisible(true);
-                            log.info("the current common fields' size is "+commonFields.size());
                             log.info("the current project name is "+pName);
 //                            if (fieldValuePanel.getComponents().length == 0){
 
 //                            };
                             mainFrame.setContentPane(homepagePanel);
-                            if (fieldValuePanel.getComponents().length == 0){
-                                JPanel filedsValue = generateCommondFields(commonFieldsPanel,fieldValuePanel,false);
-                                filedsValue.repaint();
-                            }else {
-                                fieldValuePanel.removeAll();
-                                JPanel filedsValue_new = generateCommondFields(commonFieldsPanel,fieldValuePanel,false);
-                                filedsValue_new.repaint();
-                            }
+//                            if (fieldValuePanel.getComponents().length == 0){
+//                                JPanel filedsValue = generateUBNTCommondFields(commonFieldsPanel,fieldValuePanel,false);
+//                                filedsValue.repaint();
+//                            }else {
+//                                fieldValuePanel.removeAll();
+//                                JPanel filedsValue_new = generateUBNTCommondFields(commonFieldsPanel,fieldValuePanel,false);
+//                                filedsValue_new.repaint();
+//                            }
                         }
 
                     });
@@ -397,16 +405,16 @@ public class ConfigSet {
                         File projectCorresspondingConfigFile_M5 = new File(specificExcel_M5);
 
                         if (!projectCorresspondingConfigFile_M2.exists()){
-                            exportToExcel(tableModel_M2,"D:\\ConfigFile\\M2\\"+pName+".xlsx",4);
+//                            exportToExcel(tableModel_M2,"D:\\ConfigFile\\M2\\"+pName+".xlsx",4);
 //                            exportToExcel(tableModel_M2,System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName+".xlsx",4);
                         }
                         if (!projectCorresspondingConfigFile_M5.exists()){
-                            exportToExcel(tableModel_M5,"D:\\ConfigFile\\M5\\"+pName+".xlsx",8);
+//                            exportToExcel(tableModel_M5,"D:\\ConfigFile\\M5\\"+pName+".xlsx",8);
 //                            exportToExcel(tableModel_M5,System.getProperty("user.dir")+ "\\ConfigFile\\M5\\"+pName+".xlsx",8);
                         }
                         if (projectCorresspondingConfigFile_M2.exists()){
                             //import table rows on main page
-                            importFromExcel(tableModel_M2 ,specificExcel_M2);
+//                            importFromExcel(tableModel_M2 ,specificExcel_M2);
 //                            jTable.setModel(defaultTableModel);
                             //import specific project common fields
                             //TODO: this time not to render table but to override commonfields.
@@ -415,7 +423,7 @@ public class ConfigSet {
                         }
                         if (projectCorresspondingConfigFile_M5.exists()){
                             //import table rows on main page
-                            importFromExcel(tableModel_M5 ,specificExcel_M5);
+//                            importFromExcel(tableModel_M5 ,specificExcel_M5);
 //                            jTable.setModel(defaultTableModel);
                             //import specific project common fields
                             //TODO: this time not to render table but to override commonfields.
@@ -448,20 +456,20 @@ public class ConfigSet {
                 File projectCorresspondingConfigFile_camera = new File(specificExcel_camera);
                 File projectCommonFieldFile = new File(SpecificProjectCommonField);
                 if (!projectCorresspondingConfigFile_camera.exists()){
-                    exportToExcel(tableModel_camera,"D:\\ConfigFile\\camera\\"+pName_camera+".xlsx",4);
+//                    exportToExcel(tableModel_camera,"D:\\ConfigFile\\camera\\"+pName_camera+".xlsx",4);
                 }
                 if (projectCorresspondingConfigFile_camera.exists() && projectCommonFieldFile.exists()){
                     //import table rows on main page
-                    importFromExcel(tableModel_camera ,specificExcel_camera);
+//                    importFromExcel(tableModel_camera ,specificExcel_camera);
 //                            jTable.setModel(defaultTableModel);
                     //import specific project common fields
                     //TODO: this time not to render table but to override commonfields.
-                    importFromExcel(null,SpecificProjectCommonField);
+//                    importFromExcel(null,SpecificProjectCommonField);
                     //import project list excel, in order to show the project name and number on the main page
                 }
 
                 // the camera config records page
-                final JPanel outermostPanel_camera = new CameraGUI().showConfigRecordsPage(pName_camera,pNumber_camera,tableModel_camera,commonFields);
+                final JPanel outermostPanel_camera = new CameraGUI().showConfigRecordsPage(pName_camera,pNumber_camera,tableModel_camera,commonFields_camera);
 
                 JPanel outermostHeaderPanel = new JPanel(){
                     @Override
@@ -520,20 +528,20 @@ public class ConfigSet {
                         homepagePanel.setVisible(true);
                         mainFrame.setContentPane(homepagePanel);
 
-                        if (fieldValuePanel.getComponents().length == 0){
-                            JPanel filedsValue = generateCommondFields(commonFieldsPanel,fieldValuePanel,false);
-                            filedsValue.repaint();
-                        }else {
-                            fieldValuePanel.removeAll();
-                            JPanel filedsValue_new = generateCommondFields(commonFieldsPanel,fieldValuePanel,false);
-                            filedsValue_new.repaint();
-                        }
+//                        if (fieldValuePanel.getComponents().length == 0){
+//                            JPanel filedsValue = generateUBNTCommondFields(commonFieldsPanel,fieldValuePanel,false);
+//                            filedsValue.repaint();
+//                        }else {
+//                            fieldValuePanel.removeAll();
+//                            JPanel filedsValue_new = generateUBNTCommondFields(commonFieldsPanel,fieldValuePanel,false);
+//                            filedsValue_new.repaint();
+//                        }
                     }
 
                 });
 
                 homepagePanel.setVisible(false);
-                new CameraGUI().showConfigRecordsPage(pName_camera,pNumber_camera,tableModel_camera,commonFields).setVisible(true);
+                new CameraGUI().showConfigRecordsPage(pName_camera,pNumber_camera,tableModel_camera,commonFields_camera).setVisible(true);
                 mainFrame.setContentPane(outermostPanel_camera);
 
                 outermostPanel_camera.add(currentPName_camera);
@@ -559,19 +567,19 @@ public class ConfigSet {
                 File projectCorresspondingConfigFile_wall = new File(specificExcel_wall);
                 File projectCommonFieldFile = new File(SpecificProjectCommonField);
                 if (!projectCorresspondingConfigFile_wall.exists()){
-                    exportToExcel(tableModel_wall,"D:\\ConfigFile\\wall\\"+pName_wall+".xlsx",4);
+//                    exportToExcel(tableModel_wall,"D:\\ConfigFile\\wall\\"+pName_wall+".xlsx",4);
                 }
                 if (projectCorresspondingConfigFile_wall.exists() && projectCommonFieldFile.exists()){
                     //import table rows on main page
-                    importFromExcel(tableModel_wall ,specificExcel_wall);
+//                    importFromExcel(tableModel_wall ,specificExcel_wall);
 //                            jTable.setModel(defaultTableModel);
                     //import specific project common fields
                     //TODO: this time not to render table but to override commonfields.
-                    importFromExcel(null,SpecificProjectCommonField);
+//                    importFromExcel(null,SpecificProjectCommonField);
                     //import project list excel, in order to show the project name and number on the main page
                 }
 
-                final JPanel outermostPanel_wall = new WallHangingGUI().showConfigRecordsPage(pName_wall,pNumber_wall,tableModel_wall,commonFields);
+                final JPanel outermostPanel_wall = new WallHangingGUI().showConfigRecordsPage(pName_wall,pNumber_wall,tableModel_wall,commonFields_wall);
                 JPanel outermostHeaderPanel = new JPanel(){
                     @Override
                     public void paintComponent(Graphics graphics){
@@ -629,14 +637,14 @@ public class ConfigSet {
                         homepagePanel.setVisible(true);
                         mainFrame.setContentPane(homepagePanel);
 
-                        if (fieldValuePanel.getComponents().length == 0){
-                            JPanel filedsValue = generateCommondFields(commonFieldsPanel,fieldValuePanel,false);
-                            filedsValue.repaint();
-                        }else {
-                            fieldValuePanel.removeAll();
-                            JPanel filedsValue_new = generateCommondFields(commonFieldsPanel,fieldValuePanel,false);
-                            filedsValue_new.repaint();
-                        }
+//                        if (fieldValuePanel.getComponents().length == 0){
+//                            JPanel filedsValue = generateUBNTCommondFields(commonFieldsPanel,fieldValuePanel,false);
+//                            filedsValue.repaint();
+//                        }else {
+//                            fieldValuePanel.removeAll();
+//                            JPanel filedsValue_new = generateUBNTCommondFields(commonFieldsPanel,fieldValuePanel,false);
+//                            filedsValue_new.repaint();
+//                        }
                     }
 
                 });
@@ -644,7 +652,7 @@ public class ConfigSet {
 
 
                 homepagePanel.setVisible(false);
-                new WallHangingGUI().showConfigRecordsPage(pName_wall,pNumber_wall,tableModel_wall,commonFields).setVisible(true);
+                new WallHangingGUI().showConfigRecordsPage(pName_wall,pNumber_wall,tableModel_wall,commonFields_wall).setVisible(true);
                 mainFrame.setContentPane(outermostPanel_wall);
 
 
@@ -668,11 +676,11 @@ public class ConfigSet {
 
 
     /**
-     * repaint field value panel
+     * Repaint UBNT field value panel
      * @param fieldValuePanel the common field value container
      * @return the common field value container
      */
-    public JPanel generateCommondFields(JPanel commonFieldsPanel,JPanel fieldValuePanel, boolean isFromProjectTable){
+    public JPanel generateUBNTCommondFields(JPanel commonFieldsPanel,JPanel fieldValuePanel, boolean isFromProjectTable){
 
         if (isFromProjectTable){
             fieldValuePanel = new JPanel(null);
@@ -681,11 +689,77 @@ public class ConfigSet {
             commonFieldsPanel.add(fieldValuePanel);
 
         }
-        // render the common fields value
+        // render the ubnt common fields value
         for (int i = 0; i < commonFieldsLabels_left.length; i++) {
-            if (commonFields.size() > 0){
-                log.info(commonFields.get(i+2));
-                JLabel commonFieldsValue  = new JLabel(commonFields.get(i+2));
+            if (commonFields_ubnt.size() > 0){
+                log.info(commonFields_ubnt.get(i+2));
+                JLabel commonFieldsValue  = new JLabel(commonFields_ubnt.get(i+2));
+                commonFieldsValue.setLocation(0,40*i);
+                commonFieldsValue.setSize(140,30);
+                commonFieldsValue.setFont(new Font(null,Font.BOLD,16));
+                fieldValuePanel.add(commonFieldsValue);
+            }
+
+        }
+        fieldValuePanel.repaint();
+
+        return fieldValuePanel;
+    }
+
+    /**
+     * Repaint wall hanging field value panel
+     * @param commonFieldsPanel the wall hanging common fields outermost container, includes label and value
+     * @param fieldValuePanel the wall hanging common fields values' container
+     * @param isFromProjectTable  is rendered by click project table record
+     * @return wall hanging fields value container panel
+     */
+    public JPanel generateWallCommondFields(JPanel commonFieldsPanel,JPanel fieldValuePanel, boolean isFromProjectTable){
+
+        if (isFromProjectTable){
+            fieldValuePanel = new JPanel(null);
+            fieldValuePanel.setLocation(400,40);
+            fieldValuePanel.setSize(130,110);
+            commonFieldsPanel.add(fieldValuePanel);
+
+        }
+        // render the wall hanging common fields value
+        for (int i = 0; i < commonFieldsLabels_right.length-3; i++) {
+            if (commonFields_wall.size() > 0){
+                log.info(commonFields_wall.get(i));
+                JLabel commonFieldsValue  = new JLabel(commonFields_wall.get(i));
+                commonFieldsValue.setLocation(0,40*i);
+                commonFieldsValue.setSize(140,30);
+                commonFieldsValue.setFont(new Font(null,Font.BOLD,16));
+                fieldValuePanel.add(commonFieldsValue);
+            }
+
+        }
+        fieldValuePanel.repaint();
+
+        return fieldValuePanel;
+    }
+
+    /**
+     * Repaint camera field value panel
+     * @param commonFieldsPanel the camera common fields outermost container, includes label and value
+     * @param fieldValuePanel the camera common fields values' container
+     * @param isFromProjectTable  is rendered by click project table record
+     * @return camera fields value container panel
+     */
+    public JPanel generateCameraCommondFields(JPanel commonFieldsPanel,JPanel fieldValuePanel, boolean isFromProjectTable){
+
+        if (isFromProjectTable){
+            fieldValuePanel = new JPanel(null);
+            fieldValuePanel.setLocation(400,160);
+            fieldValuePanel.setSize(130,110);
+            commonFieldsPanel.add(fieldValuePanel);
+
+        }
+        // render the camera common fields value
+        for (int i = 0; i < commonFieldsLabels_right.length-3; i++) {
+            if (commonFields_camera.size() > 0){
+                log.info(commonFields_camera.get(i));
+                JLabel commonFieldsValue  = new JLabel(commonFields_camera.get(i));
                 commonFieldsValue.setLocation(0,40*i);
                 commonFieldsValue.setSize(140,30);
                 commonFieldsValue.setFont(new Font(null,Font.BOLD,16));
@@ -777,7 +851,7 @@ public class ConfigSet {
         exportM2Records.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                exportToExcel(tableModel_M2,"D:\\ConfigFile\\M2\\"+pName+".xlsx",4);
+//                exportToExcel(tableModel_M2,"D:\\ConfigFile\\M2\\"+pName+".xlsx",4);
 //                exportToExcel(tableModel_M2,System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName+".xlsx",4);
                 JOptionPane.showMessageDialog(
                         mainFrame,
@@ -957,7 +1031,7 @@ public class ConfigSet {
         exportM5Records.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                exportToExcel(tableModel_M5,"D:\\ConfigFile\\M5\\"+pName+".xlsx",8);
+//                exportToExcel(tableModel_M5,"D:\\ConfigFile\\M5\\"+pName+".xlsx",8);
 //                exportToExcel(tableModel_M5,System.getProperty("user.dir")+ "\\ConfigFile\\M5\\"+pName+".xlsx",8);
                 JOptionPane.showMessageDialog(
                         mainFrame,
@@ -1207,7 +1281,7 @@ public class ConfigSet {
                     String fruq_AP = fruq.getSelectedItem().toString();
                     tableModel.setValueAt(IPAddress_AP,tableModel.getRowCount()-1,3);
                     tableModel.setValueAt(fruq_AP,tableModel.getRowCount()-1,4);
-                    progress = new M5_Configuration().configM5("AP",commonFields.get(2),IPAddress_AP,commonFields.get(6),commonFields.get(5),fruq_AP,null,originalIP_M5AP);
+//                    progress = new M5_Configuration().configM5("AP",commonFields.get(2),IPAddress_AP,commonFields.get(6),commonFields.get(5),fruq_AP,null,originalIP_M5AP);
                     if (progress == 1){
                         JOptionPane.showMessageDialog(
                                 mainFrame,
@@ -1279,7 +1353,7 @@ public class ConfigSet {
                     tableModel.setValueAt(IPAddress_ST,tableModel.getRowCount()-1,6);
                     tableModel.setValueAt(macAddress,tableModel.getRowCount()-1,7);
 
-                    progress = new M5_Configuration().configM5("ST",commonFields.get(2),IPAddress_ST,commonFields.get(6),commonFields.get(5),null,macAddress,originalIP_M5ST);
+//                    progress = new M5_Configuration().configM5("ST",commonFields.get(2),IPAddress_ST,commonFields.get(6),commonFields.get(5),null,macAddress,originalIP_M5ST);
                     if (progress == 1){
                         JOptionPane.showMessageDialog(
                                 mainFrame,
@@ -1455,7 +1529,7 @@ public class ConfigSet {
                     tableModel.setValueAt(IPAddress_AP,tableModel.getRowCount()-1,3);
                     tableModel.setValueAt(fruq_AP,tableModel.getRowCount()-1,4);
 
-                    progress = new M5_Configuration().configM5("AP",commonFields.get(2),IPAddress_AP,commonFields.get(6),commonFields.get(5),fruq_AP,null,null);
+                    progress = new M5_Configuration().configM5("AP",commonFields_ubnt.get(2),IPAddress_AP,commonFields_ubnt.get(6),commonFields_ubnt.get(5),fruq_AP,null,null);
                     if (progress == 1){
                         JOptionPane.showMessageDialog(
                                 mainFrame,
@@ -1518,7 +1592,7 @@ public class ConfigSet {
                     tableModel.setValueAt(IPAddress_ST,tableModel.getRowCount()-1,6);
                     tableModel.setValueAt(macAddress,tableModel.getRowCount()-1,7);
 
-                    progress = new M5_Configuration().configM5("ST",commonFields.get(2),IPAddress_ST,commonFields.get(6),commonFields.get(5),null,macAddress,null);
+                    progress = new M5_Configuration().configM5("ST",commonFields_ubnt.get(2),IPAddress_ST,commonFields_ubnt.get(6),commonFields_ubnt.get(5),null,macAddress,null);
                     if (progress == 1){
                         JOptionPane.showMessageDialog(
                                 mainFrame,
@@ -1647,7 +1721,7 @@ public class ConfigSet {
                 tableModel.setValueAt(way,targetRow,1);
                 tableModel.setValueAt(DK,targetRow,2);
 
-                progress = new M2_Configuration().configM2(commonFields.get(2),M2_IP,commonFields.get(4),commonFields.get(3),updatedIP_M2);
+//                progress = new M2_Configuration().configM2(commonFields.get(2),M2_IP,commonFields.get(4),commonFields.get(3),updatedIP_M2);
                 tableModel.setValueAt(M2_IP,targetRow,3);
 
                 if (progress == 1){
@@ -1765,7 +1839,7 @@ public class ConfigSet {
                 tableModel.setValueAt(DK,targetRow,2);
                 tableModel.setValueAt(M2_IP,targetRow,3);
 
-                progress = new M2_Configuration().configM2(commonFields.get(2),M2_IP,commonFields.get(4),commonFields.get(3),null);
+//                progress = new M2_Configuration().configM2(commonFields.get(2),M2_IP,commonFields.get(4),commonFields.get(3),null);
 
                 if (progress == 1){
                     JOptionPane.showMessageDialog(
@@ -1795,7 +1869,28 @@ public class ConfigSet {
      * Create a new project dialog when "create_project" button clicked
      * @param projectTableModel
      */
-    public JDialog generateNewProjectDilog(final DefaultTableModel projectTableModel, final boolean isUpdate, final JPanel fieldValuePanel, final JPanel commonFieldPanel){
+    public JDialog generateNewProjectDilog(final DefaultTableModel projectTableModel, final boolean isUpdate, final JPanel commonFieldPanel){
+
+        //initialize the ubnt field value panel, need to clear this panel each time
+        final JPanel fieldValuePanel_ubnt = new JPanel(null);
+        fieldValuePanel_ubnt.setLocation(125,40);
+        fieldValuePanel_ubnt.setSize(130,200);
+        commonFieldPanel.add(fieldValuePanel_ubnt);
+
+        //initialize the wall hanging field value panel, need to clear this panel each time
+        final JPanel fieldValuePanel_wall = new JPanel(null);
+        fieldValuePanel_wall.setLocation(400,40);
+        fieldValuePanel_wall.setSize(130,110);
+        commonFieldPanel.add(fieldValuePanel_wall);
+
+        //initialize the wall hanging field value panel, need to clear this panel each time
+        final JPanel fieldValuePanel_camera = new JPanel(null);
+        fieldValuePanel_camera.setLocation(400,160);
+        fieldValuePanel_camera.setSize(130,110);
+        commonFieldPanel.add(fieldValuePanel_camera);
+
+
+
 
         //initialize new project dialog, the third parameter value is true means current dialog focused on the homepage,and
         //homepage can be clicked only if the project dialog was closed
@@ -1845,7 +1940,7 @@ public class ConfigSet {
         projectNameInputBox.setSize(220,40);
         projectNameInputBox.setFont(new Font(null, Font.PLAIN, 18));
         if (isUpdate){
-            projectNameInputBox.setText(commonFields.get(1));
+            projectNameInputBox.setText(commonFields_ubnt.get(1));
         }
         projectContainerPanel.add(projectNameLabel);
         projectContainerPanel.add(projectNameInputBox);
@@ -1860,7 +1955,7 @@ public class ConfigSet {
         ssidInputBox.setSize(180,40);
         ssidInputBox.setFont(new Font(null, Font.PLAIN, 18));
         if (isUpdate){
-            ssidInputBox.setText(commonFields.get(2));
+            ssidInputBox.setText(commonFields_ubnt.get(2));
         }
         projectContainerPanel.add(ssidLabel);
         projectContainerPanel.add(ssidInputBox);
@@ -1885,7 +1980,7 @@ public class ConfigSet {
         gatewayIPInputBox.setSize(180,40);
         gatewayIPInputBox.setFont(new Font(null, Font.PLAIN, 18));
         if (isUpdate){
-            gatewayIPInputBox.setText(commonFields.get(3));
+            gatewayIPInputBox.setText(commonFields_ubnt.get(3));
         }
         projectContainerPanel.add(gatewayIP);
         projectContainerPanel.add(gatewayIPInputBox);
@@ -1932,7 +2027,7 @@ public class ConfigSet {
         netMaskInputBox.setSize(180,40);
         netMaskInputBox.setFont(new Font(null, Font.PLAIN, 18));
         if (isUpdate){
-            netMaskInputBox.setText(commonFields.get(4));
+            netMaskInputBox.setText(commonFields_ubnt.get(4));
         }
         projectContainerPanel.add(netMaskLabel);
         projectContainerPanel.add(netMaskInputBox);
@@ -1955,7 +2050,7 @@ public class ConfigSet {
         gatewayIP_M5_InputBox.setSize(180,40);
         gatewayIP_M5_InputBox.setFont(new Font(null, Font.PLAIN, 18));
         if (isUpdate){
-            gatewayIP_M5_InputBox.setText(commonFields.get(5));
+            gatewayIP_M5_InputBox.setText(commonFields_ubnt.get(5));
         }
         projectContainerPanel.add(gatewayIP_M5);
         projectContainerPanel.add(gatewayIP_M5_InputBox);
@@ -1971,7 +2066,7 @@ public class ConfigSet {
         netMask_M5_InputBox.setSize(180,40);
         netMask_M5_InputBox.setFont(new Font(null, Font.PLAIN, 18));
         if (isUpdate){
-            netMask_M5_InputBox.setText(commonFields.get(6));
+            netMask_M5_InputBox.setText(commonFields_ubnt.get(6));
         }
         projectContainerPanel.add(netMaskLabel_M5);
         projectContainerPanel.add(netMask_M5_InputBox);
@@ -1994,7 +2089,7 @@ public class ConfigSet {
         serverIP_InputBox_wall.setSize(180,40);
         serverIP_InputBox_wall.setFont(new Font(null, Font.PLAIN, 18));
         if (isUpdate){
-//            serverIP_InputBox_wall.setText(commonFields.get(7));
+            serverIP_InputBox_wall.setText(commonFields_wall.get(0));
         }
         projectContainerPanel.add(serverIP_wall);
         projectContainerPanel.add(serverIP_InputBox_wall);
@@ -2010,7 +2105,7 @@ public class ConfigSet {
         gatewayIP_InputBox_wall.setSize(180,40);
         gatewayIP_InputBox_wall.setFont(new Font(null, Font.PLAIN, 18));
         if (isUpdate){
-//            gatewayIP_InputBox_wall.setText(commonFields.get(7));
+            gatewayIP_InputBox_wall.setText(commonFields_wall.get(1));
         }
         projectContainerPanel.add(gatewayIP_wall);
         projectContainerPanel.add(gatewayIP_InputBox_wall);
@@ -2026,7 +2121,7 @@ public class ConfigSet {
         netMask_InputBox_wall.setSize(180,40);
         netMask_InputBox_wall.setFont(new Font(null, Font.PLAIN, 18));
         if (isUpdate){
-//            netMask_InputBox_wall.setText(commonFields.get(7));
+            netMask_InputBox_wall.setText(commonFields_wall.get(2));
         }
         projectContainerPanel.add(netMask_wall);
         projectContainerPanel.add(netMask_InputBox_wall);
@@ -2049,7 +2144,7 @@ public class ConfigSet {
         server_InputBox_camera.setSize(180,40);
         server_InputBox_camera.setFont(new Font(null, Font.PLAIN, 18));
         if (isUpdate){
-//            server_InputBox_camera.setText(commonFields.get(7));
+            server_InputBox_camera.setText(commonFields_camera.get(0));
         }
         projectContainerPanel.add(serverIP_camera);
         projectContainerPanel.add(server_InputBox_camera);
@@ -2065,7 +2160,7 @@ public class ConfigSet {
         gatewayIP_InputBox_camera.setSize(180,40);
         gatewayIP_InputBox_camera.setFont(new Font(null, Font.PLAIN, 18));
         if (isUpdate){
-//            gatewayIP_InputBox_camera.setText(commonFields.get(7));
+            gatewayIP_InputBox_camera.setText(commonFields_camera.get(1));
         }
         projectContainerPanel.add(gatewayIP_camera);
         projectContainerPanel.add(gatewayIP_InputBox_camera);
@@ -2081,7 +2176,7 @@ public class ConfigSet {
         netMask_InputBox_camera.setSize(180,40);
         netMask_InputBox_camera.setFont(new Font(null, Font.PLAIN, 18));
         if (isUpdate){
-//            netMask_InputBox_camera.setText(commonFields.get(7));
+            netMask_InputBox_camera.setText(commonFields_camera.get(2));
         }
         projectContainerPanel.add(netMask_camera);
         projectContainerPanel.add(netMask_InputBox_camera);
@@ -2118,17 +2213,18 @@ public class ConfigSet {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                    //save those all fields.
-                    log.info("the project number is "+projectNumInputBox.getText());
-                    commonFields.clear();
-                    commonFields.add(projectNumInputBox.getText());
-                    commonFields.add(projectNameInputBox.getText());
-                    commonFields.add(ssidInputBox.getText());
-                    commonFields.add(gatewayIPInputBox.getText());
-                    commonFields.add(netMaskInputBox.getText());
-                    commonFields.add(gatewayIP_M5_InputBox.getText());
-                    commonFields.add(netMask_M5_InputBox.getText());
-                    commonFields.add(serverIP_InputBox_wall.getText());
+                //save those all fields to ubnt list.
+                log.info("the project number is "+projectNumInputBox.getText());
+                commonFields_ubnt.clear();
+                commonFields_ubnt.add(projectNumInputBox.getText());
+                commonFields_ubnt.add(projectNameInputBox.getText());
+                commonFields_ubnt.add(ssidInputBox.getText());
+                commonFields_ubnt.add(gatewayIPInputBox.getText());
+                commonFields_ubnt.add(netMaskInputBox.getText());
+                commonFields_ubnt.add(gatewayIP_M5_InputBox.getText());
+                commonFields_ubnt.add(netMask_M5_InputBox.getText());
+
+                //this should be put in front of export project
                 if (!isUpdate){
                     //TODO: need to generate project row
                     Vector emptyProjectRow = new Vector();
@@ -2140,20 +2236,45 @@ public class ConfigSet {
                     projectTableModel.setValueAt(projectNumInputBox.getText(),projectTableModel.getRowCount()-1,0);
                     projectTableModel.setValueAt(projectNameInputBox.getText(),projectTableModel.getRowCount()-1,1);
                 }
-
-
-                //TODO: need to write the project info into the specific excel, in order to show these info on homepage once the app was running
+                //TODO: need to write the project info into the specific excel, in order to show these info on homepage once the app was opened
                 String projectExcelPath = Constant.Path_TestData_ProjectList;
-//                String commonFieldsExcelPath = System.getProperty("user.dir")+"\\ConfigFile\\"+projectNameInputBox.getText() +"CommonFields.xlsx";
-                String commonFieldsExcelPath = "D:\\ConfigFile\\"+projectNameInputBox.getText() +"CommonFields.xlsx";
-                exportToExcel(projectTableModel,projectExcelPath,2);
-                exportToExcel(null,commonFieldsExcelPath,7);
+                exportToExcel(projectTableModel,projectExcelPath,2,commonFields_ubnt);
+
+                //store the ubnt common fields, includes M2 and M5 and also the project number and name
+                String commonFieldsExcelPath_ubnt = "D:\\ConfigFile\\ubnt\\"+projectNameInputBox.getText() +"CommonFields.xlsx";
+                exportToExcel(null,commonFieldsExcelPath_ubnt,7,commonFields_ubnt);
+
+                //save those all fields to wall hanging list.
+                commonFields_wall.clear();
+                commonFields_wall.add(serverIP_InputBox_wall.getText());
+                commonFields_wall.add(gatewayIP_InputBox_wall.getText());
+                commonFields_wall.add(netMask_InputBox_wall.getText());
+
+                //store the wall hanging common fields
+                String commonFieldsExcelPath = "D:\\ConfigFile\\wall\\"+projectNameInputBox.getText() +"CommonFields.xlsx";
+                exportToExcel(null,commonFieldsExcelPath,3,commonFields_wall);
+
+                //save those all fields to camera list.
+                commonFields_camera.clear();
+                commonFields_camera.add(server_InputBox_camera.getText());
+                commonFields_camera.add(gatewayIP_InputBox_camera.getText());
+                commonFields_camera.add(netMask_InputBox_camera.getText());
+
+                //store the wall hanging common fields
+                String commonFieldsExcelPath_camera = "D:\\ConfigFile\\camera\\"+projectNameInputBox.getText() +"CommonFields.xlsx";
+                exportToExcel(null,commonFieldsExcelPath_camera,3,commonFields_camera);
 
                 newProjectDialog.dispose();
                 if (isUpdate){
 
-                    JPanel filedsValue = generateCommondFields(commonFieldPanel,fieldValuePanel,false);
-                    filedsValue.repaint();
+                    JPanel filedsValue_ubnt = generateUBNTCommondFields(commonFieldPanel,fieldValuePanel_ubnt,false);
+                    filedsValue_ubnt.repaint();
+
+                    JPanel filedsValue_wall = generateWallCommondFields(commonFieldPanel,fieldValuePanel_wall,false);
+                    filedsValue_wall.repaint();
+
+                    JPanel filedsValue_camera = generateCameraCommondFields(commonFieldPanel,fieldValuePanel_camera,false);
+                    filedsValue_camera.repaint();
                 }
             }
         });
@@ -2189,7 +2310,7 @@ public class ConfigSet {
      * @param path the excel path which write to
      * @param columnLength the column length
      */
-    public void exportToExcel(DefaultTableModel tableModel,String path,int columnLength){
+    public void exportToExcel(DefaultTableModel tableModel,String path,int columnLength,List<String> deviceList){
 
         XSSFWorkbook wb = new XSSFWorkbook();
         XSSFSheet sheet = wb.createSheet();
@@ -2234,9 +2355,9 @@ public class ConfigSet {
         }else {
             for (int i = 0; i < 1; i++) {
                 row = sheet.createRow(i);
-                for (int j = 0; j < commonFields.size(); j++) {
+                for (int j = 0; j < deviceList.size(); j++) {
                     XSSFCell cell = row.createCell(j);
-                    cell.setCellValue(commonFields.get(j));
+                    cell.setCellValue(deviceList.get(j));
                     FileOutputStream fileOut = null;
                     try {
                         fileOut = new FileOutputStream(path);
@@ -2257,7 +2378,7 @@ public class ConfigSet {
      * @param tableModel  the target table model
      * @return all data vector
      */
-    public Vector<String> importFromExcel(DefaultTableModel tableModel,String path){
+    public Vector<String> importFromExcel(DefaultTableModel tableModel,String path,List<String> deviceList){
         Vector<String> readFromExcel = null;
         try {
             FileInputStream excelFile = new FileInputStream(path);
@@ -2277,9 +2398,9 @@ public class ConfigSet {
                     if (tableModel != null){
                         tableModel.addRow(readFromExcel);
                     }else {
-                        commonFields.clear();
+                        deviceList.clear();
                         for (String commonField : readFromExcel) {
-                            commonFields.add(commonField);
+                            deviceList.add(commonField);
                         }
                     }
                 }
