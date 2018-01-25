@@ -97,7 +97,8 @@ public class ConfigSet {
     //the older IP which waiting for update, need this older ip to login
     private String updatedIP_M2,originalIP_M5AP,originalIP_M5ST;
 
-    final String[] commonFieldsLabels = {"SSID: ","M2 无线网关：","M2 子网掩码：","M5 网桥网段：","M5 子网掩码：","壁挂服务器 IP: "};
+    final String[] commonFieldsLabels_left = {"SSID               : ","M2 无线网关：","M2 子网掩码：","M5 网桥网段：","M5 子网掩码："};
+    final String[] commonFieldsLabels_right = {"壁挂网关         : ","壁挂服务器IP : ","壁挂子网掩码 : ","摄像头网关         : ","摄像头服务器IP : ","摄像头子网掩码 : "};
 
 
 
@@ -185,20 +186,20 @@ public class ConfigSet {
 
         //show common fields on homepage
         final JPanel commonFieldsPanel = new JPanel(null);
-        commonFieldsPanel.setLocation(600, 150);
-        commonFieldsPanel.setSize(600, 300);
+        commonFieldsPanel.setLocation(600, 100);
+        commonFieldsPanel.setSize(600, 350);
         commonFieldsPanel.setBorder(BorderFactory.createTitledBorder(null, "项目其他参数：", TitledBorder.LEFT, TitledBorder.TOP, new Font(null, BOLD, 18)));
         homepagePanel.add(commonFieldsPanel);
 
         //initialize the field value panel, need to clear this panel each time
         final JPanel fieldValuePanel = new JPanel(null);
-        fieldValuePanel.setLocation(135,40);
-        fieldValuePanel.setSize(200,230);
+        fieldValuePanel.setLocation(125,40);
+        fieldValuePanel.setSize(130,230);
         commonFieldsPanel.add(fieldValuePanel);
 
         //setup update common field button
         final JButton updateCommonField = new JButton("修改参数");
-        updateCommonField.setLocation(450,252);
+        updateCommonField.setLocation(450,302);
         updateCommonField.setSize(135,40);
         updateCommonField.setFont(new Font(null, BOLD, 18));
         commonFieldsPanel.add(updateCommonField);
@@ -216,13 +217,29 @@ public class ConfigSet {
 
 
         //'i' started from 1, in order to setup the first label offset in vertical direction
-        for (int i = 1; i <= commonFieldsLabels.length; i++) {
-            JLabel commonFiledsLabel = new JLabel(commonFieldsLabels[i-1]);
+        for (int i = 1; i <= commonFieldsLabels_left.length; i++) {
+            JLabel commonFiledsLabel = new JLabel(commonFieldsLabels_left[i-1]);
             commonFiledsLabel.setFont(new Font(null, 1, 16));
             commonFiledsLabel.setLocation(10,40*i);
             commonFiledsLabel.setSize(125,30);
             commonFieldsPanel.add(commonFiledsLabel);
         }
+
+        //'i' started from 1, in order to setup the first label offset in vertical direction
+        for (int i = 1; i <= commonFieldsLabels_right.length; i++) {
+            JLabel commonFiledsLabel_right = new JLabel(commonFieldsLabels_right[i-1]);
+            commonFiledsLabel_right.setFont(new Font(null, 1, 16));
+            commonFiledsLabel_right.setLocation(260,40*i);
+            commonFiledsLabel_right.setSize(150,30);
+            commonFieldsPanel.add(commonFiledsLabel_right);
+        }
+
+        JLabel lineSaperator = new JLabel("--");
+        lineSaperator.setLocation(255,157);
+        lineSaperator.setSize(270,1);
+        lineSaperator.setOpaque(true);
+        lineSaperator.setBackground(Color.black);
+        commonFieldsPanel.add(lineSaperator);
 
 
         //add button event listener
@@ -659,13 +676,13 @@ public class ConfigSet {
 
         if (isFromProjectTable){
             fieldValuePanel = new JPanel(null);
-            fieldValuePanel.setLocation(135,40);
-            fieldValuePanel.setSize(145,230);
+            fieldValuePanel.setLocation(125,40);
+            fieldValuePanel.setSize(130,230);
             commonFieldsPanel.add(fieldValuePanel);
 
         }
         // render the common fields value
-        for (int i = 0; i < commonFieldsLabels.length; i++) {
+        for (int i = 0; i < commonFieldsLabels_left.length; i++) {
             if (commonFields.size() > 0){
                 log.info(commonFields.get(i+2));
                 JLabel commonFieldsValue  = new JLabel(commonFields.get(i+2));
@@ -1783,7 +1800,7 @@ public class ConfigSet {
         //initialize new project dialog, the third parameter value is true means current dialog focused on the homepage,and
         //homepage can be clicked only if the project dialog was closed
         final JDialog newProjectDialog = new JDialog(mainFrame,"新建项目",true);
-        newProjectDialog.setSize(800,isUpdate ? 700:800);
+        newProjectDialog.setSize(800,650);
         newProjectDialog.setLocationRelativeTo(mainFrame);
 
         //setup the logo icon
@@ -1923,7 +1940,7 @@ public class ConfigSet {
         //subway M5 bridge panel include netmask and gateIP
         JPanel innerJPanel_M5 = new JPanel();
         innerJPanel_M5.setLocation(30,310);
-        innerJPanel_M5.setSize(320,250);
+        innerJPanel_M5.setSize(320,200);
         innerJPanel_M5.setBorder(BorderFactory.createTitledBorder(null,"M5 网桥", TitledBorder.LEFT,TitledBorder.TOP,new Font(null, BOLD,18)));
         innerJPanel_M5.setLayout(null);
 
@@ -2017,7 +2034,7 @@ public class ConfigSet {
         //subway camera panel include server IP
         JPanel innerJPanel_camera = new JPanel();
         innerJPanel_camera.setLocation(380,310);
-        innerJPanel_camera.setSize(320,250);
+        innerJPanel_camera.setSize(320,200);
         innerJPanel_camera.setBorder(BorderFactory.createTitledBorder(null,"摄像头", TitledBorder.LEFT,TitledBorder.TOP,new Font(null, BOLD,18)));
         innerJPanel_camera.setLayout(null);
 
@@ -2069,31 +2086,31 @@ public class ConfigSet {
         projectContainerPanel.add(netMask_camera);
         projectContainerPanel.add(netMask_InputBox_camera);
 
-        //device id label and corresponding text field
-        JLabel deviceID_camera = new JLabel("设备ID :");
-        final JTextField deviceIDInputBox = new JTextField();
-        deviceID_camera.setLocation(390,500);
-        deviceID_camera.setSize(120,40);
-        deviceID_camera.setFont(new Font(null, BOLD,18));
-        deviceIDInputBox.setLocation(500,500);
-        deviceIDInputBox.setSize(180,40);
-        deviceIDInputBox.setFont(new Font(null, Font.PLAIN, 18));
-        if (isUpdate){
-//            deviceID_InputBox_camera.setText(commonFields.get(7));
-        }
-        projectContainerPanel.add(deviceID_camera);
-        projectContainerPanel.add(deviceIDInputBox);
+//        //device id label and corresponding text field
+//        JLabel deviceID_camera = new JLabel("设备ID :");
+//        final JTextField deviceIDInputBox = new JTextField();
+//        deviceID_camera.setLocation(390,500);
+//        deviceID_camera.setSize(120,40);
+//        deviceID_camera.setFont(new Font(null, BOLD,18));
+//        deviceIDInputBox.setLocation(500,500);
+//        deviceIDInputBox.setSize(180,40);
+//        deviceIDInputBox.setFont(new Font(null, Font.PLAIN, 18));
+//        if (isUpdate){
+////            deviceID_InputBox_camera.setText(commonFields.get(7));
+//        }
+//        projectContainerPanel.add(deviceID_camera);
+//        projectContainerPanel.add(deviceIDInputBox);
 
         //ok button
         JButton createProjectButton = new JButton(isUpdate?"修改":"创建");
         createProjectButton.setFont(new Font(null,Font.BOLD,16));
-        createProjectButton.setLocation(100,isUpdate ? 600:680);
+        createProjectButton.setLocation(100,550);
         createProjectButton.setSize(85,40);
 
         //cancel button
         JButton cancelButton = new JButton("取消");
         cancelButton.setFont(new Font(null,Font.BOLD,16));
-        cancelButton.setLocation(265,isUpdate ? 600:680);
+        cancelButton.setLocation(615,550);
         cancelButton.setSize(85,40);
 
         //create project button event listener
