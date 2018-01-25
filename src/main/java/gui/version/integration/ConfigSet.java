@@ -8,7 +8,6 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import ubnt.m5.M5_Configuration;
 import utility.Constant;
 import utility.JMIPV4AddressField;
 import utility.LimitedDocument;
@@ -94,6 +93,8 @@ public class ConfigSet {
     //define the global fields
     private String pName;
     private String pNumber;
+    private String way_M5;
+    private String DK_M5;
 
     //the older IP which waiting for update, need this older ip to login
     private String updatedIP_M2,originalIP_M5AP,originalIP_M5ST;
@@ -1002,17 +1003,7 @@ public class ConfigSet {
         createM5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Vector emptyRow = new Vector();
-                for (int i = 0; i < 10; i++) {
-                    emptyRow.add(null);
-                }
-                tableModel_M5.addRow(emptyRow);
-                if (recordIndex == 0){
-                    tableModel_M5.setValueAt(recordIndex++,tableModel_M5.getRowCount()-1,0);
-                }else {
-                    recordIndex = tableModel_M5.getRowCount();
-                    tableModel_M5.setValueAt(recordIndex++,tableModel_M5.getRowCount()-1,0);
-                }
+
                 createM5Overlay(tableModel_M5);
             }
         });
@@ -1206,10 +1197,9 @@ public class ConfigSet {
             update.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    String way = jComboBoxWay.getSelectedItem().toString();
-                    String DK = DKText.getText();
-                    tableModel.setValueAt(way,tableModel.getRowCount()-1,1);
-                    tableModel.setValueAt(DK,tableModel.getRowCount()-1,2);
+                    way_M5 = jComboBoxWay.getSelectedItem().toString();
+                    DK_M5 = DKText.getText();
+
                 }
             });
         }
@@ -1269,8 +1259,31 @@ public class ConfigSet {
                     int progress = 0;
                     String IPAddress_AP =  IP_AP.getText();
                     String fruq_AP = fruq.getSelectedItem().toString();
+                    tableModel.setValueAt(way_M5,tableModel.getRowCount()-1,1);
+                    tableModel.setValueAt(DK_M5,tableModel.getRowCount()-1,2);
                     tableModel.setValueAt(IPAddress_AP,tableModel.getRowCount()-1,3);
                     tableModel.setValueAt(fruq_AP,tableModel.getRowCount()-1,4);
+
+                    Vector emptyRow = new Vector();
+                    for (int i = 0; i < 10; i++) {
+                        emptyRow.add(null);
+                    }
+                    tableModel_M5.addRow(emptyRow);
+                    if (recordIndex == 0){
+                        tableModel_M5.setValueAt(recordIndex++,tableModel_M5.getRowCount()-1,0);
+                    }else {
+                        recordIndex = tableModel_M5.getRowCount();
+                        tableModel_M5.setValueAt(recordIndex++,tableModel_M5.getRowCount()-1,0);
+                    }
+
+                    log.info("线路是: " + way_M5);
+                    log.info("DK is: " + DK_M5);
+                    log.info("ap IP is: " + IPAddress_AP);
+                    log.info("fruq is: " + fruq_AP);
+                    log.info("ssid is: " + commonFields_ubnt.get(2));
+                    log.info("ap net mask is: " + commonFields_ubnt.get(6));
+                    log.info("ap gateway ip is: " + commonFields_ubnt.get(5));
+
 //                    progress = new M5_Configuration().configM5("AP",commonFields.get(2),IPAddress_AP,commonFields.get(6),commonFields.get(5),fruq_AP,null,originalIP_M5AP);
                     if (progress == 1){
                         JOptionPane.showMessageDialog(
@@ -1336,12 +1349,35 @@ public class ConfigSet {
             update.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+
+                    Vector emptyRow = new Vector();
+                    for (int i = 0; i < 10; i++) {
+                        emptyRow.add(null);
+                    }
+                    tableModel_M5.addRow(emptyRow);
+                    if (recordIndex == 0){
+                        tableModel_M5.setValueAt(recordIndex++,tableModel_M5.getRowCount()-1,0);
+                    }else {
+                        recordIndex = tableModel_M5.getRowCount();
+                        tableModel_M5.setValueAt(recordIndex++,tableModel_M5.getRowCount()-1,0);
+                    }
+
                     int progress = 0;
                     String IPAddress_ST = IP_ST.getText();
                     String macAddress = macBox.getText();
+                    tableModel.setValueAt(way_M5,tableModel.getRowCount()-1,1);
+                    tableModel.setValueAt(DK_M5,tableModel.getRowCount()-1,2);
                     tableModel.setValueAt(macAddress,tableModel.getRowCount()-1,5);
                     tableModel.setValueAt(IPAddress_ST,tableModel.getRowCount()-1,6);
                     tableModel.setValueAt(macAddress,tableModel.getRowCount()-1,7);
+
+                    log.info("线路是: " + way_M5);
+                    log.info("DK is: " + DK_M5);
+                    log.info("ap IP is: " + IPAddress_ST);
+                    log.info("fruq is: " + macAddress);
+                    log.info("ssid is: " + commonFields_ubnt.get(2));
+                    log.info("ap net mask is: " + commonFields_ubnt.get(6));
+                    log.info("ap gateway ip is: " + commonFields_ubnt.get(5));
 
 //                    progress = new M5_Configuration().configM5("ST",commonFields.get(2),IPAddress_ST,commonFields.get(6),commonFields.get(5),null,macAddress,originalIP_M5ST);
                     if (progress == 1){
@@ -1457,10 +1493,8 @@ public class ConfigSet {
             create.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    String way = jComboBoxWay.getSelectedItem().toString();
-                    String DK = DKText.getText();
-                    tableModel.setValueAt(way,tableModel.getRowCount()-1,1);
-                    tableModel.setValueAt(DK,tableModel.getRowCount()-1,2);
+                    way_M5 = jComboBoxWay.getSelectedItem().toString();
+                    DK_M5 = DKText.getText();
                 }
             });
         }
@@ -1513,13 +1547,37 @@ public class ConfigSet {
             create.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+
+                    Vector emptyRow = new Vector();
+                    for (int i = 0; i < 10; i++) {
+                        emptyRow.add(null);
+                    }
+                    tableModel_M5.addRow(emptyRow);
+                    if (recordIndex == 0){
+                        tableModel_M5.setValueAt(recordIndex++,tableModel_M5.getRowCount()-1,0);
+                    }else {
+                        recordIndex = tableModel_M5.getRowCount();
+                        tableModel_M5.setValueAt(recordIndex++,tableModel_M5.getRowCount()-1,0);
+                    }
+
                     int progress = 0;
+
                     String IPAddress_AP =  IP_AP.getText();
                     String fruq_AP = fruqComboBoxList.get(0);
+                    tableModel.setValueAt(way_M5,tableModel.getRowCount()-1,1);
+                    tableModel.setValueAt(DK_M5,tableModel.getRowCount()-1,2);
                     tableModel.setValueAt(IPAddress_AP,tableModel.getRowCount()-1,3);
                     tableModel.setValueAt(fruq_AP,tableModel.getRowCount()-1,4);
 
-                    progress = new M5_Configuration().configM5("AP",commonFields_ubnt.get(2),IPAddress_AP,commonFields_ubnt.get(6),commonFields_ubnt.get(5),fruq_AP,null,null);
+                    log.info("线路是: " + way_M5);
+                    log.info("DK is: " + DK_M5);
+                    log.info("ap IP is: " + IPAddress_AP);
+                    log.info("fruq is: " + fruq_AP);
+                    log.info("ssid is: " + commonFields_ubnt.get(2));
+                    log.info("ap net mask is: " + commonFields_ubnt.get(6));
+                    log.info("ap gateway ip is: " + commonFields_ubnt.get(5));
+
+//                    progress = new M5_Configuration().configM5("AP",commonFields_ubnt.get(2),IPAddress_AP,commonFields_ubnt.get(6),commonFields_ubnt.get(5),fruq_AP,null,null);
                     if (progress == 1){
                         JOptionPane.showMessageDialog(
                                 mainFrame,
@@ -1575,14 +1633,36 @@ public class ConfigSet {
             create.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+
+                    Vector emptyRow = new Vector();
+                    for (int i = 0; i < 10; i++) {
+                        emptyRow.add(null);
+                    }
+                    tableModel_M5.addRow(emptyRow);
+                    if (recordIndex == 0){
+                        tableModel_M5.setValueAt(recordIndex++,tableModel_M5.getRowCount()-1,0);
+                    }else {
+                        recordIndex = tableModel_M5.getRowCount();
+                        tableModel_M5.setValueAt(recordIndex++,tableModel_M5.getRowCount()-1,0);
+                    }
                     int progress = 0;
                     String IPAddress_ST = IP_ST.getText();
                     String macAddress = macBox.getText();
+                    tableModel.setValueAt(way_M5,tableModel.getRowCount()-1,1);
+                    tableModel.setValueAt(DK_M5,tableModel.getRowCount()-1,2);
                     tableModel.setValueAt(macAddress,tableModel.getRowCount()-1,5);
                     tableModel.setValueAt(IPAddress_ST,tableModel.getRowCount()-1,6);
                     tableModel.setValueAt(macAddress,tableModel.getRowCount()-1,7);
 
-                    progress = new M5_Configuration().configM5("ST",commonFields_ubnt.get(2),IPAddress_ST,commonFields_ubnt.get(6),commonFields_ubnt.get(5),null,macAddress,null);
+                    log.info("线路是: " + way_M5);
+                    log.info("DK is: " + DK_M5);
+                    log.info("st IP is: " + IPAddress_ST);
+                    log.info("mac address is: " + macAddress);
+                    log.info("ssid is: " + commonFields_ubnt.get(2));
+                    log.info("st net mask is: " + commonFields_ubnt.get(6));
+                    log.info("st gateway ip is: " + commonFields_ubnt.get(5));
+
+//                    progress = new M5_Configuration().configM5("ST",commonFields_ubnt.get(2),IPAddress_ST,commonFields_ubnt.get(6),commonFields_ubnt.get(5),null,macAddress,null);
                     if (progress == 1){
                         JOptionPane.showMessageDialog(
                                 mainFrame,
