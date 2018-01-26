@@ -560,6 +560,7 @@ public class WallHangingGUI {
                 log.info("wall hanging server ip is "+commonFields.get(1));
                 log.info("wall hanging gateway ip is "+commonFields.get(2));
                 log.info("wall hanging net mask is "+commonFields.get(3));
+                log.info("wall hanging oler ip is "+olderIP_wall);
 //                progress = new WallHangingConfig().config(commonFields.get(0),olderIP_wall,commonFields.get(3),commonFields.get(2),commonFields.get(1));
                 tableModel.setValueAt(wall_IP,targetRow,3);
 

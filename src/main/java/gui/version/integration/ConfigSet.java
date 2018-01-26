@@ -55,8 +55,8 @@ public class ConfigSet {
     //initialize wall hanging table header
     final String[] columns_wall = {"编号","线路","位置","壁挂 IP"};
 
-    //initialize wall hanging table header
-    final String[] columns_camera = {"编号","线路","位置","摄像头 IP"};
+    //initialize camera table header
+    final String[] columns_camera = {"编号","线路","位置","摄像头 IP","设备 ID","版本号"};
 
     //define M2 table model
     private final DefaultTableModel tableModel_M2 = new DefaultTableModel(null,columns_M2){
@@ -100,8 +100,8 @@ public class ConfigSet {
     private String updatedIP_M2,originalIP_M5AP,originalIP_M5ST;
 
     final String[] commonFieldsLabels_left = {"SSID               : ","M2 无线网关：","M2 子网掩码：","M5 网桥网段：","M5 子网掩码："};
-    final String[] commonFieldsLabels_right = {"壁挂SSID        :","壁挂网关         : ","壁挂服务器IP : ","壁挂子网掩码 : "};
-    final String[] commonFieldsLabels_right_bottom = {"摄像头网关         : ","摄像头服务器IP : ","摄像头子网掩码 : "};
+    final String[] commonFieldsLabels_right = {"壁挂SSID        :","壁挂服务器IP : ","壁挂网关         : ","壁挂子网掩码 : "};
+    final String[] commonFieldsLabels_right_bottom = {"摄像头服务器IP : ","摄像头网关         : ","摄像头子网掩码 : "};
 
     JPanel fieldValuePanel_ubnt = new JPanel(null);
     JPanel fieldValuePanel_wall = new JPanel(null);
@@ -803,7 +803,7 @@ public class ConfigSet {
         // render the ubnt common fields value
         for (int i = 0; i < commonFieldsLabels_left.length; i++) {
             if (commonFields_ubnt.size() > 0){
-                log.info(commonFields_ubnt.get(i+2));
+//                log.info(commonFields_ubnt.get(i+2));
                 JLabel commonFieldsValue  = new JLabel(commonFields_ubnt.get(i+2));
                 commonFieldsValue.setLocation(0,40*i);
                 commonFieldsValue.setSize(140,30);
@@ -836,7 +836,7 @@ public class ConfigSet {
         // render the wall hanging common fields value
         for (int i = 0; i < commonFields_wall.size(); i++) {
             if (commonFields_wall.size() > 0){
-                log.info(commonFields_wall.get(i));
+//                log.info(commonFields_wall.get(i));
                 JLabel commonFieldsValue  = new JLabel(commonFields_wall.get(i));
                 commonFieldsValue.setLocation(0,33*i);
                 commonFieldsValue.setSize(140,30);
@@ -869,7 +869,7 @@ public class ConfigSet {
         // render the camera common fields value
         for (int i = 0; i < commonFields_camera.size(); i++) {
             if (commonFields_camera.size() > 0){
-                log.info(commonFields_camera.get(i));
+//                log.info(commonFields_camera.get(i));
                 JLabel commonFieldsValue  = new JLabel(commonFields_camera.get(i));
                 commonFieldsValue.setLocation(0,33*i);
                 commonFieldsValue.setSize(140,30);

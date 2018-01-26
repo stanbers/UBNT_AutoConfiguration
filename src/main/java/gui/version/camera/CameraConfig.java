@@ -28,8 +28,13 @@ public class CameraConfig {
 
     public int progress = 0;
 
-    public void config(String cameraIP,String cameraNetMask,String cameraGatewayIP,String serverIP,String deviceID){
-        String URL = "http://192.168.1.64/doc/page/login.asp";
+    public int config(String cameraIP,String cameraNetMask,String cameraGatewayIP,String serverIP,String deviceID,String olderCameraIP){
+        String URL;
+        if (olderCameraIP != null){
+            URL = "http://"+olderCameraIP+"/doc/page/login.asp";
+        }else {
+            URL = "http://192.168.1.64/doc/page/login.asp";
+        }
         driver.get(URL);
         try {
             Thread.sleep(1000);
@@ -78,24 +83,18 @@ public class CameraConfig {
 
             try{
                 this.getCancelButton(2).click();
-                this.secondConfig(serverIP,deviceID);
+                progress = this.secondConfig(serverIP,deviceID);
             }catch (NoSuchElementException e){
                 log.info("this is not the first login");
-                this.secondConfig(serverIP,deviceID);
+                progress = this.secondConfig(serverIP,deviceID);
             }
-
-
-
-
-
-
-
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        return progress;
     }
 
-    private void secondConfig(String serverIP, String deviceID){
+    private int secondConfig(String serverIP, String deviceID){
         try {
             //advianced configuration
             this.getSubTab(3,3).click();
@@ -113,8 +112,10 @@ public class CameraConfig {
             this.accessInputBox(2).sendKeys(serverIP);
             Thread.sleep(1000);
             //device id
-            this.accessInputBox(4).clear();
-            this.accessInputBox(4).sendKeys(deviceID);
+            if (deviceID != null){
+                this.accessInputBox(4).clear();
+                this.accessInputBox(4).sendKeys(deviceID);
+            }
             Thread.sleep(1000);
             this.getSaveButton("advancedPlatform").click();
             Thread.sleep(3000);
@@ -207,10 +208,12 @@ public class CameraConfig {
             this.getFormatButton().click();
             this.getCancelButton(1).click();
             Thread.sleep(60000);
+            //todo: not finish yet
+            progress = 1;
         }catch (Exception e){
             e.printStackTrace();
         }
-
+        return progress;
     }
     /**
      * Get format button under disk management table

@@ -7,6 +7,6 @@ package gui.version.camera;
  */
 public class CameraMain {
     public static void main(String[] args) {
-        new CameraConfig().config("192.168.1.64","255.255.255.0","192.168.1.1","124.115.21.16","164070392");
+//        new CameraConfig().config("192.168.1.64","255.255.255.0","192.168.1.1","124.115.21.16","164070392");
     }
 }

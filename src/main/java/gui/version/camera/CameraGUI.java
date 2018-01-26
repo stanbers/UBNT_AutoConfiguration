@@ -42,7 +42,7 @@ public class CameraGUI {
     private int recordIndex = 1;
 
     //initialize camera table header
-    final String[] columns_camera = {"编号","线路","位置","摄像头 IP"};
+    final String[] columns_camera = {"编号","线路","位置","摄像头 IP","设备 ID","版本号"};
 
     //define camera table model
     private DefaultTableModel tableModel_camera = new DefaultTableModel(null,columns_camera){
@@ -65,7 +65,7 @@ public class CameraGUI {
      * @param pNumber_camera
      * @param tableModel
      * @param commonFields
-     * @return
+     * @return the camera config records GUI
      */
     public JPanel showConfigRecordsPage(String pName_camera,String pNumber_camera,DefaultTableModel tableModel,List<String> commonFields){
         this.pName = pName_camera;
@@ -80,21 +80,24 @@ public class CameraGUI {
         //camera records container
         JPanel cameraContainerPanel = new JPanel(null);
         cameraContainerPanel.setLocation(10,60);
-        cameraContainerPanel.setSize(480,550);
+        cameraContainerPanel.setSize(580,550);
         cameraContainerPanel.setBorder(BorderFactory.createTitledBorder(null,"摄像头 配置记录：", TitledBorder.LEFT,TitledBorder.TOP,new Font(null,Font.BOLD,15)));
         cameraContainerPanel.setLayout(null);
 
         //create a JTable to record the configuration info
         final JTable jTable_camera = new JTable(tableModel_camera);
         jTable_camera.setLocation(20,10);
-        jTable_camera.setSize(440,450);
+        jTable_camera.setSize(540,450);
         jTable_camera.setRowHeight(25);
 
         //setup column width
         jTable_camera.getColumn("编号").setMaxWidth(45);
         jTable_camera.getColumn("位置").setMaxWidth(80);
         jTable_camera.getColumn("线路").setMaxWidth(45);
-        jTable_camera.getColumn("摄像头 IP").setPreferredWidth(30);
+        jTable_camera.getColumn("摄像头 IP").setMaxWidth(130);
+        log.info("there are "+jTable_camera.getColumnCount()+" columns");
+        jTable_camera.getColumn("设备 ID").setMaxWidth(110);
+        jTable_camera.getColumn("版本号").setMaxWidth(130);
         jTable_camera.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
         jTable_camera.setFont(new Font(null, Font.PLAIN, 15));
 
@@ -105,12 +108,13 @@ public class CameraGUI {
         jTable_camera.getColumn("位置").setCellRenderer(centerRenderer);
         jTable_camera.getColumn("线路").setCellRenderer(centerRenderer);
         jTable_camera.getColumn("摄像头 IP").setCellRenderer(centerRenderer);
-
+        jTable_camera.getColumn("设备 ID").setCellRenderer(centerRenderer);
+        jTable_camera.getColumn("版本号").setCellRenderer(centerRenderer);
 
         //setup camera hanging table header
         JTableHeader jTableHeader_camera = jTable_camera.getTableHeader();
         jTableHeader_camera.setLocation(20,10);
-        jTableHeader_camera.setSize(440,30);
+        jTableHeader_camera.setSize(540,30);
         jTableHeader_camera.setFont(new Font(null, Font.BOLD, 16));
         jTableHeader_camera.setResizingAllowed(true);
         jTableHeader_camera.setReorderingAllowed(true);
@@ -118,7 +122,7 @@ public class CameraGUI {
         //setup M2 table context scrollable
         final JScrollPane tablePanel_camera = new JScrollPane(jTable_camera);
         tablePanel_camera.setLocation(15,40);
-        tablePanel_camera.setSize(440,450);
+        tablePanel_camera.setSize(540,450);
         cameraContainerPanel.add(tablePanel_camera);
 
         //setup new create button
@@ -161,17 +165,7 @@ public class CameraGUI {
         createcamera.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Vector emptyRow = new Vector();
-                for (int i = 0; i < 10; i++) {
-                    emptyRow.add(null);
-                }
-                tableModel_camera.addRow(emptyRow);
-                if (recordIndex == 0){
-                    tableModel_camera.setValueAt(recordIndex++,tableModel_camera.getRowCount()-1,0);
-                }else {
-                    recordIndex = tableModel_camera.getRowCount();
-                    tableModel_camera.setValueAt(recordIndex++,tableModel_camera.getRowCount()-1,0);
-                }
+
                 createcameraDialog(tableModel_camera);
             }
         });
@@ -212,7 +206,7 @@ public class CameraGUI {
                     int rowNum = jTable_camera.getSelectedRow();
                     //i started from 1, cause no to edit row number.
                     log.info("the " + rowNum + "th row was selected !");
-                    for (int i = 1; i <= 3; i++) {
+                    for (int i = 1; i <= 4; i++) {
                         int a = cellValuesOfSpecificRow.size();
                         log.info("row has " +a +"columns");
                         if (tableModel_camera.getValueAt(rowNum,i) != null){
@@ -241,7 +235,7 @@ public class CameraGUI {
      */
     public void updatecameraDialog(List<String> rowData, final DefaultTableModel tableModel){
 
-        final JDialog jDialog_updateRow = new JDialog(mainFrame,"更新 M2",true);
+        final JDialog jDialog_updateRow = new JDialog(mainFrame,"更新 摄像头",true);
         jDialog_updateRow.setSize(450,460);
         jDialog_updateRow.setLocationRelativeTo(mainFrame);
 
@@ -321,26 +315,25 @@ public class CameraGUI {
             IP_camera.setText(rowData.get(2));
         }
 
-//        //setup camera hanging server IP label:
-//        JLabel cameraIPLabel_server = new JLabel("服务器 IP 地址 :",SwingConstants.LEFT);
-//        cameraIPLabel_server.setFont(new Font(null, 1, 16));
-//        cameraIPLabel_server.setLocation(20,190);
-//        cameraIPLabel_server.setSize(135,30);
-//        cameraOverlay_update.add(cameraIPLabel_server);
-//
-//        //setup camera hanging server IP text field
-//        final JMIPV4AddressField IP_camera_server = new JMIPV4AddressField();
-//        IP_camera_server.setIpAddress("10.1.2.1");
-//        IP_camera_server.setFont(new Font(null, Font.PLAIN, 14));
-//        IP_camera_server.setLocation(160,190);
-//        IP_camera_server.setSize(200,30);
-//        cameraOverlay_update.add(IP_camera_server);
-//
-//        if (rowData.get(3).trim().equals("null")){
-//            IP_camera_server.setText(null);
-//        }else {
-//            IP_camera_server.setText(rowData.get(3));
-//        }
+        //setup camera ID label:
+        JLabel cameraIDLabel = new JLabel("设备 ID :",SwingConstants.LEFT);
+        cameraIDLabel.setFont(new Font(null, 1, 16));
+        cameraIDLabel.setLocation(20,190);
+        cameraIDLabel.setSize(135,30);
+        cameraOverlay_update.add(cameraIDLabel);
+
+        //setup camera ID text field
+        final JTextField cameraIDInputBox = new JTextField(SwingConstants.RIGHT);
+        cameraIDInputBox.setFont(new Font(null, Font.PLAIN, 14));
+        cameraIDInputBox.setLocation(160,190);
+        cameraIDInputBox.setSize(200,30);
+        cameraOverlay_update.add(cameraIDInputBox);
+
+        if (rowData.get(3).trim().equals("null")){
+            cameraIDInputBox.setText(null);
+        }else {
+            cameraIDInputBox.setText(rowData.get(3));
+        }
 
         //setup config button
         final JButton cameraUpdateButton = new JButton("摄像头");
@@ -360,14 +353,16 @@ public class CameraGUI {
 
                 tableModel.setValueAt(way,targetRow,1);
                 tableModel.setValueAt(DK,targetRow,2);
-                log.info(commonFields.get(2));
-                log.info(olderIP_camera);
-                log.info(commonFields.get(4));
-                log.info(commonFields.get(3));
-                log.info(commonFields.get(7));
-                //String cameraIP,String cameraNetMask,String cameraGatewayIP,String serverIP,String deviceID
-//                progress = new CameraConfig().config();
                 tableModel.setValueAt(camera_IP,targetRow,3);
+                tableModel.setValueAt(cameraIDInputBox.getText(),targetRow,4);
+                log.info("the older camera ip is "+olderIP_camera);
+                log.info("the new camera ip is "+camera_IP);
+                log.info("the camera net mask is "+commonFields.get(2));
+                log.info("the camera gateway ip is "+commonFields.get(1));
+                log.info("the camera server ip is "+commonFields.get(0));
+                log.info("the camera id is "+ cameraIDInputBox.getText());
+                //String cameraIP,String cameraNetMask,String cameraGatewayIP,String serverIP,String deviceID
+//                progress = new CameraConfig().config(camera_IP,commonFields.get(2),commonFields.get(1),commonFields.get(0),cameraIDInputBox.getText(),olderIP_camera);
 
                 if (progress == 1){
                     JOptionPane.showMessageDialog(
@@ -463,20 +458,19 @@ public class CameraGUI {
         IP.setSize(200,30);
         cameraOverlay_create.add(IP);
 
-//        //setup camera hanging server IP label:
-//        JLabel cameraIPLabel_server = new JLabel("服务器 IP 地址 :",SwingConstants.LEFT);
-//        cameraIPLabel_server.setFont(new Font(null, 1, 16));
-//        cameraIPLabel_server.setLocation(20,190);
-//        cameraIPLabel_server.setSize(135,30);
-//        cameraOverlay_create.add(cameraIPLabel_server);
-//
-//        //setup camera hanging server IP text field
-//        final JMIPV4AddressField IP_server = new JMIPV4AddressField();
-//        IP_server.setIpAddress("10.1.2.0");
-//        IP_server.setFont(new Font(null, Font.PLAIN, 14));
-//        IP_server.setLocation(160,190);
-//        IP_server.setSize(200,30);
-//        cameraOverlay_create.add(IP_server);
+        //setup camera ID label:
+        JLabel cameraIDLabel = new JLabel("设备 ID :",SwingConstants.LEFT);
+        cameraIDLabel.setFont(new Font(null, 1, 16));
+        cameraIDLabel.setLocation(20,190);
+        cameraIDLabel.setSize(135,30);
+        cameraOverlay_create.add(cameraIDLabel);
+
+        //setup camera ID text field
+        final JTextField cameraIDInputBox = new JTextField(SwingConstants.RIGHT);
+        cameraIDInputBox.setFont(new Font(null, Font.PLAIN, 14));
+        cameraIDInputBox.setLocation(160,190);
+        cameraIDInputBox.setSize(200,30);
+        cameraOverlay_create.add(cameraIDInputBox);
 
         //setup config button
         final JButton cameraConfigButton = new JButton("摄像头");
@@ -489,6 +483,17 @@ public class CameraGUI {
         cameraConfigButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Vector emptyRow = new Vector();
+                for (int i = 0; i < 10; i++) {
+                    emptyRow.add(null);
+                }
+                tableModel_camera.addRow(emptyRow);
+                if (recordIndex == 0){
+                    tableModel_camera.setValueAt(recordIndex++,tableModel_camera.getRowCount()-1,0);
+                }else {
+                    recordIndex = tableModel_camera.getRowCount();
+                    tableModel_camera.setValueAt(recordIndex++,tableModel_camera.getRowCount()-1,0);
+                }
                 int progress = 0;
                 String way = wayComboBox.getSelectedItem().toString();
                 String DK = DKText.getText();
@@ -498,14 +503,19 @@ public class CameraGUI {
                 tableModel.setValueAt(way,targetRow,1);
                 tableModel.setValueAt(DK,targetRow,2);
                 tableModel.setValueAt(camera_IP,targetRow,3);
+                tableModel.setValueAt(cameraIDInputBox.getText(),targetRow,4);
+                //todo: write the version nubmer to the record table
+                //todo: get the version number from the page
+//                tableModel.setValueAt("a method which can return the version number",targetRow,5);
 
-                log.info(commonFields.get(2));
-                log.info(camera_IP);
-                log.info(commonFields.get(4));
-                log.info(commonFields.get(3));
-                log.info(commonFields.get(7));
+                log.info("camera ip is "+camera_IP);
+                log.info("camera net mask is "+commonFields.get(2));
+                log.info("camera gateway ip is "+commonFields.get(1));
+                log.info("camera server ip is "+commonFields.get(0));
+                log.info("camera id is "+cameraIDInputBox.getText());
                 //String cameraIP,String cameraNetMask,String cameraGatewayIP,String serverIP,String deviceID
-//                progress = new CameraConfig().config(camera_IP,);
+                //create
+//                progress = new CameraConfig().config(camera_IP,commonFields.get(2),commonFields.get(1),commonFields.get(0),cameraIDInputBox.getText(),null);
 
                 if (progress == 1){
                     JOptionPane.showMessageDialog(
