@@ -366,17 +366,7 @@ public class WallHangingGUI {
         createWall.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Vector emptyRow = new Vector();
-                for (int i = 0; i < 10; i++) {
-                    emptyRow.add(null);
-                }
-                tableModel_wall.addRow(emptyRow);
-                if (recordIndex == 0){
-                    tableModel_wall.setValueAt(recordIndex++,tableModel_wall.getRowCount()-1,0);
-                }else {
-                    recordIndex = tableModel_wall.getRowCount();
-                    tableModel_wall.setValueAt(recordIndex++,tableModel_wall.getRowCount()-1,0);
-                }
+
                 createWallDialog(tableModel_wall);
             }
         });
@@ -565,12 +555,12 @@ public class WallHangingGUI {
 
                 tableModel.setValueAt(way,targetRow,1);
                 tableModel.setValueAt(DK,targetRow,2);
-                log.info(commonFields.get(2));
-                log.info(olderIP_wall);
-                log.info(commonFields.get(4));
-                log.info(commonFields.get(3));
-                log.info(commonFields.get(7));
-                progress = new WallHangingConfig().config(commonFields.get(2),olderIP_wall,commonFields.get(4),commonFields.get(3),commonFields.get(7));
+                log.info("wall hanging ssid is "+commonFields.get(0));
+                log.info("wall hanging IP is "+wall_IP);
+                log.info("wall hanging server ip is "+commonFields.get(1));
+                log.info("wall hanging gateway ip is "+commonFields.get(2));
+                log.info("wall hanging net mask is "+commonFields.get(3));
+//                progress = new WallHangingConfig().config(commonFields.get(0),olderIP_wall,commonFields.get(3),commonFields.get(2),commonFields.get(1));
                 tableModel.setValueAt(wall_IP,targetRow,3);
 
                 if (progress == 1){
@@ -693,6 +683,18 @@ public class WallHangingGUI {
         wallConfigButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                Vector emptyRow = new Vector();
+                for (int i = 0; i < 10; i++) {
+                    emptyRow.add(null);
+                }
+                tableModel_wall.addRow(emptyRow);
+                if (recordIndex == 0){
+                    tableModel_wall.setValueAt(recordIndex++,tableModel_wall.getRowCount()-1,0);
+                }else {
+                    recordIndex = tableModel_wall.getRowCount();
+                    tableModel_wall.setValueAt(recordIndex++,tableModel_wall.getRowCount()-1,0);
+                }
                 int progress = 0;
                 String way = wayComboBox.getSelectedItem().toString();
                 String DK = DKText.getText();
@@ -703,12 +705,13 @@ public class WallHangingGUI {
                 tableModel.setValueAt(DK,targetRow,2);
                 tableModel.setValueAt(wall_IP,targetRow,3);
 
-                log.info(commonFields.get(2));
-                log.info(wall_IP);
-                log.info(commonFields.get(4));
-                log.info(commonFields.get(3));
-                log.info(commonFields.get(7));
-                progress = new WallHangingConfig().config(commonFields.get(2),wall_IP,commonFields.get(4),commonFields.get(3),commonFields.get(7));
+                log.info("wall hanging ssid is "+commonFields.get(0));
+                log.info("wall hanging IP is "+wall_IP);
+                log.info("wall hanging server ip is "+commonFields.get(1));
+                log.info("wall hanging gateway ip is "+commonFields.get(2));
+                log.info("wall hanging net mask is "+commonFields.get(3));
+                //String ssidName, String wallHangingIP, String wallHangingNetmask, String wallHangingGatewayIP, String serverIP
+//                progress = new WallHangingConfig().config(commonFields.get(0),wall_IP,commonFields.get(3),commonFields.get(2),commonFields.get(1));
 
                 if (progress == 1){
                     JOptionPane.showMessageDialog(

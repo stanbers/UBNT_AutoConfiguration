@@ -100,7 +100,8 @@ public class ConfigSet {
     private String updatedIP_M2,originalIP_M5AP,originalIP_M5ST;
 
     final String[] commonFieldsLabels_left = {"SSID               : ","M2 无线网关：","M2 子网掩码：","M5 网桥网段：","M5 子网掩码："};
-    final String[] commonFieldsLabels_right = {"壁挂网关         : ","壁挂服务器IP : ","壁挂子网掩码 : ","摄像头网关         : ","摄像头服务器IP : ","摄像头子网掩码 : "};
+    final String[] commonFieldsLabels_right = {"壁挂SSID        :","壁挂网关         : ","壁挂服务器IP : ","壁挂子网掩码 : "};
+    final String[] commonFieldsLabels_right_bottom = {"摄像头网关         : ","摄像头服务器IP : ","摄像头子网掩码 : "};
 
     JPanel fieldValuePanel_ubnt = new JPanel(null);
     JPanel fieldValuePanel_wall = new JPanel(null);
@@ -112,11 +113,11 @@ public class ConfigSet {
             fieldValuePanel_ubnt.setSize(130,200);
             return fieldValuePanel_ubnt;
         }else if (deviceName.trim().equals("wall")){
-            fieldValuePanel_wall.setLocation(400,40);
+            fieldValuePanel_wall.setLocation(400,33);
             fieldValuePanel_wall.setSize(130,110);
             return fieldValuePanel_wall;
         }else if (deviceName.trim().equals("camera")){
-            fieldValuePanel_camera.setLocation(400,160);
+            fieldValuePanel_camera.setLocation(400,175);
             fieldValuePanel_camera.setSize(130,110);
             return fieldValuePanel_camera;
         }
@@ -247,14 +248,27 @@ public class ConfigSet {
         for (int i = 1; i <= commonFieldsLabels_right.length; i++) {
             JLabel commonFiledsLabel_right = new JLabel(commonFieldsLabels_right[i-1]);
             commonFiledsLabel_right.setFont(new Font(null, 1, 16));
-            commonFiledsLabel_right.setLocation(260,40*i);
+            commonFiledsLabel_right.setLocation(260,33*i);
             commonFiledsLabel_right.setSize(135,30);
             commonFieldsPanel.add(commonFiledsLabel_right);
         }
 
+        JPanel cameraFieldLabelPanel = new JPanel(null);
+        cameraFieldLabelPanel.setLocation(260,175);
+        cameraFieldLabelPanel.setSize(135,110);
+        commonFieldsPanel.add(cameraFieldLabelPanel);
+
+        for (int i = 0; i < commonFieldsLabels_right_bottom.length; i++) {
+            JLabel label_right_bottom = new JLabel(commonFieldsLabels_right_bottom[i]);
+            label_right_bottom.setFont(new Font(null, 1, 16));
+            label_right_bottom.setLocation(0,33*i);
+            label_right_bottom.setSize(135,30);
+            cameraFieldLabelPanel.add(label_right_bottom);
+        }
+
         //to separate wall hanging and camera
         JLabel lineseparator = new JLabel("--");
-        lineseparator.setLocation(255,157);
+        lineseparator.setLocation(255,165);
         lineseparator.setSize(270,1);
         lineseparator.setOpaque(true);
         lineseparator.setBackground(Color.black);
@@ -587,24 +601,31 @@ public class ConfigSet {
                         homepagePanel.setVisible(true);
                         mainFrame.setContentPane(homepagePanel);
 
-                        if (fieldValuePanel.getComponents().length == 0){
-                            JPanel filedsValue_ubnt = generateUBNTCommondFields(commonFieldsPanel,fieldValuePanel,false);
+                        if (genarateFieldsValuePanel("ubnt").getComponents().length == 0){
+                            JPanel filedsValue_ubnt = generateUBNTCommondFields(commonFieldsPanel,genarateFieldsValuePanel("ubnt"),false);
                             filedsValue_ubnt.repaint();
 
-                            JPanel filedsValue_wall = generateWallCommondFields(commonFieldsPanel,fieldValuePanel,false);
-                            filedsValue_wall.repaint();
+                        }else {
+                            genarateFieldsValuePanel("ubnt").removeAll();
+                            JPanel filedsValue_new_ubnt = generateUBNTCommondFields(commonFieldsPanel,genarateFieldsValuePanel("ubnt"),false);
+                            filedsValue_new_ubnt.repaint();
+                        }
 
-                            JPanel filedsValue_camera = generateCameraCommondFields(commonFieldsPanel,fieldValuePanel,false);
+                        if (genarateFieldsValuePanel("wall").getComponents().length == 0){
+                            JPanel filedsValue_wall = generateWallCommondFields(commonFieldsPanel,genarateFieldsValuePanel("wall"),false);
+                            filedsValue_wall.repaint();
+                        }else {
+                            genarateFieldsValuePanel("wall").removeAll();
+                            JPanel filedsValue_new_wall = generateWallCommondFields(commonFieldsPanel,genarateFieldsValuePanel("wall"),false);
+                            filedsValue_new_wall.repaint();
+                        }
+
+                        if (genarateFieldsValuePanel("camera").getComponents().length == 0){
+                            JPanel filedsValue_camera = generateCameraCommondFields(commonFieldsPanel,genarateFieldsValuePanel("camera"),false);
                             filedsValue_camera.repaint();
                         }else {
-                            fieldValuePanel.removeAll();
-                            JPanel filedsValue_new = generateUBNTCommondFields(commonFieldsPanel,fieldValuePanel,false);
-                            filedsValue_new.repaint();
-
-                            JPanel filedsValue_new_wall = generateWallCommondFields(commonFieldsPanel,fieldValuePanel,false);
-                            filedsValue_new_wall.repaint();
-
-                            JPanel filedsValue_new_camera = generateCameraCommondFields(commonFieldsPanel,fieldValuePanel,false);
+                            genarateFieldsValuePanel("camera").removeAll();
+                            JPanel filedsValue_new_camera = generateCameraCommondFields(commonFieldsPanel,genarateFieldsValuePanel("camera"),false);
                             filedsValue_new_camera.repaint();
                         }
                     }
@@ -708,14 +729,33 @@ public class ConfigSet {
                         homepagePanel.setVisible(true);
                         mainFrame.setContentPane(homepagePanel);
 
-//                        if (fieldValuePanel.getComponents().length == 0){
-//                            JPanel filedsValue = generateUBNTCommondFields(commonFieldsPanel,fieldValuePanel,false);
-//                            filedsValue.repaint();
-//                        }else {
-//                            fieldValuePanel.removeAll();
-//                            JPanel filedsValue_new = generateUBNTCommondFields(commonFieldsPanel,fieldValuePanel,false);
-//                            filedsValue_new.repaint();
-//                        }
+                        if (genarateFieldsValuePanel("ubnt").getComponents().length == 0){
+                            JPanel filedsValue_ubnt = generateUBNTCommondFields(commonFieldsPanel,genarateFieldsValuePanel("ubnt"),false);
+                            filedsValue_ubnt.repaint();
+
+                        }else {
+                            genarateFieldsValuePanel("ubnt").removeAll();
+                            JPanel filedsValue_new_ubnt = generateUBNTCommondFields(commonFieldsPanel,genarateFieldsValuePanel("ubnt"),false);
+                            filedsValue_new_ubnt.repaint();
+                        }
+
+                        if (genarateFieldsValuePanel("wall").getComponents().length == 0){
+                            JPanel filedsValue_wall = generateWallCommondFields(commonFieldsPanel,genarateFieldsValuePanel("wall"),false);
+                            filedsValue_wall.repaint();
+                        }else {
+                            genarateFieldsValuePanel("wall").removeAll();
+                            JPanel filedsValue_new_wall = generateWallCommondFields(commonFieldsPanel,genarateFieldsValuePanel("wall"),false);
+                            filedsValue_new_wall.repaint();
+                        }
+
+                        if (genarateFieldsValuePanel("camera").getComponents().length == 0){
+                            JPanel filedsValue_camera = generateCameraCommondFields(commonFieldsPanel,genarateFieldsValuePanel("camera"),false);
+                            filedsValue_camera.repaint();
+                        }else {
+                            genarateFieldsValuePanel("camera").removeAll();
+                            JPanel filedsValue_new_camera = generateCameraCommondFields(commonFieldsPanel,genarateFieldsValuePanel("camera"),false);
+                            filedsValue_new_camera.repaint();
+                        }
                     }
 
                 });
@@ -788,17 +828,17 @@ public class ConfigSet {
 
         if (isFromProjectTable){
             fieldValuePanel = new JPanel(null);
-            fieldValuePanel.setLocation(400,40);
-            fieldValuePanel.setSize(130,110);
+            fieldValuePanel.setLocation(400,33);
+            fieldValuePanel.setSize(130,130);
             commonFieldsPanel.add(fieldValuePanel);
 
         }
         // render the wall hanging common fields value
-        for (int i = 0; i < commonFieldsLabels_right.length-3; i++) {
+        for (int i = 0; i < commonFields_wall.size(); i++) {
             if (commonFields_wall.size() > 0){
                 log.info(commonFields_wall.get(i));
                 JLabel commonFieldsValue  = new JLabel(commonFields_wall.get(i));
-                commonFieldsValue.setLocation(0,40*i);
+                commonFieldsValue.setLocation(0,33*i);
                 commonFieldsValue.setSize(140,30);
                 commonFieldsValue.setFont(new Font(null,Font.BOLD,16));
                 fieldValuePanel.add(commonFieldsValue);
@@ -821,17 +861,17 @@ public class ConfigSet {
 
         if (isFromProjectTable){
             fieldValuePanel = new JPanel(null);
-            fieldValuePanel.setLocation(400,160);
+            fieldValuePanel.setLocation(400,175);
             fieldValuePanel.setSize(130,110);
             commonFieldsPanel.add(fieldValuePanel);
 
         }
         // render the camera common fields value
-        for (int i = 0; i < commonFieldsLabels_right.length-3; i++) {
+        for (int i = 0; i < commonFields_camera.size(); i++) {
             if (commonFields_camera.size() > 0){
                 log.info(commonFields_camera.get(i));
                 JLabel commonFieldsValue  = new JLabel(commonFields_camera.get(i));
-                commonFieldsValue.setLocation(0,40*i);
+                commonFieldsValue.setLocation(0,33*i);
                 commonFieldsValue.setSize(140,30);
                 commonFieldsValue.setFont(new Font(null,Font.BOLD,16));
                 fieldValuePanel.add(commonFieldsValue);
@@ -1346,13 +1386,13 @@ public class ConfigSet {
                         tableModel_M5.setValueAt(recordIndex++,tableModel_M5.getRowCount()-1,0);
                     }
 
-                    log.info("线路是: " + way_M5);
-                    log.info("DK is: " + DK_M5);
-                    log.info("ap IP is: " + IPAddress_AP);
-                    log.info("fruq is: " + fruq_AP);
-                    log.info("ssid is: " + commonFields_ubnt.get(2));
-                    log.info("ap net mask is: " + commonFields_ubnt.get(6));
-                    log.info("ap gateway ip is: " + commonFields_ubnt.get(5));
+//                    log.info("线路是: " + way_M5);
+//                    log.info("DK is: " + DK_M5);
+//                    log.info("ap IP is: " + IPAddress_AP);
+//                    log.info("fruq is: " + fruq_AP);
+//                    log.info("ssid is: " + commonFields_ubnt.get(2));
+//                    log.info("ap net mask is: " + commonFields_ubnt.get(6));
+//                    log.info("ap gateway ip is: " + commonFields_ubnt.get(5));
 
 //                    progress = new M5_Configuration().configM5("AP",commonFields.get(2),IPAddress_AP,commonFields.get(6),commonFields.get(5),fruq_AP,null,originalIP_M5AP);
                     if (progress == 1){
@@ -1441,13 +1481,13 @@ public class ConfigSet {
                     tableModel.setValueAt(IPAddress_ST,tableModel.getRowCount()-1,6);
                     tableModel.setValueAt(macAddress,tableModel.getRowCount()-1,7);
 
-                    log.info("线路是: " + way_M5);
-                    log.info("DK is: " + DK_M5);
-                    log.info("ap IP is: " + IPAddress_ST);
-                    log.info("fruq is: " + macAddress);
-                    log.info("ssid is: " + commonFields_ubnt.get(2));
-                    log.info("ap net mask is: " + commonFields_ubnt.get(6));
-                    log.info("ap gateway ip is: " + commonFields_ubnt.get(5));
+//                    log.info("线路是: " + way_M5);
+//                    log.info("DK is: " + DK_M5);
+//                    log.info("ap IP is: " + IPAddress_ST);
+//                    log.info("fruq is: " + macAddress);
+//                    log.info("ssid is: " + commonFields_ubnt.get(2));
+//                    log.info("ap net mask is: " + commonFields_ubnt.get(6));
+//                    log.info("ap gateway ip is: " + commonFields_ubnt.get(5));
 
 //                    progress = new M5_Configuration().configM5("ST",commonFields.get(2),IPAddress_ST,commonFields.get(6),commonFields.get(5),null,macAddress,originalIP_M5ST);
                     if (progress == 1){
@@ -1639,13 +1679,13 @@ public class ConfigSet {
                     tableModel.setValueAt(IPAddress_AP,tableModel.getRowCount()-1,3);
                     tableModel.setValueAt(fruq_AP,tableModel.getRowCount()-1,4);
 
-                    log.info("线路是: " + way_M5);
-                    log.info("DK is: " + DK_M5);
-                    log.info("ap IP is: " + IPAddress_AP);
-                    log.info("fruq is: " + fruq_AP);
-                    log.info("ssid is: " + commonFields_ubnt.get(2));
-                    log.info("ap net mask is: " + commonFields_ubnt.get(6));
-                    log.info("ap gateway ip is: " + commonFields_ubnt.get(5));
+//                    log.info("线路是: " + way_M5);
+//                    log.info("DK is: " + DK_M5);
+//                    log.info("ap IP is: " + IPAddress_AP);
+//                    log.info("fruq is: " + fruq_AP);
+//                    log.info("ssid is: " + commonFields_ubnt.get(2));
+//                    log.info("ap net mask is: " + commonFields_ubnt.get(6));
+//                    log.info("ap gateway ip is: " + commonFields_ubnt.get(5));
 
 //                    progress = new M5_Configuration().configM5("AP",commonFields_ubnt.get(2),IPAddress_AP,commonFields_ubnt.get(6),commonFields_ubnt.get(5),fruq_AP,null,null);
                     if (progress == 1){
@@ -1724,13 +1764,13 @@ public class ConfigSet {
                     tableModel.setValueAt(IPAddress_ST,tableModel.getRowCount()-1,6);
                     tableModel.setValueAt(macAddress,tableModel.getRowCount()-1,7);
 
-                    log.info("线路是: " + way_M5);
-                    log.info("DK is: " + DK_M5);
-                    log.info("st IP is: " + IPAddress_ST);
-                    log.info("mac address is: " + macAddress);
-                    log.info("ssid is: " + commonFields_ubnt.get(2));
-                    log.info("st net mask is: " + commonFields_ubnt.get(6));
-                    log.info("st gateway ip is: " + commonFields_ubnt.get(5));
+//                    log.info("线路是: " + way_M5);
+//                    log.info("DK is: " + DK_M5);
+//                    log.info("st IP is: " + IPAddress_ST);
+//                    log.info("mac address is: " + macAddress);
+//                    log.info("ssid is: " + commonFields_ubnt.get(2));
+//                    log.info("st net mask is: " + commonFields_ubnt.get(6));
+//                    log.info("st gateway ip is: " + commonFields_ubnt.get(5));
 
 //                    progress = new M5_Configuration().configM5("ST",commonFields_ubnt.get(2),IPAddress_ST,commonFields_ubnt.get(6),commonFields_ubnt.get(5),null,macAddress,null);
                     if (progress == 1){
@@ -1861,12 +1901,12 @@ public class ConfigSet {
                 tableModel.setValueAt(way,targetRow,1);
                 tableModel.setValueAt(DK,targetRow,2);
 
-                log.info("线路是: "+way);
-                log.info("DK是 "+DK);
-                log.info("ssid is " + commonFields_ubnt.get(2));
-                log.info("M2 IP is "+M2_IP);
-                log.info("net mask is "+commonFields_ubnt.get(4));
-                log.info("gateway IP is "+commonFields_ubnt.get(3));
+//                log.info("线路是: "+way);
+//                log.info("DK是 "+DK);
+//                log.info("ssid is " + commonFields_ubnt.get(2));
+//                log.info("M2 IP is "+M2_IP);
+//                log.info("net mask is "+commonFields_ubnt.get(4));
+//                log.info("gateway IP is "+commonFields_ubnt.get(3));
 
 //                progress = new M2_Configuration().configM2(commonFields_ubnt.get(2),M2_IP,commonFields_ubnt.get(4),commonFields_ubnt.get(3),updatedIP_M2);
                 tableModel.setValueAt(M2_IP,targetRow,3);
@@ -1999,12 +2039,12 @@ public class ConfigSet {
                 tableModel.setValueAt(DK,targetRow,2);
                 tableModel.setValueAt(M2_IP,targetRow,3);
 
-                log.info("线路是: "+way);
-                log.info("DK是 "+DK);
-                log.info("ssid is " + commonFields_ubnt.get(2));
-                log.info("M2 IP is "+M2_IP);
-                log.info("net mask is "+commonFields_ubnt.get(4));
-                log.info("gateway IP is "+commonFields_ubnt.get(3));
+//                log.info("线路是: "+way);
+//                log.info("DK是 "+DK);
+//                log.info("ssid is " + commonFields_ubnt.get(2));
+//                log.info("M2 IP is "+M2_IP);
+//                log.info("net mask is "+commonFields_ubnt.get(4));
+//                log.info("gateway IP is "+commonFields_ubnt.get(3));
 //                progress = new M2_Configuration().configM2(commonFields_ubnt.get(2),M2_IP,commonFields_ubnt.get(4),commonFields_ubnt.get(3),null);
 
                 if (progress == 1){
@@ -2230,15 +2270,30 @@ public class ConfigSet {
         innerJPanel_wall.setLayout(null);
 
         //wall hanging server ip label and corresponding text field
+        JLabel ssid_wall = new JLabel("SSID :");
+        final JTextField ssid_InputBox_wall = new JTextField();
+        ssid_wall.setLocation(390,130);
+        ssid_wall.setSize(120,35);
+        ssid_wall.setFont(new Font(null, BOLD,16));
+        ssid_InputBox_wall.setLocation(500,130);
+        ssid_InputBox_wall.setSize(180,35);
+        ssid_InputBox_wall.setFont(new Font(null, Font.PLAIN, 16));
+        if (isUpdate){
+            ssid_InputBox_wall.setText(commonFields_wall.get(0));
+        }
+        projectContainerPanel.add(ssid_wall);
+        projectContainerPanel.add(ssid_InputBox_wall);
+
+        //wall hanging server ip label and corresponding text field
         JLabel serverIP_wall = new JLabel("服务器 IP :");
         final JMIPV4AddressField serverIP_InputBox_wall = new JMIPV4AddressField();
         serverIP_InputBox_wall.setIpAddress("10.10.100.254");
-        serverIP_wall.setLocation(390,140);
-        serverIP_wall.setSize(120,40);
-        serverIP_wall.setFont(new Font(null, BOLD,18));
-        serverIP_InputBox_wall.setLocation(500,140);
-        serverIP_InputBox_wall.setSize(180,40);
-        serverIP_InputBox_wall.setFont(new Font(null, Font.PLAIN, 18));
+        serverIP_wall.setLocation(390,170);
+        serverIP_wall.setSize(120,35);
+        serverIP_wall.setFont(new Font(null, BOLD,16));
+        serverIP_InputBox_wall.setLocation(500,170);
+        serverIP_InputBox_wall.setSize(180,35);
+        serverIP_InputBox_wall.setFont(new Font(null, Font.PLAIN, 16));
         if (isUpdate){
             serverIP_InputBox_wall.setText(commonFields_wall.get(0));
         }
@@ -2249,12 +2304,12 @@ public class ConfigSet {
         JLabel gatewayIP_wall = new JLabel("网关 :");
         final JMIPV4AddressField gatewayIP_InputBox_wall = new JMIPV4AddressField();
         gatewayIP_InputBox_wall.setIpAddress("10.10.100.254");
-        gatewayIP_wall.setLocation(390,190);
-        gatewayIP_wall.setSize(120,40);
-        gatewayIP_wall.setFont(new Font(null, BOLD,18));
-        gatewayIP_InputBox_wall.setLocation(500,190);
-        gatewayIP_InputBox_wall.setSize(180,40);
-        gatewayIP_InputBox_wall.setFont(new Font(null, Font.PLAIN, 18));
+        gatewayIP_wall.setLocation(390,210);
+        gatewayIP_wall.setSize(120,35);
+        gatewayIP_wall.setFont(new Font(null, BOLD,16));
+        gatewayIP_InputBox_wall.setLocation(500,210);
+        gatewayIP_InputBox_wall.setSize(180,35);
+        gatewayIP_InputBox_wall.setFont(new Font(null, Font.PLAIN, 16));
         if (isUpdate){
             gatewayIP_InputBox_wall.setText(commonFields_wall.get(1));
         }
@@ -2265,12 +2320,12 @@ public class ConfigSet {
         JLabel netMask_wall = new JLabel("子网掩码 :");
         final JMIPV4AddressField netMask_InputBox_wall = new JMIPV4AddressField();
         netMask_InputBox_wall.setIpAddress("255.255.255.0");
-        netMask_wall.setLocation(390,240);
-        netMask_wall.setSize(120,40);
-        netMask_wall.setFont(new Font(null, BOLD,18));
-        netMask_InputBox_wall.setLocation(500,240);
-        netMask_InputBox_wall.setSize(180,40);
-        netMask_InputBox_wall.setFont(new Font(null, Font.PLAIN, 18));
+        netMask_wall.setLocation(390,250);
+        netMask_wall.setSize(120,35);
+        netMask_wall.setFont(new Font(null, BOLD,17));
+        netMask_InputBox_wall.setLocation(500,250);
+        netMask_InputBox_wall.setSize(180,35);
+        netMask_InputBox_wall.setFont(new Font(null, Font.PLAIN, 17));
         if (isUpdate){
             netMask_InputBox_wall.setText(commonFields_wall.get(2));
         }
@@ -2397,6 +2452,7 @@ public class ConfigSet {
 
                 //save those all fields to wall hanging list.
                 commonFields_wall.clear();
+                commonFields_wall.add(ssid_InputBox_wall.getText());
                 commonFields_wall.add(serverIP_InputBox_wall.getText());
                 commonFields_wall.add(gatewayIP_InputBox_wall.getText());
                 commonFields_wall.add(netMask_InputBox_wall.getText());
