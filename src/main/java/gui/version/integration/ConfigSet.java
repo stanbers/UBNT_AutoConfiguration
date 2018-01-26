@@ -102,7 +102,26 @@ public class ConfigSet {
     final String[] commonFieldsLabels_left = {"SSID               : ","M2 无线网关：","M2 子网掩码：","M5 网桥网段：","M5 子网掩码："};
     final String[] commonFieldsLabels_right = {"壁挂网关         : ","壁挂服务器IP : ","壁挂子网掩码 : ","摄像头网关         : ","摄像头服务器IP : ","摄像头子网掩码 : "};
 
-
+    JPanel fieldValuePanel_ubnt = new JPanel(null);
+    JPanel fieldValuePanel_wall = new JPanel(null);
+    JPanel fieldValuePanel_camera = new JPanel(null);
+    public JPanel genarateFieldsValuePanel(String deviceName){
+        //initialize the ubnt field value panel, need to clear this panel each time
+        if (deviceName.trim().equals("ubnt")){
+            fieldValuePanel_ubnt.setLocation(125,40);
+            fieldValuePanel_ubnt.setSize(130,200);
+            return fieldValuePanel_ubnt;
+        }else if (deviceName.trim().equals("wall")){
+            fieldValuePanel_wall.setLocation(400,40);
+            fieldValuePanel_wall.setSize(130,110);
+            return fieldValuePanel_wall;
+        }else if (deviceName.trim().equals("camera")){
+            fieldValuePanel_camera.setLocation(400,160);
+            fieldValuePanel_camera.setSize(130,110);
+            return fieldValuePanel_camera;
+        }
+        return null;
+    }
 
     /**
      * To render homepage, include project table and create project dialog
@@ -193,11 +212,8 @@ public class ConfigSet {
         commonFieldsPanel.setBorder(BorderFactory.createTitledBorder(null, "项目其他参数：", TitledBorder.LEFT, TitledBorder.TOP, new Font(null, BOLD, 18)));
         homepagePanel.add(commonFieldsPanel);
 
-        //initialize the ubnt field value panel, need to clear this panel each time
+        //this is a placeholder
         final JPanel fieldValuePanel = new JPanel(null);
-        fieldValuePanel.setLocation(125,40);
-        fieldValuePanel.setSize(130,230);
-        commonFieldsPanel.add(fieldValuePanel);
 
         //setup update common field button
         final JButton updateCommonField = new JButton("修改参数");
@@ -315,6 +331,29 @@ public class ConfigSet {
             }
         });
 
+//        //initialize the ubnt field value panel, need to clear this panel each time
+//        final JPanel fieldValuePanel_ubnt = new JPanel(null);
+//        fieldValuePanel_ubnt.setLocation(125,40);
+//        fieldValuePanel_ubnt.setSize(130,200);
+//        commonFieldsPanel.add(fieldValuePanel_ubnt);
+//
+//        //initialize the wall hanging field value panel, need to clear this panel each time
+//        final JPanel fieldValuePanel_wall = new JPanel(null);
+//        fieldValuePanel_wall.setLocation(400,40);
+//        fieldValuePanel_wall.setSize(130,110);
+//        commonFieldsPanel.add(fieldValuePanel_wall);
+//
+//        //initialize the wall hanging field value panel, need to clear this panel each time
+//        final JPanel fieldValuePanel_camera = new JPanel(null);
+//        fieldValuePanel_camera.setLocation(400,160);
+//        fieldValuePanel_camera.setSize(130,110);
+//        commonFieldsPanel.add(fieldValuePanel_camera);
+
+        commonFieldsPanel.add(genarateFieldsValuePanel("ubnt"));
+        commonFieldsPanel.add(genarateFieldsValuePanel("wall"));
+        commonFieldsPanel.add(genarateFieldsValuePanel("camera"));
+
+
         ubnt_homepage.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -381,14 +420,33 @@ public class ConfigSet {
 
 //                            };
                             mainFrame.setContentPane(homepagePanel);
-//                            if (fieldValuePanel.getComponents().length == 0){
-//                                JPanel filedsValue = generateUBNTCommondFields(commonFieldsPanel,fieldValuePanel,false);
-//                                filedsValue.repaint();
-//                            }else {
-//                                fieldValuePanel.removeAll();
-//                                JPanel filedsValue_new = generateUBNTCommondFields(commonFieldsPanel,fieldValuePanel,false);
-//                                filedsValue_new.repaint();
-//                            }
+                            if (genarateFieldsValuePanel("ubnt").getComponents().length == 0){
+                                JPanel filedsValue_ubnt = generateUBNTCommondFields(commonFieldsPanel,genarateFieldsValuePanel("ubnt"),false);
+                                filedsValue_ubnt.repaint();
+
+                            }else {
+                                genarateFieldsValuePanel("ubnt").removeAll();
+                                JPanel filedsValue_new_ubnt = generateUBNTCommondFields(commonFieldsPanel,genarateFieldsValuePanel("ubnt"),false);
+                                filedsValue_new_ubnt.repaint();
+                            }
+
+                            if (genarateFieldsValuePanel("wall").getComponents().length == 0){
+                                JPanel filedsValue_wall = generateWallCommondFields(commonFieldsPanel,genarateFieldsValuePanel("wall"),false);
+                                filedsValue_wall.repaint();
+                            }else {
+                                genarateFieldsValuePanel("wall").removeAll();
+                                JPanel filedsValue_new_wall = generateWallCommondFields(commonFieldsPanel,genarateFieldsValuePanel("wall"),false);
+                                filedsValue_new_wall.repaint();
+                            }
+
+                            if (genarateFieldsValuePanel("camera").getComponents().length == 0){
+                                JPanel filedsValue_camera = generateCameraCommondFields(commonFieldsPanel,genarateFieldsValuePanel("camera"),false);
+                                filedsValue_camera.repaint();
+                            }else {
+                                genarateFieldsValuePanel("camera").removeAll();
+                                JPanel filedsValue_new_camera = generateCameraCommondFields(commonFieldsPanel,genarateFieldsValuePanel("camera"),false);
+                                filedsValue_new_camera.repaint();
+                            }
                         }
 
                     });
@@ -529,14 +587,26 @@ public class ConfigSet {
                         homepagePanel.setVisible(true);
                         mainFrame.setContentPane(homepagePanel);
 
-//                        if (fieldValuePanel.getComponents().length == 0){
-//                            JPanel filedsValue = generateUBNTCommondFields(commonFieldsPanel,fieldValuePanel,false);
-//                            filedsValue.repaint();
-//                        }else {
-//                            fieldValuePanel.removeAll();
-//                            JPanel filedsValue_new = generateUBNTCommondFields(commonFieldsPanel,fieldValuePanel,false);
-//                            filedsValue_new.repaint();
-//                        }
+                        if (fieldValuePanel.getComponents().length == 0){
+                            JPanel filedsValue_ubnt = generateUBNTCommondFields(commonFieldsPanel,fieldValuePanel,false);
+                            filedsValue_ubnt.repaint();
+
+                            JPanel filedsValue_wall = generateWallCommondFields(commonFieldsPanel,fieldValuePanel,false);
+                            filedsValue_wall.repaint();
+
+                            JPanel filedsValue_camera = generateCameraCommondFields(commonFieldsPanel,fieldValuePanel,false);
+                            filedsValue_camera.repaint();
+                        }else {
+                            fieldValuePanel.removeAll();
+                            JPanel filedsValue_new = generateUBNTCommondFields(commonFieldsPanel,fieldValuePanel,false);
+                            filedsValue_new.repaint();
+
+                            JPanel filedsValue_new_wall = generateWallCommondFields(commonFieldsPanel,fieldValuePanel,false);
+                            filedsValue_new_wall.repaint();
+
+                            JPanel filedsValue_new_camera = generateCameraCommondFields(commonFieldsPanel,fieldValuePanel,false);
+                            filedsValue_new_camera.repaint();
+                        }
                     }
 
                 });
@@ -1967,23 +2037,11 @@ public class ConfigSet {
      */
     public JDialog generateNewProjectDilog(final DefaultTableModel projectTableModel, final boolean isUpdate, final JPanel commonFieldPanel){
 
-        //initialize the ubnt field value panel, need to clear this panel each time
-        final JPanel fieldValuePanel_ubnt = new JPanel(null);
-        fieldValuePanel_ubnt.setLocation(125,40);
-        fieldValuePanel_ubnt.setSize(130,200);
-        commonFieldPanel.add(fieldValuePanel_ubnt);
-
-        //initialize the wall hanging field value panel, need to clear this panel each time
-        final JPanel fieldValuePanel_wall = new JPanel(null);
-        fieldValuePanel_wall.setLocation(400,40);
-        fieldValuePanel_wall.setSize(130,110);
-        commonFieldPanel.add(fieldValuePanel_wall);
-
-        //initialize the wall hanging field value panel, need to clear this panel each time
-        final JPanel fieldValuePanel_camera = new JPanel(null);
-        fieldValuePanel_camera.setLocation(400,160);
-        fieldValuePanel_camera.setSize(130,110);
-        commonFieldPanel.add(fieldValuePanel_camera);
+        if (isUpdate){
+            fieldValuePanel_ubnt.removeAll();
+            fieldValuePanel_wall.removeAll();
+            fieldValuePanel_camera.removeAll();
+        }
 
         //initialize new project dialog, the third parameter value is true means current dialog focused on the homepage,and
         //homepage can be clicked only if the project dialog was closed

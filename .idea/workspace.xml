@@ -3,46 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6297135e-99b4-48ed-8d1f-4be9376233e2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/TrainScheduling_jar/TrainScheduling.jar" afterPath="$PROJECT_DIR$/out/artifacts/TrainScheduling_jar/TrainScheduling.jar" />
       <change beforePath="$PROJECT_DIR$/src/main/java/gui/version/integration/ConfigSet.java" afterPath="$PROJECT_DIR$/src/main/java/gui/version/integration/ConfigSet.java" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$1.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$10.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$10.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$11.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$11.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$12.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$12.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$13.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$13.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$14.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$14.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$15.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$15.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$16.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$16.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$17.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$17.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$18.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$18.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$19.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$19.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$2.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$2.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$20.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$20.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$21.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$21.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$22.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$22.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$23.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$23.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$24.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$24.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$25.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$25.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$3.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$3.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$4.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$4.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$5.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$5.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$6.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$6.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$7.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$7.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$8.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$8.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$9.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet$9.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/Integration/ConfigSet.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/integration/ConfigSet$10$1.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/integration/ConfigSet$10$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/integration/ConfigSet$10$2.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/integration/ConfigSet$10$2.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/integration/ConfigSet$11$1.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/integration/ConfigSet$11$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/integration/ConfigSet$11$2.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/integration/ConfigSet$11$2.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/integration/ConfigSet$26.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/integration/ConfigSet$26.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/integration/ConfigSet$27.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/integration/ConfigSet$27.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/integration/ConfigSet$28.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/integration/ConfigSet$28.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/integration/ConfigSet$29.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/integration/ConfigSet$29.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/integration/ConfigSet$30.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/integration/ConfigSet$30.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/integration/ConfigSet$31.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/integration/ConfigSet$31.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/integration/ConfigSet$9$1.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/integration/ConfigSet$9$1.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/gui/version/integration/ConfigSet$9$2.class" afterPath="$PROJECT_DIR$/target/classes/gui/version/integration/ConfigSet$9$2.class" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -121,25 +82,42 @@
       <file leaf-file-name="ConfigSet.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/integration/ConfigSet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
-              <caret line="1278" column="47" lean-forward="true" selection-start-line="1278" selection-start-column="47" selection-end-line="1278" selection-end-column="47" />
+            <state relative-caret-position="249">
+              <caret line="2045" column="0" lean-forward="false" selection-start-line="2045" selection-start-column="0" selection-end-line="2045" selection-end-column="0" />
               <folding>
                 <element signature="e#1290#1298#0" expanded="true" />
                 <element signature="e#1360#1368#0" expanded="true" />
                 <element signature="e#1432#1440#0" expanded="true" />
-                <element signature="e#20736#27086#0" expanded="true" />
-                <element signature="e#27085#27086#0" expanded="true" />
+                <element signature="e#15067#23994#0" expanded="true" />
+                <element signature="e#17704#20632#0" expanded="true" />
+                <element signature="e#20631#20632#0" expanded="true" />
+                <element signature="e#23993#23994#0" expanded="true" />
+                <element signature="e#24040#31128#0" expanded="true" />
+                <element signature="e#31127#31128#0" expanded="true" />
+                <element signature="e#31179#37361#0" expanded="true" />
+                <element signature="e#37360#37361#0" expanded="true" />
                 <element signature="method#updateM5Overlay#0;class#ConfigSet#0" expanded="false" />
                 <element signature="method#createM5Overlay#0;class#ConfigSet#0" expanded="false" />
-                <element signature="e#68890#69149#0" expanded="true" />
-                <element signature="e#69148#69149#0" expanded="true" />
-                <element signature="e#71105#73597#0" expanded="true" />
-                <element signature="e#73596#73597#0" expanded="true" />
+                <element signature="e#72932#73191#0" expanded="true" />
+                <element signature="e#73190#73191#0" expanded="true" />
+                <element signature="e#75147#77639#0" expanded="true" />
+                <element signature="e#77638#77639#0" expanded="true" />
                 <element signature="method#updateM2Dialog#0;class#ConfigSet#0" expanded="false" />
                 <element signature="method#createM2Dialog#0;class#ConfigSet#0" expanded="false" />
-                <element signature="method#generateNewProjectDilog#0;class#ConfigSet#0" expanded="false" />
                 <element signature="method#exportToExcel#0;class#ConfigSet#0" expanded="false" />
                 <element signature="method#importFromExcel#0;class#ConfigSet#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConfigSetMain.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/integration/ConfigSetMain.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="230">
+              <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <folding>
+                <element signature="e#192#193#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -177,11 +155,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>user.</find>
-      <find>progress</find>
-      <find>select</find>
-      <find>getSaveButton</find>
-      <find>third</find>
       <find>摄像头</find>
       <find>tableModel_camera</find>
       <find>wallhangingGUI</find>
@@ -192,7 +165,6 @@
       <find>commonFieldsLabels_left</find>
       <find>--</find>
       <find>importFromExcel</find>
-      <find>generateUBNTCommondFields</find>
       <find>exportToExcel</find>
       <find>==</find>
       <find>== 2</find>
@@ -201,12 +173,18 @@
       <find>importFrom</find>
       <find>exportTo</find>
       <find>generateWallCommondFields</find>
-      <find>fieldValuePanel</find>
       <find>commonFields_ubnt.add</find>
       <find>createM2Dialog</find>
       <find>updatedIP_M2</find>
       <find>createM5Panel</find>
       <find>新建</find>
+      <find>backwa</find>
+      <find>fieldValuePanel</find>
+      <find>generateNewProjectDilog</find>
+      <find>backward</find>
+      <find>generateUBNTCommondFields</find>
+      <find>commonFieldsPanel.add</find>
+      <find>color</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -280,6 +258,12 @@
         <option name="importAutomatically" value="true" />
       </MavenImportingSettings>
     </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand />
+      <select />
+    </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-1862" />
@@ -709,19 +693,19 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36694387" sideWeight="0.36614582" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976446" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37259102" sideWeight="0.49793753" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22055675" sideWeight="0.63385415" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24197002" sideWeight="0.49793753" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3072805" sideWeight="0.63385415" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24543501" sideWeight="0.7843602" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23200859" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24543501" sideWeight="0.7843602" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23200859" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20676692" sideWeight="0.21563981" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38972163" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23447537" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -817,6 +801,18 @@
           <properties />
           <option name="timeStamp" value="161" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/gui/version/integration/ConfigSet.java</url>
+          <line>422</line>
+          <properties />
+          <option name="timeStamp" value="246" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/gui/version/integration/ConfigSet.java</url>
+          <line>109</line>
+          <properties />
+          <option name="timeStamp" value="247" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/ubnt/m2/M2_Configuration.java</url>
           <line>41</line>
@@ -825,8 +821,16 @@
           </properties>
           <option name="timeStamp" value="217" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/gui/version/integration/ConfigSet.java</url>
+          <line>409</line>
+          <properties method="actionPerformed">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="245" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="242" />
+      <option name="time" value="248" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -1023,14 +1027,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="722">
           <caret line="1154" column="10" lean-forward="false" selection-start-line="1154" selection-start-column="10" selection-end-line="1154" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/integration/ConfigSetMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1287,25 +1283,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/integration/ConfigSetMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding>
+            <element signature="e#192#193#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/integration/ConfigSet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="1278" column="47" lean-forward="true" selection-start-line="1278" selection-start-column="47" selection-end-line="1278" selection-end-column="47" />
+        <state relative-caret-position="249">
+          <caret line="2045" column="0" lean-forward="false" selection-start-line="2045" selection-start-column="0" selection-end-line="2045" selection-end-column="0" />
           <folding>
             <element signature="e#1290#1298#0" expanded="true" />
             <element signature="e#1360#1368#0" expanded="true" />
             <element signature="e#1432#1440#0" expanded="true" />
-            <element signature="e#20736#27086#0" expanded="true" />
-            <element signature="e#27085#27086#0" expanded="true" />
+            <element signature="e#15067#23994#0" expanded="true" />
+            <element signature="e#17704#20632#0" expanded="true" />
+            <element signature="e#20631#20632#0" expanded="true" />
+            <element signature="e#23993#23994#0" expanded="true" />
+            <element signature="e#24040#31128#0" expanded="true" />
+            <element signature="e#31127#31128#0" expanded="true" />
+            <element signature="e#31179#37361#0" expanded="true" />
+            <element signature="e#37360#37361#0" expanded="true" />
             <element signature="method#updateM5Overlay#0;class#ConfigSet#0" expanded="false" />
             <element signature="method#createM5Overlay#0;class#ConfigSet#0" expanded="false" />
-            <element signature="e#68890#69149#0" expanded="true" />
-            <element signature="e#69148#69149#0" expanded="true" />
-            <element signature="e#71105#73597#0" expanded="true" />
-            <element signature="e#73596#73597#0" expanded="true" />
+            <element signature="e#72932#73191#0" expanded="true" />
+            <element signature="e#73190#73191#0" expanded="true" />
+            <element signature="e#75147#77639#0" expanded="true" />
+            <element signature="e#77638#77639#0" expanded="true" />
             <element signature="method#updateM2Dialog#0;class#ConfigSet#0" expanded="false" />
             <element signature="method#createM2Dialog#0;class#ConfigSet#0" expanded="false" />
-            <element signature="method#generateNewProjectDilog#0;class#ConfigSet#0" expanded="false" />
             <element signature="method#exportToExcel#0;class#ConfigSet#0" expanded="false" />
             <element signature="method#importFromExcel#0;class#ConfigSet#0" expanded="false" />
           </folding>
