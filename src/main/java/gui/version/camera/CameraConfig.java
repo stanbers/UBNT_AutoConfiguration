@@ -10,6 +10,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import utility.WebDriverGiver;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @Author by XuLiang
  * @Date 2018/01/23 15:23
@@ -28,8 +31,9 @@ public class CameraConfig {
 
     public int progress = 0;
 
-    public int config(String cameraIP,String cameraNetMask,String cameraGatewayIP,String serverIP,String deviceID,String olderCameraIP){
+    public int config(String cameraIP, String cameraNetMask, String cameraGatewayIP, String serverIP, String deviceID, String olderCameraIP){
         String URL;
+        List list = new ArrayList();
         if (olderCameraIP != null){
             URL = "http://"+olderCameraIP+"/doc/page/login.asp";
         }else {
@@ -37,7 +41,7 @@ public class CameraConfig {
         }
         driver.get(URL);
         try {
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             if (this.getOverlayContainer().getCssValue("display").trim().equals("none")){
                 this.viaID("username").sendKeys("admin");
                 this.viaID("password").sendKeys("xalt12345");
@@ -52,20 +56,20 @@ public class CameraConfig {
                 this.getCancelButton(2).click();
             }
 
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             this.getConfigTab().click();
 
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             this.viaID("ui-id-2").click();
 
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             this.viaID("radioNTP").click();
 
             this.getSaveButton("settingTime").click();
 
             //navigate to internet tab
             this.getMenuTab(3).click();
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             //IPv4
             this.getIPInputBox(5).clear();
@@ -79,7 +83,7 @@ public class CameraConfig {
             this.getIPInputBox(7).clear();
             this.getIPInputBox(7).sendKeys(cameraGatewayIP);
             this.getSaveButton("basicTcpIp").click();
-            Thread.sleep(3000);
+            Thread.sleep(2000);
 
             try{
                 this.getCancelButton(2).click();
@@ -98,35 +102,35 @@ public class CameraConfig {
         try {
             //advianced configuration
             this.getSubTab(3,3).click();
-            Thread.sleep(3000);
+            Thread.sleep(2000);
 
             //access platform
             this.viaID("ui-id-13").click();
-            Thread.sleep(3000);
+            Thread.sleep(2000);
 
             this.selectAccess(2,"E-Home",false);
             this.selectAccess(3,"0",true);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             //server IP
             this.accessInputBox(2).clear();
             this.accessInputBox(2).sendKeys(serverIP);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             //device id
             if (deviceID != null){
                 this.accessInputBox(4).clear();
                 this.accessInputBox(4).sendKeys(deviceID);
             }
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             this.getSaveButton("advancedPlatform").click();
-            Thread.sleep(3000);
+            Thread.sleep(2000);
 
             //video and auido
             this.getLeftTab("videoAudio").click();
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             //select main Stream
             this.selectUnderVideo(4,"01");
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             //select bit rate type
             this.selectUnderVideo(7,"1");
@@ -134,59 +138,59 @@ public class CameraConfig {
             //bit rate upper limit
             this.getBitRateUpperLimit(10).clear();
             this.getBitRateUpperLimit(10).sendKeys("2048");
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             //video coding
             this.selectUnderVideo(12,"1");
             this.getSaveButtonUnderVideo().click();
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             //select sub stream
             this.selectUnderVideo(4,"02");
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             //select bit rate type
             this.selectUnderVideo(7,"1");
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             //select video frame rate
             this.selectUnderVideo(9,"14");
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             //input bit rate upper limit
             this.getBitRateUpperLimit(10).clear();
             this.getBitRateUpperLimit(10).sendKeys("512");
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             //video coding
             this.selectUnderVideo(12,"2");
             this.getSaveButtonUnderVideo().click();
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             this.getSaveButtonUnderVideo().click();
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             //the third stream
             this.selectUnderVideo(4,"03");
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             //select bit rate type
             this.selectUnderVideo(7,"1");
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             //input bit rate upper limit
             this.getBitRateUpperLimit(10).clear();
             this.getBitRateUpperLimit(10).sendKeys("128");
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             //video coding
             this.selectUnderVideo(12,"1");
             this.getSaveButtonUnderVideo().click();
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             //navigate to storage tab
             this.getLeftTab("storage").click();
-            Thread.sleep(1000);
+            Thread.sleep(2000);
 
             //click storage manage sub tab
             this.getLeftTab("storageManage").click();
@@ -215,6 +219,8 @@ public class CameraConfig {
         }
         return progress;
     }
+
+
     /**
      * Get format button under disk management table
      * @return the web element

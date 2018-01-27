@@ -165,7 +165,7 @@ public class CameraGUI {
         createcamera.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+//                createCameraTabbedDialog(tableModel_camera);
                 createcameraDialog(tableModel_camera);
             }
         });
@@ -387,6 +387,35 @@ public class CameraGUI {
 
     }
 
+
+//    public JDialog createCameraTabbedDialog(final DefaultTableModel tableModel){
+//        //prepare the camera create dialog
+//        final JDialog camerajDialog_create = new JDialog(mainFrame,"摄像头 配置页面",true);
+//        camerajDialog_create.setSize(450,460);
+//        camerajDialog_create.setLocationRelativeTo(mainFrame);
+//
+//        //setup the logo icon
+//        Toolkit kit = Toolkit.getDefaultToolkit();
+//        Image icon = kit.getImage("D:\\icon\\logo.png");
+////        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
+//        camerajDialog_create.setIconImage(icon);
+//
+//        JTabbedPane cameraTabbedPanel = new JTabbedPane();
+//        cameraTabbedPanel.addTab();
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//        camerajDialog_create.setVisible(true);
+//        return camerajDialog_create;
+//    }
+
+
     /**
      * create M2 dialog
      * @return the M2 configuration dialog
@@ -403,6 +432,36 @@ public class CameraGUI {
         Image icon = kit.getImage("D:\\icon\\logo.png");
 //        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
         camerajDialog_create.setIconImage(icon);
+
+        //select camera model first, then to config the camera
+        JPanel modelPanel = new JPanel(null);
+        modelPanel.setBorder((BorderFactory.createTitledBorder("摄像头 配置")));
+
+        JLabel selectModelLabel = new JLabel("请先选择摄像头型号 :");
+        selectModelLabel.setLocation(10,30);
+        selectModelLabel.setSize(300,40);
+        selectModelLabel.setFont(new Font(null, Font.BOLD, 19));
+        modelPanel.add(selectModelLabel);
+
+        JButton model01Button = new JButton("DS-2CD2T25FD-I8");
+        model01Button.setLocation(130,100);
+        model01Button.setSize(180,50);
+        model01Button.setFont(new Font(null, Font.BOLD, 17));
+        modelPanel.add(model01Button);
+
+        JButton model02Button = new JButton("型号2");
+        model02Button.setLocation(130,170);
+        model02Button.setSize(180,50);
+        model02Button.setFont(new Font(null, Font.BOLD, 17));
+        modelPanel.add(model02Button);
+
+        JButton model03Button = new JButton("型号3");
+        model03Button.setLocation(130,240);
+        model03Button.setSize(180,50);
+        model03Button.setFont(new Font(null, Font.BOLD, 17));
+        modelPanel.add(model03Button);
+
+
 
         //prepare the context panel
         JPanel cameraOverlay_create = new JPanel(null);
@@ -500,23 +559,26 @@ public class CameraGUI {
                 String camera_IP = IP.getText();
                 int targetRow = tableModel.getRowCount() -1;
 
+
                 tableModel.setValueAt(way,targetRow,1);
                 tableModel.setValueAt(DK,targetRow,2);
                 tableModel.setValueAt(camera_IP,targetRow,3);
                 tableModel.setValueAt(cameraIDInputBox.getText(),targetRow,4);
                 //todo: write the version nubmer to the record table
                 //todo: get the version number from the page
-//                tableModel.setValueAt("a method which can return the version number",targetRow,5);
+
 
                 log.info("camera ip is "+camera_IP);
                 log.info("camera net mask is "+commonFields.get(2));
                 log.info("camera gateway ip is "+commonFields.get(1));
                 log.info("camera server ip is "+commonFields.get(0));
                 log.info("camera id is "+cameraIDInputBox.getText());
+
                 //String cameraIP,String cameraNetMask,String cameraGatewayIP,String serverIP,String deviceID
                 //create
-//                progress = new CameraConfig().config(camera_IP,commonFields.get(2),commonFields.get(1),commonFields.get(0),cameraIDInputBox.getText(),null);
-
+                progress = new CameraConfig().config(camera_IP,commonFields.get(2),commonFields.get(1),commonFields.get(0),cameraIDInputBox.getText(),null);
+//                tableModel.setValueAt(cameraMOdel,targetRow,5);
+//                log.info("camera model is "+cameraMOdel);
                 if (progress == 1){
                     JOptionPane.showMessageDialog(
                             mainFrame,
@@ -536,7 +598,8 @@ public class CameraGUI {
             }
         });
 
-        camerajDialog_create.setContentPane(cameraOverlay_create);
+//        camerajDialog_create.setContentPane(cameraOverlay_create);
+        camerajDialog_create.setContentPane(modelPanel);
         camerajDialog_create.setVisible(true);
         return camerajDialog_create;
     }
