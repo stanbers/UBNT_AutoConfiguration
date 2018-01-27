@@ -25,6 +25,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
+import static java.awt.Font.BOLD;
+
 /**
  * @Author by XuLiang
  * @Date 2018/01/24 16:38
@@ -42,7 +44,7 @@ public class CameraGUI {
     private int recordIndex = 1;
 
     //initialize camera table header
-    final String[] columns_camera = {"编号","线路","位置","摄像头 IP","设备 ID","版本号"};
+    final String[] columns_camera = {"编号","线路","位置","摄像头 IP","设备 ID","设备型号"};
 
     //define camera table model
     private DefaultTableModel tableModel_camera = new DefaultTableModel(null,columns_camera){
@@ -84,6 +86,31 @@ public class CameraGUI {
         cameraContainerPanel.setBorder(BorderFactory.createTitledBorder(null,"摄像头 配置记录：", TitledBorder.LEFT,TitledBorder.TOP,new Font(null,Font.BOLD,15)));
         cameraContainerPanel.setLayout(null);
 
+        //show common fields on the left
+        final JPanel commonFieldsPanel_camera = new JPanel(null);
+        commonFieldsPanel_camera.setLocation(650, 60);
+        commonFieldsPanel_camera.setSize(350, 240);
+        commonFieldsPanel_camera.setBorder(BorderFactory.createTitledBorder(null, "摄像头 其他参数：", TitledBorder.LEFT, TitledBorder.TOP, new Font(null, BOLD, 18)));
+        commonFieldsPanel_camera.setLayout(null);
+
+        final String[] commonFieldsLabels_camera = {"摄像头服务器IP : ","摄像头网关         : ","摄像头子网掩码 : "};
+        //'i' started from 1, in order to setup the first label offset in vertical direction
+        for (int i = 1; i <= commonFieldsLabels_camera.length; i++) {
+            JLabel commonFiledsLabel_right = new JLabel(commonFieldsLabels_camera[i-1]);
+            JLabel commonFiledsLabel_right_value = new JLabel(commonFieldsLabels_camera[i-1]);
+            commonFiledsLabel_right.setFont(new Font(null, 1, 16));
+            commonFiledsLabel_right.setLocation(20,40*i);
+            commonFiledsLabel_right.setSize(135,40);
+            commonFiledsLabel_right_value.setText(commonFields.get(i-1));
+            commonFiledsLabel_right_value.setFont(new Font(null, 1, 16));
+            commonFiledsLabel_right_value.setLocation(160,40*i);
+            commonFiledsLabel_right_value.setSize(135,40);
+            commonFieldsPanel_camera.add(commonFiledsLabel_right);
+            commonFieldsPanel_camera.add(commonFiledsLabel_right_value);
+        }
+
+
+
         //create a JTable to record the configuration info
         final JTable jTable_camera = new JTable(tableModel_camera);
         jTable_camera.setLocation(20,10);
@@ -94,10 +121,10 @@ public class CameraGUI {
         jTable_camera.getColumn("编号").setMaxWidth(45);
         jTable_camera.getColumn("位置").setMaxWidth(80);
         jTable_camera.getColumn("线路").setMaxWidth(45);
-        jTable_camera.getColumn("摄像头 IP").setMaxWidth(130);
+        jTable_camera.getColumn("摄像头 IP").setMaxWidth(115);
         log.info("there are "+jTable_camera.getColumnCount()+" columns");
         jTable_camera.getColumn("设备 ID").setMaxWidth(110);
-        jTable_camera.getColumn("版本号").setMaxWidth(130);
+        jTable_camera.getColumn("设备型号").setMaxWidth(145);
         jTable_camera.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
         jTable_camera.setFont(new Font(null, Font.PLAIN, 15));
 
@@ -109,7 +136,7 @@ public class CameraGUI {
         jTable_camera.getColumn("线路").setCellRenderer(centerRenderer);
         jTable_camera.getColumn("摄像头 IP").setCellRenderer(centerRenderer);
         jTable_camera.getColumn("设备 ID").setCellRenderer(centerRenderer);
-        jTable_camera.getColumn("版本号").setCellRenderer(centerRenderer);
+        jTable_camera.getColumn("设备型号").setCellRenderer(centerRenderer);
 
         //setup camera hanging table header
         JTableHeader jTableHeader_camera = jTable_camera.getTableHeader();
@@ -127,23 +154,23 @@ public class CameraGUI {
 
         //setup new create button
         JButton createcamera = new JButton("新建");
-        createcamera.setFont(new Font(null,Font.BOLD,14));
-        createcamera.setLocation(355,500);
-        createcamera.setSize(80,30);
+        createcamera.setFont(new Font(null,Font.BOLD,16));
+        createcamera.setLocation(475,500);
+        createcamera.setSize(80,40);
         cameraContainerPanel.add(createcamera);
 
         //setup remove button
         JButton removecamera = new JButton("删除");
-        removecamera.setLocation(245,500);
-        removecamera.setSize(80,30);
-        removecamera.setFont(new Font(null,Font.BOLD,14));
+        removecamera.setLocation(345,500);
+        removecamera.setSize(80,40);
+        removecamera.setFont(new Font(null,Font.BOLD,16));
         cameraContainerPanel.add(removecamera);
 
         //setup export camera hanging records button
         JButton exportcameraRecords = new JButton("导出");
-        exportcameraRecords.setFont(new Font(null,Font.BOLD,14));
+        exportcameraRecords.setFont(new Font(null,Font.BOLD,16));
         exportcameraRecords.setLocation(15,500);
-        exportcameraRecords.setSize(80,30);
+        exportcameraRecords.setSize(80,40);
         cameraContainerPanel.add(exportcameraRecords);
 
         //add export all camera hanging config records
@@ -226,6 +253,7 @@ public class CameraGUI {
         });
 
         outermostContainerPanel.add(cameraContainerPanel);
+        outermostContainerPanel.add(commonFieldsPanel_camera);
         return outermostContainerPanel;
     }
 
@@ -434,7 +462,7 @@ public class CameraGUI {
         camerajDialog_create.setIconImage(icon);
 
         //select camera model first, then to config the camera
-        JPanel modelPanel = new JPanel(null);
+        final JPanel modelPanel = new JPanel(null);
         modelPanel.setBorder((BorderFactory.createTitledBorder("摄像头 配置")));
 
         JLabel selectModelLabel = new JLabel("请先选择摄像头型号 :");
@@ -443,7 +471,7 @@ public class CameraGUI {
         selectModelLabel.setFont(new Font(null, Font.BOLD, 19));
         modelPanel.add(selectModelLabel);
 
-        JButton model01Button = new JButton("DS-2CD2T25FD-I8");
+        final JButton model01Button = new JButton("DS-2CD2T25FD-I8");
         model01Button.setLocation(130,100);
         model01Button.setSize(180,50);
         model01Button.setFont(new Font(null, Font.BOLD, 17));
@@ -464,20 +492,32 @@ public class CameraGUI {
 
 
         //prepare the context panel
-        JPanel cameraOverlay_create = new JPanel(null);
+        final JPanel cameraOverlay_create = new JPanel(null);
         cameraOverlay_create.setBorder((BorderFactory.createTitledBorder("摄像头 配置")));
+
+        JLabel currentModel = new JLabel("当前设备型号 : ");
+        currentModel.setLocation(20,30);
+        currentModel.setSize(135,30);
+        currentModel.setFont(new Font(null,Font.BOLD,16));
+        cameraOverlay_create.add(currentModel);
+
+        final JLabel currentModelValue = new JLabel();
+        currentModelValue.setLocation(160,30);
+        currentModelValue.setSize(200,30);
+        currentModelValue.setFont(new Font(null,Font.BOLD,16));
+        cameraOverlay_create.add(currentModelValue);
 
         //setup way label
         final String[] ways = new String[]{"左线","右线"};
         JLabel wayLabel = new JLabel("设定线路 :",SwingConstants.LEFT);
         wayLabel.setFont(new Font(null, 1, 16));
-        wayLabel.setLocation(20,40);
+        wayLabel.setLocation(20,80);
         wayLabel.setSize(135,30);
         cameraOverlay_create.add(wayLabel);
 
         //setup way combo box
         final JComboBox<String> wayComboBox = new JComboBox<String>(ways);
-        wayComboBox.setLocation(160,40);
+        wayComboBox.setLocation(160,80);
         wayComboBox.setSize(200,30);
         wayComboBox.setFont(new Font(null, 1, 16));
         wayComboBox.setSelectedIndex(0);
@@ -486,13 +526,13 @@ public class CameraGUI {
         //setup the specific position label
         JLabel specificPosition = new JLabel("具体位置 :",SwingConstants.LEFT);
         specificPosition.setFont(new Font(null, 1, 16));
-        specificPosition.setLocation(20,90);
+        specificPosition.setLocation(20,130);
         specificPosition.setSize(135,30);
         cameraOverlay_create.add(specificPosition);
 
         //setup the specific position TextField
         final JTextField DKText = new JTextField(SwingConstants.RIGHT);
-        DKText.setLocation(160,90);
+        DKText.setLocation(160,130);
         DKText.setSize(200,30);
         DKText.setFont(new Font(null,1,16));
         cameraOverlay_create.add(DKText);
@@ -505,7 +545,7 @@ public class CameraGUI {
         //setup camera hanging IP label:
         JLabel cameraIPLabel = new JLabel("摄像头 IP 地址 :",SwingConstants.LEFT);
         cameraIPLabel.setFont(new Font(null, 1, 16));
-        cameraIPLabel.setLocation(20,140);
+        cameraIPLabel.setLocation(20,180);
         cameraIPLabel.setSize(135,30);
         cameraOverlay_create.add(cameraIPLabel);
 
@@ -513,30 +553,46 @@ public class CameraGUI {
         final JMIPV4AddressField IP = new JMIPV4AddressField();
         IP.setIpAddress("10.1.2.1");
         IP.setFont(new Font(null, Font.PLAIN, 14));
-        IP.setLocation(160,140);
+        IP.setLocation(160,180);
         IP.setSize(200,30);
         cameraOverlay_create.add(IP);
 
         //setup camera ID label:
         JLabel cameraIDLabel = new JLabel("设备 ID :",SwingConstants.LEFT);
         cameraIDLabel.setFont(new Font(null, 1, 16));
-        cameraIDLabel.setLocation(20,190);
+        cameraIDLabel.setLocation(20,230);
         cameraIDLabel.setSize(135,30);
         cameraOverlay_create.add(cameraIDLabel);
 
         //setup camera ID text field
         final JTextField cameraIDInputBox = new JTextField(SwingConstants.RIGHT);
         cameraIDInputBox.setFont(new Font(null, Font.PLAIN, 14));
-        cameraIDInputBox.setLocation(160,190);
+        cameraIDInputBox.setLocation(160,230);
         cameraIDInputBox.setSize(200,30);
         cameraOverlay_create.add(cameraIDInputBox);
 
         //setup config button
-        final JButton cameraConfigButton = new JButton("摄像头");
-        cameraConfigButton.setFont(new Font(null,Font.BOLD,14));
-        cameraConfigButton.setLocation(145,310);
-        cameraConfigButton.setSize(105,30);
+        final JButton cameraConfigButton = new JButton("配置摄像头");
+        cameraConfigButton.setFont(new Font(null,Font.BOLD,16));
+        cameraConfigButton.setLocation(50,320);
+        cameraConfigButton.setSize(125,40);
         cameraOverlay_create.add(cameraConfigButton);
+
+        final JButton backward_camera = new JButton("返回");
+        backward_camera.setFont(new Font(null,Font.BOLD,16));
+        backward_camera.setLocation(270,320);
+        backward_camera.setSize(125,40);
+        cameraOverlay_create.add(backward_camera);
+
+        backward_camera.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                modelPanel.setVisible(true);
+                cameraOverlay_create.setVisible(false);
+                camerajDialog_create.setContentPane(modelPanel);
+
+            }
+        });
 
         //add event listener to config button
         cameraConfigButton.addActionListener(new ActionListener() {
@@ -564,8 +620,9 @@ public class CameraGUI {
                 tableModel.setValueAt(DK,targetRow,2);
                 tableModel.setValueAt(camera_IP,targetRow,3);
                 tableModel.setValueAt(cameraIDInputBox.getText(),targetRow,4);
+                tableModel.setValueAt(currentModelValue.getText(),targetRow,5);
                 //todo: write the version nubmer to the record table
-                //todo: get the version number from the page
+                //todo: get the version number from the page --> cannot do that
 
 
                 log.info("camera ip is "+camera_IP);
@@ -573,10 +630,11 @@ public class CameraGUI {
                 log.info("camera gateway ip is "+commonFields.get(1));
                 log.info("camera server ip is "+commonFields.get(0));
                 log.info("camera id is "+cameraIDInputBox.getText());
+                log.info("camera id is "+currentModelValue.getText());
 
                 //String cameraIP,String cameraNetMask,String cameraGatewayIP,String serverIP,String deviceID
                 //create
-                progress = new CameraConfig().config(camera_IP,commonFields.get(2),commonFields.get(1),commonFields.get(0),cameraIDInputBox.getText(),null);
+//                progress = new CameraConfig().config(camera_IP,commonFields.get(2),commonFields.get(1),commonFields.get(0),cameraIDInputBox.getText(),null);
 //                tableModel.setValueAt(cameraMOdel,targetRow,5);
 //                log.info("camera model is "+cameraMOdel);
                 if (progress == 1){
@@ -598,7 +656,17 @@ public class CameraGUI {
             }
         });
 
-//        camerajDialog_create.setContentPane(cameraOverlay_create);
+
+        model01Button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                modelPanel.setVisible(false);
+                cameraOverlay_create.setVisible(true);
+                currentModelValue.setText(model01Button.getText());
+                camerajDialog_create.setContentPane(cameraOverlay_create);
+
+            }
+        });
         camerajDialog_create.setContentPane(modelPanel);
         camerajDialog_create.setVisible(true);
         return camerajDialog_create;

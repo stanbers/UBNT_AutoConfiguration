@@ -19,7 +19,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.geom.Line2D;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -56,7 +55,7 @@ public class ConfigSet {
     final String[] columns_wall = {"编号","线路","位置","壁挂 IP"};
 
     //initialize camera table header
-    final String[] columns_camera = {"编号","线路","位置","摄像头 IP","设备 ID","版本号"};
+    final String[] columns_camera = {"编号","线路","位置","摄像头 IP","设备 ID","设备型号"};
 
     //define M2 table model
     private final DefaultTableModel tableModel_M2 = new DefaultTableModel(null,columns_M2){
@@ -161,13 +160,13 @@ public class ConfigSet {
 
         //setup project table title
         JLabel projectListLabel = new JLabel("项目列表：");
-        projectListLabel.setLocation(90,105);
+        projectListLabel.setLocation(90,125);
         projectListLabel.setSize(200,40);
         projectListLabel.setFont(new Font(null,BOLD,20));
 
         //store table records
         final JTable projectTable = new JTable(projectTableModel);
-        projectTable.setLocation(100,160);
+        projectTable.setLocation(100,180);
         projectTable.setSize(300,350);
         projectTable.setFont(new Font(null,Font.PLAIN,16));
 
@@ -186,7 +185,7 @@ public class ConfigSet {
 
         //setup project table header
         JTableHeader projectjTableHeader = projectTable.getTableHeader();
-        projectjTableHeader.setLocation(100,100);
+        projectjTableHeader.setLocation(100,120);
         projectjTableHeader.setPreferredSize(new Dimension(300,50));
         projectjTableHeader.setFont(new Font(null, Font.BOLD, 16));
         projectjTableHeader.setResizingAllowed(true);
@@ -194,7 +193,7 @@ public class ConfigSet {
 
         //project container
         JScrollPane projectTableContainer = new JScrollPane(projectTable);
-        projectTableContainer.setLocation(90,150);
+        projectTableContainer.setLocation(90,170);
         projectTableContainer.setSize(400,300);
 
         //import projects from project_list excel file, and render projects to projectTable
@@ -202,13 +201,13 @@ public class ConfigSet {
 
         //setup project button
         JButton createPojectButton = new JButton("+ 新建项目");
-        createPojectButton.setLocation(340,100);
+        createPojectButton.setLocation(340,120);
         createPojectButton.setSize(150,40);
         createPojectButton.setFont(new Font(null, BOLD, 18));
 
         //show common fields on homepage
         final JPanel commonFieldsPanel = new JPanel(null);
-        commonFieldsPanel.setLocation(600, 100);
+        commonFieldsPanel.setLocation(600, 120);
         commonFieldsPanel.setSize(600, 350);
         commonFieldsPanel.setBorder(BorderFactory.createTitledBorder(null, "项目其他参数：", TitledBorder.LEFT, TitledBorder.TOP, new Font(null, BOLD, 18)));
         homepagePanel.add(commonFieldsPanel);
@@ -285,21 +284,21 @@ public class ConfigSet {
 
         //setup ubnt button
         JButton ubnt_homepage = new JButton("配置中继");
-        ubnt_homepage.setLocation(100,530);
+        ubnt_homepage.setLocation(100,540);
         ubnt_homepage.setSize(150,50);
         ubnt_homepage.setFont(new Font(null, BOLD, 20));
         homepagePanel.add(ubnt_homepage);
 
         //setup wall hanging button
         JButton wallHanging_homepage = new JButton("配置壁挂");
-        wallHanging_homepage.setLocation(400,530);
+        wallHanging_homepage.setLocation(400,540);
         wallHanging_homepage.setSize(150,50);
         wallHanging_homepage.setFont(new Font(null, BOLD, 20));
         homepagePanel.add(wallHanging_homepage);
 
         //setup camera button
         JButton camera_homepage = new JButton("配置摄像头");
-        camera_homepage.setLocation(700,530);
+        camera_homepage.setLocation(700,540);
         camera_homepage.setSize(150,50);
         camera_homepage.setFont(new Font(null, BOLD, 20));
         homepagePanel.add(camera_homepage);
@@ -307,7 +306,7 @@ public class ConfigSet {
 
         //setup router button
         JButton router_homepage = new JButton("配置路由器");
-        router_homepage.setLocation(1000,530);
+        router_homepage.setLocation(1000,540);
         router_homepage.setSize(150,50);
         router_homepage.setFont(new Font(null, BOLD, 20));
         homepagePanel.add(router_homepage);
@@ -345,24 +344,6 @@ public class ConfigSet {
             }
         });
 
-//        //initialize the ubnt field value panel, need to clear this panel each time
-//        final JPanel fieldValuePanel_ubnt = new JPanel(null);
-//        fieldValuePanel_ubnt.setLocation(125,40);
-//        fieldValuePanel_ubnt.setSize(130,200);
-//        commonFieldsPanel.add(fieldValuePanel_ubnt);
-//
-//        //initialize the wall hanging field value panel, need to clear this panel each time
-//        final JPanel fieldValuePanel_wall = new JPanel(null);
-//        fieldValuePanel_wall.setLocation(400,40);
-//        fieldValuePanel_wall.setSize(130,110);
-//        commonFieldsPanel.add(fieldValuePanel_wall);
-//
-//        //initialize the wall hanging field value panel, need to clear this panel each time
-//        final JPanel fieldValuePanel_camera = new JPanel(null);
-//        fieldValuePanel_camera.setLocation(400,160);
-//        fieldValuePanel_camera.setSize(130,110);
-//        commonFieldsPanel.add(fieldValuePanel_camera);
-
         commonFieldsPanel.add(genarateFieldsValuePanel("ubnt"));
         commonFieldsPanel.add(genarateFieldsValuePanel("wall"));
         commonFieldsPanel.add(genarateFieldsValuePanel("camera"));
@@ -372,68 +353,231 @@ public class ConfigSet {
             @Override
             public void actionPerformed(ActionEvent e) {
                 {
-                    final JPanel outermostPanel = showConfigRecordsPage();
-                    JPanel outermostHeaderPanel = new JPanel(){
-                        @Override
-                        public void paintComponent(Graphics graphics){
-                            super.paintComponent(graphics);
-                            Graphics2D g2 = (Graphics2D) graphics;
-                            Shape line01 = new Line2D.Double(0,3,1135,3);
-                            Shape line02 = new Line2D.Double(0,5,1135,5);
-                            g2.draw(line01);
-                            g2.draw(line02);
-                        }
-                    };
-                    outermostHeaderPanel.setLocation(10,45);
-                    outermostHeaderPanel.setSize(1135,13);
-                    outermostPanel.add(outermostHeaderPanel);
+                    if (projectTable.getSelectedRow() >= 0) {
+                        final JPanel outermostPanel = showConfigRecordsPage();
+                        //separate line
+                        JLabel lineSeparator = new JLabel("--");
+                        lineSeparator.setLocation(10, 47);
+                        lineSeparator.setSize(1270, 1);
+                        lineSeparator.setOpaque(true);
+                        lineSeparator.setBackground(Color.black);
+                        outermostPanel.add(lineSeparator);
 
-                    // create the header dynamically
-                    JLabel currentPNumberTitle = new JLabel("当前项目编号：");
-                    currentPNumberTitle.setLocation(20,10);
-                    currentPNumberTitle.setSize(160,40);
-                    currentPNumberTitle.setFont(new Font(null,Font.BOLD,18));
-                    outermostPanel.add(currentPNumberTitle);
+                        // create the header dynamically
+                        JLabel currentPNumberTitle = new JLabel("当前项目编号：");
+                        currentPNumberTitle.setLocation(20, 10);
+                        currentPNumberTitle.setSize(160, 40);
+                        currentPNumberTitle.setFont(new Font(null, Font.BOLD, 18));
+                        outermostPanel.add(currentPNumberTitle);
 
-                    JLabel currentPNameTitle = new JLabel("当前项目名称：");
-                    currentPNameTitle.setLocation(240,10);
-                    currentPNameTitle.setSize(160,40);
-                    currentPNameTitle.setFont(new Font(null,Font.BOLD,18));
-                    outermostPanel.add(currentPNameTitle);
+                        JLabel currentPNameTitle = new JLabel("当前项目名称：");
+                        currentPNameTitle.setLocation(240, 10);
+                        currentPNameTitle.setSize(160, 40);
+                        currentPNameTitle.setFont(new Font(null, Font.BOLD, 18));
+                        outermostPanel.add(currentPNameTitle);
 
-                    final JLabel currentPName = new JLabel(pName);
-                    currentPName.setLocation(370,10);
-                    currentPName.setSize(180,40);
-                    currentPName.setFont(new Font(null,Font.BOLD,18));
+                        final JLabel currentPName = new JLabel(pName);
+                        currentPName.setLocation(370, 10);
+                        currentPName.setSize(180, 40);
+                        currentPName.setFont(new Font(null, Font.BOLD, 18));
 
-                    final JLabel currentPNumber = new JLabel(pNumber);
-                    currentPNumber.setLocation(150,10);
-                    currentPNumber.setSize(80,40);
-                    currentPNumber.setFont(new Font(null,Font.BOLD,18));
+                        final JLabel currentPNumber = new JLabel(pNumber);
+                        currentPNumber.setLocation(150, 10);
+                        currentPNumber.setSize(80, 40);
+                        currentPNumber.setFont(new Font(null, Font.BOLD, 18));
 
-                    //add backward button, go back to homepage
-                    JButton  backwardButton = new JButton("返回首页");
-                    backwardButton.setLocation(1020,15);
-                    backwardButton.setSize(120,30);
-                    backwardButton.setFont(new Font(null,Font.BOLD,18));
-                    outermostPanel.add(backwardButton);
+                        //add backward button, go back to homepage
+                        JButton backwardButton = new JButton("返回首页");
+                        backwardButton.setLocation(1140, 15);
+                        backwardButton.setSize(120, 30);
+                        backwardButton.setFont(new Font(null, Font.BOLD, 18));
+                        outermostPanel.add(backwardButton);
 
-                    //add backward button event listener
-                    backwardButton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            //need remove these two JLabel to make sure every time these two label are new added to outPanel
-                            outermostPanel.remove(currentPName);
-                            outermostPanel.remove(currentPNumber);
-                            tableModel_M2.getDataVector().clear();
-                            tableModel_M5.getDataVector().clear();
-                            outermostPanel.setVisible(false);
-                            homepagePanel.setVisible(true);
-                            log.info("the current project name is "+pName);
+                        //add backward button event listener
+                        backwardButton.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                //need remove these two JLabel to make sure every time these two label are new added to outPanel
+                                outermostPanel.remove(currentPName);
+                                outermostPanel.remove(currentPNumber);
+                                tableModel_M2.getDataVector().clear();
+                                tableModel_M5.getDataVector().clear();
+                                outermostPanel.setVisible(false);
+                                homepagePanel.setVisible(true);
+                                log.info("the current project name is " + pName);
 //                            if (fieldValuePanel.getComponents().length == 0){
 
 //                            };
+                                mainFrame.setContentPane(homepagePanel);
+                                if (genarateFieldsValuePanel("ubnt").getComponents().length == 0) {
+                                    JPanel filedsValue_ubnt = generateUBNTCommondFields(commonFieldsPanel, genarateFieldsValuePanel("ubnt"), false);
+                                    filedsValue_ubnt.repaint();
+
+                                } else {
+                                    genarateFieldsValuePanel("ubnt").removeAll();
+                                    JPanel filedsValue_new_ubnt = generateUBNTCommondFields(commonFieldsPanel, genarateFieldsValuePanel("ubnt"), false);
+                                    filedsValue_new_ubnt.repaint();
+                                }
+
+                                if (genarateFieldsValuePanel("wall").getComponents().length == 0) {
+                                    JPanel filedsValue_wall = generateWallCommondFields(commonFieldsPanel, genarateFieldsValuePanel("wall"), false);
+                                    filedsValue_wall.repaint();
+                                } else {
+                                    genarateFieldsValuePanel("wall").removeAll();
+                                    JPanel filedsValue_new_wall = generateWallCommondFields(commonFieldsPanel, genarateFieldsValuePanel("wall"), false);
+                                    filedsValue_new_wall.repaint();
+                                }
+
+                                if (genarateFieldsValuePanel("camera").getComponents().length == 0) {
+                                    JPanel filedsValue_camera = generateCameraCommondFields(commonFieldsPanel, genarateFieldsValuePanel("camera"), false);
+                                    filedsValue_camera.repaint();
+                                } else {
+                                    genarateFieldsValuePanel("camera").removeAll();
+                                    JPanel filedsValue_new_camera = generateCameraCommondFields(commonFieldsPanel, genarateFieldsValuePanel("camera"), false);
+                                    filedsValue_new_camera.repaint();
+                                }
+                            }
+
+                        });
+                        homepagePanel.setVisible(false);
+                        outermostPanel.setVisible(true);
+                        mainFrame.setContentPane(outermostPanel);
+
+                        String specificExcel_M2 = "D:\\ConfigFile\\M2\\" + pName + ".xlsx";
+//                        String specificExcel_M2 = System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName +".xlsx";
+                        String specificExcel_M5 = "D:\\ConfigFile\\M5\\" + pName + ".xlsx";
+//                        String specificExcel_M5 = System.getProperty("user.dir")+ "\\ConfigFile\\M5\\"+pName +".xlsx";
+//                        String SpecificProjectCommonField = "D:\\ConfigFile\\"+pName +"CommonFields.xlsx";
+//                        String SpecificProjectCommonField = System.getProperty("user.dir")+ "\\ConfigFile\\"+pName +"CommonFields.xlsx";
+                        File projectCorresspondingConfigFile_M2 = new File(specificExcel_M2);
+                        File projectCorresspondingConfigFile_M5 = new File(specificExcel_M5);
+
+                        if (!projectCorresspondingConfigFile_M2.exists()) {
+                            exportToExcel(tableModel_M2, "D:\\ConfigFile\\M2\\" + pName + ".xlsx", 4, commonFields_ubnt);
+//                            exportToExcel(tableModel_M2,System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName+".xlsx",4);
+                        }
+                        if (!projectCorresspondingConfigFile_M5.exists()) {
+                            exportToExcel(tableModel_M5, "D:\\ConfigFile\\M5\\" + pName + ".xlsx", 8, commonFields_ubnt);
+//                            exportToExcel(tableModel_M5,System.getProperty("user.dir")+ "\\ConfigFile\\M5\\"+pName+".xlsx",8);
+                        }
+                        if (projectCorresspondingConfigFile_M2.exists()) {
+                            //import table rows on main page
+                            importFromExcel(tableModel_M2, specificExcel_M2, commonFields_ubnt);
+//                            jTable.setModel(defaultTableModel);
+                            //import specific project common fields
+                            //TODO: this time not to render table but to override commonfields.
+//                            importFromExcel(null,SpecificProjectCommonField);
+                            //import project list excel, in order to show the project name and number on the main page
+                        }
+                        if (projectCorresspondingConfigFile_M5.exists()) {
+                            //import table rows on main page
+                            importFromExcel(tableModel_M5, specificExcel_M5, commonFields_ubnt);
+//                            jTable.setModel(defaultTableModel);
+                            //import specific project common fields
+                            //TODO: this time not to render table but to override commonfields.
+//                            importFromExcel(null,SpecificProjectCommonField);
+                            //import project list excel, in order to show the project name and number on the main page
+                        }
+
+                        outermostPanel.add(currentPName);
+                        outermostPanel.add(currentPNumber);
+                        currentPName.setText(pName);
+                        currentPNumber.setText(pNumber);
+
+                    }else {
+                        JOptionPane.showMessageDialog(
+                                mainFrame,
+                                "请先选择项目 !",
+                                "提示",
+                                JOptionPane.INFORMATION_MESSAGE
+                        );
+                    }
+                }
+            }
+        });
+
+        camera_homepage.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (projectTable.getSelectedRow()>=0){
+                    int targetRow = projectTable.getSelectedRow();
+
+                    //set the value to these two global fields
+                    String pNumber_camera = projectTableModel.getValueAt(targetRow,0).toString();
+                    String pName_camera = projectTableModel.getValueAt(targetRow,1).toString();
+
+                    String specificExcel_camera = "D:\\ConfigFile\\camera\\"+pName_camera +".xlsx";
+    //                        String specificExcel_wall = System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName +".xlsx";
+                    String SpecificProjectCommonField = "D:\\ConfigFile\\"+pName_camera +"CommonFields.xlsx";
+    //                        String SpecificProjectCommonField = System.getProperty("user.dir")+ "\\ConfigFile\\"+pName +"CommonFields.xlsx";
+                    File projectCorresspondingConfigFile_camera = new File(specificExcel_camera);
+                    File projectCommonFieldFile = new File(SpecificProjectCommonField);
+                    if (!projectCorresspondingConfigFile_camera.exists()){
+    //                    exportToExcel(tableModel_camera,"D:\\ConfigFile\\camera\\"+pName_camera+".xlsx",4);
+                    }
+                    if (projectCorresspondingConfigFile_camera.exists() && projectCommonFieldFile.exists()){
+                        //import table rows on main page
+    //                    importFromExcel(tableModel_camera ,specificExcel_camera);
+    //                            jTable.setModel(defaultTableModel);
+                        //import specific project common fields
+                        //TODO: this time not to render table but to override commonfields.
+    //                    importFromExcel(null,SpecificProjectCommonField);
+                        //import project list excel, in order to show the project name and number on the main page
+                    }
+
+                    // the camera config records page
+                    final JPanel outermostPanel_camera = new CameraGUI().showConfigRecordsPage(pName_camera,pNumber_camera,tableModel_camera,commonFields_camera);
+
+                    //separate line
+                    JLabel lineSeparator = new JLabel("--");
+                    lineSeparator.setLocation(10,47);
+                    lineSeparator.setSize(1270,1);
+                    lineSeparator.setOpaque(true);
+                    lineSeparator.setBackground(Color.black);
+                    outermostPanel_camera.add(lineSeparator);
+
+                    // create the header dynamically
+                    JLabel currentPNumberTitle_camera = new JLabel("当前项目编号：");
+                    currentPNumberTitle_camera.setLocation(20,10);
+                    currentPNumberTitle_camera.setSize(160,40);
+                    currentPNumberTitle_camera.setFont(new Font(null,Font.BOLD,18));
+                    outermostPanel_camera.add(currentPNumberTitle_camera);
+
+                    JLabel currentPNameTitle_camera = new JLabel("当前项目名称：");
+                    currentPNameTitle_camera.setLocation(240,10);
+                    currentPNameTitle_camera.setSize(160,40);
+                    currentPNameTitle_camera.setFont(new Font(null,Font.BOLD,18));
+                    outermostPanel_camera.add(currentPNameTitle_camera);
+
+                    final JLabel currentPName_camera = new JLabel(pName);
+                    currentPName_camera.setLocation(370,10);
+                    currentPName_camera.setSize(180,40);
+                    currentPName_camera.setFont(new Font(null,Font.BOLD,18));
+
+                    final JLabel currentPNumber_camera = new JLabel(pNumber);
+                    currentPNumber_camera.setLocation(150,10);
+                    currentPNumber_camera.setSize(80,40);
+                    currentPNumber_camera.setFont(new Font(null,Font.BOLD,18));
+
+                    //add backward button, go back to homepage
+                    JButton  backwardButton_camera = new JButton("返回首页");
+                    backwardButton_camera.setLocation(1140,15);
+                    backwardButton_camera.setSize(120,30);
+                    backwardButton_camera.setFont(new Font(null,Font.BOLD,18));
+                    outermostPanel_camera.add(backwardButton_camera);
+
+                    //add backward button event listener
+                    backwardButton_camera.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            //need remove these two JLabel to make sure every time these two label are new added to outPanel
+                            outermostPanel_camera.remove(currentPName_camera);
+                            outermostPanel_camera.remove(currentPNumber_camera);
+                            tableModel_wall.getDataVector().clear();
+                            outermostPanel_camera.setVisible(false);
+                            homepagePanel.setVisible(true);
                             mainFrame.setContentPane(homepagePanel);
+
                             if (genarateFieldsValuePanel("ubnt").getComponents().length == 0){
                                 JPanel filedsValue_ubnt = generateUBNTCommondFields(commonFieldsPanel,genarateFieldsValuePanel("ubnt"),false);
                                 filedsValue_ubnt.repaint();
@@ -464,315 +608,152 @@ public class ConfigSet {
                         }
 
                     });
+
                     homepagePanel.setVisible(false);
-                    outermostPanel.setVisible(true);
-                    mainFrame.setContentPane(outermostPanel);
+                    new CameraGUI().showConfigRecordsPage(pName_camera,pNumber_camera,tableModel_camera,commonFields_camera).setVisible(true);
+                    mainFrame.setContentPane(outermostPanel_camera);
 
-                        String specificExcel_M2 = "D:\\ConfigFile\\M2\\"+pName +".xlsx";
-//                        String specificExcel_M2 = System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName +".xlsx";
-                        String specificExcel_M5 = "D:\\ConfigFile\\M5\\"+pName +".xlsx";
-//                        String specificExcel_M5 = System.getProperty("user.dir")+ "\\ConfigFile\\M5\\"+pName +".xlsx";
-//                        String SpecificProjectCommonField = "D:\\ConfigFile\\"+pName +"CommonFields.xlsx";
-//                        String SpecificProjectCommonField = System.getProperty("user.dir")+ "\\ConfigFile\\"+pName +"CommonFields.xlsx";
-                        File projectCorresspondingConfigFile_M2 = new File(specificExcel_M2);
-                        File projectCorresspondingConfigFile_M5 = new File(specificExcel_M5);
-
-                        if (!projectCorresspondingConfigFile_M2.exists()){
-                            exportToExcel(tableModel_M2,"D:\\ConfigFile\\M2\\"+pName+".xlsx",4,commonFields_ubnt);
-//                            exportToExcel(tableModel_M2,System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName+".xlsx",4);
-                        }
-                        if (!projectCorresspondingConfigFile_M5.exists()){
-                            exportToExcel(tableModel_M5,"D:\\ConfigFile\\M5\\"+pName+".xlsx",8,commonFields_ubnt);
-//                            exportToExcel(tableModel_M5,System.getProperty("user.dir")+ "\\ConfigFile\\M5\\"+pName+".xlsx",8);
-                        }
-                        if (projectCorresspondingConfigFile_M2.exists()){
-                            //import table rows on main page
-                            importFromExcel(tableModel_M2 ,specificExcel_M2,commonFields_ubnt);
-//                            jTable.setModel(defaultTableModel);
-                            //import specific project common fields
-                            //TODO: this time not to render table but to override commonfields.
-//                            importFromExcel(null,SpecificProjectCommonField);
-                            //import project list excel, in order to show the project name and number on the main page
-                        }
-                        if (projectCorresspondingConfigFile_M5.exists()){
-                            //import table rows on main page
-                            importFromExcel(tableModel_M5 ,specificExcel_M5,commonFields_ubnt);
-//                            jTable.setModel(defaultTableModel);
-                            //import specific project common fields
-                            //TODO: this time not to render table but to override commonfields.
-//                            importFromExcel(null,SpecificProjectCommonField);
-                            //import project list excel, in order to show the project name and number on the main page
-                        }
-
-                        outermostPanel.add(currentPName);
-                        outermostPanel.add(currentPNumber);
-                        currentPName.setText(pName);
-                        currentPNumber.setText(pNumber);
-
+                    outermostPanel_camera.add(currentPName_camera);
+                    outermostPanel_camera.add(currentPNumber_camera);
+                    currentPName_camera.setText(pName_camera);
+                    currentPNumber_camera.setText(pNumber_camera);
+                }else {
+                        JOptionPane.showMessageDialog(
+                            mainFrame,
+                            "请先选择项目 !",
+                            "提示",
+                            JOptionPane.INFORMATION_MESSAGE
+                        );
                 }
-            }
-        });
-
-        camera_homepage.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int targetRow = projectTable.getSelectedRow();
-
-                //set the value to these two global fields
-                String pNumber_camera = projectTableModel.getValueAt(targetRow,0).toString();
-                String pName_camera = projectTableModel.getValueAt(targetRow,1).toString();
-
-                String specificExcel_camera = "D:\\ConfigFile\\camera\\"+pName_camera +".xlsx";
-//                        String specificExcel_wall = System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName +".xlsx";
-                String SpecificProjectCommonField = "D:\\ConfigFile\\"+pName_camera +"CommonFields.xlsx";
-//                        String SpecificProjectCommonField = System.getProperty("user.dir")+ "\\ConfigFile\\"+pName +"CommonFields.xlsx";
-                File projectCorresspondingConfigFile_camera = new File(specificExcel_camera);
-                File projectCommonFieldFile = new File(SpecificProjectCommonField);
-                if (!projectCorresspondingConfigFile_camera.exists()){
-//                    exportToExcel(tableModel_camera,"D:\\ConfigFile\\camera\\"+pName_camera+".xlsx",4);
-                }
-                if (projectCorresspondingConfigFile_camera.exists() && projectCommonFieldFile.exists()){
-                    //import table rows on main page
-//                    importFromExcel(tableModel_camera ,specificExcel_camera);
-//                            jTable.setModel(defaultTableModel);
-                    //import specific project common fields
-                    //TODO: this time not to render table but to override commonfields.
-//                    importFromExcel(null,SpecificProjectCommonField);
-                    //import project list excel, in order to show the project name and number on the main page
-                }
-
-                // the camera config records page
-                final JPanel outermostPanel_camera = new CameraGUI().showConfigRecordsPage(pName_camera,pNumber_camera,tableModel_camera,commonFields_camera);
-
-                JPanel outermostHeaderPanel = new JPanel(){
-                    @Override
-                    public void paintComponent(Graphics graphics){
-                        super.paintComponent(graphics);
-                        Graphics2D g2 = (Graphics2D) graphics;
-                        Shape line01 = new Line2D.Double(0,3,1135,3);
-                        Shape line02 = new Line2D.Double(0,5,1135,5);
-                        g2.draw(line01);
-                        g2.draw(line02);
-                    }
-                };
-                outermostHeaderPanel.setLocation(10,45);
-                outermostHeaderPanel.setSize(760,13);
-                outermostPanel_camera.add(outermostHeaderPanel);
-
-                // create the header dynamically
-                JLabel currentPNumberTitle_camera = new JLabel("当前项目编号：");
-                currentPNumberTitle_camera.setLocation(20,10);
-                currentPNumberTitle_camera.setSize(160,40);
-                currentPNumberTitle_camera.setFont(new Font(null,Font.BOLD,18));
-                outermostPanel_camera.add(currentPNumberTitle_camera);
-
-                JLabel currentPNameTitle_camera = new JLabel("当前项目名称：");
-                currentPNameTitle_camera.setLocation(240,10);
-                currentPNameTitle_camera.setSize(160,40);
-                currentPNameTitle_camera.setFont(new Font(null,Font.BOLD,18));
-                outermostPanel_camera.add(currentPNameTitle_camera);
-
-                final JLabel currentPName_camera = new JLabel(pName);
-                currentPName_camera.setLocation(370,10);
-                currentPName_camera.setSize(180,40);
-                currentPName_camera.setFont(new Font(null,Font.BOLD,18));
-
-                final JLabel currentPNumber_camera = new JLabel(pNumber);
-                currentPNumber_camera.setLocation(150,10);
-                currentPNumber_camera.setSize(80,40);
-                currentPNumber_camera.setFont(new Font(null,Font.BOLD,18));
-
-                //add backward button, go back to homepage
-                JButton  backwardButton_camera = new JButton("返回首页");
-                backwardButton_camera.setLocation(640,15);
-                backwardButton_camera.setSize(120,30);
-                backwardButton_camera.setFont(new Font(null,Font.BOLD,18));
-                outermostPanel_camera.add(backwardButton_camera);
-
-                //add backward button event listener
-                backwardButton_camera.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        //need remove these two JLabel to make sure every time these two label are new added to outPanel
-                        outermostPanel_camera.remove(currentPName_camera);
-                        outermostPanel_camera.remove(currentPNumber_camera);
-                        tableModel_wall.getDataVector().clear();
-                        outermostPanel_camera.setVisible(false);
-                        homepagePanel.setVisible(true);
-                        mainFrame.setContentPane(homepagePanel);
-
-                        if (genarateFieldsValuePanel("ubnt").getComponents().length == 0){
-                            JPanel filedsValue_ubnt = generateUBNTCommondFields(commonFieldsPanel,genarateFieldsValuePanel("ubnt"),false);
-                            filedsValue_ubnt.repaint();
-
-                        }else {
-                            genarateFieldsValuePanel("ubnt").removeAll();
-                            JPanel filedsValue_new_ubnt = generateUBNTCommondFields(commonFieldsPanel,genarateFieldsValuePanel("ubnt"),false);
-                            filedsValue_new_ubnt.repaint();
-                        }
-
-                        if (genarateFieldsValuePanel("wall").getComponents().length == 0){
-                            JPanel filedsValue_wall = generateWallCommondFields(commonFieldsPanel,genarateFieldsValuePanel("wall"),false);
-                            filedsValue_wall.repaint();
-                        }else {
-                            genarateFieldsValuePanel("wall").removeAll();
-                            JPanel filedsValue_new_wall = generateWallCommondFields(commonFieldsPanel,genarateFieldsValuePanel("wall"),false);
-                            filedsValue_new_wall.repaint();
-                        }
-
-                        if (genarateFieldsValuePanel("camera").getComponents().length == 0){
-                            JPanel filedsValue_camera = generateCameraCommondFields(commonFieldsPanel,genarateFieldsValuePanel("camera"),false);
-                            filedsValue_camera.repaint();
-                        }else {
-                            genarateFieldsValuePanel("camera").removeAll();
-                            JPanel filedsValue_new_camera = generateCameraCommondFields(commonFieldsPanel,genarateFieldsValuePanel("camera"),false);
-                            filedsValue_new_camera.repaint();
-                        }
-                    }
-
-                });
-
-                homepagePanel.setVisible(false);
-                new CameraGUI().showConfigRecordsPage(pName_camera,pNumber_camera,tableModel_camera,commonFields_camera).setVisible(true);
-                mainFrame.setContentPane(outermostPanel_camera);
-
-                outermostPanel_camera.add(currentPName_camera);
-                outermostPanel_camera.add(currentPNumber_camera);
-                currentPName_camera.setText(pName_camera);
-                currentPNumber_camera.setText(pNumber_camera);
             }
         });
 
         wallHanging_homepage.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (projectTable.getSelectedRow() >= 0){
+                    int targetRow = projectTable.getSelectedRow();
+                    //set the value to these two global fields
+                    String pNumber_wall = projectTableModel.getValueAt(targetRow,0).toString();
+                    String pName_wall = projectTableModel.getValueAt(targetRow,1).toString();
 
-                int targetRow = projectTable.getSelectedRow();
-                //set the value to these two global fields
-                String pNumber_wall = projectTableModel.getValueAt(targetRow,0).toString();
-                String pName_wall = projectTableModel.getValueAt(targetRow,1).toString();
-
-                String specificExcel_wall = "D:\\ConfigFile\\wall\\"+pName_wall +".xlsx";
-//                        String specificExcel_wall = System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName +".xlsx";
-                String SpecificProjectCommonField = "D:\\ConfigFile\\"+pName_wall +"CommonFields.xlsx";
-//                        String SpecificProjectCommonField = System.getProperty("user.dir")+ "\\ConfigFile\\"+pName +"CommonFields.xlsx";
-                File projectCorresspondingConfigFile_wall = new File(specificExcel_wall);
-                File projectCommonFieldFile = new File(SpecificProjectCommonField);
-                if (!projectCorresspondingConfigFile_wall.exists()){
-//                    exportToExcel(tableModel_wall,"D:\\ConfigFile\\wall\\"+pName_wall+".xlsx",4);
-                }
-                if (projectCorresspondingConfigFile_wall.exists() && projectCommonFieldFile.exists()){
-                    //import table rows on main page
-//                    importFromExcel(tableModel_wall ,specificExcel_wall);
-//                            jTable.setModel(defaultTableModel);
-                    //import specific project common fields
-                    //TODO: this time not to render table but to override commonfields.
-//                    importFromExcel(null,SpecificProjectCommonField);
-                    //import project list excel, in order to show the project name and number on the main page
-                }
-
-                final JPanel outermostPanel_wall = new WallHangingGUI().showConfigRecordsPage(pName_wall,pNumber_wall,tableModel_wall,commonFields_wall);
-                JPanel outermostHeaderPanel = new JPanel(){
-                    @Override
-                    public void paintComponent(Graphics graphics){
-                        super.paintComponent(graphics);
-                        Graphics2D g2 = (Graphics2D) graphics;
-                        Shape line01 = new Line2D.Double(0,3,1135,3);
-                        Shape line02 = new Line2D.Double(0,5,1135,5);
-                        g2.draw(line01);
-                        g2.draw(line02);
+                    String specificExcel_wall = "D:\\ConfigFile\\wall\\"+pName_wall +".xlsx";
+    //                        String specificExcel_wall = System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName +".xlsx";
+                    String SpecificProjectCommonField = "D:\\ConfigFile\\"+pName_wall +"CommonFields.xlsx";
+    //                        String SpecificProjectCommonField = System.getProperty("user.dir")+ "\\ConfigFile\\"+pName +"CommonFields.xlsx";
+                    File projectCorresspondingConfigFile_wall = new File(specificExcel_wall);
+                    File projectCommonFieldFile = new File(SpecificProjectCommonField);
+                    if (!projectCorresspondingConfigFile_wall.exists()){
+    //                    exportToExcel(tableModel_wall,"D:\\ConfigFile\\wall\\"+pName_wall+".xlsx",4);
                     }
-                };
-                outermostHeaderPanel.setLocation(10,45);
-                outermostHeaderPanel.setSize(760,13);
-                outermostPanel_wall.add(outermostHeaderPanel);
-
-                // create the header dynamically
-                JLabel currentPNumberTitle_wall = new JLabel("当前项目编号：");
-                currentPNumberTitle_wall.setLocation(20,10);
-                currentPNumberTitle_wall.setSize(160,40);
-                currentPNumberTitle_wall.setFont(new Font(null,Font.BOLD,18));
-                outermostPanel_wall.add(currentPNumberTitle_wall);
-
-                JLabel currentPNameTitle_wall = new JLabel("当前项目名称：");
-                currentPNameTitle_wall.setLocation(240,10);
-                currentPNameTitle_wall.setSize(160,40);
-                currentPNameTitle_wall.setFont(new Font(null,Font.BOLD,18));
-                outermostPanel_wall.add(currentPNameTitle_wall);
-
-                final JLabel currentPName_wall = new JLabel(pName);
-                currentPName_wall.setLocation(370,10);
-                currentPName_wall.setSize(180,40);
-                currentPName_wall.setFont(new Font(null,Font.BOLD,18));
-
-                final JLabel currentPNumber_wall = new JLabel(pNumber);
-                currentPNumber_wall.setLocation(150,10);
-                currentPNumber_wall.setSize(80,40);
-                currentPNumber_wall.setFont(new Font(null,Font.BOLD,18));
-
-                //add backward button, go back to homepage
-                JButton  backwardButton_wall = new JButton("返回首页");
-                backwardButton_wall.setLocation(640,15);
-                backwardButton_wall.setSize(120,30);
-                backwardButton_wall.setFont(new Font(null,Font.BOLD,18));
-                outermostPanel_wall.add(backwardButton_wall);
-
-                //add backward button event listener
-                backwardButton_wall.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        //need remove these two JLabel to make sure every time these two label are new added to outPanel
-                        outermostPanel_wall.remove(currentPName_wall);
-                        outermostPanel_wall.remove(currentPNumber_wall);
-                        tableModel_wall.getDataVector().clear();
-                        outermostPanel_wall.setVisible(false);
-                        homepagePanel.setVisible(true);
-                        mainFrame.setContentPane(homepagePanel);
-
-                        if (genarateFieldsValuePanel("ubnt").getComponents().length == 0){
-                            JPanel filedsValue_ubnt = generateUBNTCommondFields(commonFieldsPanel,genarateFieldsValuePanel("ubnt"),false);
-                            filedsValue_ubnt.repaint();
-
-                        }else {
-                            genarateFieldsValuePanel("ubnt").removeAll();
-                            JPanel filedsValue_new_ubnt = generateUBNTCommondFields(commonFieldsPanel,genarateFieldsValuePanel("ubnt"),false);
-                            filedsValue_new_ubnt.repaint();
-                        }
-
-                        if (genarateFieldsValuePanel("wall").getComponents().length == 0){
-                            JPanel filedsValue_wall = generateWallCommondFields(commonFieldsPanel,genarateFieldsValuePanel("wall"),false);
-                            filedsValue_wall.repaint();
-                        }else {
-                            genarateFieldsValuePanel("wall").removeAll();
-                            JPanel filedsValue_new_wall = generateWallCommondFields(commonFieldsPanel,genarateFieldsValuePanel("wall"),false);
-                            filedsValue_new_wall.repaint();
-                        }
-
-                        if (genarateFieldsValuePanel("camera").getComponents().length == 0){
-                            JPanel filedsValue_camera = generateCameraCommondFields(commonFieldsPanel,genarateFieldsValuePanel("camera"),false);
-                            filedsValue_camera.repaint();
-                        }else {
-                            genarateFieldsValuePanel("camera").removeAll();
-                            JPanel filedsValue_new_camera = generateCameraCommondFields(commonFieldsPanel,genarateFieldsValuePanel("camera"),false);
-                            filedsValue_new_camera.repaint();
-                        }
+                    if (projectCorresspondingConfigFile_wall.exists() && projectCommonFieldFile.exists()){
+                        //import table rows on main page
+    //                    importFromExcel(tableModel_wall ,specificExcel_wall);
+    //                            jTable.setModel(defaultTableModel);
+                        //import specific project common fields
+                        //TODO: this time not to render table but to override commonfields.
+    //                    importFromExcel(null,SpecificProjectCommonField);
+                        //import project list excel, in order to show the project name and number on the main page
                     }
 
-                });
+                    final JPanel outermostPanel_wall = new WallHangingGUI().showConfigRecordsPage(pName_wall,pNumber_wall,tableModel_wall,commonFields_wall);
+                    //separate line
+                    JLabel lineSeparator = new JLabel("--");
+                    lineSeparator.setLocation(10,47);
+                    lineSeparator.setSize(1270,1);
+                    lineSeparator.setOpaque(true);
+                    lineSeparator.setBackground(Color.black);
+                    outermostPanel_wall.add(lineSeparator);
 
+                    // create the header dynamically
+                    JLabel currentPNumberTitle_wall = new JLabel("当前项目编号：");
+                    currentPNumberTitle_wall.setLocation(20,10);
+                    currentPNumberTitle_wall.setSize(160,40);
+                    currentPNumberTitle_wall.setFont(new Font(null,Font.BOLD,18));
+                    outermostPanel_wall.add(currentPNumberTitle_wall);
 
+                    JLabel currentPNameTitle_wall = new JLabel("当前项目名称：");
+                    currentPNameTitle_wall.setLocation(240,10);
+                    currentPNameTitle_wall.setSize(160,40);
+                    currentPNameTitle_wall.setFont(new Font(null,Font.BOLD,18));
+                    outermostPanel_wall.add(currentPNameTitle_wall);
 
-                homepagePanel.setVisible(false);
-                new WallHangingGUI().showConfigRecordsPage(pName_wall,pNumber_wall,tableModel_wall,commonFields_wall).setVisible(true);
-                mainFrame.setContentPane(outermostPanel_wall);
+                    final JLabel currentPName_wall = new JLabel(pName);
+                    currentPName_wall.setLocation(370,10);
+                    currentPName_wall.setSize(180,40);
+                    currentPName_wall.setFont(new Font(null,Font.BOLD,18));
 
+                    final JLabel currentPNumber_wall = new JLabel(pNumber);
+                    currentPNumber_wall.setLocation(150,10);
+                    currentPNumber_wall.setSize(80,40);
+                    currentPNumber_wall.setFont(new Font(null,Font.BOLD,18));
 
+                    //add backward button, go back to homepage
+                    JButton  backwardButton_wall = new JButton("返回首页");
+                    backwardButton_wall.setLocation(1140,15);
+                    backwardButton_wall.setSize(120,30);
+                    backwardButton_wall.setFont(new Font(null,Font.BOLD,18));
+                    outermostPanel_wall.add(backwardButton_wall);
 
+                    //add backward button event listener
+                    backwardButton_wall.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            //need remove these two JLabel to make sure every time these two label are new added to outPanel
+                            outermostPanel_wall.remove(currentPName_wall);
+                            outermostPanel_wall.remove(currentPNumber_wall);
+                            tableModel_wall.getDataVector().clear();
+                            outermostPanel_wall.setVisible(false);
+                            homepagePanel.setVisible(true);
+                            mainFrame.setContentPane(homepagePanel);
 
-                outermostPanel_wall.add(currentPName_wall);
-                outermostPanel_wall.add(currentPNumber_wall);
-                currentPName_wall.setText(pName_wall);
-                currentPNumber_wall.setText(pNumber_wall);
+                            if (genarateFieldsValuePanel("ubnt").getComponents().length == 0){
+                                JPanel filedsValue_ubnt = generateUBNTCommondFields(commonFieldsPanel,genarateFieldsValuePanel("ubnt"),false);
+                                filedsValue_ubnt.repaint();
+
+                            }else {
+                                genarateFieldsValuePanel("ubnt").removeAll();
+                                JPanel filedsValue_new_ubnt = generateUBNTCommondFields(commonFieldsPanel,genarateFieldsValuePanel("ubnt"),false);
+                                filedsValue_new_ubnt.repaint();
+                            }
+
+                            if (genarateFieldsValuePanel("wall").getComponents().length == 0){
+                                JPanel filedsValue_wall = generateWallCommondFields(commonFieldsPanel,genarateFieldsValuePanel("wall"),false);
+                                filedsValue_wall.repaint();
+                            }else {
+                                genarateFieldsValuePanel("wall").removeAll();
+                                JPanel filedsValue_new_wall = generateWallCommondFields(commonFieldsPanel,genarateFieldsValuePanel("wall"),false);
+                                filedsValue_new_wall.repaint();
+                            }
+
+                            if (genarateFieldsValuePanel("camera").getComponents().length == 0){
+                                JPanel filedsValue_camera = generateCameraCommondFields(commonFieldsPanel,genarateFieldsValuePanel("camera"),false);
+                                filedsValue_camera.repaint();
+                            }else {
+                                genarateFieldsValuePanel("camera").removeAll();
+                                JPanel filedsValue_new_camera = generateCameraCommondFields(commonFieldsPanel,genarateFieldsValuePanel("camera"),false);
+                                filedsValue_new_camera.repaint();
+                            }
+                        }
+
+                    });
+
+                    homepagePanel.setVisible(false);
+                    new WallHangingGUI().showConfigRecordsPage(pName_wall,pNumber_wall,tableModel_wall,commonFields_wall).setVisible(true);
+                    mainFrame.setContentPane(outermostPanel_wall);
+
+                    outermostPanel_wall.add(currentPName_wall);
+                    outermostPanel_wall.add(currentPNumber_wall);
+                    currentPName_wall.setText(pName_wall);
+                    currentPNumber_wall.setText(pNumber_wall);
+                }else {
+                    JOptionPane.showMessageDialog(
+                            mainFrame,
+                            "请先选择项目 !",
+                            "提示",
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
+                }
             }
         });
 
@@ -2085,7 +2066,7 @@ public class ConfigSet {
 
         //initialize new project dialog, the third parameter value is true means current dialog focused on the homepage,and
         //homepage can be clicked only if the project dialog was closed
-        final JDialog newProjectDialog = new JDialog(mainFrame,"新建项目",true);
+        final JDialog newProjectDialog = new JDialog(mainFrame,isUpdate?"修改参数":"新建项目",true);
         newProjectDialog.setSize(800,650);
         newProjectDialog.setLocationRelativeTo(mainFrame);
 
@@ -2097,7 +2078,7 @@ public class ConfigSet {
 
         //this JPanel was created for store all these components which will shown on the project dialog
         JPanel projectContainerPanel = new JPanel(null);
-        projectContainerPanel.setBorder(BorderFactory.createTitledBorder("新建项目："));
+        projectContainerPanel.setBorder(BorderFactory.createTitledBorder(isUpdate?"修改参数":"新建项目："));
 
         //project id label and corresponding text field
         JLabel projectNumLabel = new JLabel("项目编号 :");
@@ -2295,7 +2276,7 @@ public class ConfigSet {
         serverIP_InputBox_wall.setSize(180,35);
         serverIP_InputBox_wall.setFont(new Font(null, Font.PLAIN, 16));
         if (isUpdate){
-            serverIP_InputBox_wall.setText(commonFields_wall.get(0));
+            serverIP_InputBox_wall.setText(commonFields_wall.get(1));
         }
         projectContainerPanel.add(serverIP_wall);
         projectContainerPanel.add(serverIP_InputBox_wall);
@@ -2311,7 +2292,7 @@ public class ConfigSet {
         gatewayIP_InputBox_wall.setSize(180,35);
         gatewayIP_InputBox_wall.setFont(new Font(null, Font.PLAIN, 16));
         if (isUpdate){
-            gatewayIP_InputBox_wall.setText(commonFields_wall.get(1));
+            gatewayIP_InputBox_wall.setText(commonFields_wall.get(2));
         }
         projectContainerPanel.add(gatewayIP_wall);
         projectContainerPanel.add(gatewayIP_InputBox_wall);
@@ -2327,7 +2308,7 @@ public class ConfigSet {
         netMask_InputBox_wall.setSize(180,35);
         netMask_InputBox_wall.setFont(new Font(null, Font.PLAIN, 17));
         if (isUpdate){
-            netMask_InputBox_wall.setText(commonFields_wall.get(2));
+            netMask_InputBox_wall.setText(commonFields_wall.get(3));
         }
         projectContainerPanel.add(netMask_wall);
         projectContainerPanel.add(netMask_InputBox_wall);
@@ -2491,6 +2472,14 @@ public class ConfigSet {
             @Override
             public void actionPerformed(ActionEvent e) {
                 newProjectDialog.dispose();
+                JPanel filedsValue_ubnt = generateUBNTCommondFields(commonFieldPanel,fieldValuePanel_ubnt,false);
+                filedsValue_ubnt.repaint();
+
+                JPanel filedsValue_wall = generateWallCommondFields(commonFieldPanel,fieldValuePanel_wall,false);
+                filedsValue_wall.repaint();
+
+                JPanel filedsValue_camera = generateCameraCommondFields(commonFieldPanel,fieldValuePanel_camera,false);
+                filedsValue_camera.repaint();
             }
         });
 

@@ -17,7 +17,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.geom.Line2D;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -161,20 +160,28 @@ public class WallHangingGUI {
             public void mouseClicked(MouseEvent e) {
                 final JPanel outermostPanel = showConfigRecordsPage(pName,pNumber,tableModel_wall,commonFields);
 
-                JPanel outermostHeaderPanel = new JPanel(){
-                    @Override
-                    public void paintComponent(Graphics graphics){
-                        super.paintComponent(graphics);
-                        Graphics2D g2 = (Graphics2D) graphics;
-                        Shape line01 = new Line2D.Double(0,3,1135,3);
-                        Shape line02 = new Line2D.Double(0,5,1135,5);
-                        g2.draw(line01);
-                        g2.draw(line02);
-                    }
-                };
-                outermostHeaderPanel.setLocation(10,45);
-                outermostHeaderPanel.setSize(760,13);
-                outermostPanel.add(outermostHeaderPanel);
+//                //separate line
+//                JLabel lineSeparator = new JLabel("--");
+//                lineSeparator.setLocation(10,45);
+//                lineSeparator.setSize(1400,1);
+//                lineSeparator.setOpaque(true);
+//                lineSeparator.setBackground(Color.black);
+//                outermostPanel.add(lineSeparator);
+
+//                JPanel outermostHeaderPanel = new JPanel(){
+//                    @Override
+//                    public void paintComponent(Graphics graphics){
+//                        super.paintComponent(graphics);
+//                        Graphics2D g2 = (Graphics2D) graphics;
+//                        Shape line01 = new Line2D.Double(0,3,1400,3);
+//                        Shape line02 = new Line2D.Double(0,5,1400,5);
+//                        g2.draw(line01);
+//                        g2.draw(line02);
+//                    }
+//                };
+//                outermostHeaderPanel.setLocation(10,45);
+//                outermostHeaderPanel.setSize(1400,13);
+//                outermostPanel.add(outermostHeaderPanel);
 
                 // create the header dynamically
                 JLabel currentPNumberTitle = new JLabel("当前项目编号：");
@@ -282,12 +289,39 @@ public class WallHangingGUI {
         JPanel outermostContainerPanel = new JPanel(null);
 //        outermostContainerPanel.setBorder(BorderFactory.createTitledBorder("中继配置记录："));
 
-        //M2 records container
+        //wall hanging records container
         JPanel WallContainerPanel = new JPanel(null);
         WallContainerPanel.setLocation(10,60);
         WallContainerPanel.setSize(480,550);
         WallContainerPanel.setBorder(BorderFactory.createTitledBorder(null,"壁挂 配置记录：", TitledBorder.LEFT,TitledBorder.TOP,new Font(null,Font.BOLD,15)));
         WallContainerPanel.setLayout(null);
+
+        //show common fields on the left
+        final JPanel commonFieldsPanel_wall = new JPanel(null);
+        commonFieldsPanel_wall.setLocation(600, 60);
+        commonFieldsPanel_wall.setSize(350, 240);
+        commonFieldsPanel_wall.setBorder(BorderFactory.createTitledBorder(null, "壁挂其他参数：", TitledBorder.LEFT, TitledBorder.TOP, new Font(null, BOLD, 18)));
+        commonFieldsPanel_wall.setLayout(null);
+
+        final String[] commonFieldsLabels_wall = {"壁挂SSID        :","壁挂服务器IP : ","壁挂网关         : ","壁挂子网掩码 : "};
+        //'i' started from 1, in order to setup the first label offset in vertical direction
+        for (int i = 1; i <= commonFieldsLabels_wall.length; i++) {
+            JLabel commonFiledsLabel_right = new JLabel(commonFieldsLabels_wall[i-1]);
+            JLabel commonFiledsLabel_right_value = new JLabel(commonFieldsLabels_wall[i-1]);
+            commonFiledsLabel_right.setFont(new Font(null, 1, 16));
+            commonFiledsLabel_right.setLocation(20,40*i);
+            commonFiledsLabel_right.setSize(135,40);
+            commonFiledsLabel_right_value.setText(commonFields.get(i-1));
+            commonFiledsLabel_right_value.setFont(new Font(null, 1, 16));
+            commonFiledsLabel_right_value.setLocation(160,40*i);
+            commonFiledsLabel_right_value.setSize(135,40);
+            commonFieldsPanel_wall.add(commonFiledsLabel_right);
+            commonFieldsPanel_wall.add(commonFiledsLabel_right_value);
+        }
+
+
+
+
 
         //create a JTable to record the configuration info
         final JTable jTable_wall = new JTable(tableModel_wall);
@@ -328,23 +362,23 @@ public class WallHangingGUI {
 
         //setup new create button
         JButton createWall = new JButton("新建");
-        createWall.setFont(new Font(null,Font.BOLD,14));
-        createWall.setLocation(355,500);
-        createWall.setSize(80,30);
+        createWall.setFont(new Font(null,Font.BOLD,16));
+        createWall.setLocation(375,500);
+        createWall.setSize(80,40);
         WallContainerPanel.add(createWall);
 
         //setup remove button
         JButton removeWall = new JButton("删除");
-        removeWall.setLocation(245,500);
-        removeWall.setSize(80,30);
-        removeWall.setFont(new Font(null,Font.BOLD,14));
+        removeWall.setLocation(265,500);
+        removeWall.setSize(80,40);
+        removeWall.setFont(new Font(null,Font.BOLD,16));
         WallContainerPanel.add(removeWall);
 
         //setup export wall hanging records button
         JButton exportWallRecords = new JButton("导出");
-        exportWallRecords.setFont(new Font(null,Font.BOLD,14));
+        exportWallRecords.setFont(new Font(null,Font.BOLD,16));
         exportWallRecords.setLocation(15,500);
-        exportWallRecords.setSize(80,30);
+        exportWallRecords.setSize(80,40);
         WallContainerPanel.add(exportWallRecords);
 
         //add export all wall hanging config records
@@ -427,6 +461,7 @@ public class WallHangingGUI {
         });
 
         outermostContainerPanel.add(WallContainerPanel);
+        outermostContainerPanel.add(commonFieldsPanel_wall);
         return outermostContainerPanel;
     }
 
