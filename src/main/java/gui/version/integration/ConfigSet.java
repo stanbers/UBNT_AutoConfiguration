@@ -508,20 +508,20 @@ public class ConfigSet {
 
                     String specificExcel_camera = "D:\\ConfigFile\\camera\\"+pName_camera +".xlsx";
     //                        String specificExcel_wall = System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName +".xlsx";
-                    String SpecificProjectCommonField = "D:\\ConfigFile\\"+pName_camera +"CommonFields.xlsx";
+                    String SpecificProjectCommonField = "D:\\ConfigFile\\camera\\"+pName_camera +"CommonFields.xlsx";
     //                        String SpecificProjectCommonField = System.getProperty("user.dir")+ "\\ConfigFile\\"+pName +"CommonFields.xlsx";
                     File projectCorresspondingConfigFile_camera = new File(specificExcel_camera);
                     File projectCommonFieldFile = new File(SpecificProjectCommonField);
                     if (!projectCorresspondingConfigFile_camera.exists()){
-    //                    exportToExcel(tableModel_camera,"D:\\ConfigFile\\camera\\"+pName_camera+".xlsx",4);
+                        exportToExcel(tableModel_camera,"D:\\ConfigFile\\camera\\"+pName_camera+".xlsx",4,commonFields_camera);
                     }
                     if (projectCorresspondingConfigFile_camera.exists() && projectCommonFieldFile.exists()){
                         //import table rows on main page
-    //                    importFromExcel(tableModel_camera ,specificExcel_camera);
+                        importFromExcel(tableModel_camera ,specificExcel_camera,null);
     //                            jTable.setModel(defaultTableModel);
                         //import specific project common fields
                         //TODO: this time not to render table but to override commonfields.
-    //                    importFromExcel(null,SpecificProjectCommonField);
+                        importFromExcel(null,SpecificProjectCommonField,commonFields_camera);
                         //import project list excel, in order to show the project name and number on the main page
                     }
 

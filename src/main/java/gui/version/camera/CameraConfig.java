@@ -9,9 +9,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import utility.WebDriverGiver;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * @Author by XuLiang
  * @Date 2018/01/23 15:23
@@ -30,9 +27,8 @@ public class CameraConfig {
 
     public int progress = 0;
 
-    public int config(String cameraIP, String cameraNetMask, String cameraGatewayIP, String serverIP, String deviceID, String olderCameraIP){
+    public int config(String cameraIP, String cameraNetMask, String cameraGatewayIP, String serverIP, String deviceID, String olderCameraIP, String currentModel){
         String URL;
-        List list = new ArrayList();
         if (olderCameraIP != null){
             URL = "http://"+olderCameraIP+"/doc/page/login.asp";
         }else {
@@ -55,7 +51,7 @@ public class CameraConfig {
                 this.getCancelButton(2).click();
             }
 
-            Thread.sleep(2000);
+            Thread.sleep(3000);
             this.getConfigTab().click();
 
             Thread.sleep(2000);
@@ -68,29 +64,49 @@ public class CameraConfig {
 
             //navigate to internet tab
             this.getMenuTab(3).click();
-            Thread.sleep(2000);
+            Thread.sleep(1000);
 
             //advianced configuration
             this.getSubTab(3,3).click();
-            Thread.sleep(2000);
+            Thread.sleep(1000);
 
             //access platform
-            this.viaID("ui-id-13").click();
-            Thread.sleep(2000);
+            if (currentModel.trim().equals("DS-2CD2T25FD-I8")){
+                this.viaID("ui-id-13").click();
+                Thread.sleep(2000);
+            }else if (currentModel.trim().equals("DS-2CD2T10-I5")){
+                this.viaID("ui-id-11").click();
+                Thread.sleep(2000);
+            }
 
             this.selectAccess(2,"E-Home",false);
-            this.selectAccess(3,"0",true);
-            Thread.sleep(2000);
-            //server IP
-            this.accessInputBox(2).clear();
-            this.accessInputBox(2).sendKeys(serverIP);
-            Thread.sleep(2000);
-            //device id
-            if (deviceID != null){
-                this.accessInputBox(4).clear();
-                this.accessInputBox(4).sendKeys(deviceID);
+            if (currentModel.trim().equals("DS-2CD2T25FD-I8")){
+                this.selectAccess(3,"0",true);
             }
             Thread.sleep(2000);
+            //server IP
+            if (currentModel.trim().equals("DS-2CD2T25FD-I8")){
+                this.accessInputBox(2).clear();
+                this.accessInputBox(2).sendKeys(serverIP);
+                Thread.sleep(2000);
+            }else if (currentModel.trim().equals("DS-2CD2T10-I5")){
+                this.accessInputBox(1).clear();
+                this.accessInputBox(1).sendKeys(serverIP);
+                Thread.sleep(2000);
+            }
+
+            //device id
+            if (deviceID != null){
+                if (currentModel.trim().equals("DS-2CD2T25FD-I8")){
+                    this.accessInputBox(4).clear();
+                    this.accessInputBox(4).sendKeys(deviceID);
+                    Thread.sleep(1000);
+                }else if (currentModel.trim().equals("DS-2CD2T10-I5")){
+                    this.accessInputBox(3).clear();
+                    this.accessInputBox(3).sendKeys(deviceID);
+                    Thread.sleep(1000);
+                }
+            }
             this.getSaveButton("advancedPlatform").click();
             Thread.sleep(2000);
 
@@ -105,15 +121,19 @@ public class CameraConfig {
             //select bit rate type
             this.selectUnderVideo(7,"1");
 
+            this.getSaveButtonUnderVideo().click();
+
             //bit rate upper limit
             this.getBitRateUpperLimit(10).clear();
             this.getBitRateUpperLimit(10).sendKeys("2048");
-            Thread.sleep(2000);
+            Thread.sleep(1000);
 
             //video coding
-            this.selectUnderVideo(12,"1");
-            this.getSaveButtonUnderVideo().click();
-            Thread.sleep(2000);
+            if (currentModel.trim().equals("DS-2CD2T25FD-I8")){
+                this.selectUnderVideo(12,"1");
+                this.getSaveButtonUnderVideo().click();
+                Thread.sleep(2000);
+            }
 
             //select sub stream
             this.selectUnderVideo(4,"02");
@@ -123,19 +143,21 @@ public class CameraConfig {
             this.selectUnderVideo(7,"1");
             Thread.sleep(2000);
 
-            //select video frame rate
-            this.selectUnderVideo(9,"14");
-            Thread.sleep(2000);
+            if (currentModel.trim().equals("DS-2CD2T25FD-I8")){
+                //select video frame rate
+                this.selectUnderVideo(9,"14");
+                Thread.sleep(2000);
 
-            //input bit rate upper limit
-            this.getBitRateUpperLimit(10).clear();
-            this.getBitRateUpperLimit(10).sendKeys("512");
-            Thread.sleep(2000);
+                //input bit rate upper limit
+                this.getBitRateUpperLimit(10).clear();
+                this.getBitRateUpperLimit(10).sendKeys("512");
+                Thread.sleep(2000);
 
-            //video coding
-            this.selectUnderVideo(12,"2");
-            this.getSaveButtonUnderVideo().click();
-            Thread.sleep(2000);
+                //video coding
+                this.selectUnderVideo(12,"2");
+                this.getSaveButtonUnderVideo().click();
+                Thread.sleep(2000);
+            }
 
             this.getSaveButtonUnderVideo().click();
             Thread.sleep(2000);
@@ -144,47 +166,50 @@ public class CameraConfig {
             this.selectUnderVideo(4,"03");
             Thread.sleep(2000);
 
-            //select bit rate type
-            this.selectUnderVideo(7,"1");
-            Thread.sleep(2000);
+            if (currentModel.trim().equals("DS-2CD2T25FD-I8")) {
+                //select bit rate type
+                this.selectUnderVideo(7, "1");
+                Thread.sleep(2000);
 
-            //input bit rate upper limit
-            this.getBitRateUpperLimit(10).clear();
-            this.getBitRateUpperLimit(10).sendKeys("128");
-            Thread.sleep(2000);
+                //input bit rate upper limit
+                this.getBitRateUpperLimit(10).clear();
+                this.getBitRateUpperLimit(10).sendKeys("128");
+                Thread.sleep(2000);
 
-            //video coding
-            this.selectUnderVideo(12,"1");
+                //video coding
+                this.selectUnderVideo(12, "1");
+            }
             this.getSaveButtonUnderVideo().click();
             Thread.sleep(2000);
 
-            //navigate to storage tab
-            this.getLeftTab("storage").click();
-            Thread.sleep(2000);
+            if (currentModel.trim().equals("DS-2CD2T25FD-I8")) {
+                //navigate to storage tab
+                this.getLeftTab("storage").click();
+                Thread.sleep(2000);
 
-            //click storage manage sub tab
-            this.getLeftTab("storageManage").click();
-            Thread.sleep(2000);
+                //click storage manage sub tab
+                this.getLeftTab("storageManage").click();
+                Thread.sleep(2000);
 
-            //capture pic
-            this.getInputBoxUnderStorage().clear();
-            this.getInputBoxUnderStorage().sendKeys("1");
+                //capture pic
+                this.getInputBoxUnderStorage().clear();
+                this.getInputBoxUnderStorage().sendKeys("1");
 
-            //save
-            this.getSaveButton("storageManageHarddisk").click();
-            Thread.sleep(2000);
+                //save
+                this.getSaveButton("storageManageHarddisk").click();
+                Thread.sleep(2000);
 
-            //select disk
-            this.getCheckBox().click();
-            Thread.sleep(2000);
+                //select disk
+                this.getCheckBox().click();
+                Thread.sleep(2000);
 
-            //format disk
-            this.getFormatButton().click();
-            this.getCancelButton(1).click();
-            Thread.sleep(65000);
-            //then go to config camera IP
-            //todo: not finish yet
-
+                //format disk
+                this.getFormatButton().click();
+                this.getCancelButton(1).click();
+                Thread.sleep(65000);
+                //then go to config camera IP
+                //todo: not finish yet
+            }
             //navigate to internet tab
             this.getMenuTab(3).click();
             Thread.sleep(2000);
@@ -495,6 +520,7 @@ public class CameraConfig {
         WebElement loginInfo = driver.findElement(By.id(id));
         return loginInfo;
     }
+
 
     /**
      * Get login button on main login page
