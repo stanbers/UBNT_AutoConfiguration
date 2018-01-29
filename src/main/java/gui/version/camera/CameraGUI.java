@@ -415,38 +415,9 @@ public class CameraGUI {
 
     }
 
-
-//    public JDialog createCameraTabbedDialog(final DefaultTableModel tableModel){
-//        //prepare the camera create dialog
-//        final JDialog camerajDialog_create = new JDialog(mainFrame,"摄像头 配置页面",true);
-//        camerajDialog_create.setSize(450,460);
-//        camerajDialog_create.setLocationRelativeTo(mainFrame);
-//
-//        //setup the logo icon
-//        Toolkit kit = Toolkit.getDefaultToolkit();
-//        Image icon = kit.getImage("D:\\icon\\logo.png");
-////        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
-//        camerajDialog_create.setIconImage(icon);
-//
-//        JTabbedPane cameraTabbedPanel = new JTabbedPane();
-//        cameraTabbedPanel.addTab();
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//        camerajDialog_create.setVisible(true);
-//        return camerajDialog_create;
-//    }
-
-
     /**
-     * create M2 dialog
-     * @return the M2 configuration dialog
+     * create camera dialog
+     * @return the camera configuration dialog
      */
     public JDialog createcameraDialog(final DefaultTableModel tableModel){
 
@@ -615,16 +586,6 @@ public class CameraGUI {
                 String camera_IP = IP.getText();
                 int targetRow = tableModel.getRowCount() -1;
 
-
-                tableModel.setValueAt(way,targetRow,1);
-                tableModel.setValueAt(DK,targetRow,2);
-                tableModel.setValueAt(camera_IP,targetRow,3);
-                tableModel.setValueAt(cameraIDInputBox.getText(),targetRow,4);
-                tableModel.setValueAt(currentModelValue.getText(),targetRow,5);
-                //todo: write the version nubmer to the record table
-                //todo: get the version number from the page --> cannot do that
-
-
                 log.info("camera ip is "+camera_IP);
                 log.info("camera net mask is "+commonFields.get(2));
                 log.info("camera gateway ip is "+commonFields.get(1));
@@ -634,9 +595,7 @@ public class CameraGUI {
 
                 //String cameraIP,String cameraNetMask,String cameraGatewayIP,String serverIP,String deviceID
                 //create
-//                progress = new CameraConfig().config(camera_IP,commonFields.get(2),commonFields.get(1),commonFields.get(0),cameraIDInputBox.getText(),null);
-//                tableModel.setValueAt(cameraMOdel,targetRow,5);
-//                log.info("camera model is "+cameraMOdel);
+                progress = new CameraConfig().config(camera_IP,commonFields.get(2),commonFields.get(1),commonFields.get(0),cameraIDInputBox.getText(),null);
                 if (progress == 1){
                     JOptionPane.showMessageDialog(
                             mainFrame,
@@ -644,6 +603,13 @@ public class CameraGUI {
                             "配置结果",
                             JOptionPane.INFORMATION_MESSAGE
                     );
+                    tableModel.setValueAt(way,targetRow,1);
+                    tableModel.setValueAt(DK,targetRow,2);
+                    tableModel.setValueAt(camera_IP,targetRow,3);
+                    tableModel.setValueAt(cameraIDInputBox.getText(),targetRow,4);
+                    tableModel.setValueAt(currentModelValue.getText(),targetRow,5);
+                    //todo: write the version nubmer to the record table
+                    //todo: get the version number from the page --> cannot do that
                 }else {
                     JOptionPane.showMessageDialog(
                             mainFrame,

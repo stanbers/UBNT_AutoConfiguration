@@ -4,7 +4,6 @@ import gui.version.wallhanging.WallHangingConfig;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -71,35 +70,6 @@ public class CameraConfig {
             this.getMenuTab(3).click();
             Thread.sleep(2000);
 
-            //IPv4
-            this.getIPInputBox(5).clear();
-            this.getIPInputBox(5).sendKeys(cameraIP);
-
-            //IPv4 net mask
-            this.getIPInputBox(6).clear();
-            this.getIPInputBox(6).sendKeys(cameraNetMask);
-
-            //IPv4 gateway IP
-            this.getIPInputBox(7).clear();
-            this.getIPInputBox(7).sendKeys(cameraGatewayIP);
-            this.getSaveButton("basicTcpIp").click();
-            Thread.sleep(2000);
-
-            try{
-                this.getCancelButton(2).click();
-                progress = this.secondConfig(serverIP,deviceID);
-            }catch (NoSuchElementException e){
-                log.info("this is not the first login");
-                progress = this.secondConfig(serverIP,deviceID);
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return progress;
-    }
-
-    private int secondConfig(String serverIP, String deviceID){
-        try {
             //advianced configuration
             this.getSubTab(3,3).click();
             Thread.sleep(2000);
@@ -211,14 +181,167 @@ public class CameraConfig {
             //format disk
             this.getFormatButton().click();
             this.getCancelButton(1).click();
-            Thread.sleep(60000);
+            Thread.sleep(65000);
+            //then go to config camera IP
             //todo: not finish yet
+
+            //navigate to internet tab
+            this.getMenuTab(3).click();
+            Thread.sleep(2000);
+
+            //IPv4
+            this.getIPInputBox(5).clear();
+            this.getIPInputBox(5).sendKeys(cameraIP);
+
+            //IPv4 net mask
+            this.getIPInputBox(6).clear();
+            this.getIPInputBox(6).sendKeys(cameraNetMask);
+
+            //IPv4 gateway IP
+            this.getIPInputBox(7).clear();
+            this.getIPInputBox(7).sendKeys(cameraGatewayIP);
+            this.getSaveButton("basicTcpIp").click();
+            Thread.sleep(2000);
+            //restart camera，index=1 means restart camera, index=2 means do not restart camera
+            this.getCancelButton(1).click();
+            Thread.sleep(300000);
             progress = 1;
-        }catch (Exception e){
+
+//            try{
+//                //restart camera
+//                this.getCancelButton(1).click();
+//                progress = this.secondConfig(serverIP,deviceID);
+//            }catch (NoSuchElementException e){
+//                log.info("this is not the first login");
+//                progress = this.secondConfig(serverIP,deviceID);
+//            }
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
         return progress;
     }
+
+//    private int secondConfig(String serverIP, String deviceID){
+//        try {
+//            //advianced configuration
+//            this.getSubTab(3,3).click();
+//            Thread.sleep(2000);
+//
+//            //access platform
+//            this.viaID("ui-id-13").click();
+//            Thread.sleep(2000);
+//
+//            this.selectAccess(2,"E-Home",false);
+//            this.selectAccess(3,"0",true);
+//            Thread.sleep(2000);
+//            //server IP
+//            this.accessInputBox(2).clear();
+//            this.accessInputBox(2).sendKeys(serverIP);
+//            Thread.sleep(2000);
+//            //device id
+//            if (deviceID != null){
+//                this.accessInputBox(4).clear();
+//                this.accessInputBox(4).sendKeys(deviceID);
+//            }
+//            Thread.sleep(2000);
+//            this.getSaveButton("advancedPlatform").click();
+//            Thread.sleep(2000);
+//
+//            //video and auido
+//            this.getLeftTab("videoAudio").click();
+//            Thread.sleep(2000);
+//
+//            //select main Stream
+//            this.selectUnderVideo(4,"01");
+//            Thread.sleep(2000);
+//
+//            //select bit rate type
+//            this.selectUnderVideo(7,"1");
+//
+//            //bit rate upper limit
+//            this.getBitRateUpperLimit(10).clear();
+//            this.getBitRateUpperLimit(10).sendKeys("2048");
+//            Thread.sleep(2000);
+//
+//            //video coding
+//            this.selectUnderVideo(12,"1");
+//            this.getSaveButtonUnderVideo().click();
+//            Thread.sleep(2000);
+//
+//            //select sub stream
+//            this.selectUnderVideo(4,"02");
+//            Thread.sleep(2000);
+//
+//            //select bit rate type
+//            this.selectUnderVideo(7,"1");
+//            Thread.sleep(2000);
+//
+//            //select video frame rate
+//            this.selectUnderVideo(9,"14");
+//            Thread.sleep(2000);
+//
+//            //input bit rate upper limit
+//            this.getBitRateUpperLimit(10).clear();
+//            this.getBitRateUpperLimit(10).sendKeys("512");
+//            Thread.sleep(2000);
+//
+//            //video coding
+//            this.selectUnderVideo(12,"2");
+//            this.getSaveButtonUnderVideo().click();
+//            Thread.sleep(2000);
+//
+//            this.getSaveButtonUnderVideo().click();
+//            Thread.sleep(2000);
+//
+//            //the third stream
+//            this.selectUnderVideo(4,"03");
+//            Thread.sleep(2000);
+//
+//            //select bit rate type
+//            this.selectUnderVideo(7,"1");
+//            Thread.sleep(2000);
+//
+//            //input bit rate upper limit
+//            this.getBitRateUpperLimit(10).clear();
+//            this.getBitRateUpperLimit(10).sendKeys("128");
+//            Thread.sleep(2000);
+//
+//            //video coding
+//            this.selectUnderVideo(12,"1");
+//            this.getSaveButtonUnderVideo().click();
+//            Thread.sleep(2000);
+//
+//            //navigate to storage tab
+//            this.getLeftTab("storage").click();
+//            Thread.sleep(2000);
+//
+//            //click storage manage sub tab
+//            this.getLeftTab("storageManage").click();
+//            Thread.sleep(2000);
+//
+//            //capture pic
+//            this.getInputBoxUnderStorage().clear();
+//            this.getInputBoxUnderStorage().sendKeys("1");
+//
+//            //save
+//            this.getSaveButton("storageManageHarddisk").click();
+//            Thread.sleep(2000);
+//
+//            //select disk
+//            this.getCheckBox().click();
+//            Thread.sleep(2000);
+//
+//            //format disk
+//            this.getFormatButton().click();
+//            this.getCancelButton(1).click();
+//            Thread.sleep(60000);
+//            //todo: not finish yet
+//            progress = 1;
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//        return progress;
+//    }
 
 
     /**
