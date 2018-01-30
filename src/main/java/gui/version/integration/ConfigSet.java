@@ -44,6 +44,11 @@ public class ConfigSet {
     private List<String> commonFields_wall = new ArrayList<String>();
     private List<String> commonFields_camera = new ArrayList<String>();
 
+    //to store the ips which has been config
+    private List<String> ip_M5AP = new ArrayList<String>();
+    private List<String> ip_M5ST = new ArrayList<String>();
+    private List<String> ip_M2 = new ArrayList<String>();
+
     //init record index
     private int recordIndex = 1;
 
@@ -1083,7 +1088,7 @@ public class ConfigSet {
         removeM5.setFont(new Font(null,Font.BOLD,14));
         M5ContainerPanel.add(removeM5);
 
-        //setup export M2 records button
+        //setup export M5 records button
         JButton exportM5Records = new JButton("导出");
         exportM5Records.setFont(new Font(null,Font.BOLD,14));
         exportM5Records.setLocation(415,500);
@@ -1103,7 +1108,7 @@ public class ConfigSet {
         exportM5Records.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                exportToExcel(tableModel_M5,"D:\\ConfigFile\\M5\\"+pName+".xlsx",8);
+                exportToExcel(tableModel_M5,"D:\\ConfigFile\\M5\\"+pName+".xlsx",8,null);
 //                exportToExcel(tableModel_M5,System.getProperty("user.dir")+ "\\ConfigFile\\M5\\"+pName+".xlsx",8);
                 JOptionPane.showMessageDialog(
                         mainFrame,
@@ -1348,24 +1353,36 @@ public class ConfigSet {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     int progress = 0;
+
+                    String path = "D:\\ConfigFile\\M5\\"+pName +".xlsx";
+                    importFromExcel(null,path,null);
+                    for (int i = 0; i < ip_M5AP.size(); i++) {
+                        if (IP_AP.getText().trim().equals(ip_M5AP.get(i)) && !IP_AP.getText().trim().equals(originalIP_M5AP)){
+                            JOptionPane.showMessageDialog(
+                                    mainFrame,
+                                    "IP 地址重复，请填写正确的 IP !",
+                                    "提示",
+                                    JOptionPane.INFORMATION_MESSAGE
+                            );
+                            return;
+                        }
+
+                    }
                     String IPAddress_AP =  IP_AP.getText();
                     String fruq_AP = fruq.getSelectedItem().toString();
-                    tableModel.setValueAt(way_M5,tableModel.getRowCount()-1,1);
-                    tableModel.setValueAt(DK_M5,tableModel.getRowCount()-1,2);
-                    tableModel.setValueAt(IPAddress_AP,tableModel.getRowCount()-1,3);
-                    tableModel.setValueAt(fruq_AP,tableModel.getRowCount()-1,4);
 
-                    Vector emptyRow = new Vector();
-                    for (int i = 0; i < 10; i++) {
-                        emptyRow.add(null);
-                    }
-                    tableModel_M5.addRow(emptyRow);
-                    if (recordIndex == 0){
-                        tableModel_M5.setValueAt(recordIndex++,tableModel_M5.getRowCount()-1,0);
-                    }else {
-                        recordIndex = tableModel_M5.getRowCount();
-                        tableModel_M5.setValueAt(recordIndex++,tableModel_M5.getRowCount()-1,0);
-                    }
+
+//                    Vector emptyRow = new Vector();
+//                    for (int i = 0; i < 10; i++) {
+//                        emptyRow.add(null);
+//                    }
+//                    tableModel_M5.addRow(emptyRow);
+//                    if (recordIndex == 0){
+//                        tableModel_M5.setValueAt(recordIndex++,tableModel_M5.getRowCount()-1,0);
+//                    }else {
+//                        recordIndex = tableModel_M5.getRowCount();
+//                        tableModel_M5.setValueAt(recordIndex++,tableModel_M5.getRowCount()-1,0);
+//                    }
 
 //                    log.info("线路是: " + way_M5);
 //                    log.info("DK is: " + DK_M5);
@@ -1376,13 +1393,17 @@ public class ConfigSet {
 //                    log.info("ap gateway ip is: " + commonFields_ubnt.get(5));
 
 //                    progress = new M5_Configuration().configM5("AP",commonFields.get(2),IPAddress_AP,commonFields.get(6),commonFields.get(5),fruq_AP,null,originalIP_M5AP);
-                    if (progress == 1){
+                    if (progress == 0){
                         JOptionPane.showMessageDialog(
                                 mainFrame,
                                 "更新成功 !",
                                 "配置结果",
                                 JOptionPane.INFORMATION_MESSAGE
                         );
+                        tableModel.setValueAt(way_M5,tableModel.getRowCount()-1,1);
+                        tableModel.setValueAt(DK_M5,tableModel.getRowCount()-1,2);
+                        tableModel.setValueAt(IPAddress_AP,tableModel.getRowCount()-1,3);
+                        tableModel.setValueAt(fruq_AP,tableModel.getRowCount()-1,4);
                     }else {
                         JOptionPane.showMessageDialog(
                                 mainFrame,
@@ -1441,26 +1462,22 @@ public class ConfigSet {
                 @Override
                 public void actionPerformed(ActionEvent e) {
 
-                    Vector emptyRow = new Vector();
-                    for (int i = 0; i < 10; i++) {
-                        emptyRow.add(null);
-                    }
-                    tableModel_M5.addRow(emptyRow);
-                    if (recordIndex == 0){
-                        tableModel_M5.setValueAt(recordIndex++,tableModel_M5.getRowCount()-1,0);
-                    }else {
-                        recordIndex = tableModel_M5.getRowCount();
-                        tableModel_M5.setValueAt(recordIndex++,tableModel_M5.getRowCount()-1,0);
-                    }
+//                    Vector emptyRow = new Vector();
+//                    for (int i = 0; i < 10; i++) {
+//                        emptyRow.add(null);
+//                    }
+//                    tableModel_M5.addRow(emptyRow);
+//                    if (recordIndex == 0){
+//                        tableModel_M5.setValueAt(recordIndex++,tableModel_M5.getRowCount()-1,0);
+//                    }else {
+//                        recordIndex = tableModel_M5.getRowCount();
+//                        tableModel_M5.setValueAt(recordIndex++,tableModel_M5.getRowCount()-1,0);
+//                    }
 
                     int progress = 0;
                     String IPAddress_ST = IP_ST.getText();
                     String macAddress = macBox.getText();
-                    tableModel.setValueAt(way_M5,tableModel.getRowCount()-1,1);
-                    tableModel.setValueAt(DK_M5,tableModel.getRowCount()-1,2);
-                    tableModel.setValueAt(macAddress,tableModel.getRowCount()-1,5);
-                    tableModel.setValueAt(IPAddress_ST,tableModel.getRowCount()-1,6);
-                    tableModel.setValueAt(macAddress,tableModel.getRowCount()-1,7);
+
 
 //                    log.info("线路是: " + way_M5);
 //                    log.info("DK is: " + DK_M5);
@@ -1471,13 +1488,18 @@ public class ConfigSet {
 //                    log.info("ap gateway ip is: " + commonFields_ubnt.get(5));
 
 //                    progress = new M5_Configuration().configM5("ST",commonFields.get(2),IPAddress_ST,commonFields.get(6),commonFields.get(5),null,macAddress,originalIP_M5ST);
-                    if (progress == 1){
+                    if (progress == 0){
                         JOptionPane.showMessageDialog(
                                 mainFrame,
                                 "更新成功 !",
                                 "配置结果",
                                 JOptionPane.INFORMATION_MESSAGE
                         );
+                        tableModel.setValueAt(way_M5,tableModel.getRowCount()-1,1);
+                        tableModel.setValueAt(DK_M5,tableModel.getRowCount()-1,2);
+                        tableModel.setValueAt(macAddress,tableModel.getRowCount()-1,5);
+                        tableModel.setValueAt(IPAddress_ST,tableModel.getRowCount()-1,6);
+                        tableModel.setValueAt(macAddress,tableModel.getRowCount()-1,7);
                     }else {
                         JOptionPane.showMessageDialog(
                                 mainFrame,
@@ -1638,27 +1660,24 @@ public class ConfigSet {
             create.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-
-                    Vector emptyRow = new Vector();
-                    for (int i = 0; i < 10; i++) {
-                        emptyRow.add(null);
-                    }
-                    tableModel_M5.addRow(emptyRow);
-                    if (recordIndex == 0){
-                        tableModel_M5.setValueAt(recordIndex++,tableModel_M5.getRowCount()-1,0);
-                    }else {
-                        recordIndex = tableModel_M5.getRowCount();
-                        tableModel_M5.setValueAt(recordIndex++,tableModel_M5.getRowCount()-1,0);
-                    }
-
                     int progress = 0;
-
                     String IPAddress_AP =  IP_AP.getText();
                     String fruq_AP = fruqComboBoxList.get(0);
-                    tableModel.setValueAt(way_M5,tableModel.getRowCount()-1,1);
-                    tableModel.setValueAt(DK_M5,tableModel.getRowCount()-1,2);
-                    tableModel.setValueAt(IPAddress_AP,tableModel.getRowCount()-1,3);
-                    tableModel.setValueAt(fruq_AP,tableModel.getRowCount()-1,4);
+
+                    String path = "D:\\ConfigFile\\M5\\"+pName +".xlsx";
+                    importFromExcel(null,path,null);
+                    for (int i = 0; i < ip_M5AP.size(); i++) {
+                        if (IPAddress_AP.trim().equals(ip_M5AP.get(i))){
+                            JOptionPane.showMessageDialog(
+                                    mainFrame,
+                                    "IP 地址重复，请填写正确的 IP !",
+                                    "提示",
+                                    JOptionPane.INFORMATION_MESSAGE
+                            );
+                            return;
+                        }
+
+                    }
 
 //                    log.info("线路是: " + way_M5);
 //                    log.info("DK is: " + DK_M5);
@@ -1667,15 +1686,32 @@ public class ConfigSet {
 //                    log.info("ssid is: " + commonFields_ubnt.get(2));
 //                    log.info("ap net mask is: " + commonFields_ubnt.get(6));
 //                    log.info("ap gateway ip is: " + commonFields_ubnt.get(5));
-
+                      //create ap
 //                    progress = new M5_Configuration().configM5("AP",commonFields_ubnt.get(2),IPAddress_AP,commonFields_ubnt.get(6),commonFields_ubnt.get(5),fruq_AP,null,null);
-                    if (progress == 1){
+                    if (progress == 0){
                         JOptionPane.showMessageDialog(
                                 mainFrame,
-                                "更新成功 !",
+                                "配置成功 !",
                                 "配置结果",
                                 JOptionPane.INFORMATION_MESSAGE
                         );
+                        Vector emptyRow = new Vector();
+                        for (int i = 0; i < 10; i++) {
+                            emptyRow.add(null);
+                        }
+                        tableModel_M5.addRow(emptyRow);
+                        if (recordIndex == 0){
+                            tableModel_M5.setValueAt(recordIndex++,tableModel_M5.getRowCount()-1,0);
+                        }else {
+                            recordIndex = tableModel_M5.getRowCount();
+                            tableModel_M5.setValueAt(recordIndex++,tableModel_M5.getRowCount()-1,0);
+                        }
+
+
+                        tableModel.setValueAt(way_M5,tableModel.getRowCount()-1,1);
+                        tableModel.setValueAt(DK_M5,tableModel.getRowCount()-1,2);
+                        tableModel.setValueAt(IPAddress_AP,tableModel.getRowCount()-1,3);
+                        tableModel.setValueAt(fruq_AP,tableModel.getRowCount()-1,4);
                     }else {
                         JOptionPane.showMessageDialog(
                                 mainFrame,
@@ -1684,7 +1720,7 @@ public class ConfigSet {
                                 JOptionPane.WARNING_MESSAGE
                         );
                     }
-                    dialog.dispose();
+//                    dialog.dispose();
                 }
             });
         }
@@ -1725,25 +1761,24 @@ public class ConfigSet {
                 @Override
                 public void actionPerformed(ActionEvent e) {
 
-                    Vector emptyRow = new Vector();
-                    for (int i = 0; i < 10; i++) {
-                        emptyRow.add(null);
-                    }
-                    tableModel_M5.addRow(emptyRow);
-                    if (recordIndex == 0){
-                        tableModel_M5.setValueAt(recordIndex++,tableModel_M5.getRowCount()-1,0);
-                    }else {
-                        recordIndex = tableModel_M5.getRowCount();
-                        tableModel_M5.setValueAt(recordIndex++,tableModel_M5.getRowCount()-1,0);
-                    }
                     int progress = 0;
                     String IPAddress_ST = IP_ST.getText();
                     String macAddress = macBox.getText();
-                    tableModel.setValueAt(way_M5,tableModel.getRowCount()-1,1);
-                    tableModel.setValueAt(DK_M5,tableModel.getRowCount()-1,2);
-                    tableModel.setValueAt(macAddress,tableModel.getRowCount()-1,5);
-                    tableModel.setValueAt(IPAddress_ST,tableModel.getRowCount()-1,6);
-                    tableModel.setValueAt(macAddress,tableModel.getRowCount()-1,7);
+
+                    String path = "D:\\ConfigFile\\M5\\"+pName +".xlsx";
+                    importFromExcel(null,path,null);
+                    for (int i = 0; i < ip_M5ST.size(); i++) {
+                        if (IP_ST.getText().trim().equals(ip_M5ST.get(i))){
+                            JOptionPane.showMessageDialog(
+                                    mainFrame,
+                                    "IP 地址重复，请填写正确的 IP !",
+                                    "提示",
+                                    JOptionPane.INFORMATION_MESSAGE
+                            );
+                            return;
+                        }
+                    }
+
 
 //                    log.info("线路是: " + way_M5);
 //                    log.info("DK is: " + DK_M5);
@@ -1754,13 +1789,31 @@ public class ConfigSet {
 //                    log.info("st gateway ip is: " + commonFields_ubnt.get(5));
 
 //                    progress = new M5_Configuration().configM5("ST",commonFields_ubnt.get(2),IPAddress_ST,commonFields_ubnt.get(6),commonFields_ubnt.get(5),null,macAddress,null);
-                    if (progress == 1){
+                    if (progress == 0){
                         JOptionPane.showMessageDialog(
                                 mainFrame,
-                                "更新成功 !",
+                                "配置成功 !",
                                 "配置结果",
                                 JOptionPane.INFORMATION_MESSAGE
                         );
+
+//                        Vector emptyRow = new Vector();
+//                        for (int i = 0; i < 10; i++) {
+//                            emptyRow.add(null);
+//                        }
+//                        tableModel_M5.addRow(emptyRow);
+//                        if (recordIndex == 0){
+//                            tableModel_M5.setValueAt(recordIndex++,tableModel_M5.getRowCount()-1,0);
+//                        }else {
+//                            recordIndex = tableModel_M5.getRowCount();
+//                            tableModel_M5.setValueAt(recordIndex++,tableModel_M5.getRowCount()-1,0);
+//                        }
+
+                        tableModel.setValueAt(way_M5,tableModel.getRowCount()-1,1);
+                        tableModel.setValueAt(DK_M5,tableModel.getRowCount()-1,2);
+                        tableModel.setValueAt(macAddress,tableModel.getRowCount()-1,5);
+                        tableModel.setValueAt(IPAddress_ST,tableModel.getRowCount()-1,6);
+                        tableModel.setValueAt(macAddress,tableModel.getRowCount()-1,7);
                     }else {
                         JOptionPane.showMessageDialog(
                                 mainFrame,
@@ -1769,7 +1822,7 @@ public class ConfigSet {
                                 JOptionPane.WARNING_MESSAGE
                         );
                     }
-                    dialog.dispose();
+//                    dialog.dispose();
                 }
             });
         }
@@ -2590,10 +2643,14 @@ public class ConfigSet {
                     for (int j = 0; j < lastCellNum; j++) {
                         String cellValue = row.getCell(j).getStringCellValue();
                         readFromExcel.add(cellValue);
+                        if (j == 3 || j == 6){
+                            ip_M5AP.add(cellValue);
+                            ip_M5ST.add(cellValue);
+                        }
                     }
                     if (tableModel != null){
                         tableModel.addRow(readFromExcel);
-                    }else {
+                    }else if (deviceList != null){
                         deviceList.clear();
                         for (String commonField : readFromExcel) {
                             deviceList.add(commonField);

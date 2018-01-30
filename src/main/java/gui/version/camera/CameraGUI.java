@@ -61,6 +61,9 @@ public class CameraGUI {
     //the older IP which waiting for update, need this older ip to login
     private String olderIP_camera;
 
+    //store ip
+    List<String> ipList = null;
+
     /**
      * Show config records
      * @param pName_camera
@@ -428,12 +431,23 @@ public class CameraGUI {
                 String DK = DKText.getText();
                 String camera_IP = IP_camera.getText();
                 String cameraModel = currentModelValue.getText();
-                int targetRow = tableModel.getRowCount() -1;
 
-                tableModel.setValueAt(way,targetRow,1);
-                tableModel.setValueAt(DK,targetRow,2);
-                tableModel.setValueAt(camera_IP,targetRow,3);
-                tableModel.setValueAt(cameraIDInputBox.getText(),targetRow,4);
+                String path = "D:\\ConfigFile\\camera\\"+pName +".xlsx";
+                importFromExcel(null,path);
+                for (int i = 0; i < ipList.size(); i++) {
+                    if (camera_IP.trim().equals(ipList.get(i)) && !camera_IP.trim().equals(olderIP_camera)){
+                        JOptionPane.showMessageDialog(
+                                mainFrame,
+                                "IP 地址重复，请填写正确的 IP !",
+                                "提示",
+                                JOptionPane.INFORMATION_MESSAGE
+                        );
+                        return;
+                    }
+
+                }
+
+
                 log.info("the older camera ip is "+olderIP_camera);
                 log.info("the new camera ip is "+camera_IP);
                 log.info("the camera net mask is "+commonFields.get(2));
@@ -442,15 +456,23 @@ public class CameraGUI {
                 log.info("the camera id is "+ cameraIDInputBox.getText());
                 log.info("the camera model is "+cameraModel);
                 //String cameraIP,String cameraNetMask,String cameraGatewayIP,String serverIP,String deviceID
-                progress = new CameraConfig().config(camera_IP,commonFields.get(2),commonFields.get(1),commonFields.get(0),cameraIDInputBox.getText(),olderIP_camera,cameraModel);
+//                progress = new CameraConfig().config(camera_IP,commonFields.get(2),commonFields.get(1),commonFields.get(0),cameraIDInputBox.getText(),olderIP_camera,cameraModel);
 
-                if (progress == 1){
+                if (progress == 0){
                     JOptionPane.showMessageDialog(
                             mainFrame,
                             "更新成功 !",
                             "配置结果",
                             JOptionPane.INFORMATION_MESSAGE
                     );
+
+                    int targetRow = tableModel.getRowCount() -1;
+
+                    tableModel.setValueAt(way,targetRow,1);
+                    tableModel.setValueAt(DK,targetRow,2);
+                    tableModel.setValueAt(camera_IP,targetRow,3);
+                    tableModel.setValueAt(cameraIDInputBox.getText(),targetRow,4);
+
                 }else {
                     JOptionPane.showMessageDialog(
                             mainFrame,
@@ -644,23 +666,29 @@ public class CameraGUI {
         cameraConfigButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Vector emptyRow = new Vector();
-                for (int i = 0; i < 10; i++) {
-                    emptyRow.add(null);
-                }
-                tableModel_camera.addRow(emptyRow);
-                if (recordIndex == 0){
-                    tableModel_camera.setValueAt(recordIndex++,tableModel_camera.getRowCount()-1,0);
-                }else {
-                    recordIndex = tableModel_camera.getRowCount();
-                    tableModel_camera.setValueAt(recordIndex++,tableModel_camera.getRowCount()-1,0);
-                }
                 int progress = 0;
                 String way = wayComboBox.getSelectedItem().toString();
                 String DK = DKText.getText();
                 String camera_IP = IP.getText();
                 String cameraModel = currentModelValue.getText();
-                int targetRow = tableModel.getRowCount() -1;
+
+                //TODO: validate camera ip is duplicate or not
+                //TODO: 1.read config records from excel; 2.list out camera ip and iterate the ip
+
+                String path = "D:\\ConfigFile\\camera\\"+pName +".xlsx";
+                importFromExcel(null,path);
+                for (int i = 0; i < ipList.size(); i++) {
+                    if (camera_IP.trim().equals(ipList.get(i))){
+                        JOptionPane.showMessageDialog(
+                                mainFrame,
+                                "IP 地址重复，请填写正确的 IP !",
+                                "提示",
+                                JOptionPane.INFORMATION_MESSAGE
+                        );
+                        return;
+                    }
+
+                }
 
                 log.info("camera ip is "+camera_IP);
                 log.info("camera net mask is "+commonFields.get(2));
@@ -680,12 +708,24 @@ public class CameraGUI {
                             JOptionPane.INFORMATION_MESSAGE
                     );
 
-
+                    Vector emptyRow = new Vector();
+                    for (int i = 0; i < 10; i++) {
+                        emptyRow.add(null);
+                    }
+                    tableModel_camera.addRow(emptyRow);
+                    int targetRow = tableModel.getRowCount() -1;
                     tableModel.setValueAt(way,targetRow,1);
                     tableModel.setValueAt(DK,targetRow,2);
                     tableModel.setValueAt(camera_IP,targetRow,3);
                     tableModel.setValueAt(cameraIDInputBox.getText(),targetRow,4);
                     tableModel.setValueAt(currentModelValue.getText(),targetRow,5);
+
+                    if (recordIndex == 0){
+                        tableModel_camera.setValueAt(recordIndex++,tableModel_camera.getRowCount()-1,0);
+                    }else {
+                        recordIndex = tableModel_camera.getRowCount();
+                        tableModel_camera.setValueAt(recordIndex++,tableModel_camera.getRowCount()-1,0);
+                    }
                     //todo: write the version nubmer to the record table
                     //todo: get the version number from the page --> cannot do that
                 }else {
@@ -804,6 +844,7 @@ public class CameraGUI {
      */
     public Vector<String> importFromExcel(DefaultTableModel tableModel,String path){
         Vector<String> readFromExcel = null;
+        ipList = new ArrayList<String>();
         try {
             FileInputStream excelFile = new FileInputStream(path);
             if(excelFile != null){
@@ -818,6 +859,9 @@ public class CameraGUI {
                     for (int j = 0; j < lastCellNum; j++) {
                         String cellValue = row.getCell(j).getStringCellValue();
                         readFromExcel.add(cellValue);
+                        if (j == 3){
+                            ipList.add(cellValue);
+                        }
                     }
                     if (tableModel != null){
                         tableModel.addRow(readFromExcel);
