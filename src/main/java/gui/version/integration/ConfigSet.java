@@ -518,7 +518,7 @@ public class ConfigSet {
                     File projectCorresspondingConfigFile_camera = new File(specificExcel_camera);
                     File projectCommonFieldFile = new File(SpecificProjectCommonField);
                     if (!projectCorresspondingConfigFile_camera.exists()){
-                        exportToExcel(tableModel_camera,"D:\\ConfigFile\\camera\\"+pName_camera+".xlsx",4,commonFields_camera);
+                        exportToExcel(tableModel_camera,"D:\\ConfigFile\\camera\\"+pName_camera+".xlsx",6,commonFields_camera);
                     }
                     if (projectCorresspondingConfigFile_camera.exists() && projectCommonFieldFile.exists()){
                         //import table rows on main page
@@ -578,7 +578,7 @@ public class ConfigSet {
                             //need remove these two JLabel to make sure every time these two label are new added to outPanel
                             outermostPanel_camera.remove(currentPName_camera);
                             outermostPanel_camera.remove(currentPNumber_camera);
-                            tableModel_wall.getDataVector().clear();
+                            tableModel_camera.getDataVector().clear();
                             outermostPanel_camera.setVisible(false);
                             homepagePanel.setVisible(true);
                             mainFrame.setContentPane(homepagePanel);
@@ -2525,7 +2525,7 @@ public class ConfigSet {
                 commonFields_camera.add(gatewayIP_InputBox_camera.getText());
                 commonFields_camera.add(netMask_InputBox_camera.getText());
 
-                //store the wall hanging common fields
+                //store the camera common fields
                 String commonFieldsExcelPath_camera = "D:\\ConfigFile\\camera\\"+projectNameInputBox.getText() +"CommonFields.xlsx";
                 exportToExcel(null,commonFieldsExcelPath_camera,3,commonFields_camera);
 
@@ -2668,6 +2668,9 @@ public class ConfigSet {
                         String cellValue = row.getCell(j).getStringCellValue();
                         readFromExcel.add(cellValue);
                         if (j == 3 || j == 6){
+                            ip_M5AP.clear();
+                            ip_M5ST.clear();
+                            ip_M2.clear();
                             ip_M5AP.add(cellValue);
                             ip_M5ST.add(cellValue);
                             ip_M2.add(cellValue);

@@ -61,6 +61,9 @@ public class WallHangingGUI {
     //the older IP which waiting for update, need this older ip to login
     private String olderIP_wall;
 
+    //ip container
+    private List<String> ip_wall = new ArrayList<String>();
+
     /**
      * To render homepage, include project table and create project dialog
      */
@@ -582,14 +585,27 @@ public class WallHangingGUI {
         wallUpdateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 int progress = 0;
                 String way = wayComboBox.getSelectedItem().toString();
                 String DK = DKText.getText();
                 String wall_IP = IP_wall.getText();
-                int targetRow = tableModel.getRowCount() -1;
 
-                tableModel.setValueAt(way,targetRow,1);
-                tableModel.setValueAt(DK,targetRow,2);
+                String path = "D:\\ConfigFile\\wall\\"+pName +".xlsx";
+                importFromExcel(null,path);
+                for (int i = 0; i < ip_wall.size(); i++) {
+                    if (wall_IP.trim().equals(ip_wall.get(i)) && !wall_IP.trim().equals(olderIP_wall)){
+                        JOptionPane.showMessageDialog(
+                                mainFrame,
+                                "IP 地址重复，请填写正确的 IP !",
+                                "提示",
+                                JOptionPane.INFORMATION_MESSAGE
+                        );
+                        return;
+                    }
+
+                }
+
                 log.info("wall hanging ssid is "+commonFields.get(0));
                 log.info("wall hanging IP is "+wall_IP);
                 log.info("wall hanging server ip is "+commonFields.get(1));
@@ -597,15 +613,20 @@ public class WallHangingGUI {
                 log.info("wall hanging net mask is "+commonFields.get(3));
                 log.info("wall hanging oler ip is "+olderIP_wall);
 //                progress = new WallHangingConfig().config(commonFields.get(0),olderIP_wall,commonFields.get(3),commonFields.get(2),commonFields.get(1));
-                tableModel.setValueAt(wall_IP,targetRow,3);
 
-                if (progress == 1){
+                if (progress == 0){
                     JOptionPane.showMessageDialog(
                             mainFrame,
                             "更新成功 !",
                             "配置结果",
                             JOptionPane.INFORMATION_MESSAGE
                     );
+                    int targetRow = tableModel.getRowCount() -1;
+
+                    tableModel.setValueAt(way,targetRow,1);
+                    tableModel.setValueAt(DK,targetRow,2);
+                    tableModel.setValueAt(wall_IP,targetRow,3);
+                    exportToExcel(tableModel_wall,"D:\\ConfigFile\\wall\\"+pName+".xlsx",4);
                 }else {
                     JOptionPane.showMessageDialog(
                             mainFrame,
@@ -719,27 +740,25 @@ public class WallHangingGUI {
         wallConfigButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                Vector emptyRow = new Vector();
-                for (int i = 0; i < 10; i++) {
-                    emptyRow.add(null);
-                }
-                tableModel_wall.addRow(emptyRow);
-                if (recordIndex == 0){
-                    tableModel_wall.setValueAt(recordIndex++,tableModel_wall.getRowCount()-1,0);
-                }else {
-                    recordIndex = tableModel_wall.getRowCount();
-                    tableModel_wall.setValueAt(recordIndex++,tableModel_wall.getRowCount()-1,0);
-                }
                 int progress = 0;
                 String way = wayComboBox.getSelectedItem().toString();
                 String DK = DKText.getText();
                 String wall_IP = IP.getText();
-                int targetRow = tableModel.getRowCount() -1;
 
-                tableModel.setValueAt(way,targetRow,1);
-                tableModel.setValueAt(DK,targetRow,2);
-                tableModel.setValueAt(wall_IP,targetRow,3);
+                String path = "D:\\ConfigFile\\wall\\"+pName +".xlsx";
+                importFromExcel(null,path);
+                for (int i = 0; i < ip_wall.size(); i++) {
+                    if (wall_IP.trim().equals(ip_wall.get(i))){
+                        JOptionPane.showMessageDialog(
+                                mainFrame,
+                                "IP 地址重复，请填写正确的 IP !",
+                                "提示",
+                                JOptionPane.INFORMATION_MESSAGE
+                        );
+                        return;
+                    }
+
+                }
 
                 log.info("wall hanging ssid is "+commonFields.get(0));
                 log.info("wall hanging IP is "+wall_IP);
@@ -756,6 +775,23 @@ public class WallHangingGUI {
                             "配置结果",
                             JOptionPane.INFORMATION_MESSAGE
                     );
+                    Vector emptyRow = new Vector();
+                    for (int i = 0; i < 10; i++) {
+                        emptyRow.add(null);
+                    }
+                    tableModel_wall.addRow(emptyRow);
+                    if (recordIndex == 0){
+                        tableModel_wall.setValueAt(recordIndex++,tableModel_wall.getRowCount()-1,0);
+                    }else {
+                        recordIndex = tableModel_wall.getRowCount();
+                        tableModel_wall.setValueAt(recordIndex++,tableModel_wall.getRowCount()-1,0);
+                    }
+                    int targetRow = tableModel.getRowCount() -1;
+
+                    tableModel.setValueAt(way,targetRow,1);
+                    tableModel.setValueAt(DK,targetRow,2);
+                    tableModel.setValueAt(wall_IP,targetRow,3);
+                    exportToExcel(tableModel_wall,"D:\\ConfigFile\\wall\\"+pName+".xlsx",4);
                 }else {
                     JOptionPane.showMessageDialog(
                             mainFrame,
@@ -1060,6 +1096,10 @@ public class WallHangingGUI {
                     for (int j = 0; j < lastCellNum; j++) {
                         String cellValue = row.getCell(j).getStringCellValue();
                         readFromExcel.add(cellValue);
+                        if (j == 3){
+                            ip_wall.clear();
+                            ip_wall.add(cellValue);
+                        }
                     }
                     if (tableModel != null){
                         tableModel.addRow(readFromExcel);

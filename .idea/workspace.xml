@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6297135e-99b4-48ed-8d1f-4be9376233e2" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gui/version/camera/CameraGUI.java" afterPath="$PROJECT_DIR$/src/main/java/gui/version/camera/CameraGUI.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/gui/version/integration/ConfigSet.java" afterPath="$PROJECT_DIR$/src/main/java/gui/version/integration/ConfigSet.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gui/version/wallhanging/WallHangingGUI.java" afterPath="$PROJECT_DIR$/src/main/java/gui/version/wallhanging/WallHangingGUI.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -22,9 +23,10 @@
       <file leaf-file-name="ConfigSet.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/integration/ConfigSet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="542">
-              <caret line="1680" column="21" lean-forward="true" selection-start-line="1680" selection-start-column="21" selection-end-line="1680" selection-end-column="21" />
+            <state relative-caret-position="211">
+              <caret line="1585" column="54" lean-forward="false" selection-start-line="1585" selection-start-column="52" selection-end-line="1585" selection-end-column="54" />
               <folding>
+                <element signature="e#1403#1411#0" expanded="true" />
                 <element signature="e#1509#1517#0" expanded="true" />
                 <element signature="e#1569#1577#0" expanded="true" />
                 <element signature="e#1627#1635#0" expanded="true" />
@@ -32,6 +34,7 @@
                 <element signature="method#generateWallCommondFields#0;class#ConfigSet#0" expanded="false" />
                 <element signature="method#generateCameraCommondFields#0;class#ConfigSet#0" expanded="false" />
                 <element signature="method#showConfigRecordsPage#0;class#ConfigSet#0" expanded="false" />
+                <element signature="method#updateM5Panel#0;class#ConfigSet#0" expanded="false" />
                 <element signature="method#createM5Overlay#0;class#ConfigSet#0" expanded="false" />
                 <element signature="method#updateM2Dialog#0;class#ConfigSet#0" expanded="false" />
                 <element signature="method#generateNewProjectDilog#0;class#ConfigSet#0" expanded="false" />
@@ -40,11 +43,25 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="WallHangingGUI.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/wallhanging/WallHangingGUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="211">
+              <caret line="212" column="59" lean-forward="false" selection-start-line="212" selection-start-column="55" selection-end-line="212" selection-end-column="59" />
+              <folding>
+                <element signature="e#1868#1876#0" expanded="true" />
+                <element signature="method#generateNewProjectDilog#0;class#WallHangingGUI#0" expanded="false" />
+                <element signature="method#exportToExcel#0;class#WallHangingGUI#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="CameraGUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/camera/CameraGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="677" column="16" lean-forward="false" selection-start-line="677" selection-start-column="16" selection-end-line="678" selection-end-column="43" />
+            <state relative-caret-position="211">
+              <caret line="648" column="55" lean-forward="false" selection-start-line="648" selection-start-column="53" selection-end-line="648" selection-end-column="55" />
               <folding>
                 <element signature="e#1238#1246#0" expanded="true" />
                 <element signature="e#1628#1629#0" expanded="true" />
@@ -60,22 +77,23 @@
                 <element signature="e#11392#11393#0" expanded="true" />
                 <element signature="method#updatecameraDialog#0;class#CameraGUI#0" expanded="false" />
                 <element signature="e#14812#14820#0" expanded="true" />
-                <element signature="e#18100#20875#0" expanded="true" />
-                <element signature="e#20874#20875#0" expanded="true" />
-                <element signature="e#20944#21311#0" expanded="true" />
-                <element signature="e#21310#21311#0" expanded="true" />
-                <element signature="e#21379#21746#0" expanded="true" />
-                <element signature="e#21745#21746#0" expanded="true" />
-                <element signature="e#24842#24850#0" expanded="true" />
-                <element signature="e#27680#27972#0" expanded="true" />
-                <element signature="e#27971#27972#0" expanded="true" />
-                <element signature="e#28067#31710#0" expanded="true" />
-                <element signature="e#31709#31710#0" expanded="true" />
-                <element signature="e#31780#32150#0" expanded="true" />
-                <element signature="e#32149#32150#0" expanded="true" />
-                <element signature="e#32218#32588#0" expanded="true" />
-                <element signature="e#32587#32588#0" expanded="true" />
+                <element signature="e#18100#20971#0" expanded="true" />
+                <element signature="e#20970#20971#0" expanded="true" />
+                <element signature="e#21040#21407#0" expanded="true" />
+                <element signature="e#21406#21407#0" expanded="true" />
+                <element signature="e#21475#21842#0" expanded="true" />
+                <element signature="e#21841#21842#0" expanded="true" />
+                <element signature="e#24938#24946#0" expanded="true" />
+                <element signature="e#27776#28068#0" expanded="true" />
+                <element signature="e#28067#28068#0" expanded="true" />
+                <element signature="e#28163#31905#0" expanded="true" />
+                <element signature="e#31904#31905#0" expanded="true" />
+                <element signature="e#31975#32345#0" expanded="true" />
+                <element signature="e#32344#32345#0" expanded="true" />
+                <element signature="e#32413#32783#0" expanded="true" />
+                <element signature="e#32782#32783#0" expanded="true" />
                 <element signature="method#exportToExcel#0;class#CameraGUI#0" expanded="false" />
+                <element signature="method#importFromExcel#0;class#CameraGUI#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -143,21 +161,12 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>壁挂 配置记录</find>
-      <find>commonFieldsLabels_right</find>
-      <find>摄像头 配置</find>
-      <find>取消</find>
-      <find>--</find>
-      <find>line2</find>
-      <find>删除</find>
-      <find>配置中</find>
       <find>progre</find>
       <find>wait</find>
       <find>importFro</find>
       <find>camera_</find>
       <find>model01Button</find>
       <find>10.</find>
-      <find>配置摄像头</find>
       <find>model02Button</find>
       <find>currentModelValue</find>
       <find>updatecameraDialog</find>
@@ -171,8 +180,17 @@
       <find>updatedIP_M2</find>
       <find>originalIP_M2</find>
       <find>importFromExcel</find>
-      <find>导出</find>
       <find>progress</find>
+      <find>camera_homepage</find>
+      <find>commonFields_camera</find>
+      <find>exportToExcel</find>
+      <find>导出</find>
+      <find>配置摄像头</find>
+      <find>bac</find>
+      <find>clear</find>
+      <find>返回</find>
+      <find>返回首页</find>
+      <find>位置</find>
     </findStrings>
     <replaceStrings>
       <replace>3000</replace>
@@ -237,8 +255,8 @@
         <option value="$PROJECT_DIR$/src/main/java/utility/UpdateConfigFilee.java" />
         <option value="$PROJECT_DIR$/src/main/java/utility/Constant.java" />
         <option value="$PROJECT_DIR$/src/main/java/gui/version/camera/CameraMain.java" />
-        <option value="$PROJECT_DIR$/src/main/java/gui/version/wallhanging/WallHangingGUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/gui/version/camera/CameraConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/gui/version/wallhanging/WallHangingGUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/gui/version/camera/CameraGUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/gui/version/integration/ConfigSet.java" />
       </list>
@@ -709,7 +727,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24089935" sideWeight="0.63385415" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2008593" sideWeight="0.7843602" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23899034" sideWeight="0.7843602" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23200859" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -813,7 +831,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/gui/version/camera/CameraGUI.java</url>
-          <line>845</line>
+          <line>846</line>
           <properties />
           <option name="timeStamp" value="250" />
         </line-breakpoint>
@@ -1141,21 +1159,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/wallhanging/WallHangingGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9085">
-          <caret line="607" column="22" lean-forward="false" selection-start-line="602" selection-start-column="20" selection-end-line="607" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="method#showHomepage#0;class#WallHangingGUI#0" expanded="false" />
-            <element signature="method#createWallDialog#0;class#WallHangingGUI#0" expanded="false" />
-            <element signature="method#generateNewProjectDilog#0;class#WallHangingGUI#0" expanded="false" />
-            <element signature="method#exportToExcel#0;class#WallHangingGUI#0" expanded="false" />
-            <element signature="method#importFromExcel#0;class#WallHangingGUI#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/version01/UBNTConfigratioAbsolutePath.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
@@ -1219,8 +1222,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/camera/CameraGUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="677" column="16" lean-forward="false" selection-start-line="677" selection-start-column="16" selection-end-line="678" selection-end-column="43" />
+        <state relative-caret-position="211">
+          <caret line="648" column="55" lean-forward="false" selection-start-line="648" selection-start-column="53" selection-end-line="648" selection-end-column="55" />
           <folding>
             <element signature="e#1238#1246#0" expanded="true" />
             <element signature="e#1628#1629#0" expanded="true" />
@@ -1236,31 +1239,45 @@
             <element signature="e#11392#11393#0" expanded="true" />
             <element signature="method#updatecameraDialog#0;class#CameraGUI#0" expanded="false" />
             <element signature="e#14812#14820#0" expanded="true" />
-            <element signature="e#18100#20875#0" expanded="true" />
-            <element signature="e#20874#20875#0" expanded="true" />
-            <element signature="e#20944#21311#0" expanded="true" />
-            <element signature="e#21310#21311#0" expanded="true" />
-            <element signature="e#21379#21746#0" expanded="true" />
-            <element signature="e#21745#21746#0" expanded="true" />
-            <element signature="e#24842#24850#0" expanded="true" />
-            <element signature="e#27680#27972#0" expanded="true" />
-            <element signature="e#27971#27972#0" expanded="true" />
-            <element signature="e#28067#31710#0" expanded="true" />
-            <element signature="e#31709#31710#0" expanded="true" />
-            <element signature="e#31780#32150#0" expanded="true" />
-            <element signature="e#32149#32150#0" expanded="true" />
-            <element signature="e#32218#32588#0" expanded="true" />
-            <element signature="e#32587#32588#0" expanded="true" />
+            <element signature="e#18100#20971#0" expanded="true" />
+            <element signature="e#20970#20971#0" expanded="true" />
+            <element signature="e#21040#21407#0" expanded="true" />
+            <element signature="e#21406#21407#0" expanded="true" />
+            <element signature="e#21475#21842#0" expanded="true" />
+            <element signature="e#21841#21842#0" expanded="true" />
+            <element signature="e#24938#24946#0" expanded="true" />
+            <element signature="e#27776#28068#0" expanded="true" />
+            <element signature="e#28067#28068#0" expanded="true" />
+            <element signature="e#28163#31905#0" expanded="true" />
+            <element signature="e#31904#31905#0" expanded="true" />
+            <element signature="e#31975#32345#0" expanded="true" />
+            <element signature="e#32344#32345#0" expanded="true" />
+            <element signature="e#32413#32783#0" expanded="true" />
+            <element signature="e#32782#32783#0" expanded="true" />
             <element signature="method#exportToExcel#0;class#CameraGUI#0" expanded="false" />
+            <element signature="method#importFromExcel#0;class#CameraGUI#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/wallhanging/WallHangingGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="212" column="59" lean-forward="false" selection-start-line="212" selection-start-column="55" selection-end-line="212" selection-end-column="59" />
+          <folding>
+            <element signature="e#1868#1876#0" expanded="true" />
+            <element signature="method#generateNewProjectDilog#0;class#WallHangingGUI#0" expanded="false" />
+            <element signature="method#exportToExcel#0;class#WallHangingGUI#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/integration/ConfigSet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="542">
-          <caret line="1680" column="21" lean-forward="true" selection-start-line="1680" selection-start-column="21" selection-end-line="1680" selection-end-column="21" />
+        <state relative-caret-position="211">
+          <caret line="1585" column="54" lean-forward="false" selection-start-line="1585" selection-start-column="52" selection-end-line="1585" selection-end-column="54" />
           <folding>
+            <element signature="e#1403#1411#0" expanded="true" />
             <element signature="e#1509#1517#0" expanded="true" />
             <element signature="e#1569#1577#0" expanded="true" />
             <element signature="e#1627#1635#0" expanded="true" />
@@ -1268,6 +1285,7 @@
             <element signature="method#generateWallCommondFields#0;class#ConfigSet#0" expanded="false" />
             <element signature="method#generateCameraCommondFields#0;class#ConfigSet#0" expanded="false" />
             <element signature="method#showConfigRecordsPage#0;class#ConfigSet#0" expanded="false" />
+            <element signature="method#updateM5Panel#0;class#ConfigSet#0" expanded="false" />
             <element signature="method#createM5Overlay#0;class#ConfigSet#0" expanded="false" />
             <element signature="method#updateM2Dialog#0;class#ConfigSet#0" expanded="false" />
             <element signature="method#generateNewProjectDilog#0;class#ConfigSet#0" expanded="false" />

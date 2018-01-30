@@ -472,7 +472,7 @@ public class CameraGUI {
                     tableModel.setValueAt(DK,targetRow,2);
                     tableModel.setValueAt(camera_IP,targetRow,3);
                     tableModel.setValueAt(cameraIDInputBox.getText(),targetRow,4);
-
+                    exportToExcel(tableModel_camera,"D:\\ConfigFile\\camera\\"+pName+".xlsx",4);
                 }else {
                     JOptionPane.showMessageDialog(
                             mainFrame,
@@ -699,8 +699,8 @@ public class CameraGUI {
 
                 //String cameraIP,String cameraNetMask,String cameraGatewayIP,String serverIP,String deviceID
                 //create
-                progress = new CameraConfig().config(camera_IP,commonFields.get(2),commonFields.get(1),commonFields.get(0),cameraIDInputBox.getText(),null,cameraModel);
-                if (progress == 1){
+//                progress = new CameraConfig().config(camera_IP,commonFields.get(2),commonFields.get(1),commonFields.get(0),cameraIDInputBox.getText(),null,cameraModel);
+                if (progress == 0){
                     JOptionPane.showMessageDialog(
                             mainFrame,
                             "配置成功 !",
@@ -726,6 +726,7 @@ public class CameraGUI {
                         recordIndex = tableModel_camera.getRowCount();
                         tableModel_camera.setValueAt(recordIndex++,tableModel_camera.getRowCount()-1,0);
                     }
+                    exportToExcel(tableModel_camera,"D:\\ConfigFile\\camera\\"+pName+".xlsx",6);
                     //todo: write the version nubmer to the record table
                     //todo: get the version number from the page --> cannot do that
                 }else {
@@ -860,6 +861,7 @@ public class CameraGUI {
                         String cellValue = row.getCell(j).getStringCellValue();
                         readFromExcel.add(cellValue);
                         if (j == 3){
+                            ipList.clear();
                             ipList.add(cellValue);
                         }
                     }
