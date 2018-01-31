@@ -180,8 +180,8 @@ public class CameraGUI {
         exportcameraRecords.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                exportToExcel(tableModel_camera,"D:\\ConfigFile\\camera\\"+pName+".xlsx",4);
-//                exportToExcel(tableModel_M2,System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName+".xlsx",4);
+//                exportToExcel(tableModel_camera,"D:\\ConfigFile\\camera\\"+pName+".xlsx",4);
+                exportToExcel(tableModel_camera,System.getProperty("user.dir")+ "\\ConfigFile\\camera\\"+pName+".xlsx",4);
                 JOptionPane.showMessageDialog(
                         mainFrame,
                         "导出数据完毕 !",
@@ -272,8 +272,8 @@ public class CameraGUI {
 
         //setup the logo icon
         Toolkit kit = Toolkit.getDefaultToolkit();
-        Image icon = kit.getImage("D:\\icon\\logo.png");
-//        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
+//        Image icon = kit.getImage("D:\\icon\\logo.png");
+        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
         jDialog_updateRow.setIconImage(icon);
 
         //select camera model first, then to config the camera
@@ -286,13 +286,13 @@ public class CameraGUI {
         selectModelLabel.setFont(new Font(null, Font.BOLD, 19));
         modelPanel.add(selectModelLabel);
 
-        final JButton model01Button = new JButton("DS-2CD2T25FD-I8");
+        final JButton model01Button = new JButton("DS-2CD2T25FD");
         model01Button.setLocation(130,100);
         model01Button.setSize(180,50);
         model01Button.setFont(new Font(null, Font.BOLD, 17));
         modelPanel.add(model01Button);
 
-        final JButton model02Button = new JButton("DS-2CD2T10-I5");
+        final JButton model02Button = new JButton("DS-2CD2T10");
         model02Button.setLocation(130,170);
         model02Button.setSize(180,50);
         model02Button.setFont(new Font(null, Font.BOLD, 17));
@@ -432,7 +432,8 @@ public class CameraGUI {
                 String camera_IP = IP_camera.getText();
                 String cameraModel = currentModelValue.getText();
 
-                String path = "D:\\ConfigFile\\camera\\"+pName +".xlsx";
+//                String path = "D:\\ConfigFile\\camera\\"+pName +".xlsx";
+                String path = System.getProperty("user.dir")+"\\ConfigFile\\camera\\"+pName +".xlsx";
                 importFromExcel(null,path);
                 for (int i = 0; i < ipList.size(); i++) {
                     if (camera_IP.trim().equals(ipList.get(i)) && !camera_IP.trim().equals(olderIP_camera)){
@@ -447,7 +448,6 @@ public class CameraGUI {
 
                 }
 
-
                 log.info("the older camera ip is "+olderIP_camera);
                 log.info("the new camera ip is "+camera_IP);
                 log.info("the camera net mask is "+commonFields.get(2));
@@ -456,9 +456,9 @@ public class CameraGUI {
                 log.info("the camera id is "+ cameraIDInputBox.getText());
                 log.info("the camera model is "+cameraModel);
                 //String cameraIP,String cameraNetMask,String cameraGatewayIP,String serverIP,String deviceID
-//                progress = new CameraConfig().config(camera_IP,commonFields.get(2),commonFields.get(1),commonFields.get(0),cameraIDInputBox.getText(),olderIP_camera,cameraModel);
+                progress = new CameraConfig().config(camera_IP,commonFields.get(2),commonFields.get(1),commonFields.get(0),cameraIDInputBox.getText(),olderIP_camera,cameraModel);
 
-                if (progress == 0){
+                if (progress == 1){
                     JOptionPane.showMessageDialog(
                             mainFrame,
                             "更新成功 !",
@@ -472,7 +472,8 @@ public class CameraGUI {
                     tableModel.setValueAt(DK,targetRow,2);
                     tableModel.setValueAt(camera_IP,targetRow,3);
                     tableModel.setValueAt(cameraIDInputBox.getText(),targetRow,4);
-                    exportToExcel(tableModel_camera,"D:\\ConfigFile\\camera\\"+pName+".xlsx",4);
+//                    exportToExcel(tableModel_camera,"D:\\ConfigFile\\camera\\"+pName+".xlsx",4);
+                    exportToExcel(tableModel_camera,System.getProperty("user.dir")+"\\ConfigFile\\camera\\"+pName+".xlsx",4);
                 }else {
                     JOptionPane.showMessageDialog(
                             mainFrame,
@@ -525,8 +526,8 @@ public class CameraGUI {
 
         //setup the logo icon
         Toolkit kit = Toolkit.getDefaultToolkit();
-        Image icon = kit.getImage("D:\\icon\\logo.png");
-//        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
+//        Image icon = kit.getImage("D:\\icon\\logo.png");
+        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
         camerajDialog_create.setIconImage(icon);
 
         //select camera model first, then to config the camera
@@ -539,13 +540,13 @@ public class CameraGUI {
         selectModelLabel.setFont(new Font(null, Font.BOLD, 19));
         modelPanel.add(selectModelLabel);
 
-        final JButton model01Button = new JButton("DS-2CD2T25FD-I8");
+        final JButton model01Button = new JButton("DS-2CD2T25FD");
         model01Button.setLocation(130,100);
         model01Button.setSize(180,50);
         model01Button.setFont(new Font(null, Font.BOLD, 17));
         modelPanel.add(model01Button);
 
-        final JButton model02Button = new JButton("DS-2CD2T10-I5");
+        final JButton model02Button = new JButton("DS-2CD2T10");
         model02Button.setLocation(130,170);
         model02Button.setSize(180,50);
         model02Button.setFont(new Font(null, Font.BOLD, 17));
@@ -675,7 +676,8 @@ public class CameraGUI {
                 //TODO: validate camera ip is duplicate or not
                 //TODO: 1.read config records from excel; 2.list out camera ip and iterate the ip
 
-                String path = "D:\\ConfigFile\\camera\\"+pName +".xlsx";
+//                String path = "D:\\ConfigFile\\camera\\"+pName +".xlsx";
+                String path = System.getProperty("user.dir")+"\\ConfigFile\\camera\\"+pName +".xlsx";
                 importFromExcel(null,path);
                 for (int i = 0; i < ipList.size(); i++) {
                     if (camera_IP.trim().equals(ipList.get(i))){
@@ -699,8 +701,8 @@ public class CameraGUI {
 
                 //String cameraIP,String cameraNetMask,String cameraGatewayIP,String serverIP,String deviceID
                 //create
-//                progress = new CameraConfig().config(camera_IP,commonFields.get(2),commonFields.get(1),commonFields.get(0),cameraIDInputBox.getText(),null,cameraModel);
-                if (progress == 0){
+                progress = new CameraConfig().config(camera_IP,commonFields.get(2),commonFields.get(1),commonFields.get(0),cameraIDInputBox.getText(),null,cameraModel);
+                if (progress == 1){
                     JOptionPane.showMessageDialog(
                             mainFrame,
                             "配置成功 !",
@@ -726,7 +728,8 @@ public class CameraGUI {
                         recordIndex = tableModel_camera.getRowCount();
                         tableModel_camera.setValueAt(recordIndex++,tableModel_camera.getRowCount()-1,0);
                     }
-                    exportToExcel(tableModel_camera,"D:\\ConfigFile\\camera\\"+pName+".xlsx",6);
+//                    exportToExcel(tableModel_camera,"D:\\ConfigFile\\camera\\"+pName+".xlsx",6);
+                    exportToExcel(tableModel_camera,System.getProperty("user.dir")+"\\ConfigFile\\camera\\"+pName+".xlsx",6);
                     //todo: write the version nubmer to the record table
                     //todo: get the version number from the page --> cannot do that
                 }else {

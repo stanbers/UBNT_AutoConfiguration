@@ -15,8 +15,8 @@ import utility.WebDriverGiver;
  */
 public class WallHangingConfig {
     {
-//        System.setProperty("webdriver.gecko.driver",System.getProperty("user.dir")+"\\SeleniumGecko\\geckodriver.exe");
-        System.setProperty("webdriver.gecko.driver","D:\\SeleniumGecko\\geckodriver.exe");
+        System.setProperty("webdriver.gecko.driver",System.getProperty("user.dir")+"\\SeleniumGecko\\geckodriver.exe");
+//        System.setProperty("webdriver.gecko.driver","D:\\SeleniumGecko\\geckodriver.exe");
     }
 
     public WebDriver driver = WebDriverGiver.getWebDriver();

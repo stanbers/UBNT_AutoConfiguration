@@ -75,8 +75,8 @@ public class WallHangingGUI {
 
         //setup the logo icon
         Toolkit kit = Toolkit.getDefaultToolkit();
-//        Image icon = kit.getImage(System.getProperty("user.dir")+"\\icon\\logo.png");
-        Image icon = kit.getImage("D:\\icon\\logo.png");
+        Image icon = kit.getImage(System.getProperty("user.dir")+"\\icon\\logo.png");
+//        Image icon = kit.getImage("D:\\icon\\logo.png");
         mainFrame.setIconImage(icon);
 
         //create homepage panel
@@ -241,24 +241,22 @@ public class WallHangingGUI {
                     //set the value to these two global fields
                     pNumber = projectTableModel.getValueAt(targetRow,0).toString();
                     pName = projectTableModel.getValueAt(targetRow,1).toString();
-                    String specificExcel_wall = "D:\\ConfigFile\\wall\\"+pName +".xlsx";
-//                        String specificExcel_wall = System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName +".xlsx";
-                    String SpecificProjectCommonField = "D:\\ConfigFile\\"+pName +"CommonFields.xlsx";
-//                        String SpecificProjectCommonField = System.getProperty("user.dir")+ "\\ConfigFile\\"+pName +"CommonFields.xlsx";
+//                    String specificExcel_wall = "D:\\ConfigFile\\wall\\"+pName +".xlsx";
+                    String specificExcel_wall = System.getProperty("user.dir")+ "\\ConfigFile\\wall\\"+pName +".xlsx";
+//                    String SpecificProjectCommonField = "D:\\ConfigFile\\"+pName +"CommonFields.xlsx";
+                    String SpecificProjectCommonField = System.getProperty("user.dir")+ "\\ConfigFile\\"+pName +"CommonFields.xlsx";
                     File projectCorresspondingConfigFile_wall = new File(specificExcel_wall);
                     File projectCommonFieldFile = new File(SpecificProjectCommonField);
                     if (!projectCorresspondingConfigFile_wall.exists()){
-                        exportToExcel(tableModel_wall,"D:\\ConfigFile\\wall\\"+pName+".xlsx",4);
-//                            exportToExcel(tableModel_M2,System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName+".xlsx",4);
+//                        exportToExcel(tableModel_wall,"D:\\ConfigFile\\wall\\"+pName+".xlsx",4);
+                        exportToExcel(tableModel_wall,System.getProperty("user.dir")+ "\\ConfigFile\\wall\\"+pName+".xlsx",4);
                     }
                     if (projectCorresspondingConfigFile_wall.exists() && projectCommonFieldFile.exists()){
                         //import table rows on main page
                         importFromExcel(tableModel_wall ,specificExcel_wall);
-//                            jTable.setModel(defaultTableModel);
                         //import specific project common fields
                         //TODO: this time not to render table but to override commonfields.
                         importFromExcel(null,SpecificProjectCommonField);
-                        //import project list excel, in order to show the project name and number on the main page
                     }
 
                     outermostPanel.add(currentPName);
@@ -388,8 +386,8 @@ public class WallHangingGUI {
         exportWallRecords.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                exportToExcel(tableModel_wall,"D:\\ConfigFile\\wall\\"+pName+".xlsx",4);
-//                exportToExcel(tableModel_M2,System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName+".xlsx",4);
+//                exportToExcel(tableModel_wall,"D:\\ConfigFile\\wall\\"+pName+".xlsx",4);
+                exportToExcel(tableModel_wall,System.getProperty("user.dir")+ "\\ConfigFile\\wall\\"+pName+".xlsx",4);
                 JOptionPane.showMessageDialog(
                         mainFrame,
                         "导出数据完毕 !",
@@ -480,8 +478,8 @@ public class WallHangingGUI {
 
         //setup the logo icon
         Toolkit kit = Toolkit.getDefaultToolkit();
-        Image icon = kit.getImage("D:\\icon\\logo.png");
-//        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
+//        Image icon = kit.getImage("D:\\icon\\logo.png");
+        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
         jDialog_updateRow.setIconImage(icon);
 
         JPanel wallOverlay_update = new JPanel(null);
@@ -591,7 +589,8 @@ public class WallHangingGUI {
                 String DK = DKText.getText();
                 String wall_IP = IP_wall.getText();
 
-                String path = "D:\\ConfigFile\\wall\\"+pName +".xlsx";
+//                String path = "D:\\ConfigFile\\wall\\"+pName +".xlsx";
+                String path = System.getProperty("user.dir")+"\\ConfigFile\\wall\\"+pName +".xlsx";
                 importFromExcel(null,path);
                 for (int i = 0; i < ip_wall.size(); i++) {
                     if (wall_IP.trim().equals(ip_wall.get(i)) && !wall_IP.trim().equals(olderIP_wall)){
@@ -612,9 +611,9 @@ public class WallHangingGUI {
                 log.info("wall hanging gateway ip is "+commonFields.get(2));
                 log.info("wall hanging net mask is "+commonFields.get(3));
                 log.info("wall hanging oler ip is "+olderIP_wall);
-//                progress = new WallHangingConfig().config(commonFields.get(0),olderIP_wall,commonFields.get(3),commonFields.get(2),commonFields.get(1));
+                progress = new WallHangingConfig().config(commonFields.get(0),olderIP_wall,commonFields.get(3),commonFields.get(2),commonFields.get(1));
 
-                if (progress == 0){
+                if (progress == 1){
                     JOptionPane.showMessageDialog(
                             mainFrame,
                             "更新成功 !",
@@ -626,7 +625,8 @@ public class WallHangingGUI {
                     tableModel.setValueAt(way,targetRow,1);
                     tableModel.setValueAt(DK,targetRow,2);
                     tableModel.setValueAt(wall_IP,targetRow,3);
-                    exportToExcel(tableModel_wall,"D:\\ConfigFile\\wall\\"+pName+".xlsx",4);
+//                    exportToExcel(tableModel_wall,"D:\\ConfigFile\\wall\\"+pName+".xlsx",4);
+                    exportToExcel(tableModel_wall,System.getProperty("user.dir")+"\\ConfigFile\\wall\\"+pName+".xlsx",4);
                 }else {
                     JOptionPane.showMessageDialog(
                             mainFrame,
@@ -656,8 +656,8 @@ public class WallHangingGUI {
 
         //setup the logo icon
         Toolkit kit = Toolkit.getDefaultToolkit();
-        Image icon = kit.getImage("D:\\icon\\logo.png");
-//        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
+//        Image icon = kit.getImage("D:\\icon\\logo.png");
+        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
         walljDialog_create.setIconImage(icon);
 
         //prepare the context panel
@@ -745,7 +745,8 @@ public class WallHangingGUI {
                 String DK = DKText.getText();
                 String wall_IP = IP.getText();
 
-                String path = "D:\\ConfigFile\\wall\\"+pName +".xlsx";
+//                String path = "D:\\ConfigFile\\wall\\"+pName +".xlsx";
+                String path = System.getProperty("user.dir")+"\\ConfigFile\\wall\\"+pName +".xlsx";
                 importFromExcel(null,path);
                 for (int i = 0; i < ip_wall.size(); i++) {
                     if (wall_IP.trim().equals(ip_wall.get(i))){
@@ -766,7 +767,7 @@ public class WallHangingGUI {
                 log.info("wall hanging gateway ip is "+commonFields.get(2));
                 log.info("wall hanging net mask is "+commonFields.get(3));
                 //String ssidName, String wallHangingIP, String wallHangingNetmask, String wallHangingGatewayIP, String serverIP
-//                progress = new WallHangingConfig().config(commonFields.get(0),wall_IP,commonFields.get(3),commonFields.get(2),commonFields.get(1));
+                progress = new WallHangingConfig().config(commonFields.get(0),wall_IP,commonFields.get(3),commonFields.get(2),commonFields.get(1));
 
                 if (progress == 1){
                     JOptionPane.showMessageDialog(
@@ -791,7 +792,8 @@ public class WallHangingGUI {
                     tableModel.setValueAt(way,targetRow,1);
                     tableModel.setValueAt(DK,targetRow,2);
                     tableModel.setValueAt(wall_IP,targetRow,3);
-                    exportToExcel(tableModel_wall,"D:\\ConfigFile\\wall\\"+pName+".xlsx",4);
+//                    exportToExcel(tableModel_wall,"D:\\ConfigFile\\wall\\"+pName+".xlsx",4);
+                    exportToExcel(tableModel_wall,System.getProperty("user.dir")+"\\ConfigFile\\wall\\"+pName+".xlsx",4);
                 }else {
                     JOptionPane.showMessageDialog(
                             mainFrame,
@@ -823,8 +825,8 @@ public class WallHangingGUI {
 
         //setup the logo icon
         Toolkit kit = Toolkit.getDefaultToolkit();
-//        Image icon = kit.getImage(System.getProperty("user.dir")+"\\icon\\logo.png");
-        Image icon = kit.getImage("D:\\icon\\logo.png");
+        Image icon = kit.getImage(System.getProperty("user.dir")+"\\icon\\logo.png");
+//        Image icon = kit.getImage("D:\\icon\\logo.png");
         newProjectDialog.setIconImage(icon);
 
         //this JPanel was created for store all these components which will shown on the project dialog
@@ -977,8 +979,8 @@ public class WallHangingGUI {
 
                 //TODO: need to write the project info into the specific excel, in order to show these info on homepage once the app was running
                 String projectExcelPath = Constant.Path_TestData_ProjectList;
-//                String commonFieldsExcelPath = System.getProperty("user.dir")+"\\ConfigFile\\"+projectNameInputBox.getText() +"CommonFields.xlsx";
-                String commonFieldsExcelPath = "D:\\ConfigFile\\"+projectNameInputBox.getText() +"CommonFields.xlsx";
+                String commonFieldsExcelPath = System.getProperty("user.dir")+"\\ConfigFile\\"+projectNameInputBox.getText() +"CommonFields.xlsx";
+//                String commonFieldsExcelPath = "D:\\ConfigFile\\"+projectNameInputBox.getText() +"CommonFields.xlsx";
                 exportToExcel(projectTableModel,projectExcelPath,2);
                 exportToExcel(null,commonFieldsExcelPath,7);
 

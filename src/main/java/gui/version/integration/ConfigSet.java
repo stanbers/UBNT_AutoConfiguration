@@ -8,6 +8,8 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import ubnt.m2.M2_Configuration;
+import ubnt.m5.M5_Configuration;
 import utility.Constant;
 import utility.JMIPV4AddressField;
 import utility.LimitedDocument;
@@ -139,8 +141,8 @@ public class ConfigSet {
 
         //setup the logo icon
         Toolkit kit = Toolkit.getDefaultToolkit();
-//        Image icon = kit.getImage(System.getProperty("user.dir")+"\\icon\\logo.png");
-        Image icon = kit.getImage("D:\\icon\\logo.png");
+        Image icon = kit.getImage(System.getProperty("user.dir")+"\\icon\\logo.png");
+//        Image icon = kit.getImage("D:\\icon\\logo.png");
         mainFrame.setIconImage(icon);
 
         //create homepage panel
@@ -330,9 +332,12 @@ public class ConfigSet {
                     pName = projectTableModel.getValueAt(targetRow,1).toString();
 
                     //now that the different device's common fields are in the different folders, so we need to import all of them once select project.
-                    String spCommonField_ubnt = "D:\\ConfigFile\\ubnt\\"+pName +"CommonFields.xlsx";
-                    String spCommonField_wall = "D:\\ConfigFile\\wall\\"+pName +"CommonFields.xlsx";
-                    String spCommonField_camera = "D:\\ConfigFile\\camera\\"+pName +"CommonFields.xlsx";
+//                    String spCommonField_ubnt = "D:\\ConfigFile\\ubnt\\"+ pName +"CommonFields.xlsx";
+                    String spCommonField_ubnt = System.getProperty("user.dir")+ "\\ConfigFile\\ubnt\\"+ pName +"CommonFields.xlsx";
+//                    String spCommonField_wall = "D:\\ConfigFile\\wall\\"+ pName +"CommonFields.xlsx";
+                    String spCommonField_wall = System.getProperty("user.dir")+ "\\ConfigFile\\wall\\"+ pName +"CommonFields.xlsx";
+//                    String spCommonField_camera = "D:\\ConfigFile\\camera\\"+ pName +"CommonFields.xlsx";
+                    String spCommonField_camera = System.getProperty("user.dir")+ "\\ConfigFile\\camera\\"+ pName +"CommonFields.xlsx";
                     File projectCommonFieldFile_ubnt = new File(spCommonField_ubnt);
                     File projectCommonFieldFile_wall = new File(spCommonField_wall);
                     File projectCommonFieldFile_camera = new File(spCommonField_camera);
@@ -448,40 +453,28 @@ public class ConfigSet {
                         outermostPanel.setVisible(true);
                         mainFrame.setContentPane(outermostPanel);
 
-                        String specificExcel_M2 = "D:\\ConfigFile\\M2\\" + pName + ".xlsx";
-//                        String specificExcel_M2 = System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName +".xlsx";
-                        String specificExcel_M5 = "D:\\ConfigFile\\M5\\" + pName + ".xlsx";
-//                        String specificExcel_M5 = System.getProperty("user.dir")+ "\\ConfigFile\\M5\\"+pName +".xlsx";
-//                        String SpecificProjectCommonField = "D:\\ConfigFile\\"+pName +"CommonFields.xlsx";
-//                        String SpecificProjectCommonField = System.getProperty("user.dir")+ "\\ConfigFile\\"+pName +"CommonFields.xlsx";
+//                        String specificExcel_M2 = "D:\\ConfigFile\\M2\\" + pName + ".xlsx";
+                        String specificExcel_M2 = System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName +".xlsx";
+//                        String specificExcel_M5 = "D:\\ConfigFile\\M5\\" + pName + ".xlsx";
+                        String specificExcel_M5 = System.getProperty("user.dir")+ "\\ConfigFile\\M5\\"+pName +".xlsx";
                         File projectCorresspondingConfigFile_M2 = new File(specificExcel_M2);
                         File projectCorresspondingConfigFile_M5 = new File(specificExcel_M5);
 
                         if (!projectCorresspondingConfigFile_M2.exists()) {
-                            exportToExcel(tableModel_M2, "D:\\ConfigFile\\M2\\" + pName + ".xlsx", 4, commonFields_ubnt);
-//                            exportToExcel(tableModel_M2,System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName+".xlsx",4);
+//                            exportToExcel(tableModel_M2, "D:\\ConfigFile\\M2\\" + pName + ".xlsx", 4, commonFields_ubnt);
+                            exportToExcel(tableModel_M2,System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName+".xlsx",4,commonFields_ubnt);
                         }
                         if (!projectCorresspondingConfigFile_M5.exists()) {
-                            exportToExcel(tableModel_M5, "D:\\ConfigFile\\M5\\" + pName + ".xlsx", 8, commonFields_ubnt);
-//                            exportToExcel(tableModel_M5,System.getProperty("user.dir")+ "\\ConfigFile\\M5\\"+pName+".xlsx",8);
+//                            exportToExcel(tableModel_M5, "D:\\ConfigFile\\M5\\" + pName + ".xlsx", 8, commonFields_ubnt);
+                            exportToExcel(tableModel_M5,System.getProperty("user.dir")+ "\\ConfigFile\\M5\\"+pName+".xlsx",8,commonFields_ubnt);
                         }
                         if (projectCorresspondingConfigFile_M2.exists()) {
                             //import table rows on main page
                             importFromExcel(tableModel_M2, specificExcel_M2, commonFields_ubnt);
-//                            jTable.setModel(defaultTableModel);
-                            //import specific project common fields
-                            //TODO: this time not to render table but to override commonfields.
-//                            importFromExcel(null,SpecificProjectCommonField);
-                            //import project list excel, in order to show the project name and number on the main page
                         }
                         if (projectCorresspondingConfigFile_M5.exists()) {
                             //import table rows on main page
                             importFromExcel(tableModel_M5, specificExcel_M5, commonFields_ubnt);
-//                            jTable.setModel(defaultTableModel);
-                            //import specific project common fields
-                            //TODO: this time not to render table but to override commonfields.
-//                            importFromExcel(null,SpecificProjectCommonField);
-                            //import project list excel, in order to show the project name and number on the main page
                         }
 
                         outermostPanel.add(currentPName);
@@ -511,19 +504,19 @@ public class ConfigSet {
                     String pNumber_camera = projectTableModel.getValueAt(targetRow,0).toString();
                     String pName_camera = projectTableModel.getValueAt(targetRow,1).toString();
 
-                    String specificExcel_camera = "D:\\ConfigFile\\camera\\"+pName_camera +".xlsx";
-    //                        String specificExcel_wall = System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName +".xlsx";
-                    String SpecificProjectCommonField = "D:\\ConfigFile\\camera\\"+pName_camera +"CommonFields.xlsx";
-    //                        String SpecificProjectCommonField = System.getProperty("user.dir")+ "\\ConfigFile\\"+pName +"CommonFields.xlsx";
+//                    String specificExcel_camera = "D:\\ConfigFile\\camera\\"+pName_camera +".xlsx";
+                            String specificExcel_camera = System.getProperty("user.dir")+ "\\ConfigFile\\camera\\"+pName_camera +".xlsx";
+//                    String SpecificProjectCommonField = "D:\\ConfigFile\\camera\\"+pName_camera +"CommonFields.xlsx";
+                            String SpecificProjectCommonField = System.getProperty("user.dir")+ "\\ConfigFile\\camera\\"+pName_camera +"CommonFields.xlsx";
                     File projectCorresspondingConfigFile_camera = new File(specificExcel_camera);
                     File projectCommonFieldFile = new File(SpecificProjectCommonField);
                     if (!projectCorresspondingConfigFile_camera.exists()){
-                        exportToExcel(tableModel_camera,"D:\\ConfigFile\\camera\\"+pName_camera+".xlsx",6,commonFields_camera);
+//                        exportToExcel(tableModel_camera,"D:\\ConfigFile\\camera\\"+pName_camera+".xlsx",6,commonFields_camera);
+                        exportToExcel(tableModel_camera,System.getProperty("user.dir")+ "\\ConfigFile\\camera\\"+pName_camera +".xlsx",6,commonFields_camera);
                     }
                     if (projectCorresspondingConfigFile_camera.exists() && projectCommonFieldFile.exists()){
                         //import table rows on main page
                         importFromExcel(tableModel_camera ,specificExcel_camera,null);
-    //                            jTable.setModel(defaultTableModel);
                         //import specific project common fields
                         //TODO: this time not to render table but to override commonfields.
                         importFromExcel(null,SpecificProjectCommonField,commonFields_camera);
@@ -642,23 +635,19 @@ public class ConfigSet {
                     String pNumber_wall = projectTableModel.getValueAt(targetRow,0).toString();
                     String pName_wall = projectTableModel.getValueAt(targetRow,1).toString();
 
-                    String specificExcel_wall = "D:\\ConfigFile\\wall\\"+pName_wall +".xlsx";
-    //                        String specificExcel_wall = System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName +".xlsx";
-                    String SpecificProjectCommonField = "D:\\ConfigFile\\"+pName_wall +"CommonFields.xlsx";
-    //                        String SpecificProjectCommonField = System.getProperty("user.dir")+ "\\ConfigFile\\"+pName +"CommonFields.xlsx";
+//                    String specificExcel_wall = "D:\\ConfigFile\\wall\\"+pName_wall +".xlsx";
+                    String specificExcel_wall = System.getProperty("user.dir")+ "\\ConfigFile\\wall\\"+pName_wall +".xlsx";
+//                    String SpecificProjectCommonField = "D:\\ConfigFile\\"+pName_wall +"CommonFields.xlsx";
+                    String SpecificProjectCommonField = System.getProperty("user.dir")+ "\\ConfigFile\\"+pName_wall +"CommonFields.xlsx";
                     File projectCorresspondingConfigFile_wall = new File(specificExcel_wall);
                     File projectCommonFieldFile = new File(SpecificProjectCommonField);
                     if (!projectCorresspondingConfigFile_wall.exists()){
-    //                    exportToExcel(tableModel_wall,"D:\\ConfigFile\\wall\\"+pName_wall+".xlsx",4);
+//                        exportToExcel(tableModel_wall,"D:\\ConfigFile\\wall\\"+pName_wall+".xlsx",4,commonFields_wall);
+                        exportToExcel(tableModel_wall,System.getProperty("user.dir")+ "\\ConfigFile\\wall\\"+pName_wall +".xlsx",4,commonFields_wall);
                     }
                     if (projectCorresspondingConfigFile_wall.exists() && projectCommonFieldFile.exists()){
                         //import table rows on main page
-    //                    importFromExcel(tableModel_wall ,specificExcel_wall);
-    //                            jTable.setModel(defaultTableModel);
-                        //import specific project common fields
-                        //TODO: this time not to render table but to override commonfields.
-    //                    importFromExcel(null,SpecificProjectCommonField);
-                        //import project list excel, in order to show the project name and number on the main page
+                        importFromExcel(tableModel_wall ,specificExcel_wall,commonFields_wall);
                     }
 
                     final JPanel outermostPanel_wall = new WallHangingGUI().showConfigRecordsPage(pName_wall,pNumber_wall,tableModel_wall,commonFields_wall);
@@ -948,8 +937,8 @@ public class ConfigSet {
         exportM2Records.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                exportToExcel(tableModel_M2,"D:\\ConfigFile\\M2\\"+pName+".xlsx",4,null);
-//                exportToExcel(tableModel_M2,System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName+".xlsx",4);
+//                exportToExcel(tableModel_M2,"D:\\ConfigFile\\M2\\"+pName+".xlsx",4,null);
+                exportToExcel(tableModel_M2,System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName+".xlsx",4,null);
                 JOptionPane.showMessageDialog(
                         mainFrame,
                         "导出数据完毕 !",
@@ -1108,8 +1097,8 @@ public class ConfigSet {
         exportM5Records.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                exportToExcel(tableModel_M5,"D:\\ConfigFile\\M5\\"+pName+".xlsx",8,null);
-//                exportToExcel(tableModel_M5,System.getProperty("user.dir")+ "\\ConfigFile\\M5\\"+pName+".xlsx",8);
+//                exportToExcel(tableModel_M5,"D:\\ConfigFile\\M5\\"+pName+".xlsx",8,null);
+                exportToExcel(tableModel_M5,System.getProperty("user.dir")+ "\\ConfigFile\\M5\\"+pName+".xlsx",8,null);
                 JOptionPane.showMessageDialog(
                         mainFrame,
                         "导出数据完毕 !",
@@ -1196,8 +1185,8 @@ public class ConfigSet {
 
         //setup the logo icon
         Toolkit kit = Toolkit.getDefaultToolkit();
-        Image icon = kit.getImage("D:\\icon\\logo.png");
-//        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
+//        Image icon = kit.getImage("D:\\icon\\logo.png");
+        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
         M5jDialog_update.setIconImage(icon);
 
         //setup JTabbedPane
@@ -1354,7 +1343,8 @@ public class ConfigSet {
                 public void actionPerformed(ActionEvent e) {
                     int progress = 0;
 
-                    String path = "D:\\ConfigFile\\M5\\"+pName +".xlsx";
+//                    String path = "D:\\ConfigFile\\M5\\"+pName +".xlsx";
+                    String path = System.getProperty("user.dir")+ "\\ConfigFile\\M5\\"+pName +".xlsx";
                     importFromExcel(null,path,null);
                     for (int i = 0; i < ip_M5AP.size(); i++) {
                         if (IP_AP.getText().trim().equals(ip_M5AP.get(i)) && !IP_AP.getText().trim().equals(originalIP_M5AP)){
@@ -1366,23 +1356,9 @@ public class ConfigSet {
                             );
                             return;
                         }
-
                     }
                     String IPAddress_AP =  IP_AP.getText();
                     String fruq_AP = fruq.getSelectedItem().toString();
-
-
-//                    Vector emptyRow = new Vector();
-//                    for (int i = 0; i < 10; i++) {
-//                        emptyRow.add(null);
-//                    }
-//                    tableModel_M5.addRow(emptyRow);
-//                    if (recordIndex == 0){
-//                        tableModel_M5.setValueAt(recordIndex++,tableModel_M5.getRowCount()-1,0);
-//                    }else {
-//                        recordIndex = tableModel_M5.getRowCount();
-//                        tableModel_M5.setValueAt(recordIndex++,tableModel_M5.getRowCount()-1,0);
-//                    }
 
 //                    log.info("线路是: " + way_M5);
 //                    log.info("DK is: " + DK_M5);
@@ -1392,8 +1368,8 @@ public class ConfigSet {
 //                    log.info("ap net mask is: " + commonFields_ubnt.get(6));
 //                    log.info("ap gateway ip is: " + commonFields_ubnt.get(5));
 
-//                    progress = new M5_Configuration().configM5("AP",commonFields.get(2),IPAddress_AP,commonFields.get(6),commonFields.get(5),fruq_AP,null,originalIP_M5AP);
-                    if (progress == 0){
+                    progress = new M5_Configuration().configM5("AP",commonFields_ubnt.get(2),IPAddress_AP,commonFields_ubnt.get(6),commonFields_ubnt.get(5),fruq_AP,null,originalIP_M5AP);
+                    if (progress == 1){
                         JOptionPane.showMessageDialog(
                                 mainFrame,
                                 "更新成功 !",
@@ -1404,7 +1380,8 @@ public class ConfigSet {
                         tableModel.setValueAt(DK_M5,tableModel.getRowCount()-1,2);
                         tableModel.setValueAt(IPAddress_AP,tableModel.getRowCount()-1,3);
                         tableModel.setValueAt(fruq_AP,tableModel.getRowCount()-1,4);
-                        exportToExcel(tableModel,"D:\\ConfigFile\\M5\\"+pName+".xlsx",8,null);
+//                        exportToExcel(tableModel,"D:\\ConfigFile\\M5\\"+pName+".xlsx",8,null);
+                        exportToExcel(tableModel,System.getProperty("user.dir")+ "\\ConfigFile\\M5\\"+pName +".xlsx",8,null);
                     }else {
                         JOptionPane.showMessageDialog(
                                 mainFrame,
@@ -1462,23 +1439,9 @@ public class ConfigSet {
             update.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-
-//                    Vector emptyRow = new Vector();
-//                    for (int i = 0; i < 10; i++) {
-//                        emptyRow.add(null);
-//                    }
-//                    tableModel_M5.addRow(emptyRow);
-//                    if (recordIndex == 0){
-//                        tableModel_M5.setValueAt(recordIndex++,tableModel_M5.getRowCount()-1,0);
-//                    }else {
-//                        recordIndex = tableModel_M5.getRowCount();
-//                        tableModel_M5.setValueAt(recordIndex++,tableModel_M5.getRowCount()-1,0);
-//                    }
-
                     int progress = 0;
                     String IPAddress_ST = IP_ST.getText();
                     String macAddress = macBox.getText();
-
 
 //                    log.info("线路是: " + way_M5);
 //                    log.info("DK is: " + DK_M5);
@@ -1488,8 +1451,8 @@ public class ConfigSet {
 //                    log.info("ap net mask is: " + commonFields_ubnt.get(6));
 //                    log.info("ap gateway ip is: " + commonFields_ubnt.get(5));
 
-//                    progress = new M5_Configuration().configM5("ST",commonFields.get(2),IPAddress_ST,commonFields.get(6),commonFields.get(5),null,macAddress,originalIP_M5ST);
-                    if (progress == 0){
+                    progress = new M5_Configuration().configM5("ST",commonFields_ubnt.get(2),IPAddress_ST,commonFields_ubnt.get(6),commonFields_ubnt.get(5),null,macAddress,originalIP_M5ST);
+                    if (progress == 1){
                         JOptionPane.showMessageDialog(
                                 mainFrame,
                                 "更新成功 !",
@@ -1528,8 +1491,8 @@ public class ConfigSet {
 
         //setup the logo icon
         Toolkit kit = Toolkit.getDefaultToolkit();
-        Image icon = kit.getImage("D:\\icon\\logo.png");
-//        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
+//        Image icon = kit.getImage("D:\\icon\\logo.png");
+        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
         M5jDialog_create.setIconImage(icon);
 
         //setup JTabbedPane
@@ -1665,7 +1628,8 @@ public class ConfigSet {
                     String IPAddress_AP =  IP_AP.getText();
                     String fruq_AP = fruqComboBoxList.get(0);
 
-                    String path = "D:\\ConfigFile\\M5\\"+pName +".xlsx";
+//                    String path = "D:\\ConfigFile\\M5\\"+pName +".xlsx";
+                    String path = System.getProperty("user.dir")+ "\\ConfigFile\\M5\\"+pName +".xlsx";
                     importFromExcel(null,path,null);
                     for (int i = 0; i < ip_M5AP.size(); i++) {
                         if (IPAddress_AP.trim().equals(ip_M5AP.get(i))){
@@ -1688,8 +1652,8 @@ public class ConfigSet {
 //                    log.info("ap net mask is: " + commonFields_ubnt.get(6));
 //                    log.info("ap gateway ip is: " + commonFields_ubnt.get(5));
                       //create ap
-//                    progress = new M5_Configuration().configM5("AP",commonFields_ubnt.get(2),IPAddress_AP,commonFields_ubnt.get(6),commonFields_ubnt.get(5),fruq_AP,null,null);
-                    if (progress == 0){
+                    progress = new M5_Configuration().configM5("AP",commonFields_ubnt.get(2),IPAddress_AP,commonFields_ubnt.get(6),commonFields_ubnt.get(5),fruq_AP,null,null);
+                    if (progress == 1){
                         JOptionPane.showMessageDialog(
                                 mainFrame,
                                 "配置成功 !",
@@ -1708,12 +1672,12 @@ public class ConfigSet {
                             tableModel_M5.setValueAt(recordIndex++,tableModel_M5.getRowCount()-1,0);
                         }
 
-
                         tableModel.setValueAt(way_M5,tableModel.getRowCount()-1,1);
                         tableModel.setValueAt(DK_M5,tableModel.getRowCount()-1,2);
                         tableModel.setValueAt(IPAddress_AP,tableModel.getRowCount()-1,3);
                         tableModel.setValueAt(fruq_AP,tableModel.getRowCount()-1,4);
-                        exportToExcel(tableModel,"D:\\ConfigFile\\M5\\"+pName+".xlsx",8,null);
+//                        exportToExcel(tableModel,"D:\\ConfigFile\\M5\\"+pName+".xlsx",8,null);
+                        exportToExcel(tableModel,System.getProperty("user.dir")+ "\\ConfigFile\\M5\\"+pName +".xlsx",8,null);
                     }else {
                         JOptionPane.showMessageDialog(
                                 mainFrame,
@@ -1767,7 +1731,8 @@ public class ConfigSet {
                     String IPAddress_ST = IP_ST.getText();
                     String macAddress = macBox.getText();
 
-                    String path = "D:\\ConfigFile\\M5\\"+pName +".xlsx";
+//                    String path = "D:\\ConfigFile\\M5\\"+pName +".xlsx";
+                    String path = System.getProperty("user.dir")+ "\\ConfigFile\\M5\\"+pName +".xlsx";
                     importFromExcel(null,path,null);
                     for (int i = 0; i < ip_M5ST.size(); i++) {
                         if (IP_ST.getText().trim().equals(ip_M5ST.get(i))){
@@ -1781,7 +1746,6 @@ public class ConfigSet {
                         }
                     }
 
-
 //                    log.info("线路是: " + way_M5);
 //                    log.info("DK is: " + DK_M5);
 //                    log.info("st IP is: " + IPAddress_ST);
@@ -1790,8 +1754,8 @@ public class ConfigSet {
 //                    log.info("st net mask is: " + commonFields_ubnt.get(6));
 //                    log.info("st gateway ip is: " + commonFields_ubnt.get(5));
 
-//                    progress = new M5_Configuration().configM5("ST",commonFields_ubnt.get(2),IPAddress_ST,commonFields_ubnt.get(6),commonFields_ubnt.get(5),null,macAddress,null);
-                    if (progress == 0){
+                    progress = new M5_Configuration().configM5("ST",commonFields_ubnt.get(2),IPAddress_ST,commonFields_ubnt.get(6),commonFields_ubnt.get(5),null,macAddress,null);
+                    if (progress == 1){
                         JOptionPane.showMessageDialog(
                                 mainFrame,
                                 "配置成功 !",
@@ -1832,8 +1796,8 @@ public class ConfigSet {
 
         //setup the logo icon
         Toolkit kit = Toolkit.getDefaultToolkit();
-        Image icon = kit.getImage("D:\\icon\\logo.png");
-//        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
+//        Image icon = kit.getImage("D:\\icon\\logo.png");
+        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
         jDialog_updateRow.setIconImage(icon);
 
         JPanel M2Overlay_update = new JPanel(null);
@@ -1917,7 +1881,8 @@ public class ConfigSet {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                String path = "D:\\ConfigFile\\M2\\"+pName +".xlsx";
+//                String path = "D:\\ConfigFile\\M2\\"+pName +".xlsx";
+                String path = System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName +".xlsx";
                 importFromExcel(null,path,null);
                 for (int i = 0; i < ip_M2.size(); i++) {
                     if (IP.getText().trim().equals(ip_M2.get(i)) && !IP.getText().trim().equals(originalIP_M2)){
@@ -1936,7 +1901,6 @@ public class ConfigSet {
                 String DK = DKText.getText();
                 String M2_IP = IP.getText();
 
-
 //                log.info("线路是: "+way);
 //                log.info("DK是 "+DK);
 //                log.info("ssid is " + commonFields_ubnt.get(2));
@@ -1944,10 +1908,8 @@ public class ConfigSet {
 //                log.info("net mask is "+commonFields_ubnt.get(4));
 //                log.info("gateway IP is "+commonFields_ubnt.get(3));
 
-//                progress = new M2_Configuration().configM2(commonFields_ubnt.get(2),M2_IP,commonFields_ubnt.get(4),commonFields_ubnt.get(3),originalIP_M2);
-
-
-                if (progress == 0){
+                progress = new M2_Configuration().configM2(commonFields_ubnt.get(2),M2_IP,commonFields_ubnt.get(4),commonFields_ubnt.get(3),originalIP_M2);
+                if (progress == 1){
                     JOptionPane.showMessageDialog(
                             mainFrame,
                             "更新成功 !",
@@ -1989,8 +1951,8 @@ public class ConfigSet {
 
         //setup the logo icon
         Toolkit kit = Toolkit.getDefaultToolkit();
-        Image icon = kit.getImage("D:\\icon\\logo.png");
-//        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
+//        Image icon = kit.getImage("D:\\icon\\logo.png");
+        Image icon = kit.getImage(System.getProperty("user.dir")+ "\\icon\\logo.png");
         M2jDialog_create.setIconImage(icon);
 
         //prepare the context panel
@@ -2058,7 +2020,8 @@ public class ConfigSet {
         M2ConfigButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                final String path = "D:\\ConfigFile\\M2\\"+pName +".xlsx";
+//                final String path = "D:\\ConfigFile\\M2\\"+pName +".xlsx";
+                final String path = System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName +".xlsx";
                 //replace export button
                 importFromExcel(null,path,null);
                 for (int i = 0; i < ip_M2.size(); i++) {
@@ -2077,17 +2040,15 @@ public class ConfigSet {
                 String way = wayComboBox.getSelectedItem().toString();
                 String DK = DKText.getText();
                 String M2_IP = IP.getText();
-
-
 //                log.info("线路是: "+way);
 //                log.info("DK是 "+DK);
 //                log.info("ssid is " + commonFields_ubnt.get(2));
 //                log.info("M2 IP is "+M2_IP);
 //                log.info("net mask is "+commonFields_ubnt.get(4));
 //                log.info("gateway IP is "+commonFields_ubnt.get(3));
-//                progress = new M2_Configuration().configM2(commonFields_ubnt.get(2),M2_IP,commonFields_ubnt.get(4),commonFields_ubnt.get(3),null);
+                progress = new M2_Configuration().configM2(commonFields_ubnt.get(2),M2_IP,commonFields_ubnt.get(4),commonFields_ubnt.get(3),null);
 
-                if (progress == 0){
+                if (progress == 1){
                     JOptionPane.showMessageDialog(
                             mainFrame,
                             "配置成功 !",
@@ -2149,8 +2110,8 @@ public class ConfigSet {
 
         //setup the logo icon
         Toolkit kit = Toolkit.getDefaultToolkit();
-//        Image icon = kit.getImage(System.getProperty("user.dir")+"\\icon\\logo.png");
-        Image icon = kit.getImage("D:\\icon\\logo.png");
+        Image icon = kit.getImage(System.getProperty("user.dir")+"\\icon\\logo.png");
+//        Image icon = kit.getImage("D:\\icon\\logo.png");
         newProjectDialog.setIconImage(icon);
 
         //this JPanel was created for store all these components which will shown on the project dialog
@@ -2505,7 +2466,8 @@ public class ConfigSet {
                 exportToExcel(projectTableModel,projectExcelPath,2,commonFields_ubnt);
 
                 //store the ubnt common fields, includes M2 and M5 and also the project number and name
-                String commonFieldsExcelPath_ubnt = "D:\\ConfigFile\\ubnt\\"+projectNameInputBox.getText() +"CommonFields.xlsx";
+//                String commonFieldsExcelPath_ubnt = "D:\\ConfigFile\\ubnt\\"+projectNameInputBox.getText() +"CommonFields.xlsx";
+                String commonFieldsExcelPath_ubnt = System.getProperty("user.dir")+ "\\ConfigFile\\ubnt\\"+projectNameInputBox.getText() +"CommonFields.xlsx";
                 exportToExcel(null,commonFieldsExcelPath_ubnt,7,commonFields_ubnt);
 
                 //save those all fields to wall hanging list.
@@ -2516,7 +2478,8 @@ public class ConfigSet {
                 commonFields_wall.add(netMask_InputBox_wall.getText());
 
                 //store the wall hanging common fields
-                String commonFieldsExcelPath = "D:\\ConfigFile\\wall\\"+projectNameInputBox.getText() +"CommonFields.xlsx";
+//                String commonFieldsExcelPath = "D:\\ConfigFile\\wall\\"+projectNameInputBox.getText() +"CommonFields.xlsx";
+                String commonFieldsExcelPath = System.getProperty("user.dir")+ "\\ConfigFile\\wall\\"+projectNameInputBox.getText() +"CommonFields.xlsx";
                 exportToExcel(null,commonFieldsExcelPath,3,commonFields_wall);
 
                 //save those all fields to camera list.
@@ -2526,7 +2489,8 @@ public class ConfigSet {
                 commonFields_camera.add(netMask_InputBox_camera.getText());
 
                 //store the camera common fields
-                String commonFieldsExcelPath_camera = "D:\\ConfigFile\\camera\\"+projectNameInputBox.getText() +"CommonFields.xlsx";
+//                String commonFieldsExcelPath_camera = "D:\\ConfigFile\\camera\\"+projectNameInputBox.getText() +"CommonFields.xlsx";
+                String commonFieldsExcelPath_camera = System.getProperty("user.dir")+ "\\ConfigFile\\camera\\"+projectNameInputBox.getText() +"CommonFields.xlsx";
                 exportToExcel(null,commonFieldsExcelPath_camera,3,commonFields_camera);
 
                 newProjectDialog.dispose();

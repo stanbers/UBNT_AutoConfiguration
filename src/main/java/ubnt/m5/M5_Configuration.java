@@ -42,10 +42,6 @@ public class M5_Configuration {
      */
     public int configM5(String side,String updatedSSID,String updatedIP,String updatedNetmask,String updateGatewayIP,
                                 String updatedFruq,String updatedMACAddress,String currentIP){
-//        System.setProperty("webdriver.gecko.driver","D:\\SeleniumGecko\\geckodriver.exe");
-
-        //String relativePath = "D:\\ConfigFile\\"+side+"Config.cfg";
-
         //update M5 config file
         if (side.equals("AP")){
             UpdateConfigFilee.updateFile(updatedSSID,updatedIP,updatedNetmask,updateGatewayIP,updatedFruq,null,side);

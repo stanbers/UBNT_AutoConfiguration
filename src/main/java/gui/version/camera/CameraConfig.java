@@ -17,8 +17,8 @@ import utility.WebDriverGiver;
 public class CameraConfig {
 
     {
-//        System.setProperty("webdriver.gecko.driver",System.getProperty("user.dir")+"\\SeleniumGecko\\geckodriver.exe");
-        System.setProperty("webdriver.gecko.driver","D:\\SeleniumGecko\\geckodriver.exe");
+        System.setProperty("webdriver.gecko.driver",System.getProperty("user.dir")+"\\SeleniumGecko\\geckodriver.exe");
+//        System.setProperty("webdriver.gecko.driver","D:\\SeleniumGecko\\geckodriver.exe");
     }
 
     public WebDriver driver = WebDriverGiver.getWebDriver();
@@ -71,25 +71,25 @@ public class CameraConfig {
             Thread.sleep(1000);
 
             //access platform
-            if (currentModel.trim().equals("DS-2CD2T25FD-I8")){
+            if (currentModel.trim().equals("DS-2CD2T25FD")){
                 this.viaID("ui-id-13").click();
                 Thread.sleep(2000);
-            }else if (currentModel.trim().equals("DS-2CD2T10-I5")){
+            }else if (currentModel.trim().equals("DS-2CD2T10")){
                 this.viaID("ui-id-11").click();
                 Thread.sleep(2000);
             }
 
             this.selectAccess(2,"E-Home",false);
-            if (currentModel.trim().equals("DS-2CD2T25FD-I8")){
+            if (currentModel.trim().equals("DS-2CD2T25FD")){
                 this.selectAccess(3,"0",true);
             }
             Thread.sleep(2000);
             //server IP
-            if (currentModel.trim().equals("DS-2CD2T25FD-I8")){
+            if (currentModel.trim().equals("DS-2CD2T25FD")){
                 this.accessInputBox(2).clear();
                 this.accessInputBox(2).sendKeys(serverIP);
                 Thread.sleep(2000);
-            }else if (currentModel.trim().equals("DS-2CD2T10-I5")){
+            }else if (currentModel.trim().equals("DS-2CD2T10")){
                 this.accessInputBox(1).clear();
                 this.accessInputBox(1).sendKeys(serverIP);
                 Thread.sleep(2000);
@@ -97,11 +97,11 @@ public class CameraConfig {
 
             //device id
             if (deviceID != null){
-                if (currentModel.trim().equals("DS-2CD2T25FD-I8")){
+                if (currentModel.trim().equals("DS-2CD2T25FD")){
                     this.accessInputBox(4).clear();
                     this.accessInputBox(4).sendKeys(deviceID);
                     Thread.sleep(1000);
-                }else if (currentModel.trim().equals("DS-2CD2T10-I5")){
+                }else if (currentModel.trim().equals("DS-2CD2T10")){
                     this.accessInputBox(3).clear();
                     this.accessInputBox(3).sendKeys(deviceID);
                     Thread.sleep(1000);
@@ -129,7 +129,7 @@ public class CameraConfig {
             Thread.sleep(1000);
 
             //video coding
-            if (currentModel.trim().equals("DS-2CD2T25FD-I8")){
+            if (currentModel.trim().equals("DS-2CD2T25FD")){
                 this.selectUnderVideo(12,"1");
                 this.getSaveButtonUnderVideo().click();
                 Thread.sleep(2000);
@@ -143,7 +143,7 @@ public class CameraConfig {
             this.selectUnderVideo(7,"1");
             Thread.sleep(2000);
 
-            if (currentModel.trim().equals("DS-2CD2T25FD-I8")){
+            if (currentModel.trim().equals("DS-2CD2T25FD")){
                 //select video frame rate
                 this.selectUnderVideo(9,"14");
                 Thread.sleep(2000);
@@ -166,7 +166,7 @@ public class CameraConfig {
             this.selectUnderVideo(4,"03");
             Thread.sleep(2000);
 
-            if (currentModel.trim().equals("DS-2CD2T25FD-I8")) {
+            if (currentModel.trim().equals("DS-2CD2T25FD")) {
                 //select bit rate type
                 this.selectUnderVideo(7, "1");
                 Thread.sleep(2000);
@@ -182,7 +182,7 @@ public class CameraConfig {
             this.getSaveButtonUnderVideo().click();
             Thread.sleep(2000);
 
-            if (currentModel.trim().equals("DS-2CD2T25FD-I8")) {
+            if (currentModel.trim().equals("DS-2CD2T25FD")) {
                 //navigate to storage tab
                 this.getLeftTab("storage").click();
                 Thread.sleep(2000);
