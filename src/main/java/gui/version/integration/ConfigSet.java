@@ -103,7 +103,7 @@ public class ConfigSet {
     private String DK_M5;
 
     //the older IP which waiting for update, need this older ip to login
-    private String originalIP_M2,originalIP_M5AP,originalIP_M5ST;
+    private String originalIP_M2,originalIP_M5AP,originalIP_M5ST,originalFruq_M5AP;
 
     final String[] commonFieldsLabels_left = {"SSID               : ","M2 无线网关：","M2 子网掩码：","M5 网桥网段：","M5 子网掩码："};
     final String[] commonFieldsLabels_right = {"壁挂SSID        :","壁挂服务器IP : ","壁挂网关         : ","壁挂子网掩码 : "};
@@ -1134,6 +1134,7 @@ public class ConfigSet {
                     }else {
                         JOptionPane.showMessageDialog(mainFrame,"目前没有可以被删除的记录 ！");
                     }
+                    exportToExcel(tableModel_M5,System.getProperty("user.dir")+ "\\ConfigFile\\M5\\"+pName +".xlsx",8,null);
                 }
             }
         });
@@ -1162,6 +1163,9 @@ public class ConfigSet {
                     //TODO: get the M5 AP older IP/fruq/MAC, ST IP
                     if (tableModel_M5.getValueAt(rowNum,3) != null){
                         originalIP_M5AP = tableModel_M5.getValueAt(rowNum,3).toString();
+                    }
+                    if (tableModel_M5.getValueAt(rowNum,4) != null){
+                        originalFruq_M5AP = tableModel_M5.getValueAt(rowNum,4).toString();
                     }
                     if (tableModel_M5.getValueAt(rowNum,6) != null){
                         originalIP_M5ST = tableModel_M5.getValueAt(rowNum,6).toString();
@@ -1288,7 +1292,21 @@ public class ConfigSet {
                 public void actionPerformed(ActionEvent e) {
                     way_M5 = jComboBoxWay.getSelectedItem().toString();
                     DK_M5 = DKText.getText();
-
+                    if (!DK_M5.isEmpty()){
+                        JOptionPane.showMessageDialog(
+                                mainFrame,
+                                "线路与位置 更新成功 !",
+                                "配置结果",
+                                JOptionPane.INFORMATION_MESSAGE
+                        );
+                    }else {
+                        JOptionPane.showMessageDialog(
+                                mainFrame,
+                                "您尚未填写具体位置信息 !",
+                                "提示",
+                                JOptionPane.INFORMATION_MESSAGE
+                        );
+                    }
                 }
             });
         }
@@ -1371,8 +1389,12 @@ public class ConfigSet {
 //                    log.info("ssid is: " + commonFields_ubnt.get(2));
 //                    log.info("ap net mask is: " + commonFields_ubnt.get(6));
 //                    log.info("ap gateway ip is: " + commonFields_ubnt.get(5));
-
-                    progress = new M5_Configuration().configM5("AP",commonFields_ubnt.get(2),IPAddress_AP,commonFields_ubnt.get(6),commonFields_ubnt.get(5),fruq_AP,null,originalIP_M5AP);
+                    //progressAPUpdate
+                    if (IPAddress_AP.trim().equals(originalIP_M5AP) && fruq_AP.trim().equals(originalFruq_M5AP)){
+                        progress = 1;
+                    }else {
+                        progress = new M5_Configuration().configM5("AP",commonFields_ubnt.get(2),IPAddress_AP,commonFields_ubnt.get(6),commonFields_ubnt.get(5),fruq_AP,null,originalIP_M5AP);
+                    }
                     if (progress == 1){
                         JOptionPane.showMessageDialog(
                                 mainFrame,
@@ -1439,7 +1461,7 @@ public class ConfigSet {
             }
             jPanel.add(macBox);
 
-            //add event listener when 'M5_AP' button clicked
+            //add event listener when 'M5_ST' button clicked
             update.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -1454,7 +1476,7 @@ public class ConfigSet {
 //                    log.info("ssid is: " + commonFields_ubnt.get(2));
 //                    log.info("ap net mask is: " + commonFields_ubnt.get(6));
 //                    log.info("ap gateway ip is: " + commonFields_ubnt.get(5));
-
+                    //progressSTUpdate
                     progress = new M5_Configuration().configM5("ST",commonFields_ubnt.get(2),IPAddress_ST,commonFields_ubnt.get(6),commonFields_ubnt.get(5),null,macAddress,originalIP_M5ST);
                     if (progress == 1){
                         JOptionPane.showMessageDialog(
@@ -1576,6 +1598,21 @@ public class ConfigSet {
                 public void actionPerformed(ActionEvent e) {
                     way_M5 = jComboBoxWay.getSelectedItem().toString();
                     DK_M5 = DKText.getText();
+                    if (!DK_M5.isEmpty()){
+                        JOptionPane.showMessageDialog(
+                                mainFrame,
+                                "线路与位置 配置成功 !",
+                                "配置结果",
+                                JOptionPane.INFORMATION_MESSAGE
+                        );
+                    }else {
+                        JOptionPane.showMessageDialog(
+                                mainFrame,
+                                "您尚未填写具体位置信息 !",
+                                "提示",
+                                JOptionPane.INFORMATION_MESSAGE
+                        );
+                    }
                 }
             });
         }
@@ -1655,7 +1692,7 @@ public class ConfigSet {
 //                    log.info("ssid is: " + commonFields_ubnt.get(2));
 //                    log.info("ap net mask is: " + commonFields_ubnt.get(6));
 //                    log.info("ap gateway ip is: " + commonFields_ubnt.get(5));
-                      //create ap
+                      //progressAPCreate
                     progress = new M5_Configuration().configM5("AP",commonFields_ubnt.get(2),IPAddress_AP,commonFields_ubnt.get(6),commonFields_ubnt.get(5),fruq_AP,null,null);
                     if (progress == 1){
                         JOptionPane.showMessageDialog(
@@ -1757,7 +1794,7 @@ public class ConfigSet {
 //                    log.info("ssid is: " + commonFields_ubnt.get(2));
 //                    log.info("st net mask is: " + commonFields_ubnt.get(6));
 //                    log.info("st gateway ip is: " + commonFields_ubnt.get(5));
-
+                    //progressSTCreate
                     progress = new M5_Configuration().configM5("ST",commonFields_ubnt.get(2),IPAddress_ST,commonFields_ubnt.get(6),commonFields_ubnt.get(5),null,macAddress,null);
                     if (progress == 1){
                         JOptionPane.showMessageDialog(
@@ -1772,6 +1809,7 @@ public class ConfigSet {
                         tableModel.setValueAt(macAddress,tableModel.getRowCount()-1,5);
                         tableModel.setValueAt(IPAddress_ST,tableModel.getRowCount()-1,6);
                         tableModel.setValueAt(macAddress,tableModel.getRowCount()-1,7);
+                        exportToExcel(tableModel,System.getProperty("user.dir")+ "\\ConfigFile\\M5\\"+pName +".xlsx",8,null);
                     }else {
                         JOptionPane.showMessageDialog(
                                 mainFrame,
@@ -1915,6 +1953,7 @@ public class ConfigSet {
                     //if only update way or DK or both of them, then no need to fire the browser
                     progress = 1;
                 }else {
+                    //progressM2Create
                     progress = new M2_Configuration().configM2(commonFields_ubnt.get(2),M2_IP,commonFields_ubnt.get(4),commonFields_ubnt.get(3),originalIP_M2);
                 }
                 if (progress == 1){
@@ -2054,9 +2093,10 @@ public class ConfigSet {
 //                log.info("M2 IP is "+M2_IP);
 //                log.info("net mask is "+commonFields_ubnt.get(4));
 //                log.info("gateway IP is "+commonFields_ubnt.get(3));
-//                progress = new M2_Configuration().configM2(commonFields_ubnt.get(2),M2_IP,commonFields_ubnt.get(4),commonFields_ubnt.get(3),null);
+                //progressM2Update
+                progress = new M2_Configuration().configM2(commonFields_ubnt.get(2),M2_IP,commonFields_ubnt.get(4),commonFields_ubnt.get(3),null);
 
-                if (progress == 0){
+                if (progress == 1){
                     JOptionPane.showMessageDialog(
                             mainFrame,
                             "配置成功 !",

@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="6297135e-99b4-48ed-8d1f-4be9376233e2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/ConfigFile/AP_Config.cfg" afterPath="$PROJECT_DIR$/ConfigFile/AP_Config.cfg" />
       <change beforePath="$PROJECT_DIR$/ConfigFile/M2/test.xlsx" afterPath="$PROJECT_DIR$/ConfigFile/M2/test.xlsx" />
+      <change beforePath="$PROJECT_DIR$/ConfigFile/M5/test.xlsx" afterPath="$PROJECT_DIR$/ConfigFile/M5/test.xlsx" />
+      <change beforePath="$PROJECT_DIR$/ConfigFile/ST_Config.cfg" afterPath="$PROJECT_DIR$/ConfigFile/ST_Config.cfg" />
       <change beforePath="$PROJECT_DIR$/src/main/java/gui/version/integration/ConfigSet.java" afterPath="$PROJECT_DIR$/src/main/java/gui/version/integration/ConfigSet.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -23,8 +26,8 @@
       <file leaf-file-name="ConfigSet.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/integration/ConfigSet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="937" column="23" lean-forward="true" selection-start-line="937" selection-start-column="23" selection-end-line="937" selection-end-column="23" />
+            <state relative-caret-position="439">
+              <caret line="1171" column="21" lean-forward="false" selection-start-line="1171" selection-start-column="21" selection-end-line="1171" selection-end-column="21" />
               <folding>
                 <element signature="e#1469#1477#0" expanded="true" />
                 <element signature="e#1575#1583#0" expanded="true" />
@@ -33,9 +36,7 @@
                 <element signature="method#generateUBNTCommondFields#0;class#ConfigSet#0" expanded="false" />
                 <element signature="method#generateWallCommondFields#0;class#ConfigSet#0" expanded="false" />
                 <element signature="method#generateCameraCommondFields#0;class#ConfigSet#0" expanded="false" />
-                <element signature="method#updateM5Panel#0;class#ConfigSet#0" expanded="false" />
                 <element signature="method#createM5Overlay#0;class#ConfigSet#0" expanded="false" />
-                <element signature="method#createM5Panel#0;class#ConfigSet#0" expanded="false" />
                 <element signature="method#updateM2Dialog#0;class#ConfigSet#0" expanded="false" />
                 <element signature="method#generateNewProjectDilog#0;class#ConfigSet#0" expanded="false" />
               </folding>
@@ -108,8 +109,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>fieldValuePanel_ubnt</find>
-      <find>ip_M5AP</find>
       <find>import</find>
       <find>updatedIP_M2</find>
       <find>originalIP_M2</find>
@@ -132,12 +131,14 @@
       <find>D:\\</find>
       <find>wait</find>
       <find>user.dir</find>
-      <find>progress</find>
-      <find>remove</find>
       <find>removeM2</find>
       <find>exportTo</find>
       <find>exportToExcel(tableModel_M2,path,4,null);</find>
       <find>exportM2Records</find>
+      <find>progress</find>
+      <find>originalIP_M5AP</find>
+      <find>DK_M5 = DKText.getText()</find>
+      <find>remove</find>
     </findStrings>
     <replaceStrings>
       <replace>3000</replace>
@@ -678,7 +679,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36694387" sideWeight="0.36614582" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976446" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29229122" sideWeight="0.49793753" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2248394" sideWeight="0.49793753" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25053534" sideWeight="0.63385415" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1207,8 +1208,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/integration/ConfigSet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="937" column="23" lean-forward="true" selection-start-line="937" selection-start-column="23" selection-end-line="937" selection-end-column="23" />
+        <state relative-caret-position="439">
+          <caret line="1171" column="21" lean-forward="false" selection-start-line="1171" selection-start-column="21" selection-end-line="1171" selection-end-column="21" />
           <folding>
             <element signature="e#1469#1477#0" expanded="true" />
             <element signature="e#1575#1583#0" expanded="true" />
@@ -1217,9 +1218,7 @@
             <element signature="method#generateUBNTCommondFields#0;class#ConfigSet#0" expanded="false" />
             <element signature="method#generateWallCommondFields#0;class#ConfigSet#0" expanded="false" />
             <element signature="method#generateCameraCommondFields#0;class#ConfigSet#0" expanded="false" />
-            <element signature="method#updateM5Panel#0;class#ConfigSet#0" expanded="false" />
             <element signature="method#createM5Overlay#0;class#ConfigSet#0" expanded="false" />
-            <element signature="method#createM5Panel#0;class#ConfigSet#0" expanded="false" />
             <element signature="method#updateM2Dialog#0;class#ConfigSet#0" expanded="false" />
             <element signature="method#generateNewProjectDilog#0;class#ConfigSet#0" expanded="false" />
           </folding>
