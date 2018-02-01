@@ -960,7 +960,7 @@ public class ConfigSet {
         removeM2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                final String path = System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName +".xlsx";
                 int remove  = JOptionPane.showConfirmDialog(mainFrame,"确定删除吗？");
                 log.info("return int value is " + remove);
                 if (remove == 0){
@@ -979,7 +979,11 @@ public class ConfigSet {
                     }else {
                         JOptionPane.showMessageDialog(mainFrame,"目前没有可以被删除的记录 ！");
                     }
+
+                    //need to update the excel after remove a row
+                    exportToExcel(tableModel_M2,path,4,null);
                 }
+
             }
         });
 
@@ -1783,7 +1787,6 @@ public class ConfigSet {
         return jPanel;
     }
 
-
     /**
      * this method is to udpate row data
      * @param rowData the original row data
@@ -1908,7 +1911,12 @@ public class ConfigSet {
 //                log.info("net mask is "+commonFields_ubnt.get(4));
 //                log.info("gateway IP is "+commonFields_ubnt.get(3));
 
-                progress = new M2_Configuration().configM2(commonFields_ubnt.get(2),M2_IP,commonFields_ubnt.get(4),commonFields_ubnt.get(3),originalIP_M2);
+                if (M2_IP.trim().equals(originalIP_M2)){
+                    //if only update way or DK or both of them, then no need to fire the browser
+                    progress = 1;
+                }else {
+                    progress = new M2_Configuration().configM2(commonFields_ubnt.get(2),M2_IP,commonFields_ubnt.get(4),commonFields_ubnt.get(3),originalIP_M2);
+                }
                 if (progress == 1){
                     JOptionPane.showMessageDialog(
                             mainFrame,
