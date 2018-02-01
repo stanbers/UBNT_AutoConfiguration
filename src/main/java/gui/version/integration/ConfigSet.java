@@ -512,15 +512,14 @@ public class ConfigSet {
                     File projectCommonFieldFile = new File(SpecificProjectCommonField);
                     if (!projectCorresspondingConfigFile_camera.exists()){
 //                        exportToExcel(tableModel_camera,"D:\\ConfigFile\\camera\\"+pName_camera+".xlsx",6,commonFields_camera);
-                        exportToExcel(tableModel_camera,System.getProperty("user.dir")+ "\\ConfigFile\\camera\\"+pName_camera +".xlsx",6,commonFields_camera);
+                        exportToExcel(tableModel_camera,System.getProperty("user.dir")+ "\\ConfigFile\\camera\\"+pName_camera +".xlsx",6,null);
                     }
                     if (projectCorresspondingConfigFile_camera.exists() && projectCommonFieldFile.exists()){
                         //import table rows on main page
                         importFromExcel(tableModel_camera ,specificExcel_camera,null);
-                        //import specific project common fields
-                        //TODO: this time not to render table but to override commonfields.
+//                        //import specific project common fields
+//                        //TODO: this time not to render table but to override commonfields.
                         importFromExcel(null,SpecificProjectCommonField,commonFields_camera);
-                        //import project list excel, in order to show the project name and number on the main page
                     }
 
                     // the camera config records page
@@ -914,16 +913,16 @@ public class ConfigSet {
 
         //setup new create button
         JButton createM2 = new JButton("新建");
-        createM2.setFont(new Font(null,Font.BOLD,14));
+        createM2.setFont(new Font(null,Font.BOLD,16));
         createM2.setLocation(275,500);
-        createM2.setSize(80,30);
+        createM2.setSize(80,40);
         M2ContainerPanel.add(createM2);
 
         //setup remove button
         JButton removeM2 = new JButton("删除");
         removeM2.setLocation(165,500);
-        removeM2.setSize(80,30);
-        removeM2.setFont(new Font(null,Font.BOLD,14));
+        removeM2.setSize(80,40);
+        removeM2.setFont(new Font(null,Font.BOLD,16));
         M2ContainerPanel.add(removeM2);
 
 //        //setup export M2 records button
@@ -1069,25 +1068,25 @@ public class ConfigSet {
 
         //setup new create button
         JButton createM5 = new JButton("新建");
-        createM5.setFont(new Font(null,Font.BOLD,14));
-        createM5.setLocation(735,500);
-        createM5.setSize(80,30);
+        createM5.setFont(new Font(null,Font.BOLD,16));
+        createM5.setLocation(755,500);
+        createM5.setSize(80,40);
         M5ContainerPanel.add(createM5);
 
         //setup remove button
         JButton removeM5 = new JButton("删除");
         removeM5.setLocation(625,500);
-        removeM5.setSize(80,30);
-        removeM5.setFont(new Font(null,Font.BOLD,14));
+        removeM5.setSize(80,40);
+        removeM5.setFont(new Font(null,Font.BOLD,16));
         M5ContainerPanel.add(removeM5);
 
-        //setup export M5 records button
-        JButton exportM5Records = new JButton("导出");
-        exportM5Records.setFont(new Font(null,Font.BOLD,14));
-        exportM5Records.setLocation(415,500);
-        exportM5Records.setSize(80,30);
-        M5ContainerPanel.add(exportM5Records);
-
+//        //setup export M5 records button
+//        JButton exportM5Records = new JButton("导出");
+//        exportM5Records.setFont(new Font(null,Font.BOLD,14));
+//        exportM5Records.setLocation(415,500);
+//        exportM5Records.setSize(80,30);
+//        M5ContainerPanel.add(exportM5Records);
+//
         //add event listener to create button
         createM5.addActionListener(new ActionListener() {
             @Override
@@ -1096,21 +1095,21 @@ public class ConfigSet {
                 createM5Overlay(tableModel_M5);
             }
         });
-
-        //add export all M5 config records
-        exportM5Records.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-//                exportToExcel(tableModel_M5,"D:\\ConfigFile\\M5\\"+pName+".xlsx",8,null);
-                exportToExcel(tableModel_M5,System.getProperty("user.dir")+ "\\ConfigFile\\M5\\"+pName+".xlsx",8,null);
-                JOptionPane.showMessageDialog(
-                        mainFrame,
-                        "导出数据完毕 !",
-                        "配置结果",
-                        JOptionPane.INFORMATION_MESSAGE
-                );
-            }
-        });
+//
+//        //add export all M5 config records
+//        exportM5Records.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+////                exportToExcel(tableModel_M5,"D:\\ConfigFile\\M5\\"+pName+".xlsx",8,null);
+//                exportToExcel(tableModel_M5,System.getProperty("user.dir")+ "\\ConfigFile\\M5\\"+pName+".xlsx",8,null);
+//                JOptionPane.showMessageDialog(
+//                        mainFrame,
+//                        "导出数据完毕 !",
+//                        "配置结果",
+//                        JOptionPane.INFORMATION_MESSAGE
+//                );
+//            }
+//        });
 
         //add remove record event listener to M5
         removeM5.addActionListener(new ActionListener() {
@@ -2359,7 +2358,7 @@ public class ConfigSet {
         //wall hanging server ip label and corresponding text field
         JLabel serverIP_wall = new JLabel("服务器 IP :");
         final JMIPV4AddressField serverIP_InputBox_wall = new JMIPV4AddressField();
-        serverIP_InputBox_wall.setIpAddress("10.10.100.254");
+        serverIP_InputBox_wall.setIpAddress("124.115.21.16");
         serverIP_wall.setLocation(390,170);
         serverIP_wall.setSize(120,35);
         serverIP_wall.setFont(new Font(null, BOLD,16));

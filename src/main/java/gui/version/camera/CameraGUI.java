@@ -169,27 +169,27 @@ public class CameraGUI {
         removecamera.setFont(new Font(null,Font.BOLD,16));
         cameraContainerPanel.add(removecamera);
 
-        //setup export camera hanging records button
-        JButton exportcameraRecords = new JButton("导出");
-        exportcameraRecords.setFont(new Font(null,Font.BOLD,16));
-        exportcameraRecords.setLocation(15,500);
-        exportcameraRecords.setSize(80,40);
-        cameraContainerPanel.add(exportcameraRecords);
-
-        //add export all camera hanging config records
-        exportcameraRecords.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-//                exportToExcel(tableModel_camera,"D:\\ConfigFile\\camera\\"+pName+".xlsx",4);
-                exportToExcel(tableModel_camera,System.getProperty("user.dir")+ "\\ConfigFile\\camera\\"+pName+".xlsx",4);
-                JOptionPane.showMessageDialog(
-                        mainFrame,
-                        "导出数据完毕 !",
-                        "配置结果",
-                        JOptionPane.INFORMATION_MESSAGE
-                );
-            }
-        });
+//        //setup export camera hanging records button
+//        JButton exportcameraRecords = new JButton("导出");
+//        exportcameraRecords.setFont(new Font(null,Font.BOLD,16));
+//        exportcameraRecords.setLocation(15,500);
+//        exportcameraRecords.setSize(80,40);
+//        cameraContainerPanel.add(exportcameraRecords);
+//
+//        //add export all camera hanging config records
+//        exportcameraRecords.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+////                exportToExcel(tableModel_camera,"D:\\ConfigFile\\camera\\"+pName+".xlsx",4);
+//                exportToExcel(tableModel_camera,System.getProperty("user.dir")+ "\\ConfigFile\\camera\\"+pName+".xlsx",6);
+//                JOptionPane.showMessageDialog(
+//                        mainFrame,
+//                        "导出数据完毕 !",
+//                        "配置结果",
+//                        JOptionPane.INFORMATION_MESSAGE
+//                );
+//            }
+//        });
 
         //add action listener to create button
         createcamera.addActionListener(new ActionListener() {
@@ -222,6 +222,7 @@ public class CameraGUI {
                     }else {
                         JOptionPane.showMessageDialog(mainFrame,"目前没有可以被删除的记录 ！");
                     }
+                    exportToExcel(tableModel_camera,System.getProperty("user.dir")+"\\ConfigFile\\camera\\"+pName+".xlsx",6);
                 }
             }
         });
@@ -456,7 +457,12 @@ public class CameraGUI {
                 log.info("the camera id is "+ cameraIDInputBox.getText());
                 log.info("the camera model is "+cameraModel);
                 //String cameraIP,String cameraNetMask,String cameraGatewayIP,String serverIP,String deviceID
-                progress = new CameraConfig().config(camera_IP,commonFields.get(2),commonFields.get(1),commonFields.get(0),cameraIDInputBox.getText(),olderIP_camera,cameraModel);
+                //update
+                if (camera_IP.trim().equals(olderIP_camera)){
+                    progress = 1;
+                }else {
+                    progress = new CameraConfig().config(camera_IP,commonFields.get(2),commonFields.get(1),commonFields.get(0),cameraIDInputBox.getText(),olderIP_camera,cameraModel);
+                }
 
                 if (progress == 1){
                     JOptionPane.showMessageDialog(
@@ -473,7 +479,7 @@ public class CameraGUI {
                     tableModel.setValueAt(camera_IP,targetRow,3);
                     tableModel.setValueAt(cameraIDInputBox.getText(),targetRow,4);
 //                    exportToExcel(tableModel_camera,"D:\\ConfigFile\\camera\\"+pName+".xlsx",4);
-                    exportToExcel(tableModel_camera,System.getProperty("user.dir")+"\\ConfigFile\\camera\\"+pName+".xlsx",4);
+                    exportToExcel(tableModel_camera,System.getProperty("user.dir")+"\\ConfigFile\\camera\\"+pName+".xlsx",6);
                 }else {
                     JOptionPane.showMessageDialog(
                             mainFrame,
@@ -870,11 +876,6 @@ public class CameraGUI {
                     }
                     if (tableModel != null){
                         tableModel.addRow(readFromExcel);
-                    }else {
-                        commonFields.clear();
-                        for (String commonField : readFromExcel) {
-                            commonFields.add(commonField);
-                        }
                     }
                 }
             }

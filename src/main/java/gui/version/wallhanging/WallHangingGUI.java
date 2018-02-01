@@ -708,7 +708,7 @@ public class WallHangingGUI {
 
         //setup wall hanging IP text field
         final JMIPV4AddressField IP = new JMIPV4AddressField();
-        IP.setIpAddress("10.1.2.1");
+        IP.setIpAddress("10.10.100.254");
         IP.setFont(new Font(null, Font.PLAIN, 14));
         IP.setLocation(160,140);
         IP.setSize(200,30);
