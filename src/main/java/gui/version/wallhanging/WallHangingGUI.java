@@ -375,27 +375,27 @@ public class WallHangingGUI {
         removeWall.setFont(new Font(null,Font.BOLD,16));
         WallContainerPanel.add(removeWall);
 
-        //setup export wall hanging records button
-        JButton exportWallRecords = new JButton("导出");
-        exportWallRecords.setFont(new Font(null,Font.BOLD,16));
-        exportWallRecords.setLocation(15,500);
-        exportWallRecords.setSize(80,40);
-        WallContainerPanel.add(exportWallRecords);
-
-        //add export all wall hanging config records
-        exportWallRecords.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-//                exportToExcel(tableModel_wall,"D:\\ConfigFile\\wall\\"+pName+".xlsx",4);
-                exportToExcel(tableModel_wall,System.getProperty("user.dir")+ "\\ConfigFile\\wall\\"+pName+".xlsx",4);
-                JOptionPane.showMessageDialog(
-                        mainFrame,
-                        "导出数据完毕 !",
-                        "配置结果",
-                        JOptionPane.INFORMATION_MESSAGE
-                );
-            }
-        });
+//        //setup export wall hanging records button
+//        JButton exportWallRecords = new JButton("导出");
+//        exportWallRecords.setFont(new Font(null,Font.BOLD,16));
+//        exportWallRecords.setLocation(15,500);
+//        exportWallRecords.setSize(80,40);
+//        WallContainerPanel.add(exportWallRecords);
+//
+//        //add export all wall hanging config records
+//        exportWallRecords.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+////                exportToExcel(tableModel_wall,"D:\\ConfigFile\\wall\\"+pName+".xlsx",4);
+//                exportToExcel(tableModel_wall,System.getProperty("user.dir")+ "\\ConfigFile\\wall\\"+pName+".xlsx",4);
+//                JOptionPane.showMessageDialog(
+//                        mainFrame,
+//                        "导出数据完毕 !",
+//                        "配置结果",
+//                        JOptionPane.INFORMATION_MESSAGE
+//                );
+//            }
+//        });
 
         //add action listener to create button
         createWall.addActionListener(new ActionListener() {
@@ -428,6 +428,7 @@ public class WallHangingGUI {
                     }else {
                         JOptionPane.showMessageDialog(mainFrame,"目前没有可以被删除的记录 ！");
                     }
+                    exportToExcel(tableModel_wall,System.getProperty("user.dir")+ "\\ConfigFile\\wall\\"+pName+".xlsx",4);
                 }
             }
         });
@@ -552,27 +553,6 @@ public class WallHangingGUI {
             IP_wall.setText(rowData.get(2));
         }
 
-//        //setup wall hanging server IP label:
-//        JLabel wallIPLabel_server = new JLabel("服务器 IP 地址 :",SwingConstants.LEFT);
-//        wallIPLabel_server.setFont(new Font(null, 1, 16));
-//        wallIPLabel_server.setLocation(20,190);
-//        wallIPLabel_server.setSize(135,30);
-//        wallOverlay_update.add(wallIPLabel_server);
-//
-//        //setup wall hanging server IP text field
-//        final JMIPV4AddressField IP_wall_server = new JMIPV4AddressField();
-//        IP_wall_server.setIpAddress("10.1.2.1");
-//        IP_wall_server.setFont(new Font(null, Font.PLAIN, 14));
-//        IP_wall_server.setLocation(160,190);
-//        IP_wall_server.setSize(200,30);
-//        wallOverlay_update.add(IP_wall_server);
-//
-//        if (rowData.get(3).trim().equals("null")){
-//            IP_wall_server.setText(null);
-//        }else {
-//            IP_wall_server.setText(rowData.get(3));
-//        }
-
         //setup config button
         final JButton wallUpdateButton = new JButton("壁挂");
         wallUpdateButton.setFont(new Font(null,Font.BOLD,14));
@@ -611,9 +591,14 @@ public class WallHangingGUI {
                 log.info("wall hanging gateway ip is "+commonFields.get(2));
                 log.info("wall hanging net mask is "+commonFields.get(3));
                 log.info("wall hanging oler ip is "+olderIP_wall);
-                progress = new WallHangingConfig().config(commonFields.get(0),olderIP_wall,commonFields.get(3),commonFields.get(2),commonFields.get(1));
+                //update
+                if (wall_IP.trim().equals(olderIP_wall)){
+//                    progress = 1;
+                }else {
+//                    progress = new WallHangingConfig().config(commonFields.get(0),olderIP_wall,commonFields.get(3),commonFields.get(2),commonFields.get(1));
+                }
 
-                if (progress == 1){
+                if (progress == 0){
                     JOptionPane.showMessageDialog(
                             mainFrame,
                             "更新成功 !",
@@ -767,9 +752,10 @@ public class WallHangingGUI {
                 log.info("wall hanging gateway ip is "+commonFields.get(2));
                 log.info("wall hanging net mask is "+commonFields.get(3));
                 //String ssidName, String wallHangingIP, String wallHangingNetmask, String wallHangingGatewayIP, String serverIP
-                progress = new WallHangingConfig().config(commonFields.get(0),wall_IP,commonFields.get(3),commonFields.get(2),commonFields.get(1));
+                //create
+//                progress = new WallHangingConfig().config(commonFields.get(0),wall_IP,commonFields.get(3),commonFields.get(2),commonFields.get(1));
 
-                if (progress == 1){
+                if (progress == 0){
                     JOptionPane.showMessageDialog(
                             mainFrame,
                             "配置成功 !",
@@ -1105,11 +1091,6 @@ public class WallHangingGUI {
                     }
                     if (tableModel != null){
                         tableModel.addRow(readFromExcel);
-                    }else {
-                        commonFields.clear();
-                        for (String commonField : readFromExcel) {
-                            commonFields.add(commonField);
-                        }
                     }
                 }
             }
