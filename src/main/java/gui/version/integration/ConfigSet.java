@@ -1033,10 +1033,10 @@ public class ConfigSet {
         jTable_M5.getColumn("编号").setMaxWidth(45);
         jTable_M5.getColumn("位置").setMaxWidth(45);
         jTable_M5.getColumn("线路").setMaxWidth(45);
-        jTable_M5.getColumn("M5_AP IP").setMaxWidth(100);
+        jTable_M5.getColumn("M5_AP IP").setMaxWidth(115);
         jTable_M5.getColumn("M5_AP 频率").setMaxWidth(120);
         jTable_M5.getColumn("M5_AP mac地址").setMaxWidth(140);
-        jTable_M5.getColumn("M5_ST IP").setMaxWidth(100);
+        jTable_M5.getColumn("M5_ST IP").setMaxWidth(115);
         jTable_M5.getColumn("M5_ST锁定的AP mac地址").setMaxWidth(230);
         jTable_M5.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
         jTable_M5.setFont(new Font(null, Font.PLAIN, 15));
@@ -1382,8 +1382,8 @@ public class ConfigSet {
                     String IPAddress_AP =  IP_AP.getText();
                     String fruq_AP = fruq.getSelectedItem().toString();
 
-//                    log.info("线路是: " + way_M5);
-//                    log.info("DK is: " + DK_M5);
+                    log.info("线路是: " + way_M5);
+                    log.info("DK is: " + DK_M5);
 //                    log.info("ap IP is: " + IPAddress_AP);
 //                    log.info("fruq is: " + fruq_AP);
 //                    log.info("ssid is: " + commonFields_ubnt.get(2));
@@ -1469,15 +1469,19 @@ public class ConfigSet {
                     String IPAddress_ST = IP_ST.getText();
                     String macAddress = macBox.getText();
 
-//                    log.info("线路是: " + way_M5);
-//                    log.info("DK is: " + DK_M5);
+                    log.info("线路是: " + way_M5);
+                    log.info("DK is: " + DK_M5);
 //                    log.info("ap IP is: " + IPAddress_ST);
 //                    log.info("fruq is: " + macAddress);
 //                    log.info("ssid is: " + commonFields_ubnt.get(2));
 //                    log.info("ap net mask is: " + commonFields_ubnt.get(6));
 //                    log.info("ap gateway ip is: " + commonFields_ubnt.get(5));
                     //progressSTUpdate
-                    progress = new M5_Configuration().configM5("ST",commonFields_ubnt.get(2),IPAddress_ST,commonFields_ubnt.get(6),commonFields_ubnt.get(5),null,macAddress,originalIP_M5ST);
+                    if (IPAddress_ST.trim().equals(originalIP_M5ST)){
+                        progress = 1;
+                    }else{
+                        progress = new M5_Configuration().configM5("ST",commonFields_ubnt.get(2),IPAddress_ST,commonFields_ubnt.get(6),commonFields_ubnt.get(5),null,macAddress,originalIP_M5ST);
+                    }
                     if (progress == 1){
                         JOptionPane.showMessageDialog(
                                 mainFrame,
@@ -1490,6 +1494,7 @@ public class ConfigSet {
                         tableModel.setValueAt(macAddress,tableModel.getRowCount()-1,5);
                         tableModel.setValueAt(IPAddress_ST,tableModel.getRowCount()-1,6);
                         tableModel.setValueAt(macAddress,tableModel.getRowCount()-1,7);
+                        exportToExcel(tableModel,System.getProperty("user.dir")+ "\\ConfigFile\\M5\\"+pName +".xlsx",8,null);
                     }else {
                         JOptionPane.showMessageDialog(
                                 mainFrame,
