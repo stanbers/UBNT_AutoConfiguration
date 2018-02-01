@@ -593,12 +593,12 @@ public class WallHangingGUI {
                 log.info("wall hanging oler ip is "+olderIP_wall);
                 //update
                 if (wall_IP.trim().equals(olderIP_wall)){
-//                    progress = 1;
+                    progress = 1;
                 }else {
-//                    progress = new WallHangingConfig().config(commonFields.get(0),olderIP_wall,commonFields.get(3),commonFields.get(2),commonFields.get(1));
+                    progress = new WallHangingConfig().config(commonFields.get(0),olderIP_wall,commonFields.get(3),commonFields.get(2),commonFields.get(1));
                 }
 
-                if (progress == 0){
+                if (progress == 1){
                     JOptionPane.showMessageDialog(
                             mainFrame,
                             "更新成功 !",
@@ -753,9 +753,9 @@ public class WallHangingGUI {
                 log.info("wall hanging net mask is "+commonFields.get(3));
                 //String ssidName, String wallHangingIP, String wallHangingNetmask, String wallHangingGatewayIP, String serverIP
                 //create
-//                progress = new WallHangingConfig().config(commonFields.get(0),wall_IP,commonFields.get(3),commonFields.get(2),commonFields.get(1));
+                progress = new WallHangingConfig().config(commonFields.get(0),wall_IP,commonFields.get(3),commonFields.get(2),commonFields.get(1));
 
-                if (progress == 0){
+                if (progress == 1){
                     JOptionPane.showMessageDialog(
                             mainFrame,
                             "配置成功 !",
