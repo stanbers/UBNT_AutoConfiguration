@@ -926,27 +926,27 @@ public class ConfigSet {
         removeM2.setFont(new Font(null,Font.BOLD,14));
         M2ContainerPanel.add(removeM2);
 
-        //setup export M2 records button
-        JButton exportM2Records = new JButton("导出");
-        exportM2Records.setFont(new Font(null,Font.BOLD,14));
-        exportM2Records.setLocation(15,500);
-        exportM2Records.setSize(80,30);
-        M2ContainerPanel.add(exportM2Records);
-
-        //add export all M2 config records
-        exportM2Records.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-//                exportToExcel(tableModel_M2,"D:\\ConfigFile\\M2\\"+pName+".xlsx",4,null);
-                exportToExcel(tableModel_M2,System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName+".xlsx",4,null);
-                JOptionPane.showMessageDialog(
-                        mainFrame,
-                        "导出数据完毕 !",
-                        "配置结果",
-                        JOptionPane.INFORMATION_MESSAGE
-                );
-            }
-        });
+//        //setup export M2 records button
+//        JButton exportM2Records = new JButton("导出");
+//        exportM2Records.setFont(new Font(null,Font.BOLD,14));
+//        exportM2Records.setLocation(15,500);
+//        exportM2Records.setSize(80,30);
+//        M2ContainerPanel.add(exportM2Records);
+//
+//        //add export all M2 config records
+//        exportM2Records.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+////                exportToExcel(tableModel_M2,"D:\\ConfigFile\\M2\\"+pName+".xlsx",4,null);
+//                exportToExcel(tableModel_M2,System.getProperty("user.dir")+ "\\ConfigFile\\M2\\"+pName+".xlsx",4,null);
+//                JOptionPane.showMessageDialog(
+//                        mainFrame,
+//                        "导出数据完毕 !",
+//                        "配置结果",
+//                        JOptionPane.INFORMATION_MESSAGE
+//                );
+//            }
+//        });
 
         //add action listener to create button
         createM2.addActionListener(new ActionListener() {
@@ -2054,9 +2054,9 @@ public class ConfigSet {
 //                log.info("M2 IP is "+M2_IP);
 //                log.info("net mask is "+commonFields_ubnt.get(4));
 //                log.info("gateway IP is "+commonFields_ubnt.get(3));
-                progress = new M2_Configuration().configM2(commonFields_ubnt.get(2),M2_IP,commonFields_ubnt.get(4),commonFields_ubnt.get(3),null);
+//                progress = new M2_Configuration().configM2(commonFields_ubnt.get(2),M2_IP,commonFields_ubnt.get(4),commonFields_ubnt.get(3),null);
 
-                if (progress == 1){
+                if (progress == 0){
                     JOptionPane.showMessageDialog(
                             mainFrame,
                             "配置成功 !",

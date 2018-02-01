@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6297135e-99b4-48ed-8d1f-4be9376233e2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/ConfigFile/M2/test.xlsx" afterPath="$PROJECT_DIR$/ConfigFile/M2/test.xlsx" />
       <change beforePath="$PROJECT_DIR$/src/main/java/gui/version/integration/ConfigSet.java" afterPath="$PROJECT_DIR$/src/main/java/gui/version/integration/ConfigSet.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -22,8 +23,8 @@
       <file leaf-file-name="ConfigSet.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/integration/ConfigSet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="981" column="0" lean-forward="false" selection-start-line="981" selection-start-column="0" selection-end-line="981" selection-end-column="0" />
+            <state relative-caret-position="234">
+              <caret line="937" column="23" lean-forward="true" selection-start-line="937" selection-start-column="23" selection-end-line="937" selection-end-column="23" />
               <folding>
                 <element signature="e#1469#1477#0" expanded="true" />
                 <element signature="e#1575#1583#0" expanded="true" />
@@ -36,7 +37,6 @@
                 <element signature="method#createM5Overlay#0;class#ConfigSet#0" expanded="false" />
                 <element signature="method#createM5Panel#0;class#ConfigSet#0" expanded="false" />
                 <element signature="method#updateM2Dialog#0;class#ConfigSet#0" expanded="false" />
-                <element signature="method#createM2Dialog#0;class#ConfigSet#0" expanded="false" />
                 <element signature="method#generateNewProjectDilog#0;class#ConfigSet#0" expanded="false" />
               </folding>
             </state>
@@ -108,7 +108,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>pName</find>
       <find>fieldValuePanel_ubnt</find>
       <find>ip_M5AP</find>
       <find>import</find>
@@ -138,6 +137,7 @@
       <find>removeM2</find>
       <find>exportTo</find>
       <find>exportToExcel(tableModel_M2,path,4,null);</find>
+      <find>exportM2Records</find>
     </findStrings>
     <replaceStrings>
       <replace>3000</replace>
@@ -1207,8 +1207,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/gui/version/integration/ConfigSet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="981" column="0" lean-forward="false" selection-start-line="981" selection-start-column="0" selection-end-line="981" selection-end-column="0" />
+        <state relative-caret-position="234">
+          <caret line="937" column="23" lean-forward="true" selection-start-line="937" selection-start-column="23" selection-end-line="937" selection-end-column="23" />
           <folding>
             <element signature="e#1469#1477#0" expanded="true" />
             <element signature="e#1575#1583#0" expanded="true" />
@@ -1221,7 +1221,6 @@
             <element signature="method#createM5Overlay#0;class#ConfigSet#0" expanded="false" />
             <element signature="method#createM5Panel#0;class#ConfigSet#0" expanded="false" />
             <element signature="method#updateM2Dialog#0;class#ConfigSet#0" expanded="false" />
-            <element signature="method#createM2Dialog#0;class#ConfigSet#0" expanded="false" />
             <element signature="method#generateNewProjectDilog#0;class#ConfigSet#0" expanded="false" />
           </folding>
         </state>
